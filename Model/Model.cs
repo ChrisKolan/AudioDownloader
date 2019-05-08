@@ -163,6 +163,8 @@ namespace Model
                 elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                 StandardOutput = "Error. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                 IsIndeterminate = false;
+                IsInputEnabled = true;
+                IsButtonEnabled = true;
             }
             else
             {
@@ -179,6 +181,8 @@ namespace Model
                     StandardOutput = "Exception. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                     _downloadedFileSize = null;
                     IsIndeterminate = false;
+                    IsInputEnabled = true;
+                    IsButtonEnabled = true;
                     return;
                 }
 
