@@ -15,7 +15,8 @@
                          Margin="2,1,2,1"
                          Height="21"
                          BorderBrush="#FFBCBCBC"
-                         Text="{Binding DownloadLink, UpdateSourceTrigger=PropertyChanged}" 
+                         Text="{Binding DownloadLink, UpdateSourceTrigger=PropertyChanged}"
+                         IsEnabled="{Binding Model.IsInputEnabled, UpdateSourceTrigger=PropertyChanged}"
                          ToolTip="Paste YouTube link and press Enter or Download button" AcceptsReturn="False">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding DownloadButton}" />
@@ -59,7 +60,8 @@
                     Height="21"
                     Background="#FFE5E5E5"
                     BorderBrush="#FFBCBCBC"
-                    Command="{Binding DownloadButton}" 
+                    Command="{Binding DownloadButton}"
+                    IsEnabled="{Binding Model.IsButtonEnabled, UpdateSourceTrigger=PropertyChanged}"
                     ToolTip="Press Download button to get the mp3 file"/>
             <TextBox x:Name="textBox" 
                      Margin="2,1,2,1"

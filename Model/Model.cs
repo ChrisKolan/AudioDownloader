@@ -22,10 +22,14 @@ namespace Model
         private string _downloadedFileSize;
         private int _progressBarPercent;
         private bool _isIndeterminate;
+        private bool _isButtonEnabled;
+        private bool _isInputEnabled;
 
         public Model()
         {
             StandardOutput = "Status: idle";
+            IsButtonEnabled = true;
+            IsInputEnabled = true;
             _periodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));
         }
 
@@ -61,6 +65,26 @@ namespace Model
             }
         }
 
+        public bool IsButtonEnabled
+        {
+            get { return _isButtonEnabled; }
+            set
+            {
+                _isButtonEnabled = value;
+                OnPropertyChanged(nameof(IsButtonEnabled));
+            }
+        }
+
+        public bool IsInputEnabled
+        {
+            get { return _isInputEnabled; }
+            set
+            {
+                _isInputEnabled = value;
+                OnPropertyChanged(nameof(IsInputEnabled));
+            }
+        }
+
         public void DownloadButtonClick(string youtubeLink, string selectedQuality)
         {
             ThreadPool.QueueUserWorkItem(ThreadPoolWorker, new object[] { youtubeLink, selectedQuality });
@@ -68,11 +92,12 @@ namespace Model
 
         private void ThreadPoolWorker(Object stateInfo)
         {
+            var watch = Stopwatch.StartNew();
             object[] array = stateInfo as object[];
             string youtubeLink = Convert.ToString(array[0]);
             string selectedQuality = Convert.ToString(array[1]);
-
-            var watch = Stopwatch.StartNew();
+            IsInputEnabled = false;
+            IsButtonEnabled = false;
             ProgressBarPercent = 0;
             IsIndeterminate = true;
             long elapsedTimeInMiliseconds;
@@ -168,6 +193,8 @@ namespace Model
                                  "Ratio (downloaded size)/(mp3 size): " + ratio.ToString("F") + ".";
                 _downloadedFileSize = null;
                 IsIndeterminate = false;
+                IsInputEnabled = true;
+                IsButtonEnabled = true;
             }
         }
 
