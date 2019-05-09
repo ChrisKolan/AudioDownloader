@@ -120,13 +120,13 @@ namespace Model
                 {
                     Process process = Process.Start("CMD.exe", command);
                     process.WaitForExit();
-                    EnableInteractions();
                 }
                 catch
                 {
                     StandardOutput = "Exception. Processed command: " + command;
-                    EnableInteractions();
                 }
+
+                EnableInteractions();
             }
             else
             {
