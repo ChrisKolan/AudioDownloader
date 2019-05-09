@@ -17,7 +17,6 @@ namespace Model
         private string _standardOutput;
         private static bool _isSpinning;
         private int _counter;
-        private readonly Timer _periodicTimer;
         private string _finishedMessage = "Download finished. Now converting to mp3. This may take a while. Processing";
         private string _downloadedFileSize;
         private int _progressBarPercent;
@@ -30,7 +29,7 @@ namespace Model
             StandardOutput = "Status: idle";
             IsButtonEnabled = true;
             IsInputEnabled = true;
-            _periodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));
+            PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));
         }
 
         public string CurrentStandardOutputLine { get; set;}
@@ -84,6 +83,8 @@ namespace Model
                 OnPropertyChanged(nameof(IsInputEnabled));
             }
         }
+
+        public Timer PeriodicTimer { get; }
 
         public void DownloadButtonClick(string youtubeLink, string selectedQuality)
         {
