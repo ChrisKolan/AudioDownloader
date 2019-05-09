@@ -112,11 +112,21 @@ namespace Model
                 /// "/K" keeps command window open
                 var command = "/K bin\\youtube-dl.exe " + advancedUserCommand;
 
-                Process process = Process.Start("CMD.exe", command);
-                process.WaitForExit();
-                IsIndeterminate = false;
-                IsInputEnabled = true;
-                IsButtonEnabled = true;
+                try
+                {
+                    Process process = Process.Start("CMD.exe", command);
+                    process.WaitForExit();
+                    IsIndeterminate = false;
+                    IsInputEnabled = true;
+                    IsButtonEnabled = true;
+                }
+                catch
+                {
+                    StandardOutput = "Exception. Processed command: " + command;
+                    IsIndeterminate = false;
+                    IsInputEnabled = true;
+                    IsButtonEnabled = true;
+                }
             }
             else
             {
