@@ -30,8 +30,7 @@ namespace Model
         public Model()
         {
             StandardOutput = "Status: idle";
-            IsButtonEnabled = true;
-            IsInputEnabled = true;
+            EnableInteractions();
             PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));
         } 
         #endregion
