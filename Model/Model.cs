@@ -105,100 +105,125 @@ namespace Model
             int positionFrom;
             int positionTo;
 
-            StandardOutput = "Starting download...";
-            string command;
-            var date = DateTime.Now.ToString("yyMMdd");
-            var quality = GetQuality(selectedQuality);
-            string keepDownloadedFiles = ConfigurationManager.AppSettings["keepDownloadedFiles"];
-
-            command = "/C bin\\youtube-dl.exe --extract-audio --audio-format mp3 --no-mtime --audio-quality " + quality + " " + keepDownloadedFiles + " --restrict-filenames -o mp3\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
-
-            var startinfo = new ProcessStartInfo("CMD.exe", command)
+            if (youtubeLink.Contains("CLI"))
             {
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-            };
+                StandardOutput = "Advanced mode. Use on your own risk. Starting download in a new command window. Close the window to start new download.";
+                var advancedUserCommand = youtubeLink.Remove(0, 4);
+                /// "/K" keeps command window open
+                var command = "/K bin\\youtube-dl.exe " + advancedUserCommand;
 
-            var process = new Process { StartInfo = startinfo };
-            process.Start();
-
-            var reader = process.StandardOutput;
-            while (!reader.EndOfStream)
-            {
-                StandardOutput = reader.ReadLine();
-                if (StandardOutput.Contains("[download]") && StandardOutput.Contains("ETA"))
-                {
-                    IsIndeterminate = false;
-                    positionFrom = StandardOutput.IndexOf("of ") + "of ".Length;
-                    positionTo = StandardOutput.LastIndexOf(" at");
-
-                    if ((positionTo - positionFrom) > 0)
-                        _downloadedFileSize = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
-
-                    positionFrom = StandardOutput.IndexOf("] ") + "] ".Length;
-                    positionTo = StandardOutput.LastIndexOf("%");
-
-                    if ((positionTo - positionFrom) > 0)
-                    {
-                        var percent = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
-                        ProgressBarPercent = Convert.ToInt32(Math.Round(Convert.ToDouble(percent))); ;
-                    }
-                }
-
-                if (StandardOutput.Contains("[ffmpeg]"))
-                {
-                    StandardOutput = _finishedMessage;
-                    _isSpinning = true;
-                }
-            }
-
-            process.WaitForExit();
-            _isSpinning = false;
-
-            if (_downloadedFileSize == null)
-            {
-                watch.Stop();
-                elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
-                StandardOutput = "Error. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                Process process = Process.Start("CMD.exe", command);
+                process.WaitForExit();
                 IsIndeterminate = false;
                 IsInputEnabled = true;
                 IsButtonEnabled = true;
             }
             else
             {
-                (string fileName, double fileSize) = GetFileNameAndSize();
-
-                try
+                if (!youtubeLink.Contains("https://www.youtube.com/watch?v="))
                 {
-                    UpdateWebhook(youtubeLink, fileName);
-                }
-                catch (Exception)
-                {
-                    watch.Stop();
-                    elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
-                    StandardOutput = "Exception. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
-                    _downloadedFileSize = null;
+                    StandardOutput = "YouTube link not valid";
                     IsIndeterminate = false;
                     IsInputEnabled = true;
                     IsButtonEnabled = true;
                     return;
                 }
 
-                var downloadedFileSize = double.Parse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3));
-                var ratio = downloadedFileSize / fileSize;
-                watch.Stop();
-                elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
+                StandardOutput = "Starting download...";
+                string command;
+                var date = DateTime.Now.ToString("yyMMdd");
+                var quality = GetQuality(selectedQuality);
+                string keepDownloadedFiles = ConfigurationManager.AppSettings["keepDownloadedFiles"];
 
-                StandardOutput = "Done. Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
-                                 "Downloaded file size: " + _downloadedFileSize + ". " +
-                                 "Mp3 file size: " + fileSize.ToString("F") + "MiB. " +
-                                 "Ratio (downloaded size)/(mp3 size): " + ratio.ToString("F") + ".";
-                _downloadedFileSize = null;
-                IsIndeterminate = false;
-                IsInputEnabled = true;
-                IsButtonEnabled = true;
+                command = "/C bin\\youtube-dl.exe --extract-audio --audio-format mp3 --no-mtime --audio-quality " + quality + " " + keepDownloadedFiles + " --restrict-filenames -o mp3\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+
+                var startinfo = new ProcessStartInfo("CMD.exe", command)
+                {
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                };
+
+                var process = new Process { StartInfo = startinfo };
+                process.Start();
+
+                var reader = process.StandardOutput;
+                while (!reader.EndOfStream)
+                {
+                    StandardOutput = reader.ReadLine();
+                    if (StandardOutput.Contains("[download]") && StandardOutput.Contains("ETA"))
+                    {
+                        IsIndeterminate = false;
+                        positionFrom = StandardOutput.IndexOf("of ") + "of ".Length;
+                        positionTo = StandardOutput.LastIndexOf(" at");
+
+                        if ((positionTo - positionFrom) > 0)
+                            _downloadedFileSize = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
+
+                        positionFrom = StandardOutput.IndexOf("] ") + "] ".Length;
+                        positionTo = StandardOutput.LastIndexOf("%");
+
+                        if ((positionTo - positionFrom) > 0)
+                        {
+                            var percent = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
+                            ProgressBarPercent = Convert.ToInt32(Math.Round(Convert.ToDouble(percent))); ;
+                        }
+                    }
+
+                    if (StandardOutput.Contains("[ffmpeg]"))
+                    {
+                        StandardOutput = _finishedMessage;
+                        _isSpinning = true;
+                    }
+                }
+
+                process.WaitForExit();
+                _isSpinning = false;
+
+                if (_downloadedFileSize == null)
+                {
+                    watch.Stop();
+                    elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
+                    StandardOutput = "Error. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                    IsIndeterminate = false;
+                    IsInputEnabled = true;
+                    IsButtonEnabled = true;
+                }
+                else
+                {
+                    (string fileName, double fileSize) = GetFileNameAndSize();
+
+                    try
+                    {
+                        UpdateWebhook(youtubeLink, fileName);
+                    }
+                    catch (Exception)
+                    {
+                        watch.Stop();
+                        elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
+                        StandardOutput = "Exception. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                        _downloadedFileSize = null;
+                        IsIndeterminate = false;
+                        IsInputEnabled = true;
+                        IsButtonEnabled = true;
+                        return;
+                    }
+
+                    var downloadedFileSize = double.Parse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3));
+                    var ratio = downloadedFileSize / fileSize;
+                    watch.Stop();
+                    elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
+
+                    StandardOutput = "Done. Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
+                                     "Downloaded file size: " + _downloadedFileSize + ". " +
+                                     "Mp3 file size: " + fileSize.ToString("F") + "MiB. " +
+                                     "Ratio (downloaded size)/(mp3 size): " + ratio.ToString("F") + ".";
+                    _downloadedFileSize = null;
+                    IsIndeterminate = false;
+                    IsInputEnabled = true;
+                    IsButtonEnabled = true;
+                }
             }
         }
 

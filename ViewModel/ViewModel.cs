@@ -65,11 +65,7 @@ namespace ViewModel
                 Model.StandardOutput = "Empty link";
                 return;
             }
-            if (!DownloadLink.Contains("https://www.youtube.com/watch?v="))
-            {
-                Model.StandardOutput = "Youtube link not valid";
-                return;
-            }
+           
             Model.DownloadButtonClick(DownloadLink, SelectedQuality);
         }
 
