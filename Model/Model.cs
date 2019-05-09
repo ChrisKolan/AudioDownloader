@@ -14,6 +14,7 @@ namespace Model
 {
     public class Model : INotifyPropertyChanged
     {
+        #region Fields
         private string _standardOutput;
         private static bool _isSpinning;
         private int _counter;
@@ -23,16 +24,20 @@ namespace Model
         private bool _isIndeterminate;
         private bool _isButtonEnabled;
         private bool _isInputEnabled;
+        #endregion
 
+        #region Constructor
         public Model()
         {
             StandardOutput = "Status: idle";
             IsButtonEnabled = true;
             IsInputEnabled = true;
             PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));
-        }
+        } 
+        #endregion
 
-        public string CurrentStandardOutputLine { get; set;}
+        #region Properties
+        public string CurrentStandardOutputLine { get; set; }
 
         public string StandardOutput
         {
@@ -85,7 +90,9 @@ namespace Model
         }
 
         public Timer PeriodicTimer { get; }
+        #endregion
 
+        #region Methods
         public void DownloadButtonClick(string youtubeLink, string selectedQuality)
         {
             ThreadPool.QueueUserWorkItem(ThreadPoolWorker, new object[] { youtubeLink, selectedQuality });
@@ -301,7 +308,8 @@ namespace Model
         private static double ConvertBytesToMegabytes(long bytes)
         {
             return (bytes / 1024f) / 1024f;
-        }
+        } 
+        #endregion
 
         #region INotifyPropertyChanged implementation
 
