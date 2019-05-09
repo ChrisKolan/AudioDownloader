@@ -96,10 +96,7 @@ namespace Model
             object[] array = stateInfo as object[];
             string youtubeLink = Convert.ToString(array[0]);
             string selectedQuality = Convert.ToString(array[1]);
-            IsInputEnabled = false;
-            IsButtonEnabled = false;
-            ProgressBarPercent = 0;
-            IsIndeterminate = true;
+            DisableInteractions();
             long elapsedTimeInMiliseconds;
             Thread.CurrentThread.IsBackground = true;
             int positionFrom;
@@ -116,16 +113,12 @@ namespace Model
                 {
                     Process process = Process.Start("CMD.exe", command);
                     process.WaitForExit();
-                    IsIndeterminate = false;
-                    IsInputEnabled = true;
-                    IsButtonEnabled = true;
+                    EnableInteractions();
                 }
                 catch
                 {
                     StandardOutput = "Exception. Processed command: " + command;
-                    IsIndeterminate = false;
-                    IsInputEnabled = true;
-                    IsButtonEnabled = true;
+                    EnableInteractions();
                 }
             }
             else
@@ -133,9 +126,7 @@ namespace Model
                 if (!youtubeLink.Contains("https://www.youtube.com/watch?v="))
                 {
                     StandardOutput = "YouTube link not valid";
-                    IsIndeterminate = false;
-                    IsInputEnabled = true;
-                    IsButtonEnabled = true;
+                    EnableInteractions();
                     return;
                 }
 
@@ -196,9 +187,7 @@ namespace Model
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     StandardOutput = "Error. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
-                    IsIndeterminate = false;
-                    IsInputEnabled = true;
-                    IsButtonEnabled = true;
+                    EnableInteractions();
                 }
                 else
                 {
@@ -214,9 +203,7 @@ namespace Model
                         elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                         StandardOutput = "Exception. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                         _downloadedFileSize = null;
-                        IsIndeterminate = false;
-                        IsInputEnabled = true;
-                        IsButtonEnabled = true;
+                        EnableInteractions();
                         return;
                     }
 
@@ -230,11 +217,24 @@ namespace Model
                                      "Mp3 file size: " + fileSize.ToString("F") + "MiB. " +
                                      "Ratio (downloaded size)/(mp3 size): " + ratio.ToString("F") + ".";
                     _downloadedFileSize = null;
-                    IsIndeterminate = false;
-                    IsInputEnabled = true;
-                    IsButtonEnabled = true;
+                    EnableInteractions();
                 }
             }
+        }
+
+        private void EnableInteractions()
+        {
+            IsIndeterminate = false;
+            IsInputEnabled = true;
+            IsButtonEnabled = true;
+        }
+
+        private void DisableInteractions()
+        {
+            IsIndeterminate = true;
+            IsInputEnabled = false;
+            IsButtonEnabled = false;
+            ProgressBarPercent = 0;
         }
 
         private void Spinner()
