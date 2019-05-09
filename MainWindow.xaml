@@ -17,7 +17,7 @@
                          BorderBrush="#FFBCBCBC"
                          Text="{Binding DownloadLink, UpdateSourceTrigger=PropertyChanged}"
                          IsEnabled="{Binding Model.IsInputEnabled, UpdateSourceTrigger=PropertyChanged}"
-                         ToolTip="Paste YouTube link and press Enter or Download button" AcceptsReturn="False">
+                         ToolTip="Paste YouTube link and press Enter or Download button. Or type CLI followed by youtube-dl command" AcceptsReturn="False">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding DownloadButton}" />
                     </TextBox.InputBindings>
