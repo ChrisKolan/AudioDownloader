@@ -54,31 +54,39 @@ namespace ViewModel
         private async Task YoutubeDlUpdater()
         {
             Model.StandardOutput = "Checking if new version is available.";
-            var pathToExeFolder = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            string pathToYoutubeDl = pathToExeFolder + @"\bin\youtube-dl.exe";
-            var currentYoutubeDlVersion = Utilities.GetFileVersion(pathToYoutubeDl);
 
-            var client = new GitHubClient(new ProductHeaderValue("youtube-dl"));
-            client.SetRequestTimeout(TimeSpan.FromSeconds(20));
-            var releases = await client.Repository.Release.GetLatest("ytdl-org", "youtube-dl");
-            var newYoutubeDlVersion = releases.TagName;
-
-            if (currentYoutubeDlVersion != newYoutubeDlVersion)
+            try
             {
-                Model.StandardOutput = "Downloading new Youtube-dl version. Current version: " + currentYoutubeDlVersion + ". New version: " + newYoutubeDlVersion;
-                Model.IsIndeterminate = true;
-                var latestAsset = await client.Repository.Release.GetAllAssets("ytdl-org", "youtube-dl", releases.Id);
-                var latestUri = latestAsset[7].BrowserDownloadUrl;
+                var pathToExeFolder = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                string pathToYoutubeDl = pathToExeFolder + @"\bin\youtube-dl.exe";
+                var currentYoutubeDlVersion = Utilities.GetFileVersion(pathToYoutubeDl);
 
-                var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream");
-                var responseData = response.HttpResponse.Body;
-                System.IO.File.WriteAllBytes(pathToYoutubeDl, (byte[])responseData);
-                Model.StandardOutput = "Updated Youtube-dl to version: " + newYoutubeDlVersion + ". Status: idle";
+                var client = new GitHubClient(new ProductHeaderValue("youtube-dl"));
+                client.SetRequestTimeout(TimeSpan.FromSeconds(20));
+                var releases = await client.Repository.Release.GetLatest("ytdl-org", "youtube-dl");
+                var newYoutubeDlVersion = releases.TagName;
+                if (currentYoutubeDlVersion == null || currentYoutubeDlVersion != newYoutubeDlVersion)
+                {
+                    Model.StandardOutput = "Downloading new Youtube-dl version. Current version: " + currentYoutubeDlVersion + ". New version: " + newYoutubeDlVersion;
+                    Model.IsIndeterminate = true;
+                    var latestAsset = await client.Repository.Release.GetAllAssets("ytdl-org", "youtube-dl", releases.Id);
+                    var latestUri = latestAsset[7].BrowserDownloadUrl;
+
+                    var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream");
+                    var responseData = response.HttpResponse.Body;
+                    System.IO.File.WriteAllBytes(pathToYoutubeDl, (byte[])responseData);
+                    Model.StandardOutput = "Updated Youtube-dl to version: " + newYoutubeDlVersion + ". Status: idle";
+                }
+                else
+                {
+                    Model.StandardOutput = "Status: idle";
+                }
             }
-            else
+            catch (Exception)
             {
-                Model.StandardOutput = "Status: idle";
+                Model.StandardOutput = "Exception during update. Status: idle";
             }
+
             Model.IsIndeterminate = false;
         }
 
