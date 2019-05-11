@@ -71,7 +71,6 @@ namespace ViewModel
                     Model.IsIndeterminate = true;
                     var latestAsset = await client.Repository.Release.GetAllAssets("ytdl-org", "youtube-dl", releases.Id);
                     var latestUri = latestAsset[7].BrowserDownloadUrl;
-
                     var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream");
                     var responseData = response.HttpResponse.Body;
                     System.IO.File.WriteAllBytes(pathToYoutubeDl, (byte[])responseData);
