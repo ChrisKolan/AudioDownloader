@@ -154,7 +154,7 @@ namespace Model
                 }
                 else
                 {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format flac --no-mtime -k --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --no-mtime --add-metadata --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
                     _finishedMessage = "Download finished.";
                 }
 
