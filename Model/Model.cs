@@ -18,7 +18,7 @@ namespace Model
         private string _standardOutput;
         private static bool _isSpinning;
         private int _counter;
-        private string _finishedMessage = "Download finished. Now converting to mp3. This may take a while. Processing";
+        private string _finishedMessage;
         private string _downloadedFileSize;
         private int _progressBarPercent;
         private bool _isIndeterminate;
@@ -143,7 +143,16 @@ namespace Model
                 var quality = GetQuality(selectedQuality);
                 string keepDownloadedFiles = ConfigurationManager.AppSettings["keepDownloadedFiles"];
 
-                command = "/C bin\\youtube-dl.exe --extract-audio --audio-format mp3 --no-mtime --audio-quality " + quality + " " + keepDownloadedFiles + " --restrict-filenames -o mp3\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                if (selectedQuality.Contains("Mp3"))
+                {
+                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format mp3 --no-mtime --audio-quality " + quality + " " + keepDownloadedFiles + " --restrict-filenames -o mp3\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    _finishedMessage = "Download finished. Now converting to mp3. This may take a while. Processing";
+                }
+                else
+                {
+                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format flac --no-mtime " + keepDownloadedFiles + " --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    _finishedMessage = "Download finished. Now converting to FLAC. This may take a while. Processing";
+                }
 
                 var startinfo = new ProcessStartInfo("CMD.exe", command)
                 {
@@ -271,7 +280,7 @@ namespace Model
         {
             string[] qualityArray = selectedQuality.Split(' ');
 
-            return qualityArray[2];
+            return qualityArray[5];
         }
 
         private void UpdateWebhook(string youtubeLink, string fileName)

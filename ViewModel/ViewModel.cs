@@ -22,18 +22,19 @@ namespace ViewModel
             var updaterTask = YoutubeDlUpdater();
             Quality = new ObservableCollection<string>
             {
-                "Audio quality: 0 Best (Largest mp3 file size)",
-                "Audio quality: 1 Better",
-                "Audio quality: 2 Optimal",
-                "Audio quality: 3 Very good",
-                "Audio quality: 4 Good (Balanced mp3 file size)",
-                "Audio quality: 5 Default",
-                "Audio quality: 6 Average",
-                "Audio quality: 7 AudioBook",
-                "Audio quality: 8 Worse",
-                "Audio quality: 9 Worst (Smallest mp3 file size)"
+                "FLAC lossless compression. Audio quality: superb (Largest flac file size)",
+                "Mp3 lossy compression. Audio quality: 0 Best (Large mp3 file size)",
+                "Mp3 lossy compression. Audio quality: 1 Better",
+                "Mp3 lossy compression. Audio quality: 2 Optimal",
+                "Mp3 lossy compression. Audio quality: 3 Very good",
+                "Mp3 lossy compression. Audio quality: 4 Good (Balanced mp3 file size)",
+                "Mp3 lossy compression. Audio quality: 5 Default",
+                "Mp3 lossy compression. Audio quality: 6 Average",
+                "Mp3 lossy compression. Audio quality: 7 AudioBook",
+                "Mp3 lossy compression. Audio quality: 8 Worse",
+                "Mp3 lossy compression. Audio quality: 9 Worst (Smallest mp3 file size)"
             };
-            SelectedQuality = Quality[2];
+            SelectedQuality = Quality[4];
             DownloadButton = new Helper.ActionCommand(DownloadButtonCommand);
         }
 
