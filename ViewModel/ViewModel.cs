@@ -129,7 +129,7 @@ namespace ViewModel
                 return "mp3 5";
             else if (SelectedQuality.Contains("acceptable"))
                 return "mp3 6";
-            else if (SelectedQuality.Contains("audioBook"))
+            else if (SelectedQuality.Contains("audio book"))
                 return "mp3 7";
             else if (SelectedQuality.Contains("worse"))
                 return "mp3 8";
