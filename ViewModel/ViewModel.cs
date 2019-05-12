@@ -35,7 +35,7 @@ namespace ViewModel
                 "Audio quality: worse. \t Bitrate average: 085 kbit/s, Bitrate range: 070-105 kbit/s. VBR mp3 lossy compression.",
                 "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
             };
-            SelectedQuality = Quality[6];
+            SelectedQuality = Quality[4];
             DownloadButton = new Helper.ActionCommand(DownloadButtonCommand);
         }
 
