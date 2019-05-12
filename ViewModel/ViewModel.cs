@@ -66,7 +66,7 @@ namespace ViewModel
                 string pathToYoutubeDl = pathToExeFolder + @"\bin\youtube-dl.exe";
                 var currentYoutubeDlVersion = Utilities.GetFileVersion(pathToYoutubeDl);
 
-                var client = new GitHubClient(new ProductHeaderValue("youtube-dl"));
+                var client = new GitHubClient(new ProductHeaderValue("audio-downloader"));
                 client.SetRequestTimeout(TimeSpan.FromSeconds(20));
                 var releases = await client.Repository.Release.GetLatest("ytdl-org", "youtube-dl");
                 var newYoutubeDlVersion = releases.TagName;
