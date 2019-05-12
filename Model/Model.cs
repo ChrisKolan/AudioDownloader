@@ -151,9 +151,19 @@ namespace Model
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
                     _finishedMessage = "Download finished. Now converting to FLAC. This may take a while. Processing";
                 }
-                else
+                else if (selectedQuality.Contains("raw webm"))
                 {
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    _finishedMessage = "Download finished.";
+                }
+                else if (selectedQuality.Contains("raw opus"))
+                {
+                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format opus --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    _finishedMessage = "Download finished.";
+                }
+                else 
+                {
+                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format vorbis --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
                     _finishedMessage = "Download finished.";
                 }
 

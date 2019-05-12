@@ -22,7 +22,9 @@ namespace ViewModel
             var updaterTask = YoutubeDlUpdater();
             Quality = new ObservableCollection<string>
             {
-                "Audio quality: raw. \t Unprocessed (Unchanged file size).",
+                "Audio quality: raw webm. \t WebM (Opus) unprocessed (Unchanged file size).",
+                "Audio quality: raw opus. \t Opus unprocessed (Unchanged file size).",
+                "Audio quality: raw vorbis. \t Vorbis unprocessed (Unchanged file size).",
                 "Audio quality: superb. \t FLAC lossless compression (Largest flac file size).",
                 "Audio quality: best. \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s (Large mp3 file size).",
                 "Audio quality: better. \t Bitrate average: 225 kbit/s, Bitrate range: 190-250 kbit/s. VBR mp3 lossy compression.",
@@ -35,7 +37,7 @@ namespace ViewModel
                 "Audio quality: worse. \t Bitrate average: 085 kbit/s, Bitrate range: 070-105 kbit/s. VBR mp3 lossy compression.",
                 "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
             };
-            SelectedQuality = Quality[4];
+            SelectedQuality = Quality[6];
             DownloadButton = new Helper.ActionCommand(DownloadButtonCommand);
         }
 
@@ -105,8 +107,12 @@ namespace ViewModel
 
         private string GetQuality()
         {
-            if (SelectedQuality.Contains("raw"))
-                return "raw";
+            if (SelectedQuality.Contains("raw webm"))
+                return "raw webm";
+            else if (SelectedQuality.Contains("raw opus"))
+                return "raw opus";
+            else if (SelectedQuality.Contains("raw vorbis"))
+                return "raw vorbis";
             else if (SelectedQuality.Contains("superb"))
                 return "flac";
             else if (SelectedQuality.Contains("best"))
