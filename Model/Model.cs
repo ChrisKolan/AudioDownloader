@@ -140,18 +140,22 @@ namespace Model
                 StandardOutput = "Starting download...";
                 string command;
                 var date = DateTime.Now.ToString("yyMMdd");
-                var quality = GetQuality(selectedQuality);
-                string keepDownloadedFiles = ConfigurationManager.AppSettings["keepDownloadedFiles"];
 
-                if (selectedQuality.Contains("Mp3"))
+                if (selectedQuality.Contains("mp3"))
                 {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format mp3 --no-mtime --audio-quality " + quality + " " + keepDownloadedFiles + " --restrict-filenames -o mp3\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    var quality = GetQuality(selectedQuality);
+                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format mp3 --no-mtime --audio-quality " + quality + " --restrict-filenames -o mp3\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
                     _finishedMessage = "Download finished. Now converting to mp3. This may take a while. Processing";
+                }
+                else if (selectedQuality.Contains("flac"))
+                {
+                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format flac --no-mtime --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    _finishedMessage = "Download finished. Now converting to FLAC. This may take a while. Processing";
                 }
                 else
                 {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format flac --no-mtime " + keepDownloadedFiles + " --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
-                    _finishedMessage = "Download finished. Now converting to FLAC. This may take a while. Processing";
+                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format flac --no-mtime -k --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    _finishedMessage = "Download finished.";
                 }
 
                 var startinfo = new ProcessStartInfo("CMD.exe", command)
@@ -280,7 +284,7 @@ namespace Model
         {
             string[] qualityArray = selectedQuality.Split(' ');
 
-            return qualityArray[5];
+            return qualityArray[1];
         }
 
         private void UpdateWebhook(string youtubeLink, string fileName)

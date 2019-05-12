@@ -22,19 +22,20 @@ namespace ViewModel
             var updaterTask = YoutubeDlUpdater();
             Quality = new ObservableCollection<string>
             {
-                "FLAC lossless compression. Audio quality: superb (Largest flac file size)",
-                "Mp3 lossy compression. Audio quality: 0 Best (Large mp3 file size)",
-                "Mp3 lossy compression. Audio quality: 1 Better",
-                "Mp3 lossy compression. Audio quality: 2 Optimal",
-                "Mp3 lossy compression. Audio quality: 3 Very good",
-                "Mp3 lossy compression. Audio quality: 4 Good (Balanced mp3 file size)",
-                "Mp3 lossy compression. Audio quality: 5 Default",
-                "Mp3 lossy compression. Audio quality: 6 Average",
-                "Mp3 lossy compression. Audio quality: 7 AudioBook",
-                "Mp3 lossy compression. Audio quality: 8 Worse",
-                "Mp3 lossy compression. Audio quality: 9 Worst (Smallest mp3 file size)"
+                "Audio quality: raw. Unprocessed (Unchanged file size).",
+                "Audio quality: superb. FLAC lossless compression (Largest flac file size).",
+                "Audio quality: best. Mp3 lossy compression (Large mp3 file size).",
+                "Audio quality: better. Mp3 lossy compression.",
+                "Audio quality: optimal. Mp3 lossy compression.",
+                "Audio quality: very good. Mp3 lossy compression.",
+                "Audio quality: good. Mp3 lossy compression (Balanced mp3 file size).",
+                "Audio quality: above average. Mp3 lossy compression.",
+                "Audio quality: average. Mp3 lossy compression.",
+                "Audio quality: audioBook. Mp3 lossy compression.",
+                "Audio quality: worse. Mp3 lossy compression.",
+                "Audio quality: worst Mp3 lossy compression (Smallest mp3 file size)."
             };
-            SelectedQuality = Quality[4];
+            SelectedQuality = Quality[6];
             DownloadButton = new Helper.ActionCommand(DownloadButtonCommand);
         }
 
@@ -98,7 +99,37 @@ namespace ViewModel
                 return;
             }
            
-            Model.DownloadButtonClick(DownloadLink, SelectedQuality);
+            Model.DownloadButtonClick(DownloadLink, GetQuality());
+        }
+
+        private string GetQuality()
+        {
+            if (SelectedQuality.Contains("raw"))
+                return "raw";
+            else if (SelectedQuality.Contains("superb"))
+                return "flac";
+            else if (SelectedQuality.Contains("best"))
+                return "mp3 0";
+            else if (SelectedQuality.Contains("better"))
+                return "mp3 1";
+            else if (SelectedQuality.Contains("optimal"))
+                return "mp3 2";
+            else if (SelectedQuality.Contains("very good"))
+                return "mp3 3";
+            else if (SelectedQuality.Contains("good"))
+                return "mp3 4";
+            else if (SelectedQuality.Contains("above average"))
+                return "mp3 5";
+            else if (SelectedQuality.Contains("average"))
+                return "mp3 6";
+            else if (SelectedQuality.Contains("audioBook"))
+                return "mp3 7";
+            else if (SelectedQuality.Contains("worse"))
+                return "mp3 8";
+            else if (SelectedQuality.Contains("worst"))
+                return "mp3 9";
+            else
+                return "mp3 4";
         }
 
         #region INotifyPropertyChanged implementation
