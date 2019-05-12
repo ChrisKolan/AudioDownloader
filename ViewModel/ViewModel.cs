@@ -22,18 +22,18 @@ namespace ViewModel
             var updaterTask = YoutubeDlUpdater();
             Quality = new ObservableCollection<string>
             {
-                "Audio quality: raw. Unprocessed (Unchanged file size).",
-                "Audio quality: superb. FLAC lossless compression (Largest flac file size).",
-                "Audio quality: best. Mp3 lossy compression (Large mp3 file size).",
-                "Audio quality: better. Mp3 lossy compression.",
-                "Audio quality: optimal. Mp3 lossy compression.",
-                "Audio quality: very good. Mp3 lossy compression.",
-                "Audio quality: good. Mp3 lossy compression (Balanced mp3 file size).",
-                "Audio quality: above average. Mp3 lossy compression.",
-                "Audio quality: average. Mp3 lossy compression.",
-                "Audio quality: audioBook. Mp3 lossy compression.",
-                "Audio quality: worse. Mp3 lossy compression.",
-                "Audio quality: worst Mp3 lossy compression (Smallest mp3 file size)."
+                "Audio quality: raw. \t Unprocessed (Unchanged file size).",
+                "Audio quality: superb. \t FLAC lossless compression (Largest flac file size).",
+                "Audio quality: best. \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s (Large mp3 file size).",
+                "Audio quality: better. \t Bitrate average: 225 kbit/s, Bitrate range: 190-250 kbit/s. VBR mp3 lossy compression.",
+                "Audio quality: optimal. \t Bitrate average: 190 kbit/s, Bitrate range: 170-210 kbit/s. VBR mp3 lossy compression.",
+                "Audio quality: very good. \t Bitrate average: 175 kbit/s, Bitrate range: 150-195 kbit/s. VBR mp3 lossy compression.",
+                "Audio quality: transparent. \t Bitrate average: 165 kbit/s, Bitrate range: 140-185 kbit/s. VBR mp3 lossy compression (Balanced mp3 file size).",
+                "Audio quality: good. \t Bitrate average: 130 kbit/s, Bitrate range: 120-150 kbit/s. VBR mp3 lossy compression.",
+                "Audio quality: acceptable. \t Bitrate average: 115 kbit/s, Bitrate range: 100-130 kbit/s. VBR mp3 lossy compression.",
+                "Audio quality: audio book. \t Bitrate average: 100 kbit/s, Bitrate range: 080-120 kbit/s. VBR mp3 lossy compression.",
+                "Audio quality: worse. \t Bitrate average: 085 kbit/s, Bitrate range: 070-105 kbit/s. VBR mp3 lossy compression.",
+                "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
             };
             SelectedQuality = Quality[6];
             DownloadButton = new Helper.ActionCommand(DownloadButtonCommand);
@@ -116,11 +116,11 @@ namespace ViewModel
                 return "mp3 2";
             else if (SelectedQuality.Contains("very good"))
                 return "mp3 3";
-            else if (SelectedQuality.Contains("good"))
+            else if (SelectedQuality.Contains("transparent"))
                 return "mp3 4";
-            else if (SelectedQuality.Contains("above average"))
+            else if (SelectedQuality.Contains("good"))
                 return "mp3 5";
-            else if (SelectedQuality.Contains("average"))
+            else if (SelectedQuality.Contains("acceptable"))
                 return "mp3 6";
             else if (SelectedQuality.Contains("audioBook"))
                 return "mp3 7";
