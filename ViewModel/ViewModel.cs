@@ -56,6 +56,7 @@ namespace ViewModel
         private async Task YoutubeDlUpdater()
         {
             Model.StandardOutput = "Checking if new version is available.";
+            Model.DisableInteractions();
 
             try
             {
@@ -88,7 +89,7 @@ namespace ViewModel
                 Model.StandardOutput = "Exception during update. Status: idle";
             }
 
-            Model.IsIndeterminate = false;
+            Model.EnableInteractions();
         }
 
         private void DownloadButtonCommand()

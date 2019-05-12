@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using System.Threading.Tasks;
 using Webhook;
 
 namespace Model
@@ -242,14 +241,14 @@ namespace Model
             }
         }
 
-        private void EnableInteractions()
+        public void EnableInteractions()
         {
             IsIndeterminate = false;
             IsInputEnabled = true;
             IsButtonEnabled = true;
         }
 
-        private void DisableInteractions()
+        public void DisableInteractions()
         {
             IsIndeterminate = true;
             IsInputEnabled = false;
