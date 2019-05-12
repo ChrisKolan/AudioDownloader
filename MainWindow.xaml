@@ -47,7 +47,7 @@
                       Height="21"
                       Padding="2"
                       BorderBrush="#FFBCBCBC"
-                      ToolTip="Choose audio quality of the mp3 file. 0 (The best) quality with largest file size, 9 (The worst) quality with smallest file size."
+                      ToolTip="Choose audio quality of the file."
                       ItemsSource="{Binding Quality}" 
                       SelectedItem="{Binding SelectedQuality}" 
                       IsSynchronizedWithCurrentItem="True">
@@ -60,7 +60,7 @@
                     BorderBrush="#FFBCBCBC"
                     Command="{Binding DownloadButton}"
                     IsEnabled="{Binding Model.IsButtonEnabled, UpdateSourceTrigger=PropertyChanged}"
-                    ToolTip="Press Download button to get the mp3 file"/>
+                    ToolTip="Press Download button to get the file"/>
             <TextBox x:Name="textBox" 
                      Margin="2,1,2,1"
                      Height="21" 

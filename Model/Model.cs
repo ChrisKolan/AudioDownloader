@@ -144,17 +144,17 @@ namespace Model
                 if (selectedQuality.Contains("mp3"))
                 {
                     var quality = GetQuality(selectedQuality);
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o mp3\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
                     _finishedMessage = "Download finished. Now converting to mp3. This may take a while. Processing";
                 }
                 else if (selectedQuality.Contains("flac"))
                 {
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
                     _finishedMessage = "Download finished. Now converting to FLAC. This may take a while. Processing";
                 }
                 else
                 {
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --no-mtime --add-metadata --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
                     _finishedMessage = "Download finished.";
                 }
 
@@ -234,8 +234,8 @@ namespace Model
 
                     StandardOutput = "Done. Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
                                      "Downloaded file size: " + _downloadedFileSize + ". " +
-                                     "Mp3 file size: " + fileSize.ToString("F") + "MiB. " +
-                                     "Ratio (downloaded size)/(mp3 size): " + ratio.ToString("F") + ".";
+                                     "File size: " + fileSize.ToString("F") + "MiB. " +
+                                     "Ratio (downloaded file size)/(file size): " + ratio.ToString("F") + ".";
                     _downloadedFileSize = null;
                     EnableInteractions();
                 }
@@ -306,13 +306,13 @@ namespace Model
 
         private (string fileName, double fileSize) GetFileNameAndSize()
         {
-            string mp3Directory = "mp3\\";
-            var directory = new DirectoryInfo(mp3Directory);
+            string audioDirectory = "audio\\";
+            var directory = new DirectoryInfo(audioDirectory);
             var myFile = directory.GetFiles()
                 .OrderByDescending(f => f.LastWriteTime)
                 .FirstOrDefault();
 
-            var length = new FileInfo(mp3Directory + myFile.ToString()).Length;
+            var length = new FileInfo(audioDirectory + myFile.ToString()).Length;
 
             return (fileName: myFile.ToString(), fileSize: ConvertBytesToMegabytes(length));
         }
