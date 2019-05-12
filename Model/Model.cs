@@ -144,12 +144,12 @@ namespace Model
                 if (selectedQuality.Contains("mp3"))
                 {
                     var quality = GetQuality(selectedQuality);
-                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format mp3 --no-mtime --audio-quality " + quality + " --restrict-filenames -o mp3\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o mp3\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
                     _finishedMessage = "Download finished. Now converting to mp3. This may take a while. Processing";
                 }
                 else if (selectedQuality.Contains("flac"))
                 {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format flac --no-mtime --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o mp3\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
                     _finishedMessage = "Download finished. Now converting to FLAC. This may take a while. Processing";
                 }
                 else
