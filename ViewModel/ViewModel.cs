@@ -22,9 +22,9 @@ namespace ViewModel
             var updaterTask = YoutubeDlUpdater();
             Quality = new ObservableCollection<string>
             {
-                "Audio quality: raw webm. \t WebM (Opus) unprocessed (Unchanged file size).",
-                "Audio quality: raw opus. \t Opus unprocessed (Unchanged file size).",
-                "Audio quality: raw vorbis. \t Vorbis unprocessed (Unchanged file size).",
+                "Audio quality: raw webm. \t WebM (Opus) unprocessed.",
+                "Audio quality: raw opus. \t Opus unprocessed.",
+                "Audio quality: raw vorbis. \t Vorbis unprocessed.",
                 "Audio quality: superb. \t FLAC lossless compression (Largest flac file size).",
                 "Audio quality: best. \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s (Large mp3 file size).",
                 "Audio quality: better. \t Bitrate average: 225 kbit/s, Bitrate range: 190-250 kbit/s. VBR mp3 lossy compression.",
