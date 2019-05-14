@@ -1,5 +1,5 @@
 # The Audio Downloader is all you need to get high-quality sound from YouTube.
-# Features:
+## Features:
 * Easy to use
 * No need to install
 * Portable
@@ -12,7 +12,7 @@
 * Uses Youtube-dl for downloading and FFmpeg for processing
 * Allows usage of Youtube-dl command line interface
 * Can store information about the download in Google Sheets (option)
-# Audio formats:
+## Audio formats:
 * WebM (Opus) unprocessed raw audio
 * Opus unprocessed raw audio
 * Vorbis unprocessed raw audio
