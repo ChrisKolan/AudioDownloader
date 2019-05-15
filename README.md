@@ -1,5 +1,5 @@
 # The Audio Downloader is all you need to extract high-quality sound from YouTube.
-[![Release](https://img.shields.io/github/release/ChrisKolan/audio-downloader.svg)](https://github.com/ChrisKolan/audio-downloader/releases/download/v1.0.0.190512/AudioDownloader.zip)
+[![Release](https://img.shields.io/github/release/ChrisKolan/audio-downloader.svg)](https://github.com/ChrisKolan/audio-downloader/releases/download/1.0.0.1905/AudioDownloader.zip)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 ## Features:
 * Easy to use
