@@ -133,25 +133,23 @@ namespace Model
                 return;
             }
 
-            ThreadPool.QueueUserWorkItem(ThreadPoolWorker, new object[] { DownloadLink, GetQuality() });
+            ThreadPool.QueueUserWorkItem(ThreadPoolWorker);
         }
 
         private void ThreadPoolWorker(Object stateInfo)
         {
             var watch = Stopwatch.StartNew();
-            object[] array = stateInfo as object[];
-            string youtubeLink = Convert.ToString(array[0]);
-            string selectedQuality = Convert.ToString(array[1]);
+            string selectedQuality = GetQuality();
             DisableInteractions();
             long elapsedTimeInMiliseconds;
             Thread.CurrentThread.IsBackground = true;
             int positionFrom;
             int positionTo;
 
-            if (youtubeLink.Contains("CLI"))
+            if (DownloadLink.Contains("CLI"))
             {
                 StandardOutput = "Advanced mode. Use on your own risk. Starting download in a new command window. Close the window to start new download.";
-                var advancedUserCommand = youtubeLink.Remove(0, 4);
+                var advancedUserCommand = DownloadLink.Remove(0, 4);
                 /// "/K" keeps command window open
                 var command = "/K bin\\youtube-dl.exe " + advancedUserCommand;
 
@@ -169,7 +167,7 @@ namespace Model
             }
             else
             {
-                if (!youtubeLink.Contains("https://www.youtube.com/watch?v="))
+                if (!DownloadLink.Contains("https://www.youtube.com/watch?v="))
                 {
                     StandardOutput = "YouTube link not valid";
                     EnableInteractions();
@@ -183,27 +181,27 @@ namespace Model
                 if (selectedQuality.Contains("mp3"))
                 {
                     var quality = GetQuality(selectedQuality);
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
                     _finishedMessage = "Download finished. Now converting to mp3. This may take a while. Processing";
                 }
                 else if (selectedQuality.Contains("flac"))
                 {
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
                     _finishedMessage = "Download finished. Now converting to FLAC. This may take a while. Processing";
                 }
                 else if (selectedQuality.Contains("raw webm"))
                 {
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
                     _finishedMessage = "Download finished.";
                 }
                 else if (selectedQuality.Contains("raw opus"))
                 {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format opus --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format opus --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
                     _finishedMessage = "Download finished.";
                 }
                 else 
                 {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format vorbis --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + youtubeLink;
+                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format vorbis --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
                     _finishedMessage = "Download finished.";
                 }
 
@@ -264,7 +262,7 @@ namespace Model
 
                     try
                     {
-                        UpdateWebhook(youtubeLink, fileName);
+                        UpdateWebhook(DownloadLink, fileName);
                     }
                     catch (Exception)
                     {
