@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Octokit, Version=0.32.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Octokit.0.32.0\lib\net45\Octokit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -40,13 +43,20 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Voltsoft.FileVersionUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Voltsoft.FileVersionUtilities.1.0.0\lib\netstandard2.0\Voltsoft.FileVersionUtilities.dll</HintPath>
+    </Reference>
     <Reference Include="Webhook, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WebhookTrigger.1.0.0\lib\netstandard2.0\Webhook.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GitHubVersionProvider.cs" />
+    <Compile Include="LocalVersionProvider.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdatesDownloader.cs" />
+    <Compile Include="UpdatesNeeded.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
