@@ -13,7 +13,7 @@
                          Margin="2,1,2,1"
                          Height="21"
                          BorderBrush="#FFBCBCBC"
-                         Text="{Binding DownloadLink, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Model.DownloadLink, UpdateSourceTrigger=PropertyChanged}"
                          IsEnabled="{Binding Model.IsInputEnabled, UpdateSourceTrigger=PropertyChanged}"
                          ToolTip="Paste YouTube link and press Enter or Download button. Or type CLI followed by youtube-dl command" AcceptsReturn="False">
                     <TextBox.InputBindings>
@@ -48,8 +48,8 @@
                       Padding="2"
                       BorderBrush="#FFBCBCBC"
                       ToolTip="Choose audio quality of the file."
-                      ItemsSource="{Binding Quality}" 
-                      SelectedItem="{Binding SelectedQuality}" 
+                      ItemsSource="{Binding Model.Quality}" 
+                      SelectedItem="{Binding Model.SelectedQuality}" 
                       IsSynchronizedWithCurrentItem="True">
             </ComboBox>
             <Button x:Name="button" 
