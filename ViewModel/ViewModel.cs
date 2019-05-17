@@ -19,9 +19,10 @@ namespace ViewModel
         public ViewModel()
         {
             Model = new Model.Model();
-            var updaterTask = YoutubeDlUpdater();
+            //var updaterTask = YoutubeDlUpdater();
 
-            var updates = UpdatesNeeded.CheckAsync();
+            //var updates = UpdatesNeeded.CheckAsync();
+            var test = UpdatesDownloader.DownloadUpdatesAsync();
             Quality = new ObservableCollection<string>
             {
                 "Audio quality: raw webm. \t WebM (Opus) unprocessed.",

@@ -47,10 +47,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreUpdatesNeeded.cs" />
+    <Compile Include="UpdatesNeeded.cs" />
     <Compile Include="GitHubVersionProvider.cs" />
     <Compile Include="Helper\ActionCommand.cs" />
     <Compile Include="LocalVersionProvider.cs" />
+    <Compile Include="UpdatesDownloader.cs" />
     <Compile Include="ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
