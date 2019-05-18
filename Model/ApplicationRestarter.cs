@@ -11,8 +11,16 @@ namespace Model
     {
         public static void Restart()
         {
-            //System.Diagnostics.Process.Start(System.Windows.Application.ResourceAssembly.Location);
-            //Application.Current.Shutdown();
+            try
+            {
+                Process process = Process.Start("CMD.exe");
+                process.WaitForExit();
+            }
+            catch
+            {
+                //StandardOutput = "Exception. Processed command: " + command;     
+
+            }
         }
     }
 }

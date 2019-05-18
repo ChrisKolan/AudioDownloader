@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View.csproj", "{28FB809A-4353-474A-B3EE-F105444B36B3}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{ADFF1847-318B-42B5-A18D-93B0A3BDA4F5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{4039C1EA-6A7C-4280-A4CB-8326C9CCC5EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{102F558A-CE96-4D5B-A9B6-EF66E9F77114}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{4039C1EA-6A7C-4280-A4CB-8326C9CCC5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4039C1EA-6A7C-4280-A4CB-8326C9CCC5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4039C1EA-6A7C-4280-A4CB-8326C9CCC5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{102F558A-CE96-4D5B-A9B6-EF66E9F77114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102F558A-CE96-4D5B-A9B6-EF66E9F77114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102F558A-CE96-4D5B-A9B6-EF66E9F77114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102F558A-CE96-4D5B-A9B6-EF66E9F77114}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

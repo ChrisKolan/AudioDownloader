@@ -10,15 +10,22 @@ namespace Model
     {
         public static async Task UpdateAsync(Model model)
         {
-            //var updatesCheck = await Task.Run(_ => UpdatesDownloader.DownloadUpdatesAsync());
-            model.StandardOutput = "Status: updating application.";
+            model.StandardOutput = "Status: updating Audio Downloader.";
             model.DisableInteractions();
 
-            await UpdatesDownloader.DownloadUpdatesAsync(model);
-            RenameFilesInFolder.Rename();
-            Deleter.DeleteBinFolderContents();
-            Unzipper.Unzip();
-            Deleter.DeleteOldFiles();
+            try
+            {
+                await UpdatesDownloader.DownloadUpdatesAsync(model);
+                RenameFilesInFolder.Rename();
+                Deleter.DeleteBinFolderContents();
+                Unzipper.Unzip();
+            }
+            catch (Exception)
+            {
+                model.StandardOutput = "Status: idle. Failed to update Audio Downloader.";
+                model.EnableInteractions();
+                return;
+            }
 
             model.StandardOutput = "Status: idle. Application updated. Please restart the application.";
             model.EnableInteractions();
