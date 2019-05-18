@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="ApplicationRestarter.cs" />
     <Compile Include="ApplicationUpdater.cs" />
+    <Compile Include="Deleter.cs" />
     <Compile Include="GitHubVersionProvider.cs" />
     <Compile Include="LocalVersionProvider.cs" />
     <Compile Include="Model.cs" />

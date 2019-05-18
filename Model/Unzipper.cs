@@ -9,8 +9,7 @@ namespace Model
         {
             var pathToExe = Assembly.GetEntryAssembly().Location;
             var pathToExeFolder = System.IO.Path.GetDirectoryName(pathToExe);
-            var pathToYoutubeDl = pathToExeFolder + @"\unzip";
-            var pathToAudioDownloaderZipped = pathToExeFolder + @"\AudioDownloader.zip";
+            var pathToAudioDownloaderZipped = pathToExeFolder + @"\old_AudioDownloader.zip";
 
             ZipFile.ExtractToDirectory(pathToAudioDownloaderZipped, pathToExeFolder);
         }

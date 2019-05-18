@@ -16,7 +16,9 @@ namespace Model
 
             await UpdatesDownloader.DownloadUpdatesAsync(model);
             RenameFilesInFolder.Rename();
+            Deleter.DeleteBinFolderContents();
             Unzipper.Unzip();
+            Deleter.DeleteOldFiles();
 
             model.StandardOutput = "Status: idle. Application updated. Please restart the application.";
             model.EnableInteractions();
