@@ -10,7 +10,7 @@ namespace Model
     {
         public static async Task UpdateAsync(Model model)
         {
-            model.StandardOutput = "Status: updating Audio Downloader.";
+            model.StandardOutput = "Status: updating.";
             model.DisableInteractions();
 
             try
@@ -28,7 +28,6 @@ namespace Model
                 return;
             }
 
-            model.StandardOutput = "Status: idle. Application updated. Please restart the application.";
             model.EnableInteractions();
         }
     }

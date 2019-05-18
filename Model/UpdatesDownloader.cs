@@ -23,27 +23,26 @@ namespace Model
             if (true)
             //if (updatesCheck["audio-downloader"] == true)
             {
+                model.StandardOutput = "Status: downloading new Audio Downloader version.";
                 var pathToAudioDownloaderTempFolder = pathToExeFolder + @"\AudioDownloader.zip";
-                model.StandardOutput = "Downloading new Audio Downloader version.";
                 var latestAsset = await client.Repository.Release.GetAllAssets("ChrisKolan", "audio-downloader", releasesAudioDl.Id);
                 var latestUri = latestAsset[0].BrowserDownloadUrl;
                 var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream");
                 var responseData = response.HttpResponse.Body;
                 System.IO.File.WriteAllBytes(pathToAudioDownloaderTempFolder, (byte[])responseData);
-                //Model.StandardOutput = "Updated AudioDownloader to latest version. Status: idle.";
+                model.StandardOutput = "Status: idle. Updated Audio Downloader to latest version.";
             }
             else if (true)
             //else if  (updatesCheck["youtube-dl"] == true)
             {
+                model.StandardOutput = "Status: downloading new Youtube-dl version.";
                 var pathToYoutubeDl = pathToExeFolder + @"\bin\youtube-dl.exe";
-                model.StandardOutput = "Downloading new Youtube-dl version.";
-                //Model.IsIndeterminate = true;
                 var latestAsset = await client.Repository.Release.GetAllAssets("ytdl-org", "youtube-dl", releasesYoutubeDl.Id);
                 var latestUri = latestAsset[7].BrowserDownloadUrl;
                 var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream");
                 var responseData = response.HttpResponse.Body;
                 System.IO.File.WriteAllBytes(pathToYoutubeDl, (byte[])responseData);
-                //Model.StandardOutput = "Updated Youtube-dl to latest version. Status: idle.";
+                model.StandardOutput = "Status: idle. Updated Youtube-dl to latest version.";
             }
         }
     }
