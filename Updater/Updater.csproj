@@ -53,4 +53,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release (
+ copy /Y "$(TargetDir)*" "$(SolutionDir)bin\Release\"
+)
+
+if $(ConfigurationName) == Debug (
+ copy /Y "$(TargetDir)*" "$(SolutionDir)bin\Debug\"
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

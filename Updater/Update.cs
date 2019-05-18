@@ -22,7 +22,6 @@ namespace Updater
                 StopAudioDownloader();
                 DeleteOldFiles();
                 StartAudioDownloader();
-                throw new NotImplementedException();
             }
             catch (Exception exception)
             {
