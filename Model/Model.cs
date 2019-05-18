@@ -30,6 +30,8 @@ namespace Model
         #region Constructor
         public Model()
         {
+            //Unzipper.Unzip();
+            //RenameFilesInFolder.Rename();
             StandardOutput = "Status: idle";
             EnableInteractions();
             PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));

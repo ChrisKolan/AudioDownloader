@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,10 +52,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationRestarter.cs" />
+    <Compile Include="ApplicationUpdater.cs" />
     <Compile Include="GitHubVersionProvider.cs" />
     <Compile Include="LocalVersionProvider.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenameFilesInFolder.cs" />
+    <Compile Include="Unzipper.cs" />
     <Compile Include="UpdatesDownloader.cs" />
     <Compile Include="UpdatesNeeded.cs" />
   </ItemGroup>

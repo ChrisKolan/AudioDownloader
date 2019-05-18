@@ -36,7 +36,7 @@ namespace Model
             if (true)
             //if (updatesCheck["audio-downloader"] == true)
             {
-                var pathToAudioDownloaderTempFolder = pathToExeFolder + @"\bin\AudioDownloader.zip";
+                var pathToAudioDownloaderTempFolder = pathToExeFolder + @"\AudioDownloader.zip";
                 //Model.StandardOutput = "Downloading new Audio Downloader version.";
                 var latestAsset = await client.Repository.Release.GetAllAssets("ChrisKolan", "audio-downloader", releasesAudioDl.Id);
                 var latestUri = latestAsset[0].BrowserDownloadUrl;
