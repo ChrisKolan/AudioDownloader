@@ -17,9 +17,9 @@ namespace Model
             {
                 await UpdatesDownloader.DownloadUpdatesAsync(model);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                model.StandardOutput = "Status: idle. Failed to update Audio Downloader.";
+                model.StandardOutput = "Status: idle. Failed to update Audio Downloader.\n" + exception.ToString();
                 model.EnableInteractions();
                 return;
             }

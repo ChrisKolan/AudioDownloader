@@ -68,7 +68,7 @@
                      ToolTip="Current status of the program"
                      Padding="1"
                      BorderBrush="#FFBCBCBC"
-                     Text="{Binding Model.StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                     Text="{Binding Model.StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
             <ProgressBar Margin="2,1,2,1"
                          Value="{Binding Model.ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
                          Height="2"
