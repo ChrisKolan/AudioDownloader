@@ -56,10 +56,11 @@ namespace Model
         }
         #endregion
 
+        #region Properties
         public string DownloadLink { get; set; }
+
         public ObservableCollection<string> Quality { get; set; }
 
-        #region Properties
         public string SelectedQuality
         {
             get { return _selectedQuality; }

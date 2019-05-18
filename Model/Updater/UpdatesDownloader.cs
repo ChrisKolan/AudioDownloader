@@ -20,8 +20,7 @@ namespace Model
             var releasesYoutubeDl = await client.Repository.Release.GetLatest("ytdl-org", "youtube-dl");
             var releasesAudioDl= await client.Repository.Release.GetLatest("ChrisKolan", "audio-downloader");
 
-            if (true)
-            //if (updatesCheck["audio-downloader"] == true)
+            if (updatesCheck["audio-downloader"] == true)
             {
                 model.StandardOutput = "Status: downloading new Audio Downloader version.";
                 var pathToAudioDownloaderTempFolder = pathToExeFolder + @"\AudioDownloader.zip";
@@ -30,10 +29,15 @@ namespace Model
                 var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream");
                 var responseData = response.HttpResponse.Body;
                 System.IO.File.WriteAllBytes(pathToAudioDownloaderTempFolder, (byte[])responseData);
+
+                RenameFilesInFolder.Rename();
+                Deleter.DeleteBinFolderContents();
+                Unzipper.Unzip();
+                ApplicationRestarter.Restart();
+
                 model.StandardOutput = "Status: idle. Updated Audio Downloader to latest version.";
             }
-            else if (true)
-            //else if  (updatesCheck["youtube-dl"] == true)
+            else if  (updatesCheck["youtube-dl"] == true)
             {
                 model.StandardOutput = "Status: downloading new Youtube-dl version.";
                 var pathToYoutubeDl = pathToExeFolder + @"\bin\youtube-dl.exe";

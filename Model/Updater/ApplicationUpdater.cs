@@ -10,16 +10,12 @@ namespace Model
     {
         public static async Task UpdateAsync(Model model)
         {
-            model.StandardOutput = "Status: updating.";
+            model.StandardOutput = "Status: checking for updates.";
             model.DisableInteractions();
 
             try
             {
                 await UpdatesDownloader.DownloadUpdatesAsync(model);
-                RenameFilesInFolder.Rename();
-                Deleter.DeleteBinFolderContents();
-                Unzipper.Unzip();
-                ApplicationRestarter.Restart();
             }
             catch (Exception)
             {
@@ -28,6 +24,7 @@ namespace Model
                 return;
             }
 
+            model.StandardOutput = "Status: idle.";
             model.EnableInteractions();
         }
     }
