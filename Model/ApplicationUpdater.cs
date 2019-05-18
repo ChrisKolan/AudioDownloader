@@ -19,6 +19,7 @@ namespace Model
                 RenameFilesInFolder.Rename();
                 Deleter.DeleteBinFolderContents();
                 Unzipper.Unzip();
+                ApplicationRestarter.Restart();
             }
             catch (Exception)
             {

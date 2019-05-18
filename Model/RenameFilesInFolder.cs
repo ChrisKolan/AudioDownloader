@@ -19,6 +19,9 @@ namespace Model
             FileInfo[] fileInfoArray = directoryInfo.GetFiles();
             foreach (FileInfo file in fileInfoArray)
             {
+                if (file.ToString().Contains("Updater"))
+                    continue;
+
                 var newFileName = Path.Combine(Path.GetDirectoryName(file.ToString()), (prefix + Path.GetFileName(file.ToString())));
                 File.Move(pathToExeFolder + file.ToString(), pathToExeFolder + newFileName);
             }

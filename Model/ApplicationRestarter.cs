@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.IO;
 
 namespace Model
 {
@@ -13,8 +15,9 @@ namespace Model
         {
             try
             {
-                Process process = Process.Start("CMD.exe");
-                process.WaitForExit();
+                var pathToExe = Assembly.GetEntryAssembly().Location;
+                var pathToUpdater = Path.GetDirectoryName(pathToExe) + @"\Updater.exe";
+                Process process = Process.Start(pathToUpdater);
             }
             catch
             {
