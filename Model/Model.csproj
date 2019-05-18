@@ -52,17 +52,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationRestarter.cs" />
-    <Compile Include="ApplicationUpdater.cs" />
-    <Compile Include="Deleter.cs" />
-    <Compile Include="GitHubVersionProvider.cs" />
-    <Compile Include="LocalVersionProvider.cs" />
+    <Compile Include="Updater\ApplicationRestarter.cs" />
+    <Compile Include="Updater\ApplicationUpdater.cs" />
+    <Compile Include="Updater\Deleter.cs" />
+    <Compile Include="Updater\GitHubVersionProvider.cs" />
+    <Compile Include="Updater\LocalVersionProvider.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenameFilesInFolder.cs" />
-    <Compile Include="Unzipper.cs" />
-    <Compile Include="UpdatesDownloader.cs" />
-    <Compile Include="UpdatesNeeded.cs" />
+    <Compile Include="Updater\RenameFilesInFolder.cs" />
+    <Compile Include="Updater\Unzipper.cs" />
+    <Compile Include="Updater\UpdatesDownloader.cs" />
+    <Compile Include="Updater\UpdatesNeeded.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
