@@ -30,8 +30,6 @@ namespace Model
         #region Constructor
         public Model()
         {
-            //Unzipper.Unzip();
-            //RenameFilesInFolder.Rename();
             StandardOutput = "Status: idle";
             EnableInteractions();
             PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));
@@ -54,6 +52,7 @@ namespace Model
                 "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
             };
             SelectedQuality = Quality[6];
+            _ = ApplicationUpdater.UpdateAsync(this);
         }
         #endregion
 

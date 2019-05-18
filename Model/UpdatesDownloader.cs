@@ -10,7 +10,7 @@ namespace Model
 {
     public class UpdatesDownloader
     {
-        public static async Task DownloadUpdatesAsync()
+        public static async Task DownloadUpdatesAsync(Model model)
         {
             var updatesCheck = await Task.Run(() => UpdatesNeeded.CheckAsync());
             var pathToExe = Assembly.GetEntryAssembly().Location;
@@ -21,10 +21,22 @@ namespace Model
             var releasesAudioDl= await client.Repository.Release.GetLatest("ChrisKolan", "audio-downloader");
 
             if (true)
-            //if (updatesCheck["youtube-dl"] == true)
+            //if (updatesCheck["audio-downloader"] == true)
+            {
+                var pathToAudioDownloaderTempFolder = pathToExeFolder + @"\AudioDownloader.zip";
+                model.StandardOutput = "Downloading new Audio Downloader version.";
+                var latestAsset = await client.Repository.Release.GetAllAssets("ChrisKolan", "audio-downloader", releasesAudioDl.Id);
+                var latestUri = latestAsset[0].BrowserDownloadUrl;
+                var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream");
+                var responseData = response.HttpResponse.Body;
+                System.IO.File.WriteAllBytes(pathToAudioDownloaderTempFolder, (byte[])responseData);
+                //Model.StandardOutput = "Updated AudioDownloader to latest version. Status: idle.";
+            }
+            else if (true)
+            //else if  (updatesCheck["youtube-dl"] == true)
             {
                 var pathToYoutubeDl = pathToExeFolder + @"\bin\youtube-dl.exe";
-                //Model.StandardOutput = "Downloading new Youtube-dl version.";
+                model.StandardOutput = "Downloading new Youtube-dl version.";
                 //Model.IsIndeterminate = true;
                 var latestAsset = await client.Repository.Release.GetAllAssets("ytdl-org", "youtube-dl", releasesYoutubeDl.Id);
                 var latestUri = latestAsset[7].BrowserDownloadUrl;
@@ -32,18 +44,6 @@ namespace Model
                 var responseData = response.HttpResponse.Body;
                 System.IO.File.WriteAllBytes(pathToYoutubeDl, (byte[])responseData);
                 //Model.StandardOutput = "Updated Youtube-dl to latest version. Status: idle.";
-            }
-            if (true)
-            //if (updatesCheck["audio-downloader"] == true)
-            {
-                var pathToAudioDownloaderTempFolder = pathToExeFolder + @"\AudioDownloader.zip";
-                //Model.StandardOutput = "Downloading new Audio Downloader version.";
-                var latestAsset = await client.Repository.Release.GetAllAssets("ChrisKolan", "audio-downloader", releasesAudioDl.Id);
-                var latestUri = latestAsset[0].BrowserDownloadUrl;
-                var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream");
-                var responseData = response.HttpResponse.Body;
-                System.IO.File.WriteAllBytes(pathToAudioDownloaderTempFolder, (byte[])responseData);
-                //Model.StandardOutput = "Updated AudioDownloader to latest version. Status: idle.";
             }
         }
     }
