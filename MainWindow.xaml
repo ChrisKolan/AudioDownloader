@@ -49,30 +49,13 @@
                          Text="{Binding Model.DownloadLink, UpdateSourceTrigger=PropertyChanged}"
                          IsEnabled="{Binding Model.IsInputEnabled, UpdateSourceTrigger=PropertyChanged}"
                          Controls:TextBoxHelper.ClearTextButton="True"
+                         Controls:TextBoxHelper.SelectAllOnFocus="True"
+                         Controls:TextBoxHelper.Watermark="Paste YouTube link and press Enter or Download button"
                          ToolTip="Paste YouTube link and press Enter or Download button. Or type CLI followed by youtube-dl command" AcceptsReturn="False" Padding="0,1,0,0">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding DownloadButton}" />
                     </TextBox.InputBindings>
                 </TextBox>
-                <TextBlock IsHitTestVisible="False" 
-                           Text="Paste YouTube link and press Enter or Download button" 
-                           Padding="6,3,2,2" 
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Left" 
-                           Margin="1,0,0,0"
-                           Height="21"
-                           Foreground="DarkGray">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Text, ElementName=Download}" Value="">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
             </Grid>
             <ComboBox Margin="2,1,2,1"
                       Name="MyComboBoxTest" 
