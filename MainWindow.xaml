@@ -29,7 +29,7 @@
                                                   Kind="FolderOpen" />
                     </StackPanel>
             </Button>
-            <Button ToolTip="On-line help" 
+            <Button ToolTip="Online help" 
                     Command="{Binding HelpButton}">
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconModern Width="24" 
@@ -50,6 +50,7 @@
                          IsEnabled="{Binding Model.IsInputEnabled, UpdateSourceTrigger=PropertyChanged}"
                          Controls:TextBoxHelper.ClearTextButton="True"
                          Controls:TextBoxHelper.SelectAllOnFocus="True"
+                         Controls:TextBoxHelper.IsWaitingForData="{Binding Model.IsWaitingForData, UpdateSourceTrigger=PropertyChanged}"
                          Controls:TextBoxHelper.Watermark="Paste YouTube link and press Enter or Download button"
                          ToolTip="Paste YouTube link and press Enter or Download button. Or type CLI followed by youtube-dl command" AcceptsReturn="False" Padding="0,1,0,0">
                     <TextBox.InputBindings>

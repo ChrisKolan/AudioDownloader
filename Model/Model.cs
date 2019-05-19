@@ -26,6 +26,7 @@ namespace Model
         private bool _isButtonEnabled;
         private bool _isInputEnabled;
         private string _selectedQuality;
+        private bool _isWaitingForData;
         #endregion
 
         #region Constructor
@@ -121,6 +122,16 @@ namespace Model
             {
                 _isInputEnabled = value;
                 OnPropertyChanged(nameof(IsInputEnabled));
+            }
+        }
+
+        public bool IsWaitingForData
+        {
+            get { return _isWaitingForData; }
+            set
+            {
+                _isWaitingForData = value;
+                OnPropertyChanged(nameof(IsWaitingForData));
             }
         }
 
@@ -315,6 +326,7 @@ namespace Model
             IsIndeterminate = false;
             IsInputEnabled = true;
             IsButtonEnabled = true;
+            IsWaitingForData = true;
         }
 
         public void DisableInteractions()
@@ -322,6 +334,7 @@ namespace Model
             IsIndeterminate = true;
             IsInputEnabled = false;
             IsButtonEnabled = false;
+            IsWaitingForData = false;
             ProgressBarPercent = 0;
         }
 
