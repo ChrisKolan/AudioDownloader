@@ -21,14 +21,11 @@
     </Controls:MetroWindow.IconTemplate>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button>
+            <Button ToolTip="On-line help">
                 <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="24" Height="24" Kind="BookPerspectiveHelp" />
-                </StackPanel>
-            </Button>
-            <Button>
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="24" Height="24" Kind="Settings" />
+                    <iconPacks:PackIconModern Width="24" 
+                                              Height="24" 
+                                              Kind="BookPerspectiveHelp" />
                 </StackPanel>
             </Button>
         </Controls:WindowCommands>
