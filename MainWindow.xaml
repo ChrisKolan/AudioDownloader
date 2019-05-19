@@ -9,7 +9,7 @@
         Topmost="True"
         ShowIconOnTitleBar="True"
         TitleCaps="False"
-        Title="Audio Downloader" Height="150" Width="800" ResizeMode="CanMinimize">
+        Title="Audio Downloader" Height="151" Width="800" ResizeMode="CanMinimize">
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
             <iconPacks:PackIconModern Width="{TemplateBinding Width}"
@@ -34,20 +34,20 @@
         <StackPanel>
             <Grid>
                 <TextBox x:Name="Download" 
-                         Margin="2,1,2,1"
+                         Margin="2,2,2,1"
                          Height="21"
                          BorderBrush="#FFBCBCBC"
                          Text="{Binding Model.DownloadLink, UpdateSourceTrigger=PropertyChanged}"
                          IsEnabled="{Binding Model.IsInputEnabled, UpdateSourceTrigger=PropertyChanged}"
                          Controls:TextBoxHelper.ClearTextButton="True"
-                         ToolTip="Paste YouTube link and press Enter or Download button. Or type CLI followed by youtube-dl command" AcceptsReturn="False">
+                         ToolTip="Paste YouTube link and press Enter or Download button. Or type CLI followed by youtube-dl command" AcceptsReturn="False" Padding="0,1,0,0">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding DownloadButton}" />
                     </TextBox.InputBindings>
                 </TextBox>
                 <TextBlock IsHitTestVisible="False" 
                            Text="Paste YouTube link and press Enter or Download button" 
-                           Padding="6,2,2,2" 
+                           Padding="6,3,2,2" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Left" 
                            Margin="1,0,0,0"
