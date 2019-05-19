@@ -21,13 +21,21 @@
     </Controls:MetroWindow.IconTemplate>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
+            <Button ToolTip="Open audio folder" 
+                    Command="{Binding FolderButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconModern Width="24" 
+                                                  Height="24" 
+                                                  Kind="FolderOpen" />
+                    </StackPanel>
+            </Button>
             <Button ToolTip="On-line help" 
                     Command="{Binding HelpButton}">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="24" 
-                                              Height="24" 
-                                              Kind="BookPerspectiveHelp" />
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconModern Width="24" 
+                                                  Height="24" 
+                                                  Kind="BookPerspectiveHelp" />
+                    </StackPanel>
             </Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>

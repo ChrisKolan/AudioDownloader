@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using Webhook;
@@ -140,6 +141,21 @@ namespace Model
         public void HelpButtonClick()
         {
             Process.Start("https://chriskolan.github.io/AudioDownloader/");
+        }
+        public void FolderButtonClick()
+        {
+            var pathToExe = Assembly.GetEntryAssembly().Location;
+            var pathToExeFolder = System.IO.Path.GetDirectoryName(pathToExe);
+            var pathToAudioFolder = pathToExeFolder + @"\audio";
+
+            try
+            {
+                Process.Start(pathToAudioFolder);
+            }
+            catch (Exception exception)
+            {
+                StandardOutput = "Status: idle. Audio folder does not exist. Try to download some audio files first.\n" + exception.ToString();
+            }
         }
         private void ThreadPoolWorker(Object stateInfo)
         {
