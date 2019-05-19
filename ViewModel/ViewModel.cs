@@ -1,5 +1,4 @@
-﻿using System;
-using ViewModel.Helper;
+﻿using ViewModel.Helper;
 
 namespace ViewModel
 {
