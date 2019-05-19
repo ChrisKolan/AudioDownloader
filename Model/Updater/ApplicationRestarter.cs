@@ -13,17 +13,9 @@ namespace Model
     {
         public static void Restart()
         {
-            try
-            {
-                var pathToExe = Assembly.GetEntryAssembly().Location;
-                var pathToUpdater = Path.GetDirectoryName(pathToExe) + @"\Updater.exe";
-                Process process = Process.Start(pathToUpdater);
-            }
-            catch
-            {
-                //StandardOutput = "Exception. Processed command: " + command;     
-
-            }
+            var pathToExe = Assembly.GetEntryAssembly().Location;
+            var pathToUpdater = Path.GetDirectoryName(pathToExe) + @"\Updater.exe";
+            Process.Start(pathToUpdater);
         }
     }
 }
