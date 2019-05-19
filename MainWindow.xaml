@@ -21,7 +21,8 @@
     </Controls:MetroWindow.IconTemplate>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button ToolTip="On-line help">
+            <Button ToolTip="On-line help" 
+                    Command="{Binding HelpButton}">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern Width="24" 
                                               Height="24" 

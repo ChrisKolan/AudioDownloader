@@ -137,7 +137,10 @@ namespace Model
 
             ThreadPool.QueueUserWorkItem(ThreadPoolWorker);
         }
-
+        public void HelpButtonClick()
+        {
+            Process.Start("https://chriskolan.github.io/AudioDownloader/");
+        }
         private void ThreadPoolWorker(Object stateInfo)
         {
             var watch = Stopwatch.StartNew();
