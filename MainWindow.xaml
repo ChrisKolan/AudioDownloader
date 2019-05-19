@@ -9,7 +9,7 @@
         Topmost="True"
         ShowIconOnTitleBar="True"
         TitleCaps="False"
-        Title="Audio Downloader" Height="152" Width="800" ResizeMode="CanMinimize">
+        Title="Audio Downloader" Height="150" Width="800" ResizeMode="CanMinimize">
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
             <iconPacks:PackIconModern Width="{TemplateBinding Width}"
@@ -95,11 +95,11 @@
                      Text="{Binding Model.StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
             <Controls:MetroProgressBar Margin="2,1,2,1"
                          Value="{Binding Model.ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
-                         Height="6"
+                         Height="4"
                          Background="#FFE5E5E5"
                          BorderBrush="#FFBCBCBC"
                          Foreground="{DynamicResource AccentColorBrush}"
-                         IsIndeterminate="{Binding Model.IsIndeterminate}" MinHeight="2" MinWidth="2"/>
+                         IsIndeterminate="{Binding Model.IsIndeterminate}" MinHeight="2" MinWidth="2" EllipseDiameter="4"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>
