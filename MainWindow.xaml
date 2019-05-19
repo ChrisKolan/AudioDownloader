@@ -85,7 +85,8 @@
                     Command="{Binding DownloadButton}"
                     IsEnabled="{Binding Model.IsButtonEnabled, UpdateSourceTrigger=PropertyChanged}"
                     ToolTip="Press Download button to get the file" 
-                    Controls:ButtonHelper.CornerRadius="0"/>
+                    Controls:ButtonHelper.PreserveTextCase="True"
+                    Controls:ButtonHelper.CornerRadius="0" FontWeight="Normal" FontSize="12" Padding="0"/>
             <TextBox x:Name="textBox" 
                      Margin="2,1,2,1"
                      Height="21" 
