@@ -84,7 +84,8 @@
                     BorderBrush="#FFBCBCBC"
                     Command="{Binding DownloadButton}"
                     IsEnabled="{Binding Model.IsButtonEnabled, UpdateSourceTrigger=PropertyChanged}"
-                    ToolTip="Press Download button to get the file"/>
+                    ToolTip="Press Download button to get the file" 
+                    Controls:ButtonHelper.CornerRadius="0"/>
             <TextBox x:Name="textBox" 
                      Margin="2,1,2,1"
                      Height="21" 
