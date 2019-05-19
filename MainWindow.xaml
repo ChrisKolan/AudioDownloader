@@ -9,6 +9,8 @@
         Topmost="True"
         ShowIconOnTitleBar="True"
         TitleCaps="False"
+        BorderThickness="1"
+        GlowBrush="LightBlue"
         Title="Audio Downloader" Height="151" Width="800" ResizeMode="CanMinimize">
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
@@ -53,9 +55,9 @@
                          Controls:TextBoxHelper.IsWaitingForData="{Binding Model.IsWaitingForData, UpdateSourceTrigger=PropertyChanged}"
                          Controls:TextBoxHelper.Watermark="Paste YouTube link and press Enter or Download button"
                          ToolTip="Paste YouTube link and press Enter or Download button. Or type CLI followed by youtube-dl command" AcceptsReturn="False" Padding="0,1,0,0">
-                    <TextBox.InputBindings>
-                        <KeyBinding Key="Return" Command="{Binding DownloadButton}" />
-                    </TextBox.InputBindings>
+                         <TextBox.InputBindings>
+                            <KeyBinding Key="Return" Command="{Binding DownloadButton}" />
+                         </TextBox.InputBindings>
                 </TextBox>
             </Grid>
             <ComboBox Margin="2,1,2,1"
@@ -90,12 +92,12 @@
                      BorderBrush="#FFBCBCBC"
                      Text="{Binding Model.StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
             <Controls:MetroProgressBar Margin="2,1,2,1"
-                         Value="{Binding Model.ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
-                         Height="4"
-                         Background="#FFE5E5E5"
-                         BorderBrush="#FFBCBCBC"
-                         Foreground="{DynamicResource AccentColorBrush}"
-                         IsIndeterminate="{Binding Model.IsIndeterminate}" MinHeight="2" MinWidth="2" EllipseDiameter="4"/>
+                                       Value="{Binding Model.ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
+                                       Height="4"
+                                       Background="#FFE5E5E5"
+                                       BorderBrush="#FFBCBCBC"
+                                       Foreground="{DynamicResource AccentColorBrush}"
+                                       IsIndeterminate="{Binding Model.IsIndeterminate}" MinHeight="2" MinWidth="2" EllipseDiameter="4"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>
