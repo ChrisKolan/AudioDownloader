@@ -46,7 +46,7 @@
                 </TextBox>
                 <TextBlock IsHitTestVisible="False" 
                            Text="Paste YouTube link and press Enter or Download button" 
-                           Padding="4,2,2,2" 
+                           Padding="6,2,2,2" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Left" 
                            Margin="1,0,0,0"
