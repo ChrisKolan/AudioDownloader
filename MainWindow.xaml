@@ -1,11 +1,14 @@
-﻿<Window x:Class="Main.MainWindow"
+﻿<Controls:MetroWindow x:Class="Main.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Topmost="True"
-        Title="Audio Downloader" Height="136" Width="800" ResizeMode="CanMinimize">
+        ShowIconOnTitleBar="True"
+        TitleCaps="False"
+        Title="Audio Downloader" Height="156" Width="800" ResizeMode="CanMinimize">
     <Grid>
         <StackPanel>
             <Grid>
@@ -71,9 +74,9 @@
                      Text="{Binding Model.StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
             <ProgressBar Margin="2,1,2,1"
                          Value="{Binding Model.ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
-                         Height="2"
+                         Height="1"
                          BorderBrush="#FFBCBCBC"
                          IsIndeterminate="{Binding Model.IsIndeterminate}"/>
         </StackPanel>
     </Grid>
-</Window>
+</Controls:MetroWindow>
