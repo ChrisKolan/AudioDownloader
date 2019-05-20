@@ -27,6 +27,7 @@ namespace Model
         private bool _isInputEnabled;
         private string _selectedQuality;
         private bool _isWaitingForData;
+        private string _helpButtonToolTip;
         #endregion
 
         #region Constructor
@@ -135,6 +136,16 @@ namespace Model
             }
         }
 
+        public string HelpButtonToolTip
+        {
+            get { return _helpButtonToolTip; }
+            set
+            {
+                _helpButtonToolTip = value;
+                OnPropertyChanged(nameof(HelpButtonToolTip));
+            }
+        }
+
         public Timer PeriodicTimer { get; }
         #endregion
 
@@ -207,6 +218,7 @@ namespace Model
                 }
 
                 StandardOutput = "Starting download...";
+                GetYouTubeAvailableFormats(DownloadLink);
                 string command;
                 var date = DateTime.Now.ToString("yyMMdd");
 
@@ -321,6 +333,33 @@ namespace Model
             }
         }
 
+        private void GetYouTubeAvailableFormats(string downloadLink)
+        {
+            var command = "/C bin\\youtube-dl.exe -F " + downloadLink;
+            var availableFormats = new List<string>();
+            availableFormats.Add("Press to get online help.");
+            availableFormats.Add("==================================================================");
+            availableFormats.Add("Advanced information. Available YouTube file formats:");
+
+            var startinfo = new ProcessStartInfo("CMD.exe", command)
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+
+            var process = new Process { StartInfo = startinfo };
+            process.Start();
+
+            var reader = process.StandardOutput;
+            while (!reader.EndOfStream)
+            {
+                availableFormats.Add(reader.ReadLine());
+            }
+
+            HelpButtonToolTip = String.Join(Environment.NewLine, availableFormats.ToArray());
+        }
         public void EnableInteractions()
         {
             IsIndeterminate = false;
