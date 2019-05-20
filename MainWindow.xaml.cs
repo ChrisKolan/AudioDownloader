@@ -9,6 +9,7 @@ namespace Main
     {
         public MainWindow()
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
 
             var viewModel = new ViewModel.ViewModel();
