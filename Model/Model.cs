@@ -28,6 +28,7 @@ namespace Model
         private string _selectedQuality;
         private bool _isWaitingForData;
         private string _helpButtonToolTip;
+        private string _downloadLink;
         #endregion
 
         #region Constructor
@@ -61,9 +62,18 @@ namespace Model
         #endregion
 
         #region Properties
-        public string DownloadLink { get; set; }
 
         public ObservableCollection<string> Quality { get; set; }
+
+        public string DownloadLink
+        {
+            get { return _downloadLink; }
+            set
+            {
+                _downloadLink = value;
+                OnPropertyChanged(nameof(DownloadLink));
+            }
+        }
 
         public string SelectedQuality
         {
