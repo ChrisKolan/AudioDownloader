@@ -70,6 +70,7 @@ namespace Model
         public ObservableCollection<string> Quality { get; set; }
 
         [Required]
+        [CustomValidation(typeof(Model), "ValidateDownloadLink")]
         public string DownloadLink
         {
             get { return _downloadLink; }
@@ -529,25 +530,30 @@ namespace Model
 
         #endregion
 
+        #region INotifyDataErrorInfo implementation
+
         private ConcurrentDictionary<string, List<string>> _errors = new ConcurrentDictionary<string, List<string>>();
 
-        //public event PropertyChangedEventHandler PropertyChanged;
+        public static ValidationResult ValidateDownloadLink(object obj, ValidationContext context)
+        {
+            var model = (Model)context.ObjectInstance;
 
-        //public void RaisePropertyChanged(string propertyName)
-        //{
-        //    var handler = PropertyChanged;
-        //    if (handler != null)
-        //        handler(this, new PropertyChangedEventArgs(propertyName));
-        //    ValidateAsync();
-        //}
+            if (model.DownloadLink.Contains("CLI"))
+            {
+                return ValidationResult.Success;
+            }
+            if (!model.DownloadLink.Contains("https://www.youtube.com/watch?v="))
+            {
+                return new ValidationResult("YouTube link not valid", new List<string> { "DownloadLink" });
+            }
+            return ValidationResult.Success;
+        }
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
         public void OnErrorsChanged(string propertyName)
         {
-            var handler = ErrorsChanged;
-            if (handler != null)
-                handler(this, new DataErrorsChangedEventArgs(propertyName));
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
         public IEnumerable GetErrors(string propertyName)
@@ -605,5 +611,7 @@ namespace Model
                 }
             }
         }
+
+        #endregion
     }
 }
