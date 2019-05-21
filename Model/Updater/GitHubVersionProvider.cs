@@ -13,8 +13,8 @@ namespace Model
 
             var repositoriesToCheck = new Dictionary<string, string>
             {
-                { "ytdl-org", "youtube-dl"},
-                { "ChrisKolan", "audio-downloader" }
+                { "ChrisKolan", "audio-downloader" },
+                { "ytdl-org", "youtube-dl"}
             };
 
             var client = new GitHubClient(new ProductHeaderValue("audio-downloader"));

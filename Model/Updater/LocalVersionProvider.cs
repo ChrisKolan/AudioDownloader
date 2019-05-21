@@ -18,8 +18,8 @@ namespace Model
             var pathToExe = Assembly.GetEntryAssembly().Location;
             var pathToExeFolder = System.IO.Path.GetDirectoryName(pathToExe);
             var pathToYoutubeDl = pathToExeFolder + @"\bin\youtube-dl.exe";
-            localVersionsToCheck.Add(pathToYoutubeDl);
             localVersionsToCheck.Add(pathToExe);
+            localVersionsToCheck.Add(pathToYoutubeDl);
 
             foreach (var localVersion in localVersionsToCheck)
             {

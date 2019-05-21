@@ -31,7 +31,7 @@
                                                   Kind="FolderOpen" />
                     </StackPanel>
             </Button>
-            <Button ToolTip="{Binding Model.HelpButtonToolTip}" ToolTipService.ShowDuration="30000"
+            <Button ToolTip="{Binding Model.HelpButtonToolTip}" ToolTipService.ShowDuration="60000"
                     Command="{Binding HelpButton}">
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconModern Width="24" 

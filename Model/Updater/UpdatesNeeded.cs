@@ -14,8 +14,8 @@ namespace Model
 
             var entitiesToCheck = new List<string>
             {
-                { "youtube-dl"},
-                { "audio-downloader"}
+                { "audio-downloader"},
+                { "youtube-dl"}
             };
 
             var remoteVersions = await Task.Run(() => GitHubVersionProvider.VersionsAsync());

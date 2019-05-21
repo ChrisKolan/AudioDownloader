@@ -56,6 +56,7 @@ namespace Model
             };
             SelectedQuality = Quality[6];
             _ = ApplicationUpdater.UpdateAsync(this);
+            GetLocalVersions();
         }
         #endregion
 
@@ -218,6 +219,7 @@ namespace Model
                 }
 
                 StandardOutput = "Starting download...";
+                GetLocalVersions();
                 GetYouTubeAvailableFormats(DownloadLink);
                 string command;
                 var date = DateTime.Now.ToString("yyMMdd");
@@ -337,8 +339,7 @@ namespace Model
         {
             var command = "/C bin\\youtube-dl.exe -F " + downloadLink;
             var availableFormats = new List<string>();
-            availableFormats.Add("Press to get online help.");
-            availableFormats.Add("==================================================================");
+            availableFormats.Add("\n==================================================================");
             availableFormats.Add("Advanced information. Available YouTube file formats:");
 
             var startinfo = new ProcessStartInfo("CMD.exe", command)
@@ -358,8 +359,32 @@ namespace Model
                 availableFormats.Add(reader.ReadLine());
             }
 
-            HelpButtonToolTip = String.Join(Environment.NewLine, availableFormats.ToArray());
+            HelpButtonToolTip += String.Join(Environment.NewLine, availableFormats.ToArray());
         }
+
+        private void GetLocalVersions()
+        {
+            var localVersionsNamesAndNumber = new List<string>();
+            localVersionsNamesAndNumber.Add("Press to get online help.");
+            localVersionsNamesAndNumber.Add("===========================");
+            localVersionsNamesAndNumber.Add("Installed versions:");
+            var localVersions = LocalVersionProvider.Versions();
+            var localVersionsSoftwareNames = new List<string>
+            {
+                "Audio Downloader\t",
+                "Youtube-dl\t\t"
+            };
+
+            for (int i = 0; i < localVersions.Count; i++)
+            {
+                localVersionsNamesAndNumber.Add(localVersionsSoftwareNames[i] + localVersions[i]);
+            }
+
+            localVersionsNamesAndNumber.Add("FFmpeg\t\t\t4.1.3");
+
+            HelpButtonToolTip = String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
+        }
+
         public void EnableInteractions()
         {
             IsIndeterminate = false;
