@@ -11,6 +11,7 @@
         TitleCaps="False"
         BorderThickness="1"
         GlowBrush="LightBlue"
+        WindowStartupLocation="CenterScreen"
         Title="Audio Downloader" Height="151" Width="800" ResizeMode="CanMinimize">
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
