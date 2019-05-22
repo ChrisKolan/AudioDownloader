@@ -2,7 +2,7 @@
     font-size: 18px;
 }
 
-.menu ul {
+#menu ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -10,11 +10,11 @@
     background-color: #333333;
 }
 
-.menu li {
+#menu li {
     float: left;
 }
 
-.menu li a {
+#menu li a {
     display: block;
     color: white;
     text-align: center;
@@ -22,6 +22,6 @@
     text-decoration: none;
 }
 
-.menu li a:hover {
+#menu li a:hover {
     background-color: #111111;
 }
