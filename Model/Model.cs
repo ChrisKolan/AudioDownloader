@@ -548,6 +548,11 @@ namespace Model
                 model.IsButtonEnabled = false;
                 return new ValidationResult("YouTube link not valid", new List<string> { "DownloadLink" });
             }
+            if (model.DownloadLink.Length != 43)
+            {
+                model.IsButtonEnabled = false;
+                return new ValidationResult("YouTube link length not correct", new List<string> { "DownloadLink" });
+            }
             model.IsButtonEnabled = true;
 
             return ValidationResult.Success;
