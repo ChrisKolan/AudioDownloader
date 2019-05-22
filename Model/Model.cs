@@ -540,12 +540,16 @@ namespace Model
 
             if (model.DownloadLink.Contains("CLI"))
             {
+                model.IsButtonEnabled = true;
                 return ValidationResult.Success;
             }
             if (!model.DownloadLink.Contains("https://www.youtube.com/watch?v="))
             {
+                model.IsButtonEnabled = false;
                 return new ValidationResult("YouTube link not valid", new List<string> { "DownloadLink" });
             }
+            model.IsButtonEnabled = true;
+
             return ValidationResult.Success;
         }
 
