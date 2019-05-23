@@ -1753,7 +1753,7 @@ input, select, textarea {
 		}
 
 		section.special > header, section.special > footer, article.special > header, article.special > footer {
-			text-align: left;
+			text-align: center;
 		}
 
 	.row > section, .row > article {
@@ -1761,7 +1761,7 @@ input, select, textarea {
 	}
 
 	header {
-		margin: 0em 0em 0em 20em;
+		margin: 0 0 0 0;
 	}
 
 		header > p {
