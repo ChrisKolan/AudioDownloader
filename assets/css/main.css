@@ -1767,7 +1767,7 @@ input, select, textarea {
         header > p {
             display: block;
             font-size: 1em;
-            margin: 0px 0px 0px 70px;
+            margin: 0px 0px 0px 150px;
             line-height: 1.1em;
             text-align: left;
         }
