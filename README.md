@@ -15,6 +15,7 @@
 * Uses Youtube-dl for downloading and FFmpeg for processing
 * Allows usage of Youtube-dl command line interface
 * Can store information about the download in Google Sheets (option)
+* Open source
 ## Audio formats:
 * WebM (Opus) unprocessed raw audio
 * Opus unprocessed raw audio
