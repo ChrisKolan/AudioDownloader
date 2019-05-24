@@ -382,14 +382,15 @@ namespace Model
         private void GetLocalVersions()
         {
             var localVersionsNamesAndNumber = new List<string>();
-            localVersionsNamesAndNumber.Add("Press to get online help.");
+            localVersionsNamesAndNumber.Add("Press button to get online help.");
             localVersionsNamesAndNumber.Add("===========================");
-            localVersionsNamesAndNumber.Add("Installed versions:");
+            localVersionsNamesAndNumber.Add("Software \t   |\tVersion");
+            localVersionsNamesAndNumber.Add("----------------------|-----------------------");
             var localVersions = LocalVersionProvider.Versions();
             var localVersionsSoftwareNames = new List<string>
             {
-                "Audio Downloader\t",
-                "Youtube-dl\t\t"
+                "Audio Downloader  |\t",
+                "Youtube-dl\t   |\t"
             };
 
             for (int i = 0; i < localVersions.Count; i++)
@@ -397,7 +398,7 @@ namespace Model
                 localVersionsNamesAndNumber.Add(localVersionsSoftwareNames[i] + localVersions[i]);
             }
 
-            localVersionsNamesAndNumber.Add("FFmpeg\t\t\t4.1.3");
+            localVersionsNamesAndNumber.Add("FFmpeg\t\t   |\t4.1.3");
 
             HelpButtonToolTip = String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
         }
