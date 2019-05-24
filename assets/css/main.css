@@ -226,8 +226,8 @@ input, select, textarea {
 		font-size: 0.8em;
 	}
 
-li a{
-    display:block;
+a.ulist {
+    text-decoration:none;
 }
 
 /* Container */
