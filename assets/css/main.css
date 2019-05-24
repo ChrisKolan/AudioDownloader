@@ -2145,6 +2145,12 @@ input, select, textarea {
 				margin: 0 0 2em 0;
 			}
 
+section.ulist {
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em
+}
+
 /* Wrapper */
 
 	.wrapper {
