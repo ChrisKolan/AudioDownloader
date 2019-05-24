@@ -226,6 +226,10 @@ input, select, textarea {
 		font-size: 0.8em;
 	}
 
+li a{
+    display:block;
+}
+
 /* Container */
 
 	.container {
