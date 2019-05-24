@@ -2146,6 +2146,7 @@ input, select, textarea {
 			}
 
 section.ulist {
+    margin-top: 0.2em;
     margin-left: auto;
     margin-right: auto;
     width: 30em
