@@ -259,12 +259,12 @@ namespace Model
                 }
                 else if (selectedQuality.Contains("raw opus"))
                 {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format opus --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
+                    command = "/C bin\\youtube-dl.exe --extract-audio --format bestaudio[acodec=opus] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
                     _finishedMessage = "Download finished.";
                 }
                 else 
                 {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --audio-format vorbis --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
+                    command = "/C bin\\youtube-dl.exe --extract-audio --format bestaudio[acodec=vorbis] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
                     _finishedMessage = "Download finished.";
                 }
 
