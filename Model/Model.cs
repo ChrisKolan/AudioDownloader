@@ -180,7 +180,7 @@ namespace Model
         }
         public void HelpButtonClick()
         {
-            Process.Start("https://chriskolan.github.io/AudioDownloader/");
+            Process.Start("https://chriskolan.github.io/AudioDownloader/details.html");
         }
         public void FolderButtonClick()
         {
