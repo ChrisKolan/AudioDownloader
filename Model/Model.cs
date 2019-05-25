@@ -245,12 +245,12 @@ namespace Model
                 {
                     var quality = GetQuality(selectedQuality);
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished. Now converting to mp3. This may take a while. Processing";
+                    _finishedMessage = "Download finished. Now transcoding to mp3. This may take a while. Processing";
                 }
                 else if (selectedQuality.Contains("flac"))
                 {
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished. Now converting to FLAC. This may take a while. Processing";
+                    _finishedMessage = "Download finished. Now transcoding to FLAC. This may take a while. Processing";
                 }
                 else if (selectedQuality.Contains("raw webm"))
                 {
