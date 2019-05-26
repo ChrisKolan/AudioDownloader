@@ -356,7 +356,7 @@ namespace Model
         {
             var command = "/C bin\\youtube-dl.exe -F " + downloadLink;
             var availableFormats = new List<string>();
-            availableFormats.Add("\n==================================================================");
+            availableFormats.Add("\n==========================================================================");
             availableFormats.Add("Advanced information. Available YouTube file formats:");
 
             var startinfo = new ProcessStartInfo("CMD.exe", command)
@@ -373,10 +373,36 @@ namespace Model
             var reader = process.StandardOutput;
             while (!reader.EndOfStream)
             {
-                availableFormats.Add(reader.ReadLine());
+                var currentLine = reader.ReadLine();
+                if (currentLine.Contains("["))
+                {
+                    availableFormats.Add(currentLine);
+                    continue;
+                }
+
+                availableFormats.Add(ArragementFileFormatsOutput(currentLine));
             }
 
             HelpButtonToolTip += String.Join(Environment.NewLine, availableFormats.ToArray());
+        }
+
+        private static string ArragementFileFormatsOutput(string currentLine)
+        {
+            string result;
+
+            if (currentLine.Contains("format code"))
+            {
+                result = "format code\textension\tresolution note";
+                return result;
+            }
+            
+            var stringCleanedFromSpaces = System.Text.RegularExpressions.Regex.Replace(currentLine, @"\s+", " ");
+            var index = stringCleanedFromSpaces.IndexOf(' ', 0);
+            var replaceFirstSpace = stringCleanedFromSpaces.Insert(index, "\t\t").Remove(index + 2, 1);
+
+            var index2 = replaceFirstSpace.IndexOf(' ', index);
+            result = replaceFirstSpace.Insert(index2, "\t\t").Remove(index2 + 2, 1);
+            return result;
         }
 
         private void GetLocalVersions()
