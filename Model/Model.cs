@@ -34,6 +34,8 @@ namespace Model
         private string _helpButtonToolTip;
         private string _downloadLink;
         private bool _isComboBoxEnabled;
+        private int _processingTime = 1;
+        private int _timerResolution = 10;
         #endregion
 
         #region Constructor
@@ -41,7 +43,7 @@ namespace Model
         {
             StandardOutput = "Status: idle";
             EnableInteractions();
-            PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));
+            PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
 
             Quality = new ObservableCollection<string>
             {
@@ -358,11 +360,13 @@ namespace Model
                     var ratio = downloadedFileSize / fileSize;
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
+                    var processingTimeTimer = _processingTime * _timerResolution;
 
-                    StandardOutput = "Status: done. Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
+                    StandardOutput = "Status: done. Processing time: " + processingTimeTimer + "ms. " + 
+                                     "Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
                                      "Downloaded file size: " + _downloadedFileSize + ". " +
-                                     "File size: " + fileSize.ToString("F") + "MiB. " +
-                                     "Ratio (downloaded file size)/(file size): " + ratio.ToString("F") + ".";
+                                     "Transcoded file size: " + fileSize.ToString("F") + "MiB. " +
+                                     "Ratio: " + ratio.ToString("F") + ".";
                     _downloadedFileSize = null;
                     EnableInteractions();
                 }
@@ -468,8 +472,11 @@ namespace Model
         private void Spinner()
         {
             if (!_isSpinning)
+            {
+                _processingTime = 1;
                 return;
-
+            }
+            _processingTime++;
             IsIndeterminate = true;
             StandardOutput = Turn();
         }
