@@ -333,7 +333,7 @@ namespace Model
                 {
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
-                    StandardOutput = "Error. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                    StandardOutput = "Status: error. Downloaded file size is zero. Try again to download the file. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                     EnableInteractions();
                 }
                 else
@@ -348,7 +348,7 @@ namespace Model
                     {
                         watch.Stop();
                         elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
-                        StandardOutput = "Exception. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                        StandardOutput = "Status: exception. Updating webhook failed. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                         _downloadedFileSize = null;
                         EnableInteractions();
                         return;
@@ -359,7 +359,7 @@ namespace Model
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
 
-                    StandardOutput = "Done. Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
+                    StandardOutput = "Status: done. Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
                                      "Downloaded file size: " + _downloadedFileSize + ". " +
                                      "File size: " + fileSize.ToString("F") + "MiB. " +
                                      "Ratio (downloaded file size)/(file size): " + ratio.ToString("F") + ".";
