@@ -47,6 +47,7 @@ namespace Model
             {
                 "Audio quality: raw webm. \t WebM (Opus) unprocessed.",
                 "Audio quality: raw opus. \t Opus unprocessed.",
+                "Audio quality: raw aac. \t AAC (m4a) unprocessed.",
                 "Audio quality: raw vorbis. \t Vorbis unprocessed.",
                 "Audio quality: superb. \t FLAC lossless compression (Largest flac file size).",
                 "Audio quality: best. \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s (Large mp3 file size).",
@@ -60,7 +61,7 @@ namespace Model
                 "Audio quality: worse. \t Bitrate average: 085 kbit/s, Bitrate range: 070-105 kbit/s. VBR mp3 lossy compression.",
                 "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
             };
-            SelectedQuality = Quality[6];
+            SelectedQuality = Quality[7];
             _ = ApplicationUpdater.UpdateAsync(this);
             GetLocalVersions();
         }
@@ -271,6 +272,11 @@ namespace Model
                 else if (selectedQuality.Contains("raw opus"))
                 {
                     command = "/C bin\\youtube-dl.exe --extract-audio --format bestaudio[acodec=opus] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
+                    _finishedMessage = "Download finished.";
+                }
+                else if (selectedQuality.Contains("raw aac"))
+                {
+                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=m4a] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
                     _finishedMessage = "Download finished.";
                 }
                 else 
@@ -530,6 +536,8 @@ namespace Model
                 return "raw webm";
             else if (SelectedQuality.Contains("raw opus"))
                 return "raw opus";
+            else if (SelectedQuality.Contains("raw aac"))
+                return "raw aac";
             else if (SelectedQuality.Contains("raw vorbis"))
                 return "raw vorbis";
             else if (SelectedQuality.Contains("superb"))
