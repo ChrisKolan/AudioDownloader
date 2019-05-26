@@ -320,7 +320,10 @@ namespace Model
                             ProgressBarPercent = Convert.ToInt32(Math.Round(Convert.ToDouble(percent))); ;
                         }
                     }
-
+                    if (StandardOutput.Contains("has already been downloaded"))
+                    {
+                        _downloadedFileSize = "File has already been downloaded. ";
+                    }
                     if (StandardOutput.Contains("[ffmpeg]"))
                     {
                         StandardOutput = _finishedMessage;
@@ -336,6 +339,13 @@ namespace Model
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     StandardOutput = "Status: error. Downloaded file size is zero. Try again to download the file. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                    EnableInteractions();
+                }
+                if (_downloadedFileSize == "File has already been downloaded. ")
+                {
+                    watch.Stop();
+                    elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
+                    StandardOutput = "Status: idle. " + _downloadedFileSize + "Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                     EnableInteractions();
                 }
                 else
