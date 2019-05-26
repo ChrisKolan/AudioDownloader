@@ -33,6 +33,7 @@ namespace Model
         private bool _isWaitingForData;
         private string _helpButtonToolTip;
         private string _downloadLink;
+        private bool _isComboBoxEnabled;
         #endregion
 
         #region Constructor
@@ -79,6 +80,16 @@ namespace Model
                 _downloadLink = value;
                 OnPropertyChanged(nameof(DownloadLink));
                 ValidateAsync();
+            }
+        }
+
+        public bool IsComboBoxEnabled
+        {
+            get { return _isComboBoxEnabled; }
+            set
+            {
+                _isComboBoxEnabled = value;
+                OnPropertyChanged(nameof(IsComboBoxEnabled));
             }
         }
 
@@ -435,6 +446,7 @@ namespace Model
             IsInputEnabled = true;
             IsButtonEnabled = true;
             IsWaitingForData = true;
+            IsComboBoxEnabled = true;
         }
 
         public void DisableInteractions()
@@ -443,6 +455,7 @@ namespace Model
             IsInputEnabled = false;
             IsButtonEnabled = false;
             IsWaitingForData = false;
+            IsComboBoxEnabled = false;
             ProgressBarPercent = 0;
         }
 
@@ -568,19 +581,23 @@ namespace Model
             if (model.DownloadLink.Contains("CLI"))
             {
                 model.IsButtonEnabled = true;
+                model.IsComboBoxEnabled = false;
                 return ValidationResult.Success;
             }
             if (!model.DownloadLink.Contains("https://www.youtube.com/watch?v="))
             {
                 model.IsButtonEnabled = false;
+                model.IsComboBoxEnabled = false;
                 return new ValidationResult("YouTube link not valid", new List<string> { "DownloadLink" });
             }
             if (model.DownloadLink.Length != 43)
             {
                 model.IsButtonEnabled = false;
+                model.IsComboBoxEnabled = false;
                 return new ValidationResult("YouTube link length not correct", new List<string> { "DownloadLink" });
             }
             model.IsButtonEnabled = true;
+            model.IsComboBoxEnabled = true;
 
             return ValidationResult.Success;
         }

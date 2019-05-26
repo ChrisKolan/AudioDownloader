@@ -65,6 +65,7 @@
                       Name="MyComboBoxTest" 
                       IsEditable="False" 
                       IsReadOnly="True"
+                      IsEnabled="{Binding Model.IsComboBoxEnabled, UpdateSourceTrigger=PropertyChanged}"
                       Height="21"
                       Padding="2"
                       BorderBrush="#FFBCBCBC"
