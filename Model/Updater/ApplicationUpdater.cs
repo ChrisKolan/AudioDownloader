@@ -25,6 +25,7 @@ namespace Model
             }
 
             model.StandardOutput = "Status: idle.";
+            model.GetLocalVersions();
             model.EnableInteractions();
         }
     }

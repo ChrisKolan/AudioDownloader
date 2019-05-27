@@ -65,7 +65,6 @@ namespace Model
             };
             SelectedQuality = Quality[7];
             _ = ApplicationUpdater.UpdateAsync(this);
-            GetLocalVersions();
         }
         #endregion
 
@@ -436,7 +435,7 @@ namespace Model
             return result;
         }
 
-        private void GetLocalVersions()
+        public void GetLocalVersions()
         {
             var localVersionsNamesAndNumber = new List<string>();
             localVersionsNamesAndNumber.Add("Press button to get online help.");
