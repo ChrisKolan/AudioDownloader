@@ -64,6 +64,29 @@
                         </li>
                     </ul>
                     <p>
+                        Let’s analyze the output of youtube-dl -F command and focus only on audio formats. For this file the formats 
+                        are:
+
+                        [info] Available formats for 4KcQ90UbRsg:
+                        format code  extension  resolution note
+                        249          webm       audio only DASH audio   53k , opus @ 50k, 1.13MiB
+                        250          webm       audio only DASH audio   71k , opus @ 70k, 1.50MiB
+                        140          m4a        audio only DASH audio  130k , m4a_dash container, mp4a.40.2@128k, 2.94MiB
+                        251          webm       audio only DASH audio  138k , opus @160k, 2.98MiB
+                        171          webm       audio only DASH audio  144k , vorbis@128k, 2.95MiB
+
+                        Opus format has the highest bitrate and in this case, has also the best audio quality. So, if your audio 
+                        equipment supports Opus format you should stick with it. The other formats AAC and Vorbis are also good 
+                        options as they also do not need to be transcoded. These audio formats are downloaded without any transcoding 
+                        and thus preserves the quality intended by the uploader.
+
+                        The audio downloader also can store data in FLAC format which is lossless but, in this case, the resulted 
+                        file size is very large. If you want best audio quality and your audio system works only with FLAC so you 
+                        have no other choice than use it. Lastly, there is also mp3 where the user has the opportunity to choose 
+                        the quality and thus the file size. For mp3 transcoded with a variable bit rate of 190 kbit/s, 
+                        we obtain near-CD audio quality. We must keep in mind that, Opus format produces the same results for 
+                        bitrates around 160 kbit/s.
+                        
                         There is a very comprehensive study about these audio formats available 
                         <a style=" white-space:nowrap; " href="http://listening-test.coresv.net/results.htm" target="_blank">here</a>.
                     </p>
