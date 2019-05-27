@@ -47,7 +47,14 @@ namespace Updater
             FileInfo[] fileInfoArray = directoryInfo.GetFiles("old_*.*");
             foreach (FileInfo file in fileInfoArray)
             {
-                file.Delete();
+                try
+                {
+                    file.Delete();
+                }
+                catch (System.UnauthorizedAccessException)
+                {
+                    continue;
+                }
             }
             Thread.Sleep(100);
         }

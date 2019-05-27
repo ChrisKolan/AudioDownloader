@@ -18,7 +18,14 @@ namespace Model
             FileInfo[] fileInfoArray = directoryInfo.GetFiles();
             foreach (FileInfo file in fileInfoArray)
             {
-                file.Delete();
+                try
+                {
+                    file.Delete();
+                }
+                catch (System.UnauthorizedAccessException)
+                {
+                    continue;
+                }
             }
         }
 
