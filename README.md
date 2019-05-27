@@ -19,6 +19,7 @@
 ## Audio formats:
 * WebM (Opus) unprocessed raw audio
 * Opus unprocessed raw audio
+* AAC (m4a) raw audio
 * Vorbis unprocessed raw audio
 * FLAC lossless compression
 * Mp3 VBR lossy compression
