@@ -1826,6 +1826,7 @@ a.ulist {
 			.image.centered img {
 				margin: 0 auto;
 				max-width: 100%;
+				height: auto;
 			}
 
 /* List */
