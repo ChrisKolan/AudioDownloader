@@ -72,6 +72,8 @@ namespace Model
 
         public ObservableCollection<string> Quality { get; set; }
 
+        public string LocalVersions { get; set; }
+
         [Required]
         [CustomValidation(typeof(Model), "ValidateDownloadLink")]
         public string DownloadLink
@@ -249,8 +251,8 @@ namespace Model
                 }
 
                 StandardOutput = "Starting download...";
-                GetLocalVersions();
-                GetYouTubeAvailableFormats(DownloadLink);
+                //GetLocalVersions();
+                //GetYouTubeAvailableFormats(DownloadLink);
                 string command;
                 var date = DateTime.Now.ToString("yyMMdd");
 
@@ -382,9 +384,9 @@ namespace Model
             }
         }
 
-        private void GetYouTubeAvailableFormats(string downloadLink)
+        private void GetYouTubeAvailableFormatsWorker(Object stateInfo)
         {
-            var command = "/C bin\\youtube-dl.exe -F " + downloadLink;
+            var command = "/C bin\\youtube-dl.exe -F " + DownloadLink;
             var availableFormats = new List<string>();
             availableFormats.Add("\n==========================================================================");
             availableFormats.Add("Advanced information. Available YouTube file formats:");
@@ -413,7 +415,7 @@ namespace Model
                 availableFormats.Add(ArragementFileFormatsOutput(currentLine));
             }
 
-            HelpButtonToolTip += String.Join(Environment.NewLine, availableFormats.ToArray());
+            HelpButtonToolTip = LocalVersions + String.Join(Environment.NewLine, availableFormats.ToArray());
         }
 
         private static string ArragementFileFormatsOutput(string currentLine)
@@ -456,7 +458,8 @@ namespace Model
 
             localVersionsNamesAndNumber.Add("FFmpeg\t\t   |\t4.1.3");
 
-            HelpButtonToolTip = String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
+            LocalVersions = String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
+            HelpButtonToolTip = LocalVersions;
         }
 
         public void EnableInteractions()
@@ -622,6 +625,7 @@ namespace Model
             }
             model.IsButtonEnabled = true;
             model.IsComboBoxEnabled = true;
+            ThreadPool.QueueUserWorkItem(model.GetYouTubeAvailableFormatsWorker);
 
             return ValidationResult.Success;
         }
