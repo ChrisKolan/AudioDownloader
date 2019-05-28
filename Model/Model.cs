@@ -339,8 +339,9 @@ namespace Model
                 {
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
-                    StandardOutput = "Status: error. Downloaded file size is zero. Try again to download the file. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                    StandardOutput = "Status: error. Downloaded file size is zero. Check whether the selected format exists. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                     EnableInteractions();
+                    return;
                 }
                 if (_downloadedFileSize == "File has already been downloaded. ")
                 {
@@ -348,6 +349,7 @@ namespace Model
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     StandardOutput = "Status: idle. " + _downloadedFileSize + "Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                     EnableInteractions();
+                    return;
                 }
                 else
                 {
