@@ -36,6 +36,7 @@ namespace Model
         private bool _isComboBoxEnabled;
         private int _processingTime = 1;
         private int _timerResolution = 10;
+        private SynchronizationContext _synchronizationContext;
         #endregion
 
         #region Constructor
@@ -65,6 +66,7 @@ namespace Model
             };
             SelectedQuality = Quality[7];
             _ = ApplicationUpdater.UpdateAsync(this);
+            _synchronizationContext = SynchronizationContext.Current;
         }
         #endregion
 
@@ -386,8 +388,10 @@ namespace Model
             }
         }
 
-        private void GetYouTubeAvailableFormatsWorker(Object stateInfo)
+        private void GetYouTubeAvailableFormatsWorker(Object state)
         {
+            SynchronizationContext uiContext = state as SynchronizationContext;
+            var availableAudioFormats = new List<string>();
             var command = "/C bin\\youtube-dl.exe -F " + DownloadLink;
             var availableFormats = new List<string>();
             availableFormats.Add("\n==========================================================================");
@@ -415,9 +419,27 @@ namespace Model
                 }
 
                 availableFormats.Add(ArragementFileFormatsOutput(currentLine));
+                
+                if (currentLine.Contains("audio only"))
+                {
+                    availableAudioFormats.Add(currentLine);
+                }
             }
 
+            //uiContext.Send(x => availableAudioFormats.ForEach(Quality.Add), null);
+            uiContext.Send(UpdateUiFromTheThread, availableAudioFormats);
+
             HelpButtonToolTip = LocalVersions + String.Join(Environment.NewLine, availableFormats.ToArray());
+        }
+
+        private void UpdateUiFromTheThread(object state)
+        {
+            List<string> availableAudioFormats = state as List<string>;
+            availableAudioFormats.Reverse();
+            foreach (var item in availableAudioFormats)
+            {
+                Quality.Insert(0, item);
+            }
         }
 
         private static string ArragementFileFormatsOutput(string currentLine)
@@ -627,7 +649,8 @@ namespace Model
             }
             model.IsButtonEnabled = true;
             model.IsComboBoxEnabled = true;
-            ThreadPool.QueueUserWorkItem(model.GetYouTubeAvailableFormatsWorker);
+            var uiContext = model._synchronizationContext;
+            ThreadPool.QueueUserWorkItem(model.GetYouTubeAvailableFormatsWorker, uiContext);
 
             return ValidationResult.Success;
         }
