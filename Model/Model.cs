@@ -472,7 +472,7 @@ namespace Model
                 {
                     if (addM4a)
                     {
-                        qualityDynamic.Insert(0, "Audio quality: raw aac. \t AAC(m4a) unprocessed.");
+                        qualityDynamic.Insert(0, "Audio quality: raw aac. \t AAC (m4a) unprocessed.");
                         addM4a = false;
                     }
                 }
@@ -480,6 +480,7 @@ namespace Model
                 qualityDynamicFormat.Add(item);
             }
 
+            qualityDynamic.Reverse();
             qualityDynamic.ForEach(Quality.Add);
             QualityDefault.ForEach(Quality.Add);
             qualityDynamicFormat.ForEach(Quality.Add);
