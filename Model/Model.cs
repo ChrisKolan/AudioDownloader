@@ -445,8 +445,6 @@ namespace Model
             var qualityDynamic = new List<string>();
             var qualityDynamicFormat = new List<string>();
             availableAudioFormats.Reverse();
-            qualityDynamic.Clear();
-            qualityDynamicFormat.Clear();
             bool addOpus = true, addVorbis = true, addM4a = true;
 
             foreach (var item in availableAudioFormats)
