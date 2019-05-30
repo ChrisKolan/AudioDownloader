@@ -262,32 +262,39 @@ namespace Model
                 {
                     var quality = GetQuality(selectedQuality);
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished. Now transcoding to mp3. This may take a while. Processing";
+                    _finishedMessage = "Status: download finished. Now transcoding to mp3. This may take a while. Processing.";
                 }
                 else if (selectedQuality.Contains("flac"))
                 {
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished. Now transcoding to FLAC. This may take a while. Processing";
+                    _finishedMessage = "Status: download finished. Now transcoding to FLAC. This may take a while. Processing.";
                 }
                 else if (selectedQuality.Contains("raw webm"))
                 {
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished.";
+                    _finishedMessage = "Status: download finished.";
                 }
                 else if (selectedQuality.Contains("raw opus"))
                 {
                     command = "/C bin\\youtube-dl.exe --extract-audio --format bestaudio[acodec=opus] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished.";
+                    _finishedMessage = "Status: download finished.";
                 }
                 else if (selectedQuality.Contains("raw aac"))
                 {
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=m4a] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished.";
+                    _finishedMessage = "Status: download finished.";
+                }
+                else if (selectedQuality.Split(' ').First().All(char.IsDigit))
+                {
+                    var formatCode = selectedQuality.Split(' ').First();
+                    var format = selectedQuality.Split(' ').Last();
+                    command = "/C bin\\youtube-dl.exe -f " + formatCode + " --extract-audio  --audio-format " + format + " --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
+                    _finishedMessage = "Status: download finished.";
                 }
                 else 
                 {
                     command = "/C bin\\youtube-dl.exe --extract-audio --format bestaudio[acodec=vorbis] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished.";
+                    _finishedMessage = "Status: download finished.";
                 }
 
                 var startinfo = new ProcessStartInfo("CMD.exe", command)
@@ -391,9 +398,9 @@ namespace Model
         private void GetYouTubeAvailableFormatsWorker(Object state)
         {
             SynchronizationContext uiContext = state as SynchronizationContext;
-            var availableAudioFormats = new List<string>();
             var command = "/C bin\\youtube-dl.exe -F " + DownloadLink;
             var availableFormats = new List<string>();
+            var availableAudioFormats = new List<string>();
             availableFormats.Add("\n==========================================================================");
             availableFormats.Add("Advanced information. Available YouTube file formats:");
 
@@ -427,12 +434,12 @@ namespace Model
             }
 
             //uiContext.Send(x => availableAudioFormats.ForEach(Quality.Add), null);
-            uiContext.Send(UpdateUiFromTheThread, availableAudioFormats);
+            uiContext.Send(UpdateUiFromTheWorkerThread, availableAudioFormats);
 
             HelpButtonToolTip = LocalVersions + String.Join(Environment.NewLine, availableFormats.ToArray());
         }
 
-        private void UpdateUiFromTheThread(object state)
+        private void UpdateUiFromTheWorkerThread(object state)
         {
             List<string> availableAudioFormats = state as List<string>;
             availableAudioFormats.Reverse();
@@ -514,7 +521,7 @@ namespace Model
             }
             _processingTime++;
             IsIndeterminate = true;
-            StandardOutput = Turn();
+            //StandardOutput = Turn();
         }
 
         private string Turn()
@@ -605,8 +612,27 @@ namespace Model
                 return "mp3 8";
             else if (SelectedQuality.Contains("worst"))
                 return "mp3 9";
+            else if (SelectedQuality.Split(' ').First().All(char.IsDigit))
+            {
+                var format = FindFormat(SelectedQuality);
+                var formatCode = SelectedQuality.Split(' ').First();
+                return formatCode + " " + format;
+            }
             else
                 return "mp3 4";
+        }
+
+        private string FindFormat(string selectedQuality)
+        {
+            if (selectedQuality.Contains("m4a"))
+                return "m4a";
+            else
+            {
+                if (selectedQuality.Contains("opus"))
+                    return "opus";
+                else
+                    return "vorbis";
+            }
         }
 
         #endregion
