@@ -60,6 +60,8 @@ namespace Model
                 "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
             };
             Quality = new ObservableCollection<string>();
+            Quality.Add("After pasting YouTube link, you can select the audio quality from this list.");
+            SelectedQuality = Quality[0];
             _ = ApplicationUpdater.UpdateAsync(this);
             _synchronizationContext = SynchronizationContext.Current;
         }
@@ -384,6 +386,7 @@ namespace Model
 
         private void GetYouTubeAvailableFormatsWorker(Object state)
         {
+            IsComboBoxEnabled = false;
             SynchronizationContext uiContext = state as SynchronizationContext;
             var command = "/C bin\\youtube-dl.exe -F " + DownloadLink;
             var availableFormats = new List<string>();
@@ -471,7 +474,19 @@ namespace Model
             qualityDynamicFormat.ForEach(Quality.Add);
 
             var optimalQualityIndex = Quality.ToList().FindIndex(x => x.Contains("m4a"));
-            SelectedQuality = Quality[optimalQualityIndex];
+            if(optimalQualityIndex != -1)
+                SelectedQuality = Quality[optimalQualityIndex];
+            else
+            {
+                Quality.Clear();
+                Quality.Add("Audio quality could not be retrieved.");
+                SelectedQuality = Quality[0];
+                StandardOutput = "Status: idle. YouTube link not valid.";
+                IsButtonEnabled = false;
+                return;
+            }
+            StandardOutput = "Status: idle.";
+            IsComboBoxEnabled = true;
         }
         private static string ArragementDynamicFormatsOutput(string currentLine)
         {
@@ -710,6 +725,7 @@ namespace Model
             model.IsButtonEnabled = true;
             model.IsComboBoxEnabled = true;
             var uiContext = model._synchronizationContext;
+            model.StandardOutput = "Status: retrieving audio quality.";
             ThreadPool.QueueUserWorkItem(model.GetYouTubeAvailableFormatsWorker, uiContext);
 
             return ValidationResult.Success;
