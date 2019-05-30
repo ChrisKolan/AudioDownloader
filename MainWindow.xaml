@@ -72,6 +72,7 @@
                       ToolTip="Choose audio quality of the file."
                       ItemsSource="{Binding Model.Quality}" 
                       SelectedItem="{Binding Model.SelectedQuality}" 
+                      MaxDropDownHeight="800"
                       IsSynchronizedWithCurrentItem="True">
             </ComboBox>
             <Button x:Name="button" 
