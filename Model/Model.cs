@@ -475,12 +475,23 @@ namespace Model
                     }
                 }
 
-                qualityDynamicFormat.Add(item);
+                qualityDynamicFormat.Add(ArragementDynamicFormatsOutput(item));
             }
 
             qualityDynamic.ForEach(Quality.Add);
             QualityDefault.ForEach(Quality.Add);
             qualityDynamicFormat.ForEach(Quality.Add);
+        }
+        private static string ArragementDynamicFormatsOutput(string currentLine)
+        {
+            string result;
+            var stringCleanedFromSpaces = System.Text.RegularExpressions.Regex.Replace(currentLine, @"\s+", " ");
+            var index = stringCleanedFromSpaces.IndexOf(' ', 0);
+            var replaceFirstSpace = stringCleanedFromSpaces.Insert(index, "\t").Remove(index + 1, 1);
+
+            var index2 = replaceFirstSpace.IndexOf(' ', index);
+            result = replaceFirstSpace.Insert(index2, "\t\t\t").Remove(index2 + 2, 1);
+            return result;
         }
 
         private static string ArragementFileFormatsOutput(string currentLine)
@@ -646,10 +657,10 @@ namespace Model
                 return "mp3 8";
             else if (SelectedQuality.Contains("worst"))
                 return "mp3 9";
-            else if (SelectedQuality.Split(' ').First().All(char.IsDigit))
+            else if (SelectedQuality.Split('\t').First().All(char.IsDigit))
             {
                 var format = FindFormat(SelectedQuality);
-                var formatCode = SelectedQuality.Split(' ').First();
+                var formatCode = SelectedQuality.Split('\t').First();
                 return formatCode + " " + format;
             }
             else
