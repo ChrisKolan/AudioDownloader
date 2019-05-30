@@ -46,12 +46,8 @@ namespace Model
             EnableInteractions();
             PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
 
-            Quality = new ObservableCollection<string>
+            QualityDefault = new List<string>
             {
-                "Audio quality: raw webm. \t WebM (Opus) unprocessed.",
-                "Audio quality: raw opus. \t Opus unprocessed.",
-                "Audio quality: raw aac. \t AAC (m4a) unprocessed.",
-                "Audio quality: raw vorbis. \t Vorbis unprocessed.",
                 "Audio quality: superb. \t FLAC lossless compression (Largest flac file size).",
                 "Audio quality: best. \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s (Large mp3 file size).",
                 "Audio quality: better. \t Bitrate average: 225 kbit/s, Bitrate range: 190-250 kbit/s. VBR mp3 lossy compression.",
@@ -64,13 +60,16 @@ namespace Model
                 "Audio quality: worse. \t Bitrate average: 085 kbit/s, Bitrate range: 070-105 kbit/s. VBR mp3 lossy compression.",
                 "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
             };
-            SelectedQuality = Quality[7];
+            Quality = new ObservableCollection<string>();
+            SelectedQuality = QualityDefault[7];
             _ = ApplicationUpdater.UpdateAsync(this);
             _synchronizationContext = SynchronizationContext.Current;
         }
         #endregion
 
         #region Properties
+
+        public List<string> QualityDefault { get; set; }
 
         public ObservableCollection<string> Quality { get; set; }
 
@@ -441,12 +440,36 @@ namespace Model
 
         private void UpdateUiFromTheWorkerThread(object state)
         {
-            List<string> availableAudioFormats = state as List<string>;
+            Quality.Clear();
+            var availableAudioFormats = state as List<string>;
+            var qualityDynamic = new List<string>();
+            var qualityDynamicFormat = new List<string>();
             availableAudioFormats.Reverse();
+            qualityDynamic.Clear();
+            qualityDynamicFormat.Clear();
+
             foreach (var item in availableAudioFormats)
             {
-                Quality.Insert(0, item);
+                if (FindFormat(item).Contains("opus"))
+                {
+                    qualityDynamic.Insert(0, "Audio quality: raw webm. \t WebM (Opus) unprocessed.");
+                    qualityDynamic.Insert(0, "Audio quality: raw opus. \t Opus unprocessed.");
+                }
+                if (FindFormat(item).Contains("vorbis"))
+                {
+                    qualityDynamic.Insert(0, "Audio quality: raw vorbis. \t Vorbis unprocessed.");
+                }
+                if (FindFormat(item).Contains("m4a"))
+                {
+                    qualityDynamic.Insert(0, "Audio quality: raw aac. \t AAC(m4a) unprocessed.");
+                }
+
+                qualityDynamicFormat.Add(item);
             }
+
+            qualityDynamic.ForEach(Quality.Add);
+            QualityDefault.ForEach(Quality.Add);
+            qualityDynamicFormat.ForEach(Quality.Add);
         }
 
         private static string ArragementFileFormatsOutput(string currentLine)
