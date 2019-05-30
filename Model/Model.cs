@@ -60,7 +60,6 @@ namespace Model
                 "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
             };
             Quality = new ObservableCollection<string>();
-            SelectedQuality = QualityDefault[7];
             _ = ApplicationUpdater.UpdateAsync(this);
             _synchronizationContext = SynchronizationContext.Current;
         }
@@ -470,6 +469,9 @@ namespace Model
             qualityDynamic.ForEach(Quality.Add);
             QualityDefault.ForEach(Quality.Add);
             qualityDynamicFormat.ForEach(Quality.Add);
+
+            var optimalQualityIndex = Quality.ToList().FindIndex(x => x.Contains("m4a"));
+            SelectedQuality = Quality[optimalQualityIndex];
         }
         private static string ArragementDynamicFormatsOutput(string currentLine)
         {
