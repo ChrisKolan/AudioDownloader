@@ -447,21 +447,34 @@ namespace Model
             availableAudioFormats.Reverse();
             qualityDynamic.Clear();
             qualityDynamicFormat.Clear();
+            bool addOpus = true, addVorbis = true, addM4a = true;
 
             foreach (var item in availableAudioFormats)
             {
                 if (FindFormat(item).Contains("opus"))
                 {
-                    qualityDynamic.Insert(0, "Audio quality: raw webm. \t WebM (Opus) unprocessed.");
-                    qualityDynamic.Insert(0, "Audio quality: raw opus. \t Opus unprocessed.");
+                    if (addOpus)
+                    {
+                        qualityDynamic.Insert(0, "Audio quality: raw webm. \t WebM (Opus) unprocessed.");
+                        qualityDynamic.Insert(0, "Audio quality: raw opus. \t Opus unprocessed.");
+                        addOpus = false;
+                    }
                 }
                 if (FindFormat(item).Contains("vorbis"))
                 {
-                    qualityDynamic.Insert(0, "Audio quality: raw vorbis. \t Vorbis unprocessed.");
+                    if (addVorbis)
+                    {
+                        qualityDynamic.Insert(0, "Audio quality: raw vorbis. \t Vorbis unprocessed.");
+                        addVorbis = false;
+                    }
                 }
                 if (FindFormat(item).Contains("m4a"))
                 {
-                    qualityDynamic.Insert(0, "Audio quality: raw aac. \t AAC(m4a) unprocessed.");
+                    if (addM4a)
+                    {
+                        qualityDynamic.Insert(0, "Audio quality: raw aac. \t AAC(m4a) unprocessed.");
+                        addM4a = false;
+                    }
                 }
 
                 qualityDynamicFormat.Add(item);
