@@ -30,7 +30,6 @@ namespace Model
         private bool _isButtonEnabled;
         private bool _isInputEnabled;
         private string _selectedQuality;
-        private bool _isWaitingForData;
         private string _helpButtonToolTip;
         private string _downloadLink;
         private bool _isComboBoxEnabled;
@@ -157,16 +156,6 @@ namespace Model
             {
                 _isInputEnabled = value;
                 OnPropertyChanged(nameof(IsInputEnabled));
-            }
-        }
-
-        public bool IsWaitingForData
-        {
-            get { return _isWaitingForData; }
-            set
-            {
-                _isWaitingForData = value;
-                OnPropertyChanged(nameof(IsWaitingForData));
             }
         }
 
@@ -543,7 +532,6 @@ namespace Model
             IsIndeterminate = false;
             IsInputEnabled = true;
             IsButtonEnabled = true;
-            IsWaitingForData = true;
             IsComboBoxEnabled = true;
         }
 
@@ -552,7 +540,6 @@ namespace Model
             IsIndeterminate = true;
             IsInputEnabled = false;
             IsButtonEnabled = false;
-            IsWaitingForData = false;
             IsComboBoxEnabled = false;
             ProgressBarPercent = 0;
         }
