@@ -455,8 +455,8 @@ namespace Model
                 {
                     if (addOpus)
                     {
-                        qualityDynamic.Insert(0, "Audio quality: raw webm. \t WebM (Opus) unprocessed.");
-                        qualityDynamic.Insert(0, "Audio quality: raw opus. \t Opus unprocessed.");
+                        qualityDynamic.Add("Audio quality: raw webm. \t WebM (Opus) unprocessed.");
+                        qualityDynamic.Add("Audio quality: raw opus. \t Opus unprocessed.");
                         addOpus = false;
                     }
                 }
@@ -464,7 +464,7 @@ namespace Model
                 {
                     if (addVorbis)
                     {
-                        qualityDynamic.Insert(0, "Audio quality: raw vorbis. \t Vorbis unprocessed.");
+                        qualityDynamic.Add("Audio quality: raw vorbis. \t Vorbis unprocessed.");
                         addVorbis = false;
                     }
                 }
@@ -472,7 +472,7 @@ namespace Model
                 {
                     if (addM4a)
                     {
-                        qualityDynamic.Insert(0, "Audio quality: raw aac. \t AAC (m4a) unprocessed.");
+                        qualityDynamic.Add("Audio quality: raw aac. \t AAC (m4a) unprocessed.");
                         addM4a = false;
                     }
                 }
@@ -480,7 +480,6 @@ namespace Model
                 qualityDynamicFormat.Add(item);
             }
 
-            qualityDynamic.Reverse();
             qualityDynamic.ForEach(Quality.Add);
             QualityDefault.ForEach(Quality.Add);
             qualityDynamicFormat.ForEach(Quality.Add);
