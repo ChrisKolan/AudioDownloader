@@ -20,6 +20,7 @@ namespace Model
             catch (Exception exception)
             {
                 model.StandardOutput = "Status: idle. Failed to update Audio Downloader.\n" + exception.ToString();
+                model.GetLocalVersions();
                 model.EnableInteractions();
                 return;
             }
