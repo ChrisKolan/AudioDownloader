@@ -386,6 +386,7 @@ namespace Model
 
         private void GetYouTubeAvailableFormatsWorker(Object state)
         {
+            IsIndeterminate = true;
             IsComboBoxEnabled = false;
             SynchronizationContext uiContext = state as SynchronizationContext;
             var command = "/C bin\\youtube-dl.exe -F " + DownloadLink;
@@ -427,6 +428,7 @@ namespace Model
             uiContext.Send(UpdateUiFromTheWorkerThread, availableAudioFormats);
 
             HelpButtonToolTip = LocalVersions + String.Join(Environment.NewLine, availableFormats.ToArray());
+            IsIndeterminate = false;
         }
 
         private void UpdateUiFromTheWorkerThread(object state)
