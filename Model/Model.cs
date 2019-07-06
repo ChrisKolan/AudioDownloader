@@ -212,13 +212,14 @@ namespace Model
             Thread.CurrentThread.IsBackground = true;
             int positionFrom;
             int positionTo;
+            var date = DateTime.Now.ToString("yyMMdd");
 
             if (DownloadLink.Contains("CLI"))
             {
-                StandardOutput = "Advanced mode. Use on your own risk. Starting download in a new command window. Close the window to start new download.";
+                StandardOutput = "Advanced mode. Use on your own risk. Starting download in a new command window. Close the command window to start new download.";
                 var advancedUserCommand = DownloadLink.Remove(0, 4);
                 /// "/K" keeps command window open
-                var command = "/K bin\\youtube-dl.exe " + advancedUserCommand;
+                var command = "/K bin\\youtube-dl.exe -o cli\\" + date + "-%(title)s-%(id)s.%(ext)s " + advancedUserCommand;
 
                 try
                 {
@@ -242,10 +243,7 @@ namespace Model
                 }
 
                 StandardOutput = "Starting download...";
-                //GetLocalVersions();
-                //GetYouTubeAvailableFormats(DownloadLink);
                 string command;
-                var date = DateTime.Now.ToString("yyMMdd");
 
                 if (selectedQuality.Contains("mp3"))
                 {
