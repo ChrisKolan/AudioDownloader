@@ -367,17 +367,20 @@ namespace Model
                         return;
                     }
 
-                    var downloadedFileSize = double.Parse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3));
-                    var ratio = downloadedFileSize / fileSize;
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     var processingTimeTimer = _processingTime * _timerResolution;
-
-                    StandardOutput = "Status: done. Processing time: " + processingTimeTimer + "ms. " + 
+                    StandardOutput = "Status: done. Processing time: " + processingTimeTimer + "ms. " +
                                      "Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
                                      "Downloaded file size: " + _downloadedFileSize + ". " +
-                                     "Transcoded file size: " + fileSize.ToString("F") + "MiB. " +
-                                     "Ratio: " + ratio.ToString("F") + ".";
+                                     "Transcoded file size: " + fileSize.ToString("F") + "MiB. ";
+
+                    if (double.TryParse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3), out var downloadedFileSize))
+                    {
+                        var ratio = downloadedFileSize / fileSize;
+                        StandardOutput += "Ratio: " + ratio.ToString("F") + ".";
+                    }
+
                     _downloadedFileSize = null;
                     EnableInteractions();
                 }
