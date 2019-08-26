@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\View
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{4039C1EA-6A7C-4280-A4CB-8326C9CCC5EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{102F558A-CE96-4D5B-A9B6-EF66E9F77114}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdaterConsole", "UpdaterConsole\UpdaterConsole.csproj", "{102F558A-CE96-4D5B-A9B6-EF66E9F77114}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{62293194-F6AB-48F7-B41E-5F64619F2808}"
 EndProject
