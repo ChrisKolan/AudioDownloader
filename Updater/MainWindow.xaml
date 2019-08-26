@@ -23,7 +23,7 @@
                      ToolTip="Current status of the program"
                      Padding="1"
                      BorderBrush="#FFBCBCBC"
-                     Text="{Binding Model.StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
+                     Text="{Binding StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
             <Controls:MetroProgressBar Margin="2,1,2,1"
                                        Value="{Binding Model.ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
                                        Height="4"
