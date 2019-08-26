@@ -22,21 +22,21 @@ namespace Updater
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private static string _pathToExe = Assembly.GetEntryAssembly().Location;
         private static string _pathToExeFolder = System.IO.Path.GetDirectoryName(_pathToExe);
-        private TextBlock _TextBlock = new TextBlock();
+        //private TextBlock _TextBlock = new TextBlock();
 
         public MainWindow()
         {
             InitializeComponent();
 
             
-            _TextBlock.TextWrapping = TextWrapping.Wrap;
-            _TextBlock.Margin = new Thickness(10);
-            _TextBlock.Inlines.Add("Updating AudioDownloader...");
-            Content = _TextBlock;
+            //_TextBlock.TextWrapping = TextWrapping.Wrap;
+            //_TextBlock.Margin = new Thickness(10);
+            //_TextBlock.Inlines.Add("Updating AudioDownloader...");
+            //Content = _TextBlock;
 
             //try
             //{
@@ -53,12 +53,12 @@ namespace Updater
             //    Console.WriteLine("\n\nPress any key to close this window.");
             //    Console.ReadKey();
             //}
-            _TextBlock.Inlines.Add("\nUpdated!");
+            //_TextBlock.Inlines.Add("\nUpdated!");
         }
 
         private void StopAudioDownloader()
         {
-            _TextBlock.Inlines.Add("\nClosing Audio Downloader.");
+            //_TextBlock.Inlines.Add("\nClosing Audio Downloader.");
             foreach (var process in Process.GetProcessesByName("AudioDownloader"))
             {
                 process.Kill();
@@ -68,7 +68,7 @@ namespace Updater
 
         private void DeleteOldFiles()
         {
-            _TextBlock.Inlines.Add("\nDeleting old files.");
+            //_TextBlock.Inlines.Add("\nDeleting old files.");
             DirectoryInfo directoryInfo = new DirectoryInfo(_pathToExeFolder);
             FileInfo[] fileInfoArray = directoryInfo.GetFiles("old_*.*");
             foreach (FileInfo file in fileInfoArray)
@@ -86,7 +86,7 @@ namespace Updater
         }
         private void StartAudioDownloader()
         {
-            _TextBlock.Inlines.Add("\nStarting Audio Downloader.");
+            //_TextBlock.Inlines.Add("\nStarting Audio Downloader.");
             var pathToAudioDownloader = _pathToExeFolder + @"\AudioDownloader.exe";
             Process.Start(pathToAudioDownloader);
         }
