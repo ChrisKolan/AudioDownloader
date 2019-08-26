@@ -14,8 +14,8 @@ namespace Updater
     {
         private bool _exceptionOccured;
         private string _standardOutput;
-        private static string _pathToExe = Assembly.GetEntryAssembly().Location;
-        private static string _pathToExeFolder = Path.GetDirectoryName(_pathToExe);
+        private static readonly string _pathToExe = Assembly.GetEntryAssembly().Location;
+        private static readonly string _pathToExeFolder = Path.GetDirectoryName(_pathToExe);
 
         public ViewModel()
         {
@@ -26,7 +26,6 @@ namespace Updater
 
         public Timer CountdownTimer { get; }
         public Timer StandardOutputUpdateTimer { get; }
-
         public string StandardOutput
         {
             get { return _standardOutput; }
@@ -36,6 +35,7 @@ namespace Updater
                 OnPropertyChanged(nameof(StandardOutput));
             }
         }
+
         private void Update()
         {
             try
