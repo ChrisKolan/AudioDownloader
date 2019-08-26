@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -301,7 +302,6 @@ namespace Model
                     StandardOutput = reader.ReadLine();
                     if (StandardOutput.Contains("[download]") && StandardOutput.Contains("ETA"))
                     {
-                        IsIndeterminate = false;
                         positionFrom = StandardOutput.IndexOf("of ") + "of ".Length;
                         positionTo = StandardOutput.LastIndexOf(" at");
 
@@ -314,7 +314,15 @@ namespace Model
                         if ((positionTo - positionFrom) > 0)
                         {
                             var percent = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
-                            ProgressBarPercent = Convert.ToInt32(Math.Round(Convert.ToDouble(percent))); ;
+                            if (double.TryParse(percent.Trim(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedPercent))
+                            {
+                                IsIndeterminate = false;
+                                ProgressBarPercent = Convert.ToInt32(Math.Round(downloadedPercent)); ;
+                            }
+                            else
+                            {
+                                IsIndeterminate = true;
+                            }
                         }
                     }
                     if (StandardOutput.Contains("has already been downloaded"))
@@ -373,7 +381,7 @@ namespace Model
                                      "Downloaded file size: " + _downloadedFileSize + ". " +
                                      "Transcoded file size: " + fileSize.ToString("F") + "MiB. ";
 
-                    if (double.TryParse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3), out var downloadedFileSize))
+                    if (double.TryParse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedFileSize))
                     {
                         var ratio = downloadedFileSize / fileSize;
                         StandardOutput += "Ratio: " + ratio.ToString("F") + ".";
