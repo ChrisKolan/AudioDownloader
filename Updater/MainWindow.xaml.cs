@@ -27,6 +27,7 @@ namespace Updater
         public MainWindow()
         {
             InitializeComponent();
+            Left = (SystemParameters.PrimaryScreenWidth - Width)/2;
             var viewModel = new ViewModel();
             DataContext = viewModel;
         }

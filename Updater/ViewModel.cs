@@ -1,27 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Updater
 {
     class ViewModel : INotifyPropertyChanged
     {
+        private bool _exceptionOccured;
         private string _standardOutput;
         private static string _pathToExe = Assembly.GetEntryAssembly().Location;
-        private static string _pathToExeFolder = System.IO.Path.GetDirectoryName(_pathToExe);
+        private static string _pathToExeFolder = Path.GetDirectoryName(_pathToExe);
 
         public ViewModel()
         {
-            StandardOutput = "Test";
+            CountdownTimer = new Timer(_ => CountdownUntillExitApplication(), null, TimeSpan.FromSeconds(5) , TimeSpan.FromSeconds(5));
+            StandardOutput = "Updating Audio Downloader...";
+            Task.Run(() => Update());
         }
+
+        public Timer CountdownTimer { get; }
+        public Timer StandardOutputUpdateTimer { get; }
 
         public string StandardOutput
         {
@@ -32,20 +36,32 @@ namespace Updater
                 OnPropertyChanged(nameof(StandardOutput));
             }
         }
-
+        private void Update()
+        {
+            try
+            {
+                StopAudioDownloader();
+                DeleteOldFiles();
+                StartAudioDownloader();
+            }
+            catch (Exception)
+            {
+                StandardOutput = "Failed to update. Please download the latest version manually from: https://chriskolan.github.io/audio-downloader";
+                _exceptionOccured = true;
+            }
+        }
         private void StopAudioDownloader()
         {
-            //_TextBlock.Inlines.Add("\nClosing Audio Downloader.");
+            StandardOutput = "Closing Audio Downloader.";
             foreach (var process in Process.GetProcessesByName("AudioDownloader"))
             {
                 process.Kill();
             }
-            Thread.Sleep(100);
+            Thread.Sleep(1000);
         }
-
         private void DeleteOldFiles()
         {
-            //_TextBlock.Inlines.Add("\nDeleting old files.");
+            StandardOutput = "Deleting old files.";
             DirectoryInfo directoryInfo = new DirectoryInfo(_pathToExeFolder);
             FileInfo[] fileInfoArray = directoryInfo.GetFiles("old_*.*");
             foreach (FileInfo file in fileInfoArray)
@@ -54,18 +70,28 @@ namespace Updater
                 {
                     file.Delete();
                 }
-                catch (System.UnauthorizedAccessException)
+                catch (UnauthorizedAccessException)
                 {
                     continue;
                 }
             }
-            Thread.Sleep(100);
+            Thread.Sleep(1000);
         }
         private void StartAudioDownloader()
         {
-            //_TextBlock.Inlines.Add("\nStarting Audio Downloader.");
+            StandardOutput = "Starting Audio Downloader.";
             var pathToAudioDownloader = _pathToExeFolder + @"\AudioDownloader.exe";
             Process.Start(pathToAudioDownloader);
+            Thread.Sleep(1000);
+            StandardOutput = "Closing Audio Downloader Updater.";
+        }
+        private void CountdownUntillExitApplication()
+        {
+            if (_exceptionOccured)
+            {
+                return;
+            }
+            Application.Current.MainWindow.Close();
         }
 
         #region INotifyPropertyChanged implementation

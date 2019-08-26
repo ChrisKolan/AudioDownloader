@@ -12,7 +12,8 @@
         TitleCaps="False"
         BorderThickness="1"
         GlowBrush="LightBlue"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="Manual"
+        Top="200"
         Title="Audio Downloader Updater" Height="67" Width="800">
     <Grid>
         <StackPanel>
