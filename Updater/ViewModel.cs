@@ -23,7 +23,6 @@ namespace Updater
         {
             IsIndeterminate = true;
             CountdownTimer = new Timer(_ => CountdownUntillExitApplication(), null, TimeSpan.FromSeconds(5) , TimeSpan.FromSeconds(5));
-            StandardOutput = "Updating Audio Downloader...";
             Task.Run(() => Update());
         }
 
@@ -73,6 +72,8 @@ namespace Updater
         }
         private void StopAudioDownloader()
         {
+            StandardOutput = "Updating Audio Downloader...";
+            Thread.Sleep(1000);
             StandardOutput = "Closing Audio Downloader.";
             foreach (var process in Process.GetProcessesByName("AudioDownloader"))
             {
