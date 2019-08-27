@@ -15,6 +15,15 @@
         WindowStartupLocation="Manual"
         Top="200"
         Title="Audio Downloader Updater" Height="68" Width="800">
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <iconPacks:PackIconModern Width="{TemplateBinding Width}"
+                                      Height="{TemplateBinding Height}"
+                                      Margin="5"
+                                      Foreground="{DynamicResource IdealForegroundColorBrush}"
+                                      Kind="CloudUpload" />
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
     <Grid>
         <StackPanel>
            <TextBox x:Name="textBox" 
