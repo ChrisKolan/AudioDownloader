@@ -36,7 +36,7 @@
                      Text="{Binding StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
             <Controls:MetroProgressBar Margin="2,1,2,1"
                                        Value="{Binding ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
-                                       Maximum="100"
+                                       Maximum="99"
                                        Height="4"
                                        Background="#F7F7F7"
                                        BorderBrush="#FFBCBCBC"

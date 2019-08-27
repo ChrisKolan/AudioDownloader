@@ -74,11 +74,13 @@ namespace Updater
         {
             StandardOutput = "Updating Audio Downloader...";
             Thread.Sleep(1000);
+            IsIndeterminate = false;
             StandardOutput = "Closing Audio Downloader.";
             foreach (var process in Process.GetProcessesByName("AudioDownloader"))
             {
                 process.Kill();
             }
+            ProgressBarPercent = 33;
             Thread.Sleep(1000);
         }
         private void DeleteOldFiles()
@@ -97,6 +99,7 @@ namespace Updater
                     continue;
                 }
             }
+            ProgressBarPercent = 66;
             Thread.Sleep(1000);
         }
         private void StartAudioDownloader()
@@ -104,6 +107,7 @@ namespace Updater
             StandardOutput = "Starting Audio Downloader.";
             var pathToAudioDownloader = _pathToExeFolder + @"\AudioDownloader.exe";
             Process.Start(pathToAudioDownloader);
+            ProgressBarPercent = 99;
             Thread.Sleep(1000);
             StandardOutput = "Closing Audio Downloader Updater.";
         }
