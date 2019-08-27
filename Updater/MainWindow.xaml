@@ -14,7 +14,7 @@
         GlowBrush="LightBlue"
         WindowStartupLocation="Manual"
         Top="200"
-        Title="Audio Downloader Updater" Height="67" Width="800">
+        Title="Audio Downloader Updater" Height="68" Width="800">
     <Grid>
         <StackPanel>
            <TextBox x:Name="textBox" 
@@ -26,12 +26,17 @@
                      BorderBrush="#FFBCBCBC"
                      Text="{Binding StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
             <Controls:MetroProgressBar Margin="2,1,2,1"
-                                       Value="{Binding Model.ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
+                                       Value="{Binding ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
+                                       Maximum="100"
                                        Height="4"
-                                       Background="#FFE5E5E5"
+                                       Background="#F7F7F7"
                                        BorderBrush="#FFBCBCBC"
                                        Foreground="{DynamicResource AccentColorBrush}"
-                                       IsIndeterminate="True" MinHeight="2" MinWidth="2" EllipseDiameter="4"/>
+                                       IsIndeterminate="{Binding IsIndeterminate}"
+                                       MinHeight="2" 
+                                       MinWidth="2" 
+                                       EllipseDiameter="4"/>
+
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

@@ -14,11 +14,14 @@ namespace Updater
     {
         private bool _exceptionOccured;
         private string _standardOutput;
+        private int _progressBarPercent;
+        private bool _isIndeterminate;
         private static readonly string _pathToExe = Assembly.GetEntryAssembly().Location;
         private static readonly string _pathToExeFolder = Path.GetDirectoryName(_pathToExe);
 
         public ViewModel()
         {
+            IsIndeterminate = true;
             CountdownTimer = new Timer(_ => CountdownUntillExitApplication(), null, TimeSpan.FromSeconds(5) , TimeSpan.FromSeconds(5));
             StandardOutput = "Updating Audio Downloader...";
             Task.Run(() => Update());
@@ -33,6 +36,24 @@ namespace Updater
             {
                 _standardOutput = value;
                 OnPropertyChanged(nameof(StandardOutput));
+            }
+        }
+        public int ProgressBarPercent
+        {
+            get { return _progressBarPercent; }
+            set
+            {
+                _progressBarPercent = value;
+                OnPropertyChanged(nameof(ProgressBarPercent));
+            }
+        }
+        public bool IsIndeterminate
+        {
+            get { return _isIndeterminate; }
+            set
+            {
+                _isIndeterminate = value;
+                OnPropertyChanged(nameof(IsIndeterminate));
             }
         }
 
