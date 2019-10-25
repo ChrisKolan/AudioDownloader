@@ -592,6 +592,8 @@ namespace Model
             IsInputEnabled = true;
             IsButtonEnabled = true;
             IsComboBoxEnabled = true;
+            ProgressBarPercent = 0;
+            TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
         }
 
