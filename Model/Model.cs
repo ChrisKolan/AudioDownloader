@@ -27,6 +27,7 @@ namespace Model
         private string _finishedMessage;
         private string _downloadedFileSize;
         private int _progressBarPercent;
+        private double _taskBarProgressValue;
         private bool _isIndeterminate;
         private bool _isButtonEnabled;
         private bool _isInputEnabled;
@@ -49,7 +50,7 @@ namespace Model
             QualityDefault = new List<string>
             {
                 "Audio quality: superb. \t FLAC lossless compression (Largest flac file size).",
-                "Audio quality: best. \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s (Large mp3 file size).",
+                "Audio quality: best. \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s. VBR mp3 lossy compression (Large mp3 file size).",
                 "Audio quality: better. \t Bitrate average: 225 kbit/s, Bitrate range: 190-250 kbit/s. VBR mp3 lossy compression.",
                 "Audio quality: optimal. \t Bitrate average: 190 kbit/s, Bitrate range: 170-210 kbit/s. VBR mp3 lossy compression.",
                 "Audio quality: very good. \t Bitrate average: 175 kbit/s, Bitrate range: 150-195 kbit/s. VBR mp3 lossy compression.",
@@ -128,6 +129,15 @@ namespace Model
             {
                 _progressBarPercent = value;
                 OnPropertyChanged(nameof(ProgressBarPercent));
+            }
+        }
+        public double TaskBarProgressValue
+        {
+            get { return _taskBarProgressValue; }
+            set
+            {
+                _taskBarProgressValue = value;
+                OnPropertyChanged(nameof(TaskBarProgressValue));
             }
         }
 
@@ -317,7 +327,8 @@ namespace Model
                             if (double.TryParse(percent.Trim(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedPercent))
                             {
                                 IsIndeterminate = false;
-                                ProgressBarPercent = Convert.ToInt32(Math.Round(downloadedPercent)); ;
+                                ProgressBarPercent = Convert.ToInt32(Math.Round(downloadedPercent)); 
+                                TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
                             }
                             else
                             {
@@ -391,6 +402,11 @@ namespace Model
                     EnableInteractions();
                 }
             }
+        }
+
+        private double GetTaskBarProgressValue(int maximum, int progress)
+        {
+            return (double)progress / (double)maximum;
         }
 
         private void GetYouTubeAvailableFormatsWorker(Object state)
@@ -570,6 +586,7 @@ namespace Model
             IsButtonEnabled = false;
             IsComboBoxEnabled = false;
             ProgressBarPercent = 0;
+            TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
         }
 
         private void Spinner()

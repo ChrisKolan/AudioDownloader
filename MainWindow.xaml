@@ -42,6 +42,12 @@
             </Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo
+            ProgressValue="{Binding Model.TaskBarProgressValue, UpdateSourceTrigger=PropertyChanged}"
+            ProgressState="Normal">
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
     <Grid>
         <StackPanel>
             <Grid>
