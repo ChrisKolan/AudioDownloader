@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Shell;
 using Webhook;
 
 namespace Model
@@ -28,6 +29,7 @@ namespace Model
         private string _downloadedFileSize;
         private int _progressBarPercent;
         private double _taskBarProgressValue;
+        private TaskbarItemProgressState _taskbarItemProgressStateModel;
         private bool _isIndeterminate;
         private bool _isButtonEnabled;
         private bool _isInputEnabled;
@@ -138,6 +140,15 @@ namespace Model
             {
                 _taskBarProgressValue = value;
                 OnPropertyChanged(nameof(TaskBarProgressValue));
+            }
+        }
+        public TaskbarItemProgressState TaskbarItemProgressStateModel
+        {
+            get { return _taskbarItemProgressStateModel; }
+            set
+            {
+                _taskbarItemProgressStateModel = value;
+                OnPropertyChanged(nameof(TaskbarItemProgressStateModel));
             }
         }
 
@@ -327,12 +338,14 @@ namespace Model
                             if (double.TryParse(percent.Trim(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedPercent))
                             {
                                 IsIndeterminate = false;
+                                TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
                                 ProgressBarPercent = Convert.ToInt32(Math.Round(downloadedPercent)); 
                                 TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
                             }
                             else
                             {
                                 IsIndeterminate = true;
+                                TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
                             }
                         }
                     }
@@ -413,6 +426,7 @@ namespace Model
         {
             IsIndeterminate = true;
             IsComboBoxEnabled = false;
+            TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
             SynchronizationContext uiContext = state as SynchronizationContext;
             var command = "/C bin\\youtube-dl.exe -F " + DownloadLink;
             var availableFormats = new List<string>();
@@ -454,6 +468,7 @@ namespace Model
 
             HelpButtonToolTip = LocalVersions + String.Join(Environment.NewLine, availableFormats.ToArray());
             IsIndeterminate = false;
+            TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
         }
 
         private void UpdateUiFromTheWorkerThread(object state)
@@ -577,6 +592,7 @@ namespace Model
             IsInputEnabled = true;
             IsButtonEnabled = true;
             IsComboBoxEnabled = true;
+            TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
         }
 
         public void DisableInteractions()
@@ -587,6 +603,7 @@ namespace Model
             IsComboBoxEnabled = false;
             ProgressBarPercent = 0;
             TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
+            TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
         }
 
         private void Spinner()
@@ -598,7 +615,7 @@ namespace Model
             }
             _processingTime++;
             IsIndeterminate = true;
-            //StandardOutput = Turn();
+            TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
         }
 
         private string Turn()

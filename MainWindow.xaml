@@ -45,7 +45,7 @@
     <Window.TaskbarItemInfo>
         <TaskbarItemInfo
             ProgressValue="{Binding Model.TaskBarProgressValue, UpdateSourceTrigger=PropertyChanged}"
-            ProgressState="Normal">
+            ProgressState="{Binding Model.TaskbarItemProgressStateModel, UpdateSourceTrigger=PropertyChanged}">
         </TaskbarItemInfo>
     </Window.TaskbarItemInfo>
     <Grid>
