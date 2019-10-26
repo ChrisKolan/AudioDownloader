@@ -91,15 +91,7 @@
                     ToolTip="Press Download button to get the file" 
                     Controls:ButtonHelper.PreserveTextCase="True"
                     Controls:ButtonHelper.CornerRadius="0" FontWeight="Normal" FontSize="12" Padding="0"/>
-            <TextBox x:Name="textBox" 
-                     Margin="2,1,2,1"
-                     Height="21" 
-                     TextWrapping="Wrap"
-                     ToolTip="Current status of the program"
-                     Padding="1"
-                     BorderBrush="#FFBCBCBC"
-                     Text="{Binding Model.StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
-            <Controls:MetroProgressBar Margin="2,1,2,1"
+        <Controls:MetroProgressBar Margin="2,1,2,1"
                                        Value="{Binding Model.ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
                                        Height="4"
                                        Background="#FFE5E5E5"
@@ -107,5 +99,11 @@
                                        Foreground="{DynamicResource AccentColorBrush}"
                                        IsIndeterminate="{Binding Model.IsIndeterminate}" MinHeight="2" MinWidth="2" EllipseDiameter="4"/>
         </StackPanel>
+        <StatusBar Margin="0,91,0,0">
+            <StatusBarItem>
+                <TextBlock Name="Status" Text="{Binding Path=Model.StandardOutput, NotifyOnTargetUpdated=True}">
+                </TextBlock>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Controls:MetroWindow>

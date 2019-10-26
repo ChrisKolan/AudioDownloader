@@ -22,7 +22,7 @@ namespace Model
 
             if (updatesCheck["audio-downloader"] == true)
             {
-                model.StandardOutput = "Status: downloading new Audio Downloader version.";
+                model.StandardOutput = "Downloading new Audio Downloader version";
                 var pathToAudioDownloaderTempFolder = pathToExeFolder + @"\AudioDownloader.zip";
                 var latestAsset = await client.Repository.Release.GetAllAssets("ChrisKolan", "audio-downloader", releasesAudioDl.Id);
                 var latestUri = latestAsset[0].BrowserDownloadUrl;
@@ -35,18 +35,18 @@ namespace Model
                 Unzipper.Unzip();
                 ApplicationRestarter.Restart();
 
-                model.StandardOutput = "Status: idle. Updated Audio Downloader to latest version.";
+                model.StandardOutput = "Ready. Updated Audio Downloader to latest version.";
             }
             else if  (updatesCheck["youtube-dl"] == true)
             {
-                model.StandardOutput = "Status: downloading new Youtube-dl version.";
+                model.StandardOutput = "Downloading new Youtube-dl version";
                 var pathToYoutubeDl = pathToExeFolder + @"\bin\youtube-dl.exe";
                 var latestAsset = await client.Repository.Release.GetAllAssets("ytdl-org", "youtube-dl", releasesYoutubeDl.Id);
                 var latestUri = latestAsset[7].BrowserDownloadUrl;
                 var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream");
                 var responseData = response.HttpResponse.Body;
                 System.IO.File.WriteAllBytes(pathToYoutubeDl, (byte[])responseData);
-                model.StandardOutput = "Status: idle. Updated Youtube-dl to latest version.";
+                model.StandardOutput = "Ready. Updated Youtube-dl to latest version.";
             }
         }
     }

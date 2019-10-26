@@ -45,7 +45,7 @@ namespace Model
         #region Constructor
         public Model()
         {
-            StandardOutput = "Status: idle";
+            StandardOutput = "Ready";
             EnableInteractions();
             PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
 
@@ -222,7 +222,7 @@ namespace Model
             }
             catch (Exception exception)
             {
-                StandardOutput = "Status: idle. Audio folder does not exist. Try to download some audio files first.\n" + exception.ToString();
+                StandardOutput = "Ready. Audio folder does not exist. Try to download some audio files first.\n" + exception.ToString();
             }
         }
         private void ThreadPoolWorker(Object stateInfo)
@@ -271,39 +271,39 @@ namespace Model
                 {
                     var quality = GetQuality(selectedQuality);
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Status: download finished. Now transcoding to mp3. This may take a while. Processing.";
+                    _finishedMessage = "Download finished. Now transcoding to mp3. This may take a while. Processing.";
                 }
                 else if (selectedQuality.Contains("flac"))
                 {
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Status: download finished. Now transcoding to FLAC. This may take a while. Processing.";
+                    _finishedMessage = "Download finished. Now transcoding to FLAC. This may take a while. Processing.";
                 }
                 else if (selectedQuality.Contains("raw webm"))
                 {
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Status: download finished.";
+                    _finishedMessage = "Download finished";
                 }
                 else if (selectedQuality.Contains("raw opus"))
                 {
                     command = "/C bin\\youtube-dl.exe --extract-audio --format bestaudio[acodec=opus] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Status: download finished.";
+                    _finishedMessage = "Download finished";
                 }
                 else if (selectedQuality.Contains("raw aac"))
                 {
                     command = "/C bin\\youtube-dl.exe -f bestaudio[ext=m4a] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Status: download finished.";
+                    _finishedMessage = "Download finished";
                 }
                 else if (selectedQuality.Split(' ').First().All(char.IsDigit))
                 {
                     var formatCode = selectedQuality.Split(' ').First();
                     var format = selectedQuality.Split(' ').Last();
                     command = "/C bin\\youtube-dl.exe -f " + formatCode + " --extract-audio  --audio-format " + format + " --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Status: download finished.";
+                    _finishedMessage = "Download finished";
                 }
                 else 
                 {
                     command = "/C bin\\youtube-dl.exe --extract-audio --format bestaudio[acodec=vorbis] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Status: download finished.";
+                    _finishedMessage = "Download finished";
                 }
 
                 var startinfo = new ProcessStartInfo("CMD.exe", command)
@@ -370,7 +370,7 @@ namespace Model
                     TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     Thread.Sleep(1000);
-                    StandardOutput = "Status: error. Downloaded file size is zero. Check whether the selected format exists. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                    StandardOutput = "Error. Downloaded file size is zero. Updates are needed. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                     EnableInteractions();
                     return;
                 }
@@ -381,7 +381,7 @@ namespace Model
                     TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     Thread.Sleep(1000);
-                    StandardOutput = "Status: idle. " + _downloadedFileSize + "Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                    StandardOutput = "Ready. " + _downloadedFileSize + "Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                     EnableInteractions();
                     return;
                 }
@@ -400,7 +400,7 @@ namespace Model
                         TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                         elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                         Thread.Sleep(1000);
-                        StandardOutput = "Status: exception. Updating webhook failed. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                        StandardOutput = "Exception. Updating webhook failed. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                         _downloadedFileSize = null;
                         EnableInteractions();
                         return;
@@ -409,7 +409,7 @@ namespace Model
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     var processingTimeTimer = _processingTime * _timerResolution;
-                    StandardOutput = "Status: done. Processing time: " + processingTimeTimer + "ms. " +
+                    StandardOutput = "Done. Processing time: " + processingTimeTimer + "ms. " +
                                      "Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
                                      "Downloaded file size: " + _downloadedFileSize + ". " +
                                      "Transcoded file size: " + fileSize.ToString("F") + "MiB. ";
@@ -532,11 +532,11 @@ namespace Model
                 Quality.Clear();
                 Quality.Add("Audio quality could not be retrieved.");
                 SelectedQuality = Quality[0];
-                StandardOutput = "Status: idle. YouTube link not valid.";
+                StandardOutput = "Ready. YouTube link not valid.";
                 IsButtonEnabled = false;
                 return;
             }
-            StandardOutput = "Status: idle.";
+            StandardOutput = "Ready";
             IsComboBoxEnabled = true;
         }
         private static string ArragementDynamicFormatsOutput(string currentLine)
@@ -781,7 +781,7 @@ namespace Model
             model.IsButtonEnabled = true;
             model.IsComboBoxEnabled = true;
             var uiContext = model._synchronizationContext;
-            model.StandardOutput = "Status: retrieving audio quality.";
+            model.StandardOutput = "Retrieving audio quality.";
             ThreadPool.QueueUserWorkItem(model.GetYouTubeAvailableFormatsWorker, uiContext);
 
             return ValidationResult.Success;

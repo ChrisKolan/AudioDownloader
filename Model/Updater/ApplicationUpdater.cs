@@ -13,7 +13,7 @@ namespace Model
         {
             if (UpdatesNeeded())
             {
-                model.StandardOutput = "Status: checking for updates.";
+                model.StandardOutput = "Checking for updates";
                 model.DisableInteractions();
 
                 try
@@ -22,14 +22,14 @@ namespace Model
                 }
                 catch (Exception exception)
                 {
-                    model.StandardOutput = "Status: idle. Failed to update Audio Downloader.\n" + exception.ToString();
+                    model.StandardOutput = "Ready. Failed to update Audio Downloader.\n" + exception.ToString();
                     model.GetLocalVersions();
                     model.EnableInteractions();
                     return;
                 }
             }
 
-            model.StandardOutput = "Status: idle.";
+            model.StandardOutput = "Ready";
             model.GetLocalVersions();
             model.EnableInteractions();
         }
