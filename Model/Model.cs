@@ -23,7 +23,8 @@ namespace Model
     {
         #region Fields
         private string _standardOutput;
-        private static bool _isSpinning;
+        private static bool _measureProcessingTime;
+        private static bool _measureDownloadTime;
         private int _counter;
         private string _finishedMessage;
         private string _downloadedFileSize;
@@ -38,7 +39,8 @@ namespace Model
         private string _downloadLink;
         private bool _isComboBoxEnabled;
         private int _processingTime = 1;
-        private int _timerResolution = 10;
+        private int _downloadTime = 1;
+        private int _timerResolution = 100;
         private SynchronizationContext _synchronizationContext;
         #endregion
 
@@ -47,7 +49,8 @@ namespace Model
         {
             StandardOutput = "Ready";
             EnableInteractions();
-            PeriodicTimer = new Timer(_ => Spinner(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
+            PeriodicTimerProcessing = new Timer(_ => ProcessingTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
+            PeriodicTimerDownload = new Timer(_ => DownloadTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
 
             QualityDefault = new List<string>
             {
@@ -192,7 +195,8 @@ namespace Model
             }
         }
 
-        public Timer PeriodicTimer { get; }
+        public Timer PeriodicTimerProcessing { get; }
+        public Timer PeriodicTimerDownload { get; }
         #endregion
 
         #region Methods
@@ -229,7 +233,7 @@ namespace Model
         {
             string selectedQuality = GetQuality();
             DisableInteractions();
-            long elapsedTimeInMiliseconds;
+            double elapsedTime;
             Thread.CurrentThread.IsBackground = true;
             int positionFrom;
             int positionTo;
@@ -317,12 +321,12 @@ namespace Model
                 process.Start();
 
                 var reader = process.StandardOutput;
-                var watch = Stopwatch.StartNew();
                 while (!reader.EndOfStream)
                 {
                     StandardOutput = reader.ReadLine();
                     if (StandardOutput.Contains("[download]") && StandardOutput.Contains("ETA"))
                     {
+                        _measureDownloadTime = true;
                         positionFrom = StandardOutput.IndexOf("of ") + "of ".Length;
                         positionTo = StandardOutput.LastIndexOf(" at");
 
@@ -351,52 +355,49 @@ namespace Model
                     }
                     if (StandardOutput.Contains("has already been downloaded"))
                     {
-                        _downloadedFileSize = "File has already been downloaded. ";
+                        _downloadedFileSize = "File has already been downloaded.";
+                        _measureDownloadTime = false;
                     }
                     if (StandardOutput.Contains("[ffmpeg]"))
                     {
                         StandardOutput = _finishedMessage;
-                        _isSpinning = true;
+                        _measureProcessingTime = true;
+                        _measureDownloadTime = false;
                     }
                 }
 
                 process.WaitForExit();
-                _isSpinning = false;
+                _measureProcessingTime = false;
 
                 if (_downloadedFileSize == null)
                 {
-                    watch.Stop();
                     TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
                     TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
-                    elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     Thread.Sleep(1000);
-                    StandardOutput = "Error. Downloaded file size is zero. Updates are needed. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                    StandardOutput = "Error. No file downloaded. Updates are needed.";
                     EnableInteractions();
                     return;
                 }
-                if (_downloadedFileSize == "File has already been downloaded. ")
+                if (_downloadedFileSize == "File has already been downloaded.")
                 {
-                    watch.Stop();
                     TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
                     TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
-                    elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     Thread.Sleep(1000);
-                    StandardOutput = "Ready. " + _downloadedFileSize + "Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
+                    StandardOutput = "Ready. " + _downloadedFileSize;
                     EnableInteractions();
                     return;
                 }
                 else
                 {
+                    var processingTimeTimer = (_processingTime * _timerResolution) / 1000.0;
+                    var downloadTimeTimer = (_downloadTime * _timerResolution) / 1000.0;
                     (string fileName, double fileSize) = GetFileNameAndSize();
-                    watch.Stop();
-                    elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
-                    var processingTimeTimer = _processingTime * _timerResolution;
                     if (_downloadedFileSize.Contains("~"))
                     {
                         _downloadedFileSize = _downloadedFileSize.Substring(1);
                     }
-                    StandardOutput = "Done. Processing time: " + processingTimeTimer + "ms. " +
-                                     "Download time: " + elapsedTimeInMiliseconds + "ms. " +
+                    StandardOutput = "Done. Processing time: " + processingTimeTimer.ToString("N0") + "s. " +
+                                     "Download time: " + downloadTimeTimer.ToString("N0") + "s. " +
                                      "Downloaded file size: " + _downloadedFileSize + ". " +
                                      "Transcoded file size: " + fileSize.ToString("F") + "MiB. ";
 
@@ -408,6 +409,8 @@ namespace Model
 
                     SendData(fileName, StandardOutput);
                     _downloadedFileSize = null;
+                    _processingTime = 1;
+                    _downloadTime = 1;
                     EnableInteractions();
                 }
             }
@@ -622,16 +625,24 @@ namespace Model
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
         }
 
-        private void Spinner()
+        private void ProcessingTimeMeasurement()
         {
-            if (!_isSpinning)
+            if (!_measureProcessingTime)
             {
-                _processingTime = 1;
                 return;
             }
             _processingTime++;
             IsIndeterminate = true;
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
+        }
+
+        private void DownloadTimeMeasurement()
+        {
+            if (!_measureDownloadTime)
+            {
+                return;
+            }
+            _downloadTime++;
         }
 
         private string Turn()
