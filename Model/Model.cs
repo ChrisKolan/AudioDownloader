@@ -366,7 +366,10 @@ namespace Model
                 if (_downloadedFileSize == null)
                 {
                     watch.Stop();
+                    TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
+                    TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
+                    Thread.Sleep(1000);
                     StandardOutput = "Status: error. Downloaded file size is zero. Check whether the selected format exists. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                     EnableInteractions();
                     return;
@@ -374,7 +377,10 @@ namespace Model
                 if (_downloadedFileSize == "File has already been downloaded. ")
                 {
                     watch.Stop();
+                    TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
+                    TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
+                    Thread.Sleep(1000);
                     StandardOutput = "Status: idle. " + _downloadedFileSize + "Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                     EnableInteractions();
                     return;
@@ -390,7 +396,10 @@ namespace Model
                     catch (Exception)
                     {
                         watch.Stop();
+                        TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
+                        TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                         elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
+                        Thread.Sleep(1000);
                         StandardOutput = "Status: exception. Updating webhook failed. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
                         _downloadedFileSize = null;
                         EnableInteractions();
