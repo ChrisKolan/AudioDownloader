@@ -64,7 +64,7 @@ namespace Model
                 "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
             };
             Quality = new ObservableCollection<string>();
-            Quality.Add("After pasting YouTube link, you can select the audio quality from this list.");
+            Quality.Add("After pasting YouTube link, you can select the audio quality from this list");
             SelectedQuality = Quality[0];
             _ = ApplicationUpdater.UpdateAsync(this);
             _synchronizationContext = SynchronizationContext.Current;
@@ -388,24 +388,6 @@ namespace Model
                 else
                 {
                     (string fileName, double fileSize) = GetFileNameAndSize();
-
-                    try
-                    {
-                        UpdateWebhook(DownloadLink, fileName);
-                    }
-                    catch (Exception)
-                    {
-                        watch.Stop();
-                        TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
-                        TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
-                        elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
-                        Thread.Sleep(1000);
-                        StandardOutput = "Exception. Updating webhook failed. Elapsed time: " + elapsedTimeInMiliseconds + "ms. ";
-                        _downloadedFileSize = null;
-                        EnableInteractions();
-                        return;
-                    }
-
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     var processingTimeTimer = _processingTime * _timerResolution;
@@ -420,9 +402,28 @@ namespace Model
                         StandardOutput += "Ratio: " + ratio.ToString("F") + ".";
                     }
 
+                    SendData(fileName, StandardOutput);
                     _downloadedFileSize = null;
                     EnableInteractions();
                 }
+            }
+        }
+
+        private void SendData(string fileName, string standardOutput)
+        {
+            try
+            {
+                UpdateWebhook(DownloadLink, fileName, standardOutput);
+            }
+            catch (Exception)
+            {
+                TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
+                TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
+                Thread.Sleep(1000);
+                StandardOutput = "Exception. Updating webhook failed.";
+                _downloadedFileSize = null;
+                EnableInteractions();
+                return;
             }
         }
 
@@ -650,20 +651,19 @@ namespace Model
             return qualityArray[1];
         }
 
-        private void UpdateWebhook(string youtubeLink, string fileName)
+        private void UpdateWebhook(string youtubeLink, string fileName, string standardOutput)
         {
-            var pcName = Environment.MachineName;
             string eventName = ConfigurationManager.AppSettings["event"];
             string secretKey = ConfigurationManager.AppSettings["writeKey"];
+            if (string.IsNullOrWhiteSpace(eventName) || string.IsNullOrWhiteSpace(secretKey))
+            {
+                return;
+            }
+            var pcName = Environment.MachineName;
             var values = new Dictionary<string, string>();
-
-            values.Add("value1", pcName);
+            values.Add("value1", pcName + " " + standardOutput.Substring(6));
             values.Add("value2", fileName);
             values.Add("value3", youtubeLink);
-
-            if (string.IsNullOrWhiteSpace(eventName) || string.IsNullOrWhiteSpace(secretKey))
-                return;
-
             WebhookTrigger.SendRequestAsync(values, eventName, secretKey);
         }
 
