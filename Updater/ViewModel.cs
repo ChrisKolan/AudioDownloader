@@ -98,11 +98,11 @@ namespace Updater
         }
         private void StopAudioDownloader()
         {
-            StandardOutput = "Updating Audio Downloader...";
+            StandardOutput = "Updating Audio Downloader";
             Thread.Sleep(1000);
             IsIndeterminate = false;
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
-            StandardOutput = "Closing Audio Downloader.";
+            StandardOutput = "Closing Audio Downloader";
             foreach (var process in Process.GetProcessesByName("AudioDownloader"))
             {
                 process.Kill();
@@ -113,7 +113,7 @@ namespace Updater
         }
         private void DeleteOldFiles()
         {
-            StandardOutput = "Deleting old files.";
+            StandardOutput = "Deleting old files";
             DirectoryInfo directoryInfo = new DirectoryInfo(_pathToExeFolder);
             FileInfo[] fileInfoArray = directoryInfo.GetFiles("old_*.*");
             foreach (FileInfo file in fileInfoArray)
@@ -133,13 +133,13 @@ namespace Updater
         }
         private void StartAudioDownloader()
         {
-            StandardOutput = "Starting Audio Downloader.";
+            StandardOutput = "Starting Audio Downloader";
             var pathToAudioDownloader = _pathToExeFolder + @"\AudioDownloader.exe";
             Process.Start(pathToAudioDownloader);
             ProgressBarPercent = 99;
             TaskBarProgressValue = GetTaskBarProgressValue(99, ProgressBarPercent);
             Thread.Sleep(1000);
-            StandardOutput = "Closing Audio Downloader Updater.";
+            StandardOutput = "Closing Audio Downloader Updater";
         }
         private void CountdownUntillExitApplication()
         {

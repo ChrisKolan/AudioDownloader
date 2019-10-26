@@ -22,7 +22,7 @@ namespace Model
                 }
                 catch (Exception exception)
                 {
-                    model.StandardOutput = "Ready. Failed to update Audio Downloader.\n" + exception.ToString();
+                    model.StandardOutput = "Ready. Failed to update Audio Downloader.";
                     model.GetLocalVersions();
                     model.EnableInteractions();
                     return;

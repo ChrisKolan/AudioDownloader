@@ -222,7 +222,7 @@ namespace Model
             }
             catch (Exception exception)
             {
-                StandardOutput = "Ready. Audio folder does not exist. Try to download some audio files first.\n" + exception.ToString();
+                StandardOutput = "Ready. Audio folder does not exist. Try to download some audio files first.";
             }
         }
         private void ThreadPoolWorker(Object stateInfo)
@@ -781,7 +781,7 @@ namespace Model
             model.IsButtonEnabled = true;
             model.IsComboBoxEnabled = true;
             var uiContext = model._synchronizationContext;
-            model.StandardOutput = "Retrieving audio quality.";
+            model.StandardOutput = "Retrieving audio quality";
             ThreadPool.QueueUserWorkItem(model.GetYouTubeAvailableFormatsWorker, uiContext);
 
             return ValidationResult.Success;
