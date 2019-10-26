@@ -227,7 +227,6 @@ namespace Model
         }
         private void ThreadPoolWorker(Object stateInfo)
         {
-            var watch = Stopwatch.StartNew();
             string selectedQuality = GetQuality();
             DisableInteractions();
             long elapsedTimeInMiliseconds;
@@ -318,6 +317,7 @@ namespace Model
                 process.Start();
 
                 var reader = process.StandardOutput;
+                var watch = Stopwatch.StartNew();
                 while (!reader.EndOfStream)
                 {
                     StandardOutput = reader.ReadLine();
@@ -391,8 +391,12 @@ namespace Model
                     watch.Stop();
                     elapsedTimeInMiliseconds = watch.ElapsedMilliseconds;
                     var processingTimeTimer = _processingTime * _timerResolution;
+                    if (_downloadedFileSize.Contains("~"))
+                    {
+                        _downloadedFileSize = _downloadedFileSize.Substring(1);
+                    }
                     StandardOutput = "Done. Processing time: " + processingTimeTimer + "ms. " +
-                                     "Elapsed time: " + elapsedTimeInMiliseconds + "ms. " +
+                                     "Download time: " + elapsedTimeInMiliseconds + "ms. " +
                                      "Downloaded file size: " + _downloadedFileSize + ". " +
                                      "Transcoded file size: " + fileSize.ToString("F") + "MiB. ";
 

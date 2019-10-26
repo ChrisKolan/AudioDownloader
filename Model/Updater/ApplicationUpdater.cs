@@ -20,9 +20,9 @@ namespace Model
                 {
                     await UpdatesDownloader.DownloadUpdatesAsync(model);
                 }
-                catch (Exception exception)
+                catch (Exception)
                 {
-                    model.StandardOutput = "Ready. Failed to update Audio Downloader.";
+                    model.StandardOutput = "Ready. Failed to update. Check internet connection.";
                     model.GetLocalVersions();
                     model.EnableInteractions();
                     return;
