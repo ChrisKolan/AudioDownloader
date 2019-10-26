@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Shell;
 
 namespace Updater
 {
@@ -16,12 +17,15 @@ namespace Updater
         private string _standardOutput;
         private int _progressBarPercent;
         private bool _isIndeterminate;
+        private double _taskBarProgressValue;
+        private TaskbarItemProgressState _taskbarItemProgressStateModel;
         private static readonly string _pathToExe = Assembly.GetEntryAssembly().Location;
         private static readonly string _pathToExeFolder = Path.GetDirectoryName(_pathToExe);
 
         public ViewModel()
         {
             IsIndeterminate = true;
+            TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
             CountdownTimer = new Timer(_ => CountdownUntillExitApplication(), null, TimeSpan.FromSeconds(5) , TimeSpan.FromSeconds(5));
             Task.Run(() => Update());
         }
@@ -55,7 +59,24 @@ namespace Updater
                 OnPropertyChanged(nameof(IsIndeterminate));
             }
         }
-
+        public double TaskBarProgressValue
+        {
+            get { return _taskBarProgressValue; }
+            set
+            {
+                _taskBarProgressValue = value;
+                OnPropertyChanged(nameof(TaskBarProgressValue));
+            }
+        }
+        public TaskbarItemProgressState TaskbarItemProgressStateModel
+        {
+            get { return _taskbarItemProgressStateModel; }
+            set
+            {
+                _taskbarItemProgressStateModel = value;
+                OnPropertyChanged(nameof(TaskbarItemProgressStateModel));
+            }
+        }
         private void Update()
         {
             try
@@ -67,20 +88,27 @@ namespace Updater
             catch (Exception)
             {
                 StandardOutput = "Failed to update. Please download the latest version manually from: https://chriskolan.github.io/audio-downloader";
+                TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 _exceptionOccured = true;
             }
+        }
+        private double GetTaskBarProgressValue(int maximum, int progress)
+        {
+            return (double)progress / (double)maximum;
         }
         private void StopAudioDownloader()
         {
             StandardOutput = "Updating Audio Downloader...";
             Thread.Sleep(1000);
             IsIndeterminate = false;
+            TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
             StandardOutput = "Closing Audio Downloader.";
             foreach (var process in Process.GetProcessesByName("AudioDownloader"))
             {
                 process.Kill();
             }
             ProgressBarPercent = 33;
+            TaskBarProgressValue = GetTaskBarProgressValue(99, ProgressBarPercent);
             Thread.Sleep(1000);
         }
         private void DeleteOldFiles()
@@ -100,6 +128,7 @@ namespace Updater
                 }
             }
             ProgressBarPercent = 66;
+            TaskBarProgressValue = GetTaskBarProgressValue(99, ProgressBarPercent);
             Thread.Sleep(1000);
         }
         private void StartAudioDownloader()
@@ -108,6 +137,7 @@ namespace Updater
             var pathToAudioDownloader = _pathToExeFolder + @"\AudioDownloader.exe";
             Process.Start(pathToAudioDownloader);
             ProgressBarPercent = 99;
+            TaskBarProgressValue = GetTaskBarProgressValue(99, ProgressBarPercent);
             Thread.Sleep(1000);
             StandardOutput = "Closing Audio Downloader Updater.";
         }

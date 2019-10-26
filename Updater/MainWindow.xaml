@@ -17,13 +17,19 @@
         Title="Audio Downloader Updater" Height="68" Width="800">
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
-            <iconPacks:PackIconModern Width="{TemplateBinding Width}"
+            <iconPacks:PackIconMaterial Width="{TemplateBinding Width}"
                                       Height="{TemplateBinding Height}"
                                       Margin="5"
                                       Foreground="{DynamicResource IdealForegroundColorBrush}"
-                                      Kind="CloudUpload" />
+                                      Kind="Update" />
         </DataTemplate>
     </Controls:MetroWindow.IconTemplate>
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo
+            ProgressValue="{Binding TaskBarProgressValue, UpdateSourceTrigger=PropertyChanged}"
+            ProgressState="{Binding TaskbarItemProgressStateModel, UpdateSourceTrigger=PropertyChanged}">
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
     <Grid>
         <StackPanel>
            <TextBox x:Name="textBox" 
@@ -38,7 +44,7 @@
                                        Value="{Binding ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
                                        Maximum="99"
                                        Height="4"
-                                       Background="#F7F7F7"
+                                       Background="#FFE5E5E5"
                                        BorderBrush="#FFBCBCBC"
                                        Foreground="{DynamicResource AccentColorBrush}"
                                        IsIndeterminate="{Binding IsIndeterminate}"
