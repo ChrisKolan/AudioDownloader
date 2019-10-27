@@ -224,7 +224,7 @@ namespace Model
             {
                 Process.Start(pathToAudioFolder);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 StandardOutput = "Ready. Audio folder does not exist. Try to download some audio files first.";
             }
@@ -233,7 +233,6 @@ namespace Model
         {
             string selectedQuality = GetQuality();
             DisableInteractions();
-            double elapsedTime;
             Thread.CurrentThread.IsBackground = true;
             int positionFrom;
             int positionTo;

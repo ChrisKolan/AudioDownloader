@@ -101,7 +101,10 @@
         </StackPanel>
         <StatusBar Margin="0,91,0,0">
             <StatusBarItem>
-                <TextBlock Name="Status" Text="{Binding Path=Model.StandardOutput, NotifyOnTargetUpdated=True}">
+                <TextBlock 
+                    Name="Status" 
+                    Margin="6,0,0,0"
+                    Text="{Binding Path=Model.StandardOutput, NotifyOnTargetUpdated=True}">
                 </TextBlock>
             </StatusBarItem>
         </StatusBar>
