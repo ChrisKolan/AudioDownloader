@@ -23,6 +23,7 @@ namespace Model
     {
         #region Fields
         private string _standardOutput;
+        private string _timersOutput;
         private static bool _measureProcessingTime;
         private static bool _measureDownloadTime;
         private int _counter;
@@ -129,6 +130,15 @@ namespace Model
             {
                 _standardOutput = value;
                 OnPropertyChanged(nameof(StandardOutput));
+            }
+        }
+        public string TimersOutput
+        {
+            get { return _timersOutput; }
+            set
+            {
+                _timersOutput = value;
+                OnPropertyChanged(nameof(TimersOutput));
             }
         }
 
@@ -368,6 +378,7 @@ namespace Model
 
                 if (_downloadedFileSize == null)
                 {
+                    TimersOutput = string.Empty;
                     TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
                     TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                     Thread.Sleep(1000);
@@ -377,6 +388,7 @@ namespace Model
                 }
                 if (_downloadedFileSize == "File has already been downloaded.")
                 {
+                    TimersOutput = string.Empty;
                     TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
                     TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
                     Thread.Sleep(1000);
@@ -393,6 +405,7 @@ namespace Model
                     {
                         _downloadedFileSize = _downloadedFileSize.Substring(1);
                     }
+                    TimersOutput = string.Empty;
                     StandardOutput = "Done. Processing time: " + processingTimeTimer.ToString("N0") + "s. " +
                                      "Download time: " + downloadTimeTimer.ToString("N0") + "s. " +
                                      "Downloaded file size: " + _downloadedFileSize + ". " +
@@ -630,6 +643,7 @@ namespace Model
             }
             _processingTime++;
             IsIndeterminate = true;
+            TimersOutput = "Processing time: " + ((_processingTime * _timerResolution) / 1000.0).ToString("N1") + "s";
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
         }
 
@@ -640,6 +654,7 @@ namespace Model
                 return;
             }
             _downloadTime++;
+            TimersOutput = "Download time: " + ((_downloadTime * _timerResolution) / 1000.0).ToString("N1") + "s";
         }
 
         private string Turn()

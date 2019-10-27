@@ -100,11 +100,16 @@
                                        IsIndeterminate="{Binding Model.IsIndeterminate}" MinHeight="2" MinWidth="2" EllipseDiameter="4"/>
         </StackPanel>
         <StatusBar Margin="0,91,0,0">
+            <StatusBarItem DockPanel.Dock="Right">
+                <TextBlock x:Name="Timers" 
+                           Margin="0,0,6,0" 
+                           Text="{Binding Model.TimersOutput, UpdateSourceTrigger=PropertyChanged}">
+                </TextBlock>
+            </StatusBarItem>
             <StatusBarItem>
-                <TextBlock 
-                    Name="Status" 
-                    Margin="6,0,0,0"
-                    Text="{Binding Path=Model.StandardOutput, NotifyOnTargetUpdated=True}">
+                <TextBlock Name="Status"
+                           Margin="6,0,0,0" 
+                           Text="{Binding Path=Model.StandardOutput, NotifyOnTargetUpdated=True}">
                 </TextBlock>
             </StatusBarItem>
         </StatusBar>
