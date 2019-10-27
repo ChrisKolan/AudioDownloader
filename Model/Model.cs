@@ -89,6 +89,11 @@ namespace Model
             get { return _downloadLink; }
             set
             {
+                int downloadLinkCorrectLength = 43;
+                if (value.Length > downloadLinkCorrectLength)
+                {
+                    _downloadLink = value.Remove(downloadLinkCorrectLength);
+                }
                 _downloadLink = value;
                 OnPropertyChanged(nameof(DownloadLink));
                 ValidateAsync();
@@ -259,13 +264,6 @@ namespace Model
             }
             else
             {
-                if (!DownloadLink.Contains("https://www.youtube.com/watch?v="))
-                {
-                    StandardOutput = "YouTube link not valid";
-                    EnableInteractions();
-                    return;
-                }
-
                 StandardOutput = "Starting download...";
                 string command;
 
@@ -785,12 +783,6 @@ namespace Model
                 model.IsButtonEnabled = false;
                 model.IsComboBoxEnabled = false;
                 return new ValidationResult("YouTube link not valid", new List<string> { "DownloadLink" });
-            }
-            if (model.DownloadLink.Length != 43)
-            {
-                model.IsButtonEnabled = false;
-                model.IsComboBoxEnabled = false;
-                return new ValidationResult("YouTube link length not correct", new List<string> { "DownloadLink" });
             }
             model.IsButtonEnabled = true;
             model.IsComboBoxEnabled = true;
