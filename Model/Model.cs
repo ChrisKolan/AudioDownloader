@@ -578,7 +578,7 @@ namespace Model
                 Quality.Clear();
                 Quality.Add("Audio quality could not be retrieved.");
                 SelectedQuality = Quality[0];
-                StandardOutput = "Ready. YouTube link not valid.";
+                StandardOutput = "YouTube link is invalid or internet connection is down.";
                 IsButtonEnabled = false;
                 return;
             }
