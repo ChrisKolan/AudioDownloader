@@ -108,8 +108,18 @@
             </StatusBarItem>
             <StatusBarItem>
                 <TextBlock Name="Status"
-                           Margin="6,0,0,0" 
-                           Text="{Binding Path=Model.StandardOutput, NotifyOnTargetUpdated=True}">
+                           Text="{Binding Model.StandardOutput}"
+                           IsEnabled="{Binding Model.DownloadLinkEnabled}"
+                           TextDecorations="{Binding Model.DownloadLinkTextDecorations}"
+                           Margin="6,0,0,0" >
+                           <!--<Hyperlink Command="{Binding DownloadButton}"
+                                      TextDecorations="Underline"
+                                      Foreground="White">
+                                      <TextBlock Text="{Binding Model.StandardOutput}"/>
+                           </Hyperlink>-->
+                            <TextBlock.InputBindings>
+                                <MouseBinding Command="{Binding DownloadLink}" MouseAction="LeftClick" />
+                            </TextBlock.InputBindings>
                 </TextBlock>
             </StatusBarItem>
         </StatusBar>

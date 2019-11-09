@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Model
 {
@@ -22,7 +23,9 @@ namespace Model
                 }
                 catch (Exception)
                 {
-                    model.StandardOutput = "Ready. Failed to update. Check internet connection.";
+                    model.DownloadLinkEnabled = true;
+                    model.DownloadLinkTextDecorations = TextDecorations.Underline;
+                    model.StandardOutput = "Failed to update. Click here to download manually.";
                     model.GetLocalVersions();
                     model.EnableInteractions();
                     return;

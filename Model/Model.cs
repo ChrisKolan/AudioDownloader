@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Shell;
 using Webhook;
 
@@ -39,6 +40,8 @@ namespace Model
         private string _helpButtonToolTip;
         private string _downloadLink;
         private bool _isComboBoxEnabled;
+        private bool _downloadLinkEnabled;
+        private TextDecorationCollection _downloadLinkTextDecorations;
         private int _processingTime = 1;
         private int _downloadTime = 1;
         private int _timerResolution = 100;
@@ -98,6 +101,26 @@ namespace Model
                 _downloadLink = value;
                 OnPropertyChanged(nameof(DownloadLink));
                 ValidateAsync();
+            }
+        }
+
+        public bool DownloadLinkEnabled
+        {
+            get { return _downloadLinkEnabled; }
+            set
+            {
+                _downloadLinkEnabled = value;
+                OnPropertyChanged(nameof(DownloadLinkEnabled));
+            }
+        }
+
+        public TextDecorationCollection DownloadLinkTextDecorations
+        {
+            get { return _downloadLinkTextDecorations; }
+            set
+            {
+                _downloadLinkTextDecorations = value;
+                OnPropertyChanged(nameof(DownloadLinkTextDecorations));
             }
         }
 
@@ -219,6 +242,7 @@ namespace Model
         {
             if (string.IsNullOrWhiteSpace(DownloadLink))
             {
+                DownloadLinkDisabler(this);
                 StandardOutput = "Empty link";
                 return;
             }
@@ -228,6 +252,10 @@ namespace Model
         public void HelpButtonClick()
         {
             Process.Start("https://chriskolan.github.io/AudioDownloader/details.html");
+        }
+        public void DownloadLinkButtonClick()
+        {
+            Process.Start("https://github.com/ChrisKolan/AudioDownloader/releases/latest/download/AudioDownloader.zip");
         }
         public void FolderButtonClick()
         {
@@ -767,6 +795,12 @@ namespace Model
             }
         }
 
+        private void DownloadLinkDisabler(Model model)
+        {
+            model.DownloadLinkEnabled = false;
+            model.DownloadLinkTextDecorations = null;
+        }
+
         #endregion
 
         #region INotifyPropertyChanged implementation
@@ -789,16 +823,19 @@ namespace Model
 
             if (model.DownloadLink.Contains("CLI"))
             {
+                model.DownloadLinkDisabler(model);
                 model.IsButtonEnabled = true;
                 model.IsComboBoxEnabled = false;
                 return ValidationResult.Success;
             }
             if (!model.DownloadLink.Contains("https://www.youtube.com/watch?v="))
             {
+                model.DownloadLinkDisabler(model);
                 model.IsButtonEnabled = false;
                 model.IsComboBoxEnabled = false;
                 return new ValidationResult("YouTube link not valid", new List<string> { "DownloadLink" });
             }
+            model.DownloadLinkDisabler(model);
             model.IsButtonEnabled = true;
             model.IsComboBoxEnabled = true;
             var uiContext = model._synchronizationContext;
