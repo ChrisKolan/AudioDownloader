@@ -73,7 +73,7 @@ namespace Model
             Quality = new ObservableCollection<string>();
             Quality.Add("After pasting YouTube link, you can select the audio quality from this list");
             SelectedQuality = Quality[0];
-            _ = ApplicationUpdater.UpdateAsync(this);
+            //_ = ApplicationUpdater.UpdateAsync(this);
             _synchronizationContext = SynchronizationContext.Current;
         }
         #endregion
@@ -93,11 +93,6 @@ namespace Model
             get { return _downloadLink; }
             set
             {
-                //int downloadLinkCorrectLength = 43;
-                //if (value.Length > downloadLinkCorrectLength)
-                //{
-                //    _downloadLink = value.Remove(downloadLinkCorrectLength);
-                //}
                 _downloadLink = value;
                 OnPropertyChanged(nameof(DownloadLink));
                 ValidateAsync();
