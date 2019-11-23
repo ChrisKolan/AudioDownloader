@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +10,9 @@ namespace UnitTests
     [TestClass]
     public class ModelUnitTests : BaseTest
     {
-        Model.Model _model;
+        private Model.Model _model;
+        private static readonly string _pathDll = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string _audioPath = _pathDll + @"\audio\";
 
         public ModelUnitTests()
         {
@@ -44,7 +47,7 @@ namespace UnitTests
         [TestMethod]
         public void DownloadInDifferentQuality()
         {
-            var qualities = new List<string> { "raw webm", "raw opus", "raw aac", "raw vorbis", "superb", "best", "better", "optimal", "very good", 
+            var qualities = new List<string> { "raw webm", "raw opus", "raw aac", "superb", "best", "better", "optimal", "very good", 
                                                "transparent", "good", "acceptable", "audio book", "worse", "worst" };
             _model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
             foreach (var quality in qualities)
@@ -56,6 +59,10 @@ namespace UnitTests
                 {
                     Thread.Sleep(100);
                 }
+                var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
+                var fileName = FileNamesAndPath(_audioPath);
+                Assert.IsTrue(numberOfFiles == 1);
+                DeleteFiles(fileName);
             }
         }
         [TestMethod]
@@ -72,6 +79,10 @@ namespace UnitTests
                 {
                     Thread.Sleep(100);
                 }
+                var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
+                var fileName = FileNamesAndPath(_audioPath);
+                Assert.IsTrue(numberOfFiles == 1);
+                DeleteFiles(fileName);
             }
         }
         [TestMethod]
@@ -85,6 +96,10 @@ namespace UnitTests
             {
                 Thread.Sleep(100);
             }
+            var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
+            Assert.IsTrue(numberOfFiles == 9);
+            var fileNames = FileNamesAndPath(_audioPath);
+            DeleteFiles(fileNames);
         }
         [TestMethod]
         public void DownloadPlayListTwo()
@@ -97,6 +112,10 @@ namespace UnitTests
             {
                 Thread.Sleep(100);
             }
+            var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
+            Assert.IsTrue(numberOfFiles == 14);
+            var fileNames = FileNamesAndPath(_audioPath);
+            DeleteFiles(fileNames);
         }
     }
 }

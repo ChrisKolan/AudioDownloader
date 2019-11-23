@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -24,6 +25,24 @@ namespace UnitTests
             FieldInfo domainManagerField = domain.GetType().GetField("_domainManager", BindingFlags.Instance | BindingFlags.NonPublic);
             domainManagerField.SetValue(domain, manager);
             /* Preparing test end */
+        }
+
+        public int NumberOfFilesInDirectory(string path)
+        {
+            return System.IO.Directory.GetFiles(System.IO.Path.GetDirectoryName(path), "*", System.IO.SearchOption.TopDirectoryOnly).Length;
+        }
+
+        public string[] FileNamesAndPath(string path)
+        {
+            return System.IO.Directory.GetFiles(System.IO.Path.GetDirectoryName(path), "*").ToArray();
+        }
+
+        public void DeleteFiles(string[] fileNames)
+        {
+            foreach (var fileName in fileNames)
+            {
+                File.Delete(fileName);
+            }
         }
     }
 }
