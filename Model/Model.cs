@@ -73,7 +73,7 @@ namespace Model
             Quality = new ObservableCollection<string>();
             Quality.Add("After pasting YouTube link, you can select the audio quality from this list");
             SelectedQuality = Quality[0];
-            //_ = ApplicationUpdater.UpdateAsync(this);
+            _ = ApplicationUpdater.UpdateAsync(this);
             _synchronizationContext = SynchronizationContext.Current;
         }
         #endregion

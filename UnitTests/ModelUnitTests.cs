@@ -14,13 +14,21 @@ namespace UnitTests
         public ModelUnitTests()
         {
             _model = new Model.Model();
+            // Give some time to update 
+            Thread.Sleep(30000);
         }
         [TestMethod]
         public void EmptyLink()
         {
             _model.DownloadLink = "";
             _model.DownloadButtonClick();
-            Thread.Sleep(1000);
+            Assert.IsTrue(_model.StandardOutput == "Empty link");
+        }
+        [TestMethod]
+        public void WhiteSpaceLink()
+        {
+            _model.DownloadLink = " ";
+            _model.DownloadButtonClick();
             Assert.IsTrue(_model.StandardOutput == "Empty link");
         }
         [TestMethod]
@@ -49,13 +57,24 @@ namespace UnitTests
                     Thread.Sleep(100);
                 }
             }
-
         }
         [TestMethod]
-        public void DownloadPlayList()
+        public void DownloadPlayListOne()
         {
             _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
             _model.SelectedQuality = "raw aac";
+            _model.DownloadButtonClick();
+            Thread.Sleep(1000);
+            while (!_model.IsComboBoxEnabled)
+            {
+                Thread.Sleep(100);
+            }
+        }
+        [TestMethod]
+        public void DownloadPlayListTwo()
+        {
+            _model.DownloadLink = "https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=1";
+            _model.SelectedQuality = "transparent";
             _model.DownloadButtonClick();
             Thread.Sleep(1000);
             while (!_model.IsComboBoxEnabled)
