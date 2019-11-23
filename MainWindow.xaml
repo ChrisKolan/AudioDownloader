@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Topmost="True"
+        Topmost="False"
         ShowIconOnTitleBar="True"
         TitleCaps="False"
         BorderThickness="1"
