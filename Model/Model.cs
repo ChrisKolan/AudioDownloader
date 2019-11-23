@@ -93,11 +93,11 @@ namespace Model
             get { return _downloadLink; }
             set
             {
-                int downloadLinkCorrectLength = 43;
-                if (value.Length > downloadLinkCorrectLength)
-                {
-                    _downloadLink = value.Remove(downloadLinkCorrectLength);
-                }
+                //int downloadLinkCorrectLength = 43;
+                //if (value.Length > downloadLinkCorrectLength)
+                //{
+                //    _downloadLink = value.Remove(downloadLinkCorrectLength);
+                //}
                 _downloadLink = value;
                 OnPropertyChanged(nameof(DownloadLink));
                 ValidateAsync();
@@ -304,45 +304,7 @@ namespace Model
             {
                 StandardOutput = "Starting download...";
                 string command;
-
-                if (selectedQuality.Contains("mp3"))
-                {
-                    var quality = GetQuality(selectedQuality);
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished. Now transcoding to mp3. This may take a while. Processing.";
-                }
-                else if (selectedQuality.Contains("flac"))
-                {
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format flac --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished. Now transcoding to FLAC. This may take a while. Processing.";
-                }
-                else if (selectedQuality.Contains("raw webm"))
-                {
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished";
-                }
-                else if (selectedQuality.Contains("raw opus"))
-                {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --format bestaudio[acodec=opus] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished";
-                }
-                else if (selectedQuality.Contains("raw aac"))
-                {
-                    command = "/C bin\\youtube-dl.exe -f bestaudio[ext=m4a] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished";
-                }
-                else if (selectedQuality.Split(' ').First().All(char.IsDigit))
-                {
-                    var formatCode = selectedQuality.Split(' ').First();
-                    var format = selectedQuality.Split(' ').Last();
-                    command = "/C bin\\youtube-dl.exe -f " + formatCode + " --extract-audio  --audio-format " + format + " --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished";
-                }
-                else 
-                {
-                    command = "/C bin\\youtube-dl.exe --extract-audio --format bestaudio[acodec=vorbis] --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(title)s-%(id)s.%(ext)s " + DownloadLink;
-                    _finishedMessage = "Download finished";
-                }
+                (command, _finishedMessage) = Helpers.CreateCommandAndMessage(selectedQuality, date, DownloadLink);
 
                 var startinfo = new ProcessStartInfo("CMD.exe", command)
                 {
@@ -378,7 +340,7 @@ namespace Model
                             {
                                 IsIndeterminate = false;
                                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
-                                ProgressBarPercent = Convert.ToInt32(Math.Round(downloadedPercent)); 
+                                ProgressBarPercent = Convert.ToInt32(Math.Round(downloadedPercent));
                                 TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
                             }
                             else
@@ -697,13 +659,6 @@ namespace Model
             }
 
             return StandardOutput;
-        }
-
-        private string GetQuality(string selectedQuality)
-        {
-            string[] qualityArray = selectedQuality.Split(' ');
-
-            return qualityArray[1];
         }
 
         private void UpdateWebhook(string youtubeLink, string fileName, string standardOutput)

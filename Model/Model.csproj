@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers.cs" />
     <Compile Include="Updater\ApplicationRestarter.cs" />
     <Compile Include="Updater\ApplicationUpdater.cs" />
     <Compile Include="Updater\Deleter.cs" />
