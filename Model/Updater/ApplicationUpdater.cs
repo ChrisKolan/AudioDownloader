@@ -24,7 +24,7 @@ namespace Model
                 catch (Exception)
                 {
                     model.DownloadLinkEnabled = true;
-                    model.DownloadLinkTextDecorations = TextDecorations.Underline;
+                    model.DownloadLinkTextDecorations = null;
                     model.StandardOutput = "Failed to update. Click here to download manually.";
                     model.GetLocalVersions();
                     model.EnableInteractions();
