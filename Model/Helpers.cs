@@ -70,9 +70,9 @@ namespace Model
         {
             if (quality == null)
             {
-                return " --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(playlist_index)s-%(title)s-%(id)s.%(ext)s " + escapedDownloadLink;
+                return " --ignore-errors --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(playlist_index)s-%(title)s-%(id)s.%(ext)s " + escapedDownloadLink;
             }
-            return " --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(playlist_index)s-%(title)s-%(id)s.%(ext)s " + escapedDownloadLink;
+            return " --ignore-errors --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(playlist_index)s-%(title)s-%(id)s.%(ext)s " + escapedDownloadLink;
         }
     }
 }

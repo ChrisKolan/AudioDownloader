@@ -783,7 +783,7 @@ namespace Model
                 model.IsComboBoxEnabled = false;
                 return ValidationResult.Success;
             }
-            if (!model.DownloadLink.Contains("https://www.youtube.com/watch?v="))
+            if (!model.DownloadLink.Contains("https://www.youtube.com/"))
             {
                 model.DownloadLinkDisabler(model);
                 model.IsButtonEnabled = false;
