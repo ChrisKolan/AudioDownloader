@@ -17,9 +17,6 @@ namespace Model
             if (selectedQuality.Contains("mp3"))
             {
                 var quality = GetQuality(selectedQuality);
-                // https://www.youtube.com/watch?v=ojdKM43cIxQ&loop=0 does not have webm format- need to change bestaudio[ext=webm] to bestaudio[ext=m4a] dynamically
-                // https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=2&t=0s playlista
-                //command = "/C bin\\youtube-dl.exe -f bestaudio[ext=webm] --extract-audio --audio-format mp3 --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(title)s-%(id)s.%(ext)s " + escapedDownloadLink;
                 command = youTubeBeginCommand + "--extract-audio --audio-format mp3" + GenerateConstantCommand(date, escapedDownloadLink, quality);
                 finishedMessage = "Download finished. Now transcoding to mp3. This may take a while. Processing.";
             }
