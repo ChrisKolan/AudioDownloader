@@ -45,7 +45,23 @@ namespace UnitTests
         public void DownloadInDifferentQuality()
         {
             var qualities = new List<string> { "raw webm", "raw opus", "raw aac", "raw vorbis", "superb", "best", "better", "optimal", "very good", 
-                                               "transparent", "good", "acceptable", "audio book", "worse", "worst"  };
+                                               "transparent", "good", "acceptable", "audio book", "worse", "worst" };
+            _model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
+            foreach (var quality in qualities)
+            {
+                _model.SelectedQuality = quality;
+                _model.DownloadButtonClick();
+                Thread.Sleep(1000);
+                while (!_model.IsComboBoxEnabled)
+                {
+                    Thread.Sleep(100);
+                }
+            }
+        }
+        [TestMethod]
+        public void DownloadRawFormats()
+        {
+            var qualities = new List<string> { "251\twebm", "140\tm4a", "250\twebm", "249\twebm" };
             _model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
             foreach (var quality in qualities)
             {
