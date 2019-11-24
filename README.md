@@ -11,6 +11,7 @@
 * Window always on top
 * Downloads audio in high-quality
 * Mp3 audio quality can be selected
+* Playlists support
 * Displays current download speed
 * Uses Youtube-dl for downloading and FFmpeg for processing
 * Allows usage of Youtube-dl command line interface
@@ -20,6 +21,6 @@
 * WebM (Opus) unprocessed raw audio
 * Opus unprocessed raw audio
 * AAC (m4a) raw audio
-* Vorbis unprocessed raw audio
+* Vorbis unprocessed raw audio (if available)
 * FLAC lossless compression
 * Mp3 VBR lossy compression
