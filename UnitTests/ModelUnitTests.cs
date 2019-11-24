@@ -105,7 +105,7 @@ namespace UnitTests
         public void DownloadPlayListTwo()
         {
             _model.DownloadLink = "https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=1";
-            _model.SelectedQuality = "transparent";
+            _model.SelectedQuality = "raw aac";
             _model.DownloadButtonClick();
             Thread.Sleep(1000);
             while (!_model.IsComboBoxEnabled)
