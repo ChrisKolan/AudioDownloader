@@ -47,7 +47,7 @@ namespace Model
         private int _downloadTime = 1;
         private int _timerResolution = 100;
         private SynchronizationContext _synchronizationContext;
-        private Thread _downloadThread;
+        private Thread _currentThreadPoolWorker;
         private bool _isDownloadRunning;
         #endregion
 
@@ -271,7 +271,7 @@ namespace Model
                 TimersOutput = string.Empty;
                 ButtonContent = "Download";
                 EnableInteractions();
-                _downloadThread.Abort();
+                _currentThreadPoolWorker.Abort();
             }
         }
         public void HelpButtonClick()
@@ -303,7 +303,7 @@ namespace Model
             string selectedQuality = GetQuality();
             DisableInteractions();
             Thread.CurrentThread.IsBackground = true;
-            _downloadThread = Thread.CurrentThread;
+            _currentThreadPoolWorker = Thread.CurrentThread;
             int positionFrom;
             int positionTo;
             var date = DateTime.Now.ToString("yyMMdd");
