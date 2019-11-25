@@ -82,7 +82,7 @@
             </ComboBox>
             <Button x:Name="button" 
                     Margin="2,1,2,1" 
-                    Content="Download"
+                    Content="{Binding Model.ButtonContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Height="21"
                     Background="#FFE5E5E5"
                     BorderBrush="#FFBCBCBC"

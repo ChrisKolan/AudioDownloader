@@ -25,6 +25,7 @@ namespace Model
         #region Fields
         private string _standardOutput;
         private string _timersOutput;
+        private string _buttonContent;
         private static bool _measureProcessingTime;
         private static bool _measureDownloadTime;
         private int _counter;
@@ -46,12 +47,15 @@ namespace Model
         private int _downloadTime = 1;
         private int _timerResolution = 100;
         private SynchronizationContext _synchronizationContext;
+        private Thread _downloadThread;
+        private bool _isDownloadRunning;
         #endregion
 
         #region Constructor
         public Model()
         {
             StandardOutput = "Ready";
+            ButtonContent = "Download";
             EnableInteractions();
             PeriodicTimerProcessing = new Timer(_ => ProcessingTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerDownload = new Timer(_ => DownloadTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
@@ -159,7 +163,15 @@ namespace Model
                 OnPropertyChanged(nameof(TimersOutput));
             }
         }
-
+        public string ButtonContent
+        {
+            get { return _buttonContent; }
+            set
+            {
+                _buttonContent = value;
+                OnPropertyChanged(nameof(ButtonContent));
+            }
+        }
         public int ProgressBarPercent
         {
             get { return _progressBarPercent; }
@@ -242,7 +254,25 @@ namespace Model
                 return;
             }
 
-            ThreadPool.QueueUserWorkItem(ThreadPoolWorker);
+            if (!_isDownloadRunning)
+            {
+                ButtonContent = "Cancel";
+                Task.Run(() => ThreadPoolWorker());
+            }
+            else
+            {
+                _measureProcessingTime = false;
+                _measureDownloadTime = false;
+                _downloadedFileSize = null;
+                _processingTime = 1;
+                _downloadTime = 1;
+                _isDownloadRunning = false;
+                StandardOutput = "Ready";
+                TimersOutput = string.Empty;
+                ButtonContent = "Download";
+                EnableInteractions();
+                _downloadThread.Abort();
+            }
         }
         public void HelpButtonClick()
         {
@@ -267,11 +297,13 @@ namespace Model
                 StandardOutput = "Ready. Audio folder does not exist. Try to download some audio files first.";
             }
         }
-        private void ThreadPoolWorker(Object stateInfo)
+        private void ThreadPoolWorker()
         {
+            _isDownloadRunning = true;
             string selectedQuality = GetQuality();
             DisableInteractions();
             Thread.CurrentThread.IsBackground = true;
+            _downloadThread = Thread.CurrentThread;
             int positionFrom;
             int positionTo;
             var date = DateTime.Now.ToString("yyMMdd");
@@ -368,7 +400,9 @@ namespace Model
                     TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                     Thread.Sleep(1000);
                     StandardOutput = "Error. No file downloaded. Updates are needed.";
+                    ButtonContent = "Download";
                     EnableInteractions();
+                    _isDownloadRunning = false;
                     return;
                 }
                 if (_downloadedFileSize == "File has already been downloaded.")
@@ -378,7 +412,9 @@ namespace Model
                     TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
                     Thread.Sleep(1000);
                     StandardOutput = "Ready. " + _downloadedFileSize;
+                    ButtonContent = "Download";
                     EnableInteractions();
+                    _isDownloadRunning = false;
                     return;
                 }
                 else
@@ -406,7 +442,9 @@ namespace Model
                     _downloadedFileSize = null;
                     _processingTime = 1;
                     _downloadTime = 1;
+                    ButtonContent = "Download";
                     EnableInteractions();
+                    _isDownloadRunning = false;
                 }
             }
         }
@@ -613,7 +651,7 @@ namespace Model
         {
             IsIndeterminate = true;
             IsInputEnabled = false;
-            IsButtonEnabled = false;
+            //IsButtonEnabled = false;
             IsComboBoxEnabled = false;
             ProgressBarPercent = 0;
             TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
@@ -790,7 +828,7 @@ namespace Model
             model.IsComboBoxEnabled = true;
             var uiContext = model._synchronizationContext;
             model.StandardOutput = "Retrieving audio quality";
-            ThreadPool.QueueUserWorkItem(model.GetYouTubeAvailableFormatsWorker, uiContext);
+            Task.Run(() => model.GetYouTubeAvailableFormatsWorker(uiContext));
 
             return ValidationResult.Success;
         }
