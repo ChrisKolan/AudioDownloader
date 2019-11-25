@@ -403,6 +403,7 @@ namespace Model
                     ButtonContent = "Download";
                     EnableInteractions();
                     _isDownloadRunning = false;
+                    process.Dispose();
                     return;
                 }
                 if (_downloadedFileSize == "File has already been downloaded.")
@@ -415,6 +416,7 @@ namespace Model
                     ButtonContent = "Download";
                     EnableInteractions();
                     _isDownloadRunning = false;
+                    process.Dispose();
                     return;
                 }
                 else
@@ -445,6 +447,7 @@ namespace Model
                     ButtonContent = "Download";
                     EnableInteractions();
                     _isDownloadRunning = false;
+                    process.Dispose();
                 }
             }
         }
