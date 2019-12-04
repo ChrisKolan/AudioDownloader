@@ -49,6 +49,7 @@ namespace Model
         private SynchronizationContext _synchronizationContext;
         private Thread _currentThreadPoolWorker;
         private bool _isDownloadRunning;
+        private bool _isOnline;
         #endregion
 
         #region Constructor
@@ -59,6 +60,7 @@ namespace Model
             EnableInteractions();
             PeriodicTimerProcessing = new Timer(_ => ProcessingTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerDownload = new Timer(_ => DownloadTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
+            PeriodicTimerPinger = new Timer(_ => TimerPinger(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(5000));
 
             QualityDefault = new List<string>
             {
@@ -242,6 +244,7 @@ namespace Model
 
         public Timer PeriodicTimerProcessing { get; }
         public Timer PeriodicTimerDownload { get; }
+        public Timer PeriodicTimerPinger { get; }
         #endregion
 
         #region Methods
@@ -679,8 +682,25 @@ namespace Model
             {
                 return;
             }
-            _downloadTime++;
-            TimersOutput = "Download time: " + ((_downloadTime * _timerResolution) / 1000.0).ToString("N1") + "s";
+            if (_isOnline)
+            {
+                _downloadTime++;
+                TimersOutput = "Download time: " + ((_downloadTime * _timerResolution) / 1000.0).ToString("N1") + "s";
+            }
+        }
+
+        private void TimerPinger()
+        {
+            if (Helpers.Pinger())
+            {
+                _isOnline = true;
+                TimersOutput = string.Empty;
+            }
+            else
+            {
+                TimersOutput = "Offline";
+                _isOnline = false;
+            }
         }
 
         private string Turn()
