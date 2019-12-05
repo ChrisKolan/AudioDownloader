@@ -10,7 +10,7 @@
         ShowIconOnTitleBar="True"
         TitleCaps="False"
         BorderThickness="1"
-        GlowBrush="LightBlue"
+        GlowBrush="{Binding Model.GlowBrushColor}"
         WindowStartupLocation="CenterScreen"
         Title="Audio Downloader" Height="151" Width="800" ResizeMode="CanMinimize">
     <Controls:MetroWindow.IconTemplate>

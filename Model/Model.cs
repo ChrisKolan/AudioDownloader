@@ -15,6 +15,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Shell;
 using Webhook;
 
@@ -50,6 +51,7 @@ namespace Model
         private Thread _currentThreadPoolWorker;
         private bool _isDownloadRunning;
         private bool _isOnline;
+        private SolidColorBrush _glowBrushColor;
         #endregion
 
         #region Constructor
@@ -80,6 +82,7 @@ namespace Model
             Quality.Add("After pasting YouTube link, you can select the audio quality from this list");
             SelectedQuality = Quality[0];
             _ = ApplicationUpdater.UpdateAsync(this);
+            GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
             _synchronizationContext = SynchronizationContext.Current;
         }
         #endregion
@@ -239,6 +242,16 @@ namespace Model
             {
                 _helpButtonToolTip = value;
                 OnPropertyChanged(nameof(HelpButtonToolTip));
+            }
+        }
+
+        public SolidColorBrush GlowBrushColor
+        {
+            get { return _glowBrushColor; }
+            set 
+            { 
+                _glowBrushColor = value;
+                OnPropertyChanged(nameof(GlowBrushColor));
             }
         }
 
@@ -695,11 +708,27 @@ namespace Model
             {
                 _isOnline = true;
                 TimersOutput = string.Empty;
+                if (!_isDownloadRunning)
+                {
+                    EnableInteractions();
+                }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
+                });
             }
             else
             {
-                TimersOutput = "Offline";
                 _isOnline = false;
+                TimersOutput = "Offline";
+                if (!_isDownloadRunning)
+                {
+                    DisableInteractions();
+                }
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    GlowBrushColor = new SolidColorBrush(Colors.Red);
+                });
             }
         }
 
