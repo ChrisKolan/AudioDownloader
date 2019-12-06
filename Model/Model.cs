@@ -670,7 +670,7 @@ namespace Model
         {
             IsIndeterminate = true;
             IsInputEnabled = false;
-            //IsButtonEnabled = false;
+            IsButtonEnabled = false;
             IsComboBoxEnabled = false;
             ProgressBarPercent = 0;
             TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
@@ -708,10 +708,6 @@ namespace Model
             {
                 _isOnline = true;
                 TimersOutput = string.Empty;
-                if (!_isDownloadRunning)
-                {
-                    EnableInteractions();
-                }
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
@@ -721,10 +717,6 @@ namespace Model
             {
                 _isOnline = false;
                 TimersOutput = "Offline";
-                if (!_isDownloadRunning)
-                {
-                    DisableInteractions();
-                }
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     GlowBrushColor = new SolidColorBrush(Colors.Red);
