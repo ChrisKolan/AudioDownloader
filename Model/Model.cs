@@ -62,7 +62,7 @@ namespace Model
             EnableInteractions();
             PeriodicTimerProcessing = new Timer(_ => ProcessingTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerDownload = new Timer(_ => DownloadTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
-            PeriodicTimerPinger = new Timer(_ => TimerPinger(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(5000));
+            PeriodicTimerPinger = new Timer(_ => TimerPinger(), null, TimeSpan.FromMilliseconds(5000), TimeSpan.FromMilliseconds(5000));
 
             QualityDefault = new List<string>
             {
@@ -415,7 +415,14 @@ namespace Model
                     TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
                     TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                     Thread.Sleep(1000);
-                    StandardOutput = "Error. No file downloaded. Updates are needed.";
+                    if (_isOnline)
+                    {
+                        StandardOutput = "Error. No file downloaded. Updates are needed.";
+                    }
+                    else
+                    {
+                        StandardOutput = "Error. No internet connection. No file downloaded.";
+                    }
                     ButtonContent = "Download";
                     EnableInteractions();
                     _isDownloadRunning = false;
@@ -592,7 +599,14 @@ namespace Model
                 Quality.Clear();
                 Quality.Add("Audio quality could not be retrieved.");
                 SelectedQuality = Quality[0];
-                StandardOutput = "YouTube link is invalid or internet connection is down.";
+                if (_isOnline)
+                {
+                    StandardOutput = "YouTube link is invalid";
+                }
+                else
+                {
+                    StandardOutput = "Error. No internet connection."; 
+                }
                 IsButtonEnabled = false;
                 return;
             }
@@ -670,7 +684,6 @@ namespace Model
         {
             IsIndeterminate = true;
             IsInputEnabled = false;
-            IsButtonEnabled = false;
             IsComboBoxEnabled = false;
             ProgressBarPercent = 0;
             TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
@@ -707,7 +720,14 @@ namespace Model
             if (Helpers.Pinger())
             {
                 _isOnline = true;
-                TimersOutput = string.Empty;
+                if (TimersOutput != null && TimersOutput.Contains("Offline"))
+                {
+                    TimersOutput = string.Empty;
+                }
+                if (StandardOutput.Contains("Error. No internet connection."))
+                {
+                    StandardOutput = "Internet connection reestablished.";
+                }
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
