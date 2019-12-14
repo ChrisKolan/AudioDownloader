@@ -44,5 +44,10 @@ namespace UnitTests
                 File.Delete(fileName);
             }
         }
+
+        public static long FileSize(string path)
+        {
+            return new FileInfo(path).Length;
+        }
     }
 }

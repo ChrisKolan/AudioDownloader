@@ -538,10 +538,11 @@ namespace Model
                     availableAudioFormats.Add(currentLine);
                 }
             }
-
-            //uiContext.Send(x => availableAudioFormats.ForEach(Quality.Add), null);
+            if(uiContext == null)
+            {
+                return;
+            }
             uiContext.Send(UpdateUiFromTheWorkerThread, availableAudioFormats);
-
             HelpButtonToolTip = LocalVersions + String.Join(Environment.NewLine, availableFormats.ToArray());
             IsIndeterminate = false;
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
@@ -727,6 +728,10 @@ namespace Model
                 if (StandardOutput.Contains("Error. No internet connection."))
                 {
                     StandardOutput = "Internet connection reestablished.";
+                }
+                if (Application.Current == null)
+                {
+                    return;
                 }
                 Application.Current.Dispatcher.Invoke(() =>
                 {
