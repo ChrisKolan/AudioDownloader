@@ -39,7 +39,6 @@ namespace UnitTests
         {
             _model.DownloadLink = "Not valid link";
             _model.DownloadButtonClick();
-
             // Give some time to download AudioDownloader.zip
             Thread.Sleep(4000);
             Assert.IsTrue(_model.StandardOutput == "Error. No file downloaded. Updates are needed.");
@@ -61,7 +60,7 @@ namespace UnitTests
                     Thread.Sleep(100);
                 }
                 var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
-                Assert.IsTrue(numberOfFiles == 1);
+                Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
                 var fileName = FileNamesAndPath(_audioPath);
                 var actualFileSize = FileSize(fileName[0]);
                 var expetedFileSize = expectedFileSizes[i];
@@ -87,7 +86,7 @@ namespace UnitTests
                     Thread.Sleep(100);
                 }
                 var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
-                Assert.IsTrue(numberOfFiles == 1);
+                Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
                 var fileName = FileNamesAndPath(_audioPath);
                 var actualFileSize = FileSize(fileName[0]);
                 var expetedFileSize = expectedFileSizes[i];
@@ -110,7 +109,7 @@ namespace UnitTests
                 Thread.Sleep(100);
             }
             var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
-            Assert.IsTrue(numberOfFiles == 9);
+            Assert.IsTrue(numberOfFiles == expectedFileSizes.Count, $"Wrong number of files. Expected number of files: {expectedFileSizes.Count}, actual number of files: {numberOfFiles}");
             var fileNames = FileNamesAndPath(_audioPath);
             for (int i = 0; i < numberOfFiles; i++)
             {
@@ -120,6 +119,26 @@ namespace UnitTests
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. File name: {fileNames[i]}.");
                 Assert.IsTrue((expetedFileSize - range) < actualFileSize && actualFileSize < (expetedFileSize + range), $"File size outside expected range. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, +/-range: {range}");
             }
+            DeleteFiles(fileNames);
+        }
+        [TestMethod]
+        public void DownloadPlayListCancel()
+        {
+            _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
+            _model.SelectedQuality = "raw aac";
+            _model.DownloadButtonClick();
+            Thread.Sleep(1000);
+            while (!_model.IsComboBoxEnabled)
+            {
+                // give some time to download a couple of files
+                Thread.Sleep(10000);
+                // simulating cancel click
+                _model.DownloadButtonClick();
+                Thread.Sleep(10000);
+            }
+            var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
+            Assert.IsTrue(numberOfFiles >= 3 && numberOfFiles <= 7, $"Wrong number of files. Expected number of files between 3 and 7. Actual number of files: {numberOfFiles}");
+            var fileNames = FileNamesAndPath(_audioPath);
             DeleteFiles(fileNames);
         }
         [TestMethod]
@@ -135,7 +154,7 @@ namespace UnitTests
                 Thread.Sleep(100);
             }
             var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
-            Assert.IsTrue(numberOfFiles == 14);
+            Assert.IsTrue(numberOfFiles == expectedFileSizes.Count, $"Wrong number of files. Expected number of files: {expectedFileSizes.Count}, actual number of files: {numberOfFiles}");
             var fileNames = FileNamesAndPath(_audioPath);
             for (int i = 0; i < numberOfFiles; i++)
             {
