@@ -664,7 +664,7 @@ namespace Model
                 localVersionsNamesAndNumber.Add(localVersionsSoftwareNames[i] + localVersions[i]);
             }
 
-            localVersionsNamesAndNumber.Add("FFmpeg\t\t   |\t4.1.3");
+            localVersionsNamesAndNumber.Add("FFmpeg\t\t   |\t4.2.1");
 
             LocalVersions = String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
             HelpButtonToolTip = LocalVersions;

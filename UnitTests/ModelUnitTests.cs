@@ -48,7 +48,7 @@ namespace UnitTests
         {
             var qualities = new List<string> { "raw webm", "raw opus", "raw aac", "superb", "best", "better", "optimal", "very good", 
                                                "transparent", "good", "acceptable", "audio book", "worse", "worst" };
-            var expectedFileSizes = new List<long> { 3136265, 3089436, 3083006, 39763743, 6472224, 5511768, 4601376, 4180440, 3693096, 3182544, 2800368, 2487984, 2381328, 1924416 };
+            var expectedFileSizes = new List<long> { 3136081, 3089476, 3083046, 39768753, 6469840, 5518168, 4604680, 4178104, 3692512, 3183856, 2800840, 2486776, 2379040, 1923664 };
             _model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
             for (int i = 0; i < qualities.Count; i++)
             {
@@ -64,9 +64,8 @@ namespace UnitTests
                 var fileName = FileNamesAndPath(_audioPath);
                 var actualFileSize = FileSize(fileName[0]);
                 var expetedFileSize = expectedFileSizes[i];
-                var range = 200;
-                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. File name: {fileName[0]}.");
-                Assert.IsTrue((expetedFileSize - range) < actualFileSize && actualFileSize < (expetedFileSize + range), $"File size outside expected range. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, +/-range: {range}");
+                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize-expetedFileSize}. File name: {fileName[0]}.");
+                Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
             }
         }
@@ -74,7 +73,7 @@ namespace UnitTests
         public void DownloadRawFormats()
         {
             var qualities = new List<string> { "251\twebm", "140\tm4a", "250\twebm", "249\twebm" };
-            var expectedFileSizes = new List<long> { 3670761, 3083046, 3562178, 3459471 };
+            var expectedFileSizes = new List<long> { 3663749, 3083046, 3560180, 3454030 };
             _model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
             for (int i = 0; i < qualities.Count; i++)
             {
@@ -90,9 +89,8 @@ namespace UnitTests
                 var fileName = FileNamesAndPath(_audioPath);
                 var actualFileSize = FileSize(fileName[0]);
                 var expetedFileSize = expectedFileSizes[i];
-                var range = 200;
-                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. File name: {fileName[0]}.");
-                Assert.IsTrue((expetedFileSize - range) < actualFileSize && actualFileSize < (expetedFileSize + range), $"File size outside expected range. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, +/-range: {range}");
+                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");
+                Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
             }
         }
@@ -101,7 +99,7 @@ namespace UnitTests
         {
             _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
             _model.SelectedQuality = "raw aac";
-            var expectedFileSizes = new List<long> { 5083580, 4034396, 3402184, 3631409, 2875099, 3873389, 3458765, 5609895, 4151618 };
+            var expectedFileSizes = new List<long> { 5083565, 4034396, 3402184, 3631459, 2875099, 3873389, 3458799, 5609895, 4151596 };
             _model.DownloadButtonClick();
             Thread.Sleep(1000);
             while (!_model.IsComboBoxEnabled)
@@ -115,9 +113,8 @@ namespace UnitTests
             {
                 var actualFileSize = FileSize(fileNames[i]);
                 var expetedFileSize = expectedFileSizes[i];
-                var range = 200;
-                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. File name: {fileNames[i]}.");
-                Assert.IsTrue((expetedFileSize - range) < actualFileSize && actualFileSize < (expetedFileSize + range), $"File size outside expected range. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, +/-range: {range}");
+                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileNames[i]}.");
+                Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
             DeleteFiles(fileNames);
         }
@@ -146,7 +143,7 @@ namespace UnitTests
         {
             _model.DownloadLink = "https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=1";
             _model.SelectedQuality = "raw aac";
-            var expectedFileSizes = new List<long> { 2915430, 6544910, 4142954, 7978964, 5816029, 3497213, 3527147, 3649456, 4245348, 2883434, 3484768, 2475309, 3455726, 3840186 };
+            var expectedFileSizes = new List<long> { 2915430, 6544910, 4142954, 7978914, 5816029, 3497213, 3527081, 3649456, 4245393, 2883479, 3484737, 2475309, 3455726, 3840186 };
             _model.DownloadButtonClick();
             Thread.Sleep(1000);
             while (!_model.IsComboBoxEnabled)
@@ -160,9 +157,8 @@ namespace UnitTests
             {
                 var actualFileSize = FileSize(fileNames[i]);
                 var expetedFileSize = expectedFileSizes[i];
-                var range = 200;
-                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. File name: {fileNames[i]}.");
-                Assert.IsTrue((expetedFileSize - range) < actualFileSize && actualFileSize < (expetedFileSize + range), $"File size outside expected range. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, +/-range: {range}");
+                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileNames[i]}.");
+                Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
             DeleteFiles(fileNames);
         }
