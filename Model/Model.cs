@@ -66,17 +66,17 @@ namespace Model
 
             QualityDefault = new List<string>
             {
-                "Audio quality: superb. \t FLAC lossless compression (Largest flac file size).",
-                "Audio quality: best. \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s. VBR mp3 lossy compression (Large mp3 file size).",
-                "Audio quality: better. \t Bitrate average: 225 kbit/s, Bitrate range: 190-250 kbit/s. VBR mp3 lossy compression.",
-                "Audio quality: optimal. \t Bitrate average: 190 kbit/s, Bitrate range: 170-210 kbit/s. VBR mp3 lossy compression.",
-                "Audio quality: very good. \t Bitrate average: 175 kbit/s, Bitrate range: 150-195 kbit/s. VBR mp3 lossy compression.",
-                "Audio quality: transparent. \t Bitrate average: 165 kbit/s, Bitrate range: 140-185 kbit/s. VBR mp3 lossy compression (Balanced mp3 file size).",
-                "Audio quality: good. \t Bitrate average: 130 kbit/s, Bitrate range: 120-150 kbit/s. VBR mp3 lossy compression.",
-                "Audio quality: acceptable. \t Bitrate average: 115 kbit/s, Bitrate range: 100-130 kbit/s. VBR mp3 lossy compression.",
-                "Audio quality: audio book. \t Bitrate average: 100 kbit/s, Bitrate range: 080-120 kbit/s. VBR mp3 lossy compression.",
-                "Audio quality: worse. \t Bitrate average: 085 kbit/s, Bitrate range: 070-105 kbit/s. VBR mp3 lossy compression.",
-                "Audio quality: worst. \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s. VBR mp3 lossy compression (Smallest mp3 file size)."
+                "Audio quality: superb \t FLAC lossless compression (Largest flac file size)",
+                "Audio quality: best \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s, VBR mp3 lossy compression (Large mp3 file size)",
+                "Audio quality: better \t Bitrate average: 225 kbit/s, Bitrate range: 190-250 kbit/s, VBR mp3 lossy compression",
+                "Audio quality: optimal \t Bitrate average: 190 kbit/s, Bitrate range: 170-210 kbit/s, VBR mp3 lossy compression",
+                "Audio quality: very good \t Bitrate average: 175 kbit/s, Bitrate range: 150-195 kbit/s, VBR mp3 lossy compression",
+                "Audio quality: transparent \t Bitrate average: 165 kbit/s, Bitrate range: 140-185 kbit/s, VBR mp3 lossy compression (Balanced mp3 file size)",
+                "Audio quality: good \t Bitrate average: 130 kbit/s, Bitrate range: 120-150 kbit/s, VBR mp3 lossy compression",
+                "Audio quality: acceptable \t Bitrate average: 115 kbit/s, Bitrate range: 100-130 kbit/s, VBR mp3 lossy compression",
+                "Audio quality: audio book \t Bitrate average: 100 kbit/s, Bitrate range: 080-120 kbit/s, VBR mp3 lossy compression",
+                "Audio quality: worse \t Bitrate average: 085 kbit/s, Bitrate range: 070-105 kbit/s, VBR mp3 lossy compression",
+                "Audio quality: worst \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s, VBR mp3 lossy compression (Smallest mp3 file size)"
             };
             Quality = new ObservableCollection<string>();
             Quality.Add("After pasting YouTube link, you can select the audio quality from this list");
@@ -563,8 +563,8 @@ namespace Model
                 {
                     if (addOpus)
                     {
-                        qualityDynamic.Add("Audio quality: raw webm. \t WebM (Opus) unprocessed.");
-                        qualityDynamic.Add("Audio quality: raw opus. \t Opus unprocessed.");
+                        qualityDynamic.Add("Audio quality: raw webm \t WebM (Opus) unprocessed");
+                        qualityDynamic.Add("Audio quality: raw opus \t Opus unprocessed");
                         addOpus = false;
                     }
                 }
@@ -572,7 +572,7 @@ namespace Model
                 {
                     if (addVorbis)
                     {
-                        qualityDynamic.Add("Audio quality: raw vorbis. \t Vorbis unprocessed.");
+                        qualityDynamic.Add("Audio quality: raw vorbis \t Vorbis unprocessed");
                         addVorbis = false;
                     }
                 }
@@ -580,7 +580,7 @@ namespace Model
                 {
                     if (addM4a)
                     {
-                        qualityDynamic.Add("Audio quality: raw aac. \t AAC (m4a) unprocessed.");
+                        qualityDynamic.Add("Audio quality: raw aac \t AAC (m4a) unprocessed");
                         addM4a = false;
                     }
                 }
@@ -591,6 +591,7 @@ namespace Model
             qualityDynamic.ForEach(Quality.Add);
             QualityDefault.ForEach(Quality.Add);
             qualityDynamicFormat.ForEach(Quality.Add);
+            Quality.Add("Audio and video \t\t Best quality");
 
             var optimalQualityIndex = Quality.ToList().FindIndex(x => x.Contains("m4a"));
             if(optimalQualityIndex != -1)
