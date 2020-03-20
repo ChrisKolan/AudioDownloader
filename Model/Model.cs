@@ -830,6 +830,8 @@ namespace Model
                 return "mp3 8";
             else if (SelectedQuality.Contains("worst"))
                 return "mp3 9";
+            else if (SelectedQuality.Contains("video"))
+                return "video";
             else if (SelectedQuality.Split('\t').First().All(char.IsDigit))
             {
                 var format = FindFormat(SelectedQuality);

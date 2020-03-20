@@ -48,6 +48,11 @@ namespace Model
                 command = youTubeBeginCommand + "--format " + formatCode + " --extract-audio  --audio-format " + format + GenerateConstantCommand(date, escapedDownloadLink, null);
                 finishedMessage = "Download finished";
             }
+            else if (selectedQuality.Contains("video"))
+            {
+                command = youTubeBeginCommand + GenerateConstantCommand(date, escapedDownloadLink, null);
+                finishedMessage = "Download finished";
+            }
             else
             {
                 command = youTubeBeginCommand + "--format bestaudio[acodec=vorbis] --extract-audio" + GenerateConstantCommand(date, escapedDownloadLink, null);
