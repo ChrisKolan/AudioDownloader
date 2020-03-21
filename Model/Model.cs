@@ -54,6 +54,7 @@ namespace Model
         private bool _isDownloadRunning;
         private bool _isOnline;
         private SolidColorBrush _glowBrushColor;
+        private bool _isClipboardCaptureSelected;
         #endregion
 
         #region Constructor
@@ -261,6 +262,16 @@ namespace Model
             { 
                 _glowBrushColor = value;
                 OnPropertyChanged(nameof(GlowBrushColor));
+            }
+        }
+
+        public bool IsClipboardCaptureSelected
+        {
+            get { return _isClipboardCaptureSelected; }
+            set 
+            { 
+                _isClipboardCaptureSelected = value;
+                OnPropertyChanged(nameof(IsClipboardCaptureSelected));
             }
         }
 
@@ -708,10 +719,13 @@ namespace Model
 
         private void TimerClipper()
         {
-            Thread thread = new Thread(ThreadClipper);
-            thread.SetApartmentState(ApartmentState.STA); //Set the thread to STA
-            thread.Start();
-            thread.Join();
+            if (IsClipboardCaptureSelected)
+            {
+                Thread thread = new Thread(ThreadClipper);
+                thread.SetApartmentState(ApartmentState.STA);
+                thread.Start();
+                thread.Join();
+            }
         }
 
         private void ThreadClipper()

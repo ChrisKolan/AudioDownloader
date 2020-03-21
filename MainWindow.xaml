@@ -65,6 +65,9 @@
                             <KeyBinding Key="Return" Command="{Binding DownloadButton}" />
                          </TextBox.InputBindings>
                 </TextBox>
+                <CheckBox IsChecked="{Binding Model.IsClipboardCaptureSelected, UpdateSourceTrigger=PropertyChanged}"
+                          ToolTip="Check for clipboard capture" Margin="750,0,0,0">
+                </CheckBox>
             </Grid>
             <ComboBox Margin="2,1,2,1"
                       Name="MyComboBoxTest" 
