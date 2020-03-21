@@ -70,7 +70,8 @@
                           ToolTip="Check for clipboard capture" Margin="750,0,0,0">
                 </CheckBox>
             </Grid>
-            <ComboBox Margin="2,1,2,1"
+            <Grid>
+                <ComboBox Margin="2,1,2,1"
                       Name="MyComboBoxTest" 
                       IsEditable="False" 
                       IsReadOnly="True"
@@ -83,7 +84,12 @@
                       SelectedItem="{Binding Model.SelectedQuality}" 
                       MaxDropDownHeight="800"
                       IsSynchronizedWithCurrentItem="True">
-            </ComboBox>
+                </ComboBox>
+                <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
+                          BorderBrush="#FFBCBCBC"
+                          ToolTip="Check for automatic download" Margin="750,0,0,0">
+                </CheckBox>
+            </Grid>
             <Button x:Name="button" 
                     Margin="2,1,2,1" 
                     Content="{Binding Model.ButtonContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"

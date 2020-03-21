@@ -42,6 +42,7 @@ namespace Model
         private string _helpButtonToolTip;
         private string _downloadLink;
         private bool _isComboBoxEnabled;
+        private bool _isAutomaticDownloadSelected;
         private bool _downloadLinkEnabled;
         private double _downloadFileSize;
         private int _audioVideoDownloadCounter;
@@ -148,6 +149,16 @@ namespace Model
             }
         }
 
+        public bool IsAutomaticDownloadSelected
+        {
+            get { return _isAutomaticDownloadSelected; }
+            set
+            {
+                _isAutomaticDownloadSelected = value;
+                OnPropertyChanged(nameof(IsAutomaticDownloadSelected));
+            }
+        }
+
         public string SelectedQuality
         {
             get { return _selectedQuality; }
@@ -156,7 +167,10 @@ namespace Model
                 _selectedQuality = value;
                 if (value != null)
                 {
-                    DownloadButtonClick();
+                    if (IsAutomaticDownloadSelected)
+                    {
+                        DownloadButtonClick();
+                    }
                     OnPropertyChanged(nameof(SelectedQuality));
                 }
             }
