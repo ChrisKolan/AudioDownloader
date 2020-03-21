@@ -316,7 +316,7 @@ namespace Model
         private void ThreadPoolWorker()
         {
             _isDownloadRunning = true;
-            string selectedQuality = GetQuality();
+            string selectedQuality = Helpers.GetQuality(SelectedQuality);
             DisableInteractions();
             Thread.CurrentThread.IsBackground = true;
             _currentThreadPoolWorker = Thread.CurrentThread;
@@ -537,7 +537,7 @@ namespace Model
 
             foreach (var item in availableAudioFormats)
             {
-                if (FindFormat(item).Contains("opus"))
+                if (Helpers.FindFormat(item).Contains("opus"))
                 {
                     if (addOpus)
                     {
@@ -546,7 +546,7 @@ namespace Model
                         addOpus = false;
                     }
                 }
-                if (FindFormat(item).Contains("vorbis"))
+                if (Helpers.FindFormat(item).Contains("vorbis"))
                 {
                     if (addVorbis)
                     {
@@ -554,7 +554,7 @@ namespace Model
                         addVorbis = false;
                     }
                 }
-                if (FindFormat(item).Contains("m4a"))
+                if (Helpers.FindFormat(item).Contains("m4a"))
                 {
                     if (addM4a)
                     {
@@ -774,63 +774,6 @@ namespace Model
         private static double ConvertBytesToMegabytes(long bytes)
         {
             return (bytes / 1024f) / 1024f;
-        }
-
-        private string GetQuality()
-        {
-            if (SelectedQuality.Contains("raw webm"))
-                return "raw webm";
-            else if (SelectedQuality.Contains("raw opus"))
-                return "raw opus";
-            else if (SelectedQuality.Contains("raw aac"))
-                return "raw aac";
-            else if (SelectedQuality.Contains("raw vorbis"))
-                return "raw vorbis";
-            else if (SelectedQuality.Contains("superb"))
-                return "flac";
-            else if (SelectedQuality.Contains("best"))
-                return "mp3 0";
-            else if (SelectedQuality.Contains("better"))
-                return "mp3 1";
-            else if (SelectedQuality.Contains("optimal"))
-                return "mp3 2";
-            else if (SelectedQuality.Contains("very good"))
-                return "mp3 3";
-            else if (SelectedQuality.Contains("transparent"))
-                return "mp3 4";
-            else if (SelectedQuality.Contains("good"))
-                return "mp3 5";
-            else if (SelectedQuality.Contains("acceptable"))
-                return "mp3 6";
-            else if (SelectedQuality.Contains("audio book"))
-                return "mp3 7";
-            else if (SelectedQuality.Contains("worse"))
-                return "mp3 8";
-            else if (SelectedQuality.Contains("worst"))
-                return "mp3 9";
-            else if (SelectedQuality.Contains("video"))
-                return "video";
-            else if (SelectedQuality.Split('\t').First().All(char.IsDigit))
-            {
-                var format = FindFormat(SelectedQuality);
-                var formatCode = SelectedQuality.Split('\t').First();
-                return formatCode + " " + format;
-            }
-            else
-                return "mp3 4";
-        }
-
-        private string FindFormat(string selectedQuality)
-        {
-            if (selectedQuality.Contains("m4a"))
-                return "m4a";
-            else
-            {
-                if (selectedQuality.Contains("opus"))
-                    return "opus";
-                else
-                    return "vorbis";
-            }
         }
 
         private void DownloadLinkDisabler(Model model)
