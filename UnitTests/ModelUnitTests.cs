@@ -156,7 +156,7 @@ namespace UnitTests
             while (!_model.IsComboBoxEnabled)
             {
                 // give some time to download a couple of files
-                Thread.Sleep(10000);
+                Thread.Sleep(7000);
                 // simulating cancel click
                 _model.DownloadButtonClick();
                 Thread.Sleep(10000);
