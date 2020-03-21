@@ -154,7 +154,11 @@ namespace Model
             set
             {
                 _selectedQuality = value;
-                OnPropertyChanged(nameof(SelectedQuality));
+                if (value != null)
+                {
+                    DownloadButtonClick();
+                    OnPropertyChanged(nameof(SelectedQuality));
+                }
             }
         }
 
