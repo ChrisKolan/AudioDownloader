@@ -280,7 +280,6 @@ namespace Model
                 StandardOutput = "Empty link";
                 return;
             }
-
             if (!_isDownloadRunning)
             {
                 ButtonContent = "Cancel";
