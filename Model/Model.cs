@@ -66,7 +66,7 @@ namespace Model
             PeriodicTimerProcessing = new Timer(_ => ProcessingTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerDownload = new Timer(_ => DownloadTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerPinger = new Timer(_ => TimerPinger(), null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(5000));
-            PeriodicTimerClipper = new Timer(_ => TimerClipper(), null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(5000));
+            PeriodicTimerClipper = new Timer(_ => TimerClipper(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             QualityDefault = Helpers.QualityDefault();
             Quality = new ObservableCollection<string>();
             Quality.Add("After pasting YouTube link, you can select the audio quality from this list");
@@ -721,22 +721,17 @@ namespace Model
         {
             if (IsClipboardCaptureSelected)
             {
-                Thread thread = new Thread(ThreadClipper);
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
-                thread.Join();
-            }
-        }
-
-        private void ThreadClipper()
-        {
-            if (DownloadLink == null)
-            {
-                DownloadLink = Clipboard.GetText();
-            }
-            if (!DownloadLink.Contains(Clipboard.GetText()))
-            {
-                DownloadLink = Clipboard.GetText();
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (DownloadLink == null)
+                    {
+                        DownloadLink = Clipboard.GetText();
+                    }
+                    if (!DownloadLink.Contains(Clipboard.GetText()))
+                    {
+                        DownloadLink = Clipboard.GetText();
+                    }
+                }, System.Windows.Threading.DispatcherPriority.Send);
             }
         }
 
