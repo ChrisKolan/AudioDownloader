@@ -49,5 +49,11 @@ namespace UnitTests
         {
             return new FileInfo(path).Length;
         }
+
+        public static void Erase(DirectoryInfo directory)
+        {
+            foreach (FileInfo file in directory.GetFiles()) file.Delete();
+            foreach (DirectoryInfo subDirectory in directory.GetDirectories()) subDirectory.Delete(true);
+        }
     }
 }

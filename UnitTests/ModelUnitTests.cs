@@ -17,26 +17,28 @@ namespace UnitTests
 
         public ModelUnitTests()
         {
+            DirectoryInfo rootPath = new DirectoryInfo(_audioPath);
+            Erase(rootPath);
             _model = new Model.Model();
             // Give some time to update 
             Thread.Sleep(30000);
         }
         [TestMethod]
-        public void EmptyLink()
+        public void A001EmptyLink()
         {
             _model.DownloadLink = "";
             _model.DownloadButtonClick();
             Assert.IsTrue(_model.StandardOutput == "Empty link");
         }
         [TestMethod]
-        public void WhiteSpaceLink()
+        public void A002WhiteSpaceLink()
         {
             _model.DownloadLink = " ";
             _model.DownloadButtonClick();
             Assert.IsTrue(_model.StandardOutput == "Empty link");
         }
         [TestMethod]
-        public void YouTubeLinkNotValid()
+        public void A003YouTubeLinkNotValid()
         {
             _model.DownloadLink = "Not valid link";
             _model.DownloadButtonClick();
@@ -45,7 +47,7 @@ namespace UnitTests
             Assert.IsTrue(_model.StandardOutput == "Error. No file downloaded. Updates are needed.");
         }
         [TestMethod]
-        public void DownloadInDifferentQuality()
+        public void A004DownloadInDifferentQuality()
         {
             var qualities = new List<string> { "raw webm", "raw opus", "raw aac", "superb", "best", "better", "optimal", "very good", 
                                                "transparent", "good", "acceptable", "audio book", "worse", "worst" };
@@ -71,7 +73,7 @@ namespace UnitTests
             }
         }
         [TestMethod]
-        public void DownloadRawFormats()
+        public void A005DownloadRawFormats()
         {
             var qualities = new List<string> { "251\twebm", "140\tm4a", "250\twebm", "249\twebm" };
             var expectedFileSizes = new List<long> { 3663749, 3083046, 3560180, 3454030 };
@@ -96,7 +98,7 @@ namespace UnitTests
             }
         }
         [TestMethod]
-        public void DownloadAudioAndVideo()
+        public void A006DownloadAudioAndVideo()
         {
             var qualities = new List<string> { "Audio and video" };
             var expectedFileSizes = new List<long> { 70202974 };
@@ -121,7 +123,7 @@ namespace UnitTests
             }
         }
         [TestMethod]
-        public void DownloadPlayListOne()
+        public void A007DownloadPlayListOne()
         {
             _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
             _model.SelectedQuality = "raw aac";
@@ -147,27 +149,7 @@ namespace UnitTests
             DeleteFiles(fileNames);
         }
         [TestMethod]
-        public void DownloadPlayListCancel()
-        {
-            _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
-            _model.SelectedQuality = "raw aac";
-            _model.DownloadButtonClick();
-            Thread.Sleep(1000);
-            while (!_model.IsComboBoxEnabled)
-            {
-                // give some time to download a couple of files
-                Thread.Sleep(7000);
-                // simulating cancel click
-                _model.DownloadButtonClick();
-                Thread.Sleep(10000);
-            }
-            var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
-            Assert.IsTrue(numberOfFiles >= 3 && numberOfFiles <= 7, $"Wrong number of files. Expected number of files between 3 and 7. Actual number of files: {numberOfFiles}");
-            var fileNames = FileNamesAndPath(_audioPath);
-            DeleteFiles(fileNames);
-        }
-        [TestMethod]
-        public void DownloadPlayListTwo()
+        public void A008DownloadPlayListTwo()
         {
             _model.DownloadLink = "https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=1";
             _model.SelectedQuality = "raw aac";
@@ -191,6 +173,24 @@ namespace UnitTests
                 Assert.IsTrue((expetedFileSize - allowedSizeDifference <= actualFileSize) && (actualFileSize <= expetedFileSize + allowedSizeDifference), $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
             DeleteFiles(fileNames);
+        }
+        [TestMethod]
+        public void A009DownloadPlayListCancel()
+        {
+            _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
+            _model.SelectedQuality = "raw aac";
+            _model.DownloadButtonClick();
+            Thread.Sleep(1000);
+            while (!_model.IsComboBoxEnabled)
+            {
+                // give some time to download a couple of files
+                Thread.Sleep(7000);
+                // simulating cancel click
+                _model.DownloadButtonClick();
+                Thread.Sleep(10000);
+            }
+            var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
+            Assert.IsTrue(numberOfFiles >= 3 && numberOfFiles <= 7, $"Wrong number of files. Expected number of files between 3 and 7. Actual number of files: {numberOfFiles}");
         }
     }
 }
