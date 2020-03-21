@@ -13,6 +13,7 @@ namespace UnitTests
         private Model.Model _model;
         private static readonly string _pathDll = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string _audioPath = _pathDll + @"\audio\";
+        private static readonly string _audioAndVideoPath = _pathDll + @"\audio\video\";
 
         public ModelUnitTests()
         {
@@ -87,6 +88,31 @@ namespace UnitTests
                 var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
                 Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
                 var fileName = FileNamesAndPath(_audioPath);
+                var actualFileSize = FileSize(fileName[0]);
+                var expetedFileSize = expectedFileSizes[i];
+                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");
+                Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
+                DeleteFiles(fileName);
+            }
+        }
+        [TestMethod]
+        public void DownloadAudioAndVideo()
+        {
+            var qualities = new List<string> { "Audio and video" };
+            var expectedFileSizes = new List<long> { 70202974 };
+            _model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
+            for (int i = 0; i < qualities.Count; i++)
+            {
+                _model.SelectedQuality = qualities[i];
+                _model.DownloadButtonClick();
+                Thread.Sleep(1000);
+                while (!_model.IsComboBoxEnabled)
+                {
+                    Thread.Sleep(100);
+                }
+                var numberOfFiles = NumberOfFilesInDirectory(_audioAndVideoPath);
+                Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
+                var fileName = FileNamesAndPath(_audioAndVideoPath);
                 var actualFileSize = FileSize(fileName[0]);
                 var expetedFileSize = expectedFileSizes[i];
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");

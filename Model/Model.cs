@@ -411,7 +411,7 @@ namespace Model
             {
                 var processingTimeTimer = (_processingTime * _timerResolution) / 1000.0;
                 var downloadTimeTimer = (_downloadTime * _timerResolution) / 1000.0;
-                (string fileName, double fileSize) = GetFileNameAndSize();
+                (string fileName, double fileSize) = GetFileNameAndSize(selectedQuality);
                 if (_downloadedFileSize.Contains("~"))
                 {
                     _downloadedFileSize = _downloadedFileSize.Substring(1);
@@ -744,15 +744,15 @@ namespace Model
             WebhookTrigger.SendRequestAsync(values, eventName, secretKey);
         }
 
-        private (string fileName, double fileSize) GetFileNameAndSize()
+        private (string fileName, double fileSize) GetFileNameAndSize(string selectedQuality)
         {
-            string audioDirectory = "audio\\";
-            var directory = new DirectoryInfo(audioDirectory);
+            string path = selectedQuality.Contains("video") ? "audio\\video\\" : "audio\\";
+            var directory = new DirectoryInfo(path);
             var myFile = directory.GetFiles()
                 .OrderByDescending(f => f.LastWriteTime)
                 .FirstOrDefault();
 
-            var length = new FileInfo(audioDirectory + myFile.ToString()).Length;
+            var length = new FileInfo(path + myFile.ToString()).Length;
 
             return (fileName: myFile.ToString(), fileSize: ConvertBytesToMegabytes(length));
         }
