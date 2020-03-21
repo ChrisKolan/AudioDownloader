@@ -43,6 +43,8 @@ namespace Model
         private string _downloadLink;
         private bool _isComboBoxEnabled;
         private bool _downloadLinkEnabled;
+        private double _downloadFileSize;
+        private int _audioVideoDownloadCounter;
         private TextDecorationCollection _downloadLinkTextDecorations;
         private int _processingTime = 1;
         private int _downloadTime = 1;
@@ -91,6 +93,26 @@ namespace Model
                 _downloadLink = value;
                 OnPropertyChanged(nameof(DownloadLink));
                 ValidateAsync();
+            }
+        }
+
+        public string DownloadedFileSize
+        {
+            get { return _downloadedFileSize; }
+            set 
+            { 
+                if( _downloadedFileSize != value)
+                {
+                    if (_audioVideoDownloadCounter < 2)
+                    {
+                        if (double.TryParse(value.Remove(value.Length - 3), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedSize))
+                        {
+                            _downloadFileSize += downloadedSize;
+                        }
+                        _audioVideoDownloadCounter++;
+                    }
+                    _downloadedFileSize = _downloadFileSize.ToString() + "MiB";
+                }
             }
         }
 
@@ -336,7 +358,7 @@ namespace Model
                     positionTo = StandardOutput.LastIndexOf(" at");
 
                     if ((positionTo - positionFrom) > 0)
-                        _downloadedFileSize = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
+                        DownloadedFileSize = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
 
                     positionFrom = StandardOutput.IndexOf("] ") + "] ".Length;
                     positionTo = StandardOutput.LastIndexOf("%");
@@ -652,6 +674,8 @@ namespace Model
             IsInputEnabled = false;
             IsComboBoxEnabled = false;
             ProgressBarPercent = 0;
+            _downloadFileSize = 0.0;
+            _audioVideoDownloadCounter = 0;
             TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
         }
