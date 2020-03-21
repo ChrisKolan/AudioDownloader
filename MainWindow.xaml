@@ -66,6 +66,7 @@
                          </TextBox.InputBindings>
                 </TextBox>
                 <CheckBox IsChecked="{Binding Model.IsClipboardCaptureSelected, UpdateSourceTrigger=PropertyChanged}"
+                          BorderBrush="#FFBCBCBC"
                           ToolTip="Check for clipboard capture" Margin="750,0,0,0">
                 </CheckBox>
             </Grid>
