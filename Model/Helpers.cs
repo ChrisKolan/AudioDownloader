@@ -18,44 +18,44 @@ namespace Model
             if (selectedQuality.Contains("mp3"))
             {
                 var quality = GetQuality(selectedQuality);
-                command = youTubeBeginCommand + "--extract-audio --audio-format mp3" + GenerateConstantCommand(date, escapedDownloadLink, quality);
+                command = youTubeBeginCommand + "--extract-audio --audio-format mp3" + GenerateConstantCommand(date, escapedDownloadLink, quality, null);
                 finishedMessage = "Download finished. Now transcoding to mp3. This may take a while. Processing.";
             }
             else if (selectedQuality.Contains("flac"))
             {
-                command = youTubeBeginCommand + "--extract-audio --audio-format flac" + GenerateConstantCommand(date, escapedDownloadLink, null);
+                command = youTubeBeginCommand + "--extract-audio --audio-format flac" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
                 finishedMessage = "Download finished. Now transcoding to FLAC. This may take a while. Processing.";
             }
             else if (selectedQuality.Contains("raw webm"))
             {
-                command = youTubeBeginCommand + "--format bestaudio[ext=webm]" + GenerateConstantCommand(date, escapedDownloadLink, null);
+                command = youTubeBeginCommand + "--format bestaudio[ext=webm]" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
                 finishedMessage = "Download finished";
             }
             else if (selectedQuality.Contains("raw opus"))
             {
-                command = youTubeBeginCommand + "--format bestaudio[acodec=opus] --extract-audio" + GenerateConstantCommand(date, escapedDownloadLink, null);
+                command = youTubeBeginCommand + "--format bestaudio[acodec=opus] --extract-audio" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
                 finishedMessage = "Download finished";
             }
             else if (selectedQuality.Contains("raw aac"))
             {
-                command = youTubeBeginCommand + "--format bestaudio[ext=m4a]" + GenerateConstantCommand(date, escapedDownloadLink, null);
+                command = youTubeBeginCommand + "--format bestaudio[ext=m4a]" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
                 finishedMessage = "Download finished";
             }
             else if (selectedQuality.Split(' ').First().All(char.IsDigit))
             {
                 var formatCode = selectedQuality.Split(' ').First();
                 var format = selectedQuality.Split(' ').Last();
-                command = youTubeBeginCommand + "--format " + formatCode + " --extract-audio  --audio-format " + format + GenerateConstantCommand(date, escapedDownloadLink, null);
+                command = youTubeBeginCommand + "--format " + formatCode + " --extract-audio  --audio-format " + format + GenerateConstantCommand(date, escapedDownloadLink, null, null);
                 finishedMessage = "Download finished";
             }
             else if (selectedQuality.Contains("video"))
             {
-                command = youTubeBeginCommand + GenerateConstantCommand(date, escapedDownloadLink, null);
+                command = youTubeBeginCommand + GenerateConstantCommand(date, escapedDownloadLink, null, selectedQuality);
                 finishedMessage = "Download finished";
             }
             else
             {
-                command = youTubeBeginCommand + "--format bestaudio[acodec=vorbis] --extract-audio" + GenerateConstantCommand(date, escapedDownloadLink, null);
+                command = youTubeBeginCommand + "--format bestaudio[acodec=vorbis] --extract-audio" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
                 finishedMessage = "Download finished";
             }
 
@@ -105,13 +105,19 @@ namespace Model
             return qualityArray[1];
         }
 
-        private static string GenerateConstantCommand(string date, string escapedDownloadLink, string quality)
+        private static string GenerateConstantCommand(string date, string escapedDownloadLink, string quality, string selectedQuatiy)
         {
+            var metadata = " --ignore-errors --no-mtime --add-metadata "; 
+            var title = "-%(playlist_index)s-%(title)s-%(id)s.%(ext)s ";
+            if (selectedQuatiy != null)
+            {
+                return metadata + "--restrict-filenames -o audio\\video\\" + date + title + escapedDownloadLink;
+            }
             if (quality == null)
             {
-                return " --ignore-errors --no-mtime --add-metadata --restrict-filenames -o audio\\" + date + "-%(playlist_index)s-%(title)s-%(id)s.%(ext)s " + escapedDownloadLink;
+                return metadata + "--restrict-filenames -o audio\\" + date + title + escapedDownloadLink;
             }
-            return " --ignore-errors --no-mtime --add-metadata --audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + "-%(playlist_index)s-%(title)s-%(id)s.%(ext)s " + escapedDownloadLink;
+            return metadata + "--audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + title + escapedDownloadLink;
         }
     }
 }

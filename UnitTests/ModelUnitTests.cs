@@ -102,6 +102,7 @@ namespace UnitTests
             var expectedFileSizes = new List<long> { 5083565, 4034396, 3402184, 3631459, 2875099, 3873389, 3458799, 5609895, 4151596 };
             _model.DownloadButtonClick();
             Thread.Sleep(1000);
+            var allowedSizeDifference = 100;
             while (!_model.IsComboBoxEnabled)
             {
                 Thread.Sleep(100);
@@ -109,12 +110,13 @@ namespace UnitTests
             var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
             Assert.IsTrue(numberOfFiles == expectedFileSizes.Count, $"Wrong number of files. Expected number of files: {expectedFileSizes.Count}, actual number of files: {numberOfFiles}");
             var fileNames = FileNamesAndPath(_audioPath);
+            Console.WriteLine($"Allowed size difference: {allowedSizeDifference}.");
             for (int i = 0; i < numberOfFiles; i++)
             {
                 var actualFileSize = FileSize(fileNames[i]);
                 var expetedFileSize = expectedFileSizes[i];
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileNames[i]}.");
-                Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
+                Assert.IsTrue((expetedFileSize - allowedSizeDifference <= actualFileSize) && (actualFileSize <= expetedFileSize + allowedSizeDifference), $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
             DeleteFiles(fileNames);
         }
@@ -143,9 +145,10 @@ namespace UnitTests
         {
             _model.DownloadLink = "https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=1";
             _model.SelectedQuality = "raw aac";
-            var expectedFileSizes = new List<long> { 2915430, 6544910, 4142954, 7978914, 5816029, 3497213, 3527081, 3649456, 4245393, 2883479, 3484737, 2475309, 3455726, 3840186 };
+            var expectedFileSizes = new List<long> { 2915430, 6544910, 4142954, 7978914, 5816029, 3563543, 3527081, 3649456, 4245393, 2883479, 3484737, 2475309, 3455726, 3840186 };
             _model.DownloadButtonClick();
             Thread.Sleep(1000);
+            var allowedSizeDifference = 100;
             while (!_model.IsComboBoxEnabled)
             {
                 Thread.Sleep(100);
@@ -153,12 +156,13 @@ namespace UnitTests
             var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
             Assert.IsTrue(numberOfFiles == expectedFileSizes.Count, $"Wrong number of files. Expected number of files: {expectedFileSizes.Count}, actual number of files: {numberOfFiles}");
             var fileNames = FileNamesAndPath(_audioPath);
+            Console.WriteLine($"Allowed size difference: {allowedSizeDifference}.");
             for (int i = 0; i < numberOfFiles; i++)
             {
                 var actualFileSize = FileSize(fileNames[i]);
                 var expetedFileSize = expectedFileSizes[i];
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileNames[i]}.");
-                Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
+                Assert.IsTrue((expetedFileSize - allowedSizeDifference <= actualFileSize) && (actualFileSize <= expetedFileSize + allowedSizeDifference), $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
             DeleteFiles(fileNames);
         }
