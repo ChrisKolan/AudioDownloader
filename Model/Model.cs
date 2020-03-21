@@ -324,154 +324,132 @@ namespace Model
             int positionTo;
             var date = DateTime.Now.ToString("yyMMdd");
 
-            if (DownloadLink.Contains("CLI"))
+            StandardOutput = "Starting download...";
+            string command;
+            (command, _finishedMessage) = Helpers.CreateCommandAndMessage(selectedQuality, date, DownloadLink);
+
+            var startinfo = new ProcessStartInfo("CMD.exe", command)
             {
-                StandardOutput = "Advanced mode. Use on your own risk. Starting download in a new command window. Close the command window to start new download.";
-                var advancedUserCommand = DownloadLink.Remove(0, 4);
-                /// "/K" keeps command window open
-                var command = "/K bin\\youtube-dl.exe -o cli\\" + date + "-%(title)s-%(id)s.%(ext)s " + advancedUserCommand;
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
 
-                try
-                {
-                    Process process = Process.Start("CMD.exe", command);
-                    process.WaitForExit();
-                }
-                catch
-                {
-                    StandardOutput = "Exception. Processed command: " + command;
-                }
+            var process = new Process { StartInfo = startinfo };
+            process.Start();
 
-                EnableInteractions();
-            }
-            else
+            var reader = process.StandardOutput;
+            while (!reader.EndOfStream)
             {
-                StandardOutput = "Starting download...";
-                string command;
-                (command, _finishedMessage) = Helpers.CreateCommandAndMessage(selectedQuality, date, DownloadLink);
-
-                var startinfo = new ProcessStartInfo("CMD.exe", command)
+                StandardOutput = reader.ReadLine();
+                if (StandardOutput.Contains("[download]") && StandardOutput.Contains("ETA"))
                 {
-                    CreateNoWindow = true,
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                };
+                    _measureDownloadTime = true;
+                    positionFrom = StandardOutput.IndexOf("of ") + "of ".Length;
+                    positionTo = StandardOutput.LastIndexOf(" at");
 
-                var process = new Process { StartInfo = startinfo };
-                process.Start();
+                    if ((positionTo - positionFrom) > 0)
+                        _downloadedFileSize = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
 
-                var reader = process.StandardOutput;
-                while (!reader.EndOfStream)
-                {
-                    StandardOutput = reader.ReadLine();
-                    if (StandardOutput.Contains("[download]") && StandardOutput.Contains("ETA"))
+                    positionFrom = StandardOutput.IndexOf("] ") + "] ".Length;
+                    positionTo = StandardOutput.LastIndexOf("%");
+
+                    if ((positionTo - positionFrom) > 0)
                     {
-                        _measureDownloadTime = true;
-                        positionFrom = StandardOutput.IndexOf("of ") + "of ".Length;
-                        positionTo = StandardOutput.LastIndexOf(" at");
-
-                        if ((positionTo - positionFrom) > 0)
-                            _downloadedFileSize = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
-
-                        positionFrom = StandardOutput.IndexOf("] ") + "] ".Length;
-                        positionTo = StandardOutput.LastIndexOf("%");
-
-                        if ((positionTo - positionFrom) > 0)
+                        var percent = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
+                        if (double.TryParse(percent.Trim(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedPercent))
                         {
-                            var percent = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
-                            if (double.TryParse(percent.Trim(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedPercent))
-                            {
-                                IsIndeterminate = false;
-                                TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
-                                ProgressBarPercent = Convert.ToInt32(Math.Round(downloadedPercent));
-                                TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
-                            }
-                            else
-                            {
-                                IsIndeterminate = true;
-                                TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
-                            }
+                            IsIndeterminate = false;
+                            TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
+                            ProgressBarPercent = Convert.ToInt32(Math.Round(downloadedPercent));
+                            TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
+                        }
+                        else
+                        {
+                            IsIndeterminate = true;
+                            TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
                         }
                     }
-                    if (StandardOutput.Contains("has already been downloaded"))
-                    {
-                        _downloadedFileSize = "File has already been downloaded.";
-                        _measureDownloadTime = false;
-                    }
-                    if (StandardOutput.Contains("[ffmpeg]"))
-                    {
-                        StandardOutput = _finishedMessage;
-                        _measureProcessingTime = true;
-                        _measureDownloadTime = false;
-                    }
                 }
-
-                process.WaitForExit();
-                _measureProcessingTime = false;
-
-                if (_downloadedFileSize == null)
+                if (StandardOutput.Contains("has already been downloaded"))
                 {
-                    TimersOutput = string.Empty;
-                    TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
-                    TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
-                    Thread.Sleep(1000);
-                    if (_isOnline)
-                    {
-                        StandardOutput = "Error. No file downloaded. Updates are needed.";
-                    }
-                    else
-                    {
-                        StandardOutput = "Error. No internet connection. No file downloaded.";
-                    }
-                    ButtonContent = "Download";
-                    EnableInteractions();
-                    _isDownloadRunning = false;
-                    process.Dispose();
-                    return;
+                    _downloadedFileSize = "File has already been downloaded.";
+                    _measureDownloadTime = false;
                 }
-                if (_downloadedFileSize == "File has already been downloaded.")
+                if (StandardOutput.Contains("[ffmpeg]"))
                 {
-                    TimersOutput = string.Empty;
-                    TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
-                    TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
-                    Thread.Sleep(1000);
-                    StandardOutput = "Ready. " + _downloadedFileSize;
-                    ButtonContent = "Download";
-                    EnableInteractions();
-                    _isDownloadRunning = false;
-                    process.Dispose();
-                    return;
+                    StandardOutput = _finishedMessage;
+                    _measureProcessingTime = true;
+                    _measureDownloadTime = false;
+                }
+            }
+
+            process.WaitForExit();
+            _measureProcessingTime = false;
+
+            if (_downloadedFileSize == null)
+            {
+                TimersOutput = string.Empty;
+                TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
+                TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
+                Thread.Sleep(1000);
+                if (_isOnline)
+                {
+                    StandardOutput = "Error. No file downloaded. Updates are needed.";
                 }
                 else
                 {
-                    var processingTimeTimer = (_processingTime * _timerResolution) / 1000.0;
-                    var downloadTimeTimer = (_downloadTime * _timerResolution) / 1000.0;
-                    (string fileName, double fileSize) = GetFileNameAndSize();
-                    if (_downloadedFileSize.Contains("~"))
-                    {
-                        _downloadedFileSize = _downloadedFileSize.Substring(1);
-                    }
-                    TimersOutput = string.Empty;
-                    StandardOutput = "Done. Processing time: " + processingTimeTimer.ToString("N0") + "s. " +
-                                     "Download time: " + downloadTimeTimer.ToString("N0") + "s. " +
-                                     "Downloaded file size: " + _downloadedFileSize + ". " +
-                                     "Transcoded file size: " + fileSize.ToString("F") + "MiB. ";
-
-                    if (double.TryParse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedFileSize))
-                    {
-                        var ratio = downloadedFileSize / fileSize;
-                        StandardOutput += "Ratio: " + ratio.ToString("F") + ".";
-                    }
-
-                    SendData(fileName, StandardOutput);
-                    _downloadedFileSize = null;
-                    _processingTime = 1;
-                    _downloadTime = 1;
-                    ButtonContent = "Download";
-                    EnableInteractions();
-                    _isDownloadRunning = false;
-                    process.Dispose();
+                    StandardOutput = "Error. No internet connection. No file downloaded.";
                 }
+                ButtonContent = "Download";
+                EnableInteractions();
+                _isDownloadRunning = false;
+                process.Dispose();
+                return;
+            }
+            if (_downloadedFileSize == "File has already been downloaded.")
+            {
+                TimersOutput = string.Empty;
+                TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
+                TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
+                Thread.Sleep(1000);
+                StandardOutput = "Ready. " + _downloadedFileSize;
+                ButtonContent = "Download";
+                EnableInteractions();
+                _isDownloadRunning = false;
+                process.Dispose();
+                return;
+            }
+            else
+            {
+                var processingTimeTimer = (_processingTime * _timerResolution) / 1000.0;
+                var downloadTimeTimer = (_downloadTime * _timerResolution) / 1000.0;
+                (string fileName, double fileSize) = GetFileNameAndSize();
+                if (_downloadedFileSize.Contains("~"))
+                {
+                    _downloadedFileSize = _downloadedFileSize.Substring(1);
+                }
+                TimersOutput = string.Empty;
+                StandardOutput = "Done. Processing time: " + processingTimeTimer.ToString("N0") + "s. " +
+                                 "Download time: " + downloadTimeTimer.ToString("N0") + "s. " +
+                                 "Downloaded file size: " + _downloadedFileSize + ". " +
+                                 "Transcoded file size: " + fileSize.ToString("F") + "MiB. ";
+
+                if (double.TryParse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedFileSize))
+                {
+                    var ratio = downloadedFileSize / fileSize;
+                    StandardOutput += "Ratio: " + ratio.ToString("F") + ".";
+                }
+
+                SendData(fileName, StandardOutput);
+                _downloadedFileSize = null;
+                _processingTime = 1;
+                _downloadTime = 1;
+                ButtonContent = "Download";
+                EnableInteractions();
+                _isDownloadRunning = false;
+                process.Dispose();
             }
         }
 
@@ -881,13 +859,6 @@ namespace Model
         {
             var model = (Model)context.ObjectInstance;
 
-            if (model.DownloadLink.Contains("CLI"))
-            {
-                model.DownloadLinkDisabler(model);
-                model.IsButtonEnabled = true;
-                model.IsComboBoxEnabled = false;
-                return ValidationResult.Success;
-            }
             if (!model.DownloadLink.Contains("https://www.youtube.com/"))
             {
                 model.DownloadLinkDisabler(model);
