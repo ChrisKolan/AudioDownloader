@@ -54,7 +54,6 @@ namespace Model
         private bool _isDownloadRunning;
         private bool _isOnline;
         private SolidColorBrush _glowBrushColor;
-        private string _clipboardContent;
         #endregion
 
         #region Constructor
@@ -66,7 +65,7 @@ namespace Model
             PeriodicTimerProcessing = new Timer(_ => ProcessingTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerDownload = new Timer(_ => DownloadTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerPinger = new Timer(_ => TimerPinger(), null, TimeSpan.FromMilliseconds(5000), TimeSpan.FromMilliseconds(5000));
-            PeriodicTimerClipper = new Timer(_ => TimerClipper(), null, TimeSpan.FromMilliseconds(_timerResolution), TimeSpan.FromMilliseconds(5000));
+            PeriodicTimerClipper = new Timer(_ => TimerClipper(), null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(5000));
             QualityDefault = Helpers.QualityDefault();
             Quality = new ObservableCollection<string>();
             Quality.Add("After pasting YouTube link, you can select the audio quality from this list");
@@ -717,7 +716,14 @@ namespace Model
 
         private void ThreadClipper()
         {
-            _clipboardContent = Clipboard.GetText();
+            if (DownloadLink == null)
+            {
+                DownloadLink = Clipboard.GetText();
+            }
+            if (!DownloadLink.Contains(Clipboard.GetText()))
+            {
+                DownloadLink = Clipboard.GetText();
+            }
         }
 
         private void TimerPinger()
