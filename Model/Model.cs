@@ -43,6 +43,7 @@ namespace Model
         private string _downloadLink;
         private bool _isComboBoxEnabled;
         private bool _isAutomaticDownloadSelected;
+        private bool _isUsingLastQualitySelected;
         private bool _downloadLinkEnabled;
         private double _downloadFileSize;
         private int _audioVideoDownloadCounter;
@@ -57,6 +58,7 @@ namespace Model
         private SolidColorBrush _glowBrushColor;
         private bool _isClipboardCaptureSelected;
         private int _pingerCounter;
+        private int _lastUsedQualityIndex;
         #endregion
 
         #region Constructor
@@ -160,6 +162,16 @@ namespace Model
             }
         }
 
+        public bool IsUsingLastQualitySelected
+        {
+            get { return _isUsingLastQualitySelected; }
+            set
+            {
+                _isUsingLastQualitySelected = value;
+                OnPropertyChanged(nameof(IsUsingLastQualitySelected));
+            }
+        }
+
         public string SelectedQuality
         {
             get { return _selectedQuality; }
@@ -172,6 +184,7 @@ namespace Model
                     {
                         DownloadButtonClick();
                     }
+                    _lastUsedQualityIndex = Quality.IndexOf(SelectedQuality);
                     OnPropertyChanged(nameof(SelectedQuality));
                 }
             }
@@ -611,8 +624,18 @@ namespace Model
             Quality.Add("Audio and video \t\t Best quality");
 
             var optimalQualityIndex = Quality.ToList().FindIndex(x => x.Contains("m4a"));
-            if(optimalQualityIndex != -1)
-                SelectedQuality = Quality[optimalQualityIndex];
+            var defaultQualityCount = 19;
+            if (optimalQualityIndex != -1)
+            {
+                if (IsUsingLastQualitySelected && Quality.Count == defaultQualityCount)
+                {
+                    SelectedQuality = Quality[_lastUsedQualityIndex];
+                }
+                else
+                {
+                    SelectedQuality = Quality[optimalQualityIndex];
+                }
+            }
             else
             {
                 Quality.Clear();
@@ -624,7 +647,7 @@ namespace Model
                 }
                 else
                 {
-                    StandardOutput = "Error. No internet connection."; 
+                    StandardOutput = "Error. No internet connection.";
                 }
                 IsButtonEnabled = false;
                 return;

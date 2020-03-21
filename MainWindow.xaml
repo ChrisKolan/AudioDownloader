@@ -85,22 +85,29 @@
                       MaxDropDownHeight="800"
                       IsSynchronizedWithCurrentItem="True">
                 </ComboBox>
-                <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
+                <CheckBox IsChecked="{Binding Model.IsUsingLastQualitySelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for automatic download" Margin="750,0,0,0">
+                          ToolTip="Check for using last selected quality" Margin="750,0,0,0">
                 </CheckBox>
             </Grid>
-            <Button x:Name="button" 
+            <Grid>
+                <Button x:Name="button" 
                     Margin="2,1,2,1" 
                     Content="{Binding Model.ButtonContent, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                    Height="21"
+                    Height="26"
                     Background="#FFE5E5E5"
                     BorderBrush="#FFBCBCBC"
                     Command="{Binding DownloadButton}"
                     IsEnabled="{Binding Model.IsButtonEnabled, UpdateSourceTrigger=PropertyChanged}"
                     ToolTip="Press Download button to get the file" 
                     Controls:ButtonHelper.PreserveTextCase="True"
-                    Controls:ButtonHelper.CornerRadius="0" FontWeight="Normal" FontSize="12" Padding="0"/>
+                    Controls:ButtonHelper.CornerRadius="0" FontWeight="Normal" FontSize="12" Padding="0">
+                </Button>
+                <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
+                          BorderBrush="#FFBCBCBC"
+                          ToolTip="Check for automatic download" Margin="774,0,0,0">
+                </CheckBox>
+            </Grid>
         <Controls:MetroProgressBar Margin="2,1,2,1"
                                        Value="{Binding Model.ProgressBarPercent, UpdateSourceTrigger=PropertyChanged}"
                                        Height="4"
