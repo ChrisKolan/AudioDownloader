@@ -56,6 +56,7 @@ namespace Model
         private bool _isOnline;
         private SolidColorBrush _glowBrushColor;
         private bool _isClipboardCaptureSelected;
+        private int _pingerCounter;
         #endregion
 
         #region Constructor
@@ -774,15 +775,20 @@ namespace Model
                 {
                     GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
                 });
+                _pingerCounter = 0;
             }
             else
             {
-                _isOnline = false;
-                TimersOutput = "Offline";
-                Application.Current.Dispatcher.Invoke(() =>
+                if (_pingerCounter > 2)
                 {
-                    GlowBrushColor = new SolidColorBrush(Colors.Red);
-                });
+                    _isOnline = false;
+                    TimersOutput = "Offline";
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        GlowBrushColor = new SolidColorBrush(Colors.Red);
+                    });
+                }
+                _pingerCounter++;
             }
         }
 
