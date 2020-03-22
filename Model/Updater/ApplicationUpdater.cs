@@ -13,6 +13,7 @@ namespace Model
     {
         public static async Task UpdateAsync(ModelClass model)
         {
+            string localVersions = null;
             if (UpdatesNeeded(out ConfigurationErrorsException configurationErrorsException))
             {
                 model.StandardOutput = "Checking for updates";
@@ -28,7 +29,9 @@ namespace Model
                     model.DownloadLinkEnabled = true;
                     model.DownloadLinkTextDecorations = null;
                     model.StandardOutput = "Failed to update. Click here to download manually.";
-                    model.GetLocalVersions();
+                    localVersions = GetLocalVersions();
+                    model.LocalVersions = localVersions;
+                    model.HelpButtonToolTip = localVersions;
                     model.EnableInteractions();
                     model.ExceptionHandler = exception;
                     return;
@@ -36,7 +39,9 @@ namespace Model
             }
 
             model.StandardOutput = "Ready";
-            model.GetLocalVersions();
+            localVersions = GetLocalVersions();
+            model.LocalVersions = localVersions;
+            model.HelpButtonToolTip = localVersions;
             model.EnableInteractions();
         }
 
@@ -95,6 +100,32 @@ namespace Model
             configurationErrorsException = configurationErrorsExceptionInternal;
 
             return currentUpdateDateTime;
+        }
+
+        private static string GetLocalVersions()
+        {
+            var localVersionsNamesAndNumber = new List<string>
+            {
+                "Press button to get online help.",
+                "===========================",
+                "Software \t   |\tVersion",
+                "----------------------|-----------------------"
+            };
+            var localVersions = LocalVersionProvider.Versions();
+            var localVersionsSoftwareNames = new List<string>
+            {
+                "Audio Downloader  |\t",
+                "Youtube-dl\t   |\t"
+            };
+
+            for (int i = 0; i < localVersions.Count; i++)
+            {
+                localVersionsNamesAndNumber.Add(localVersionsSoftwareNames[i] + localVersions[i]);
+            }
+
+            localVersionsNamesAndNumber.Add("FFmpeg\t\t   |\t4.2.1");
+
+            return String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
         }
     }
 }
