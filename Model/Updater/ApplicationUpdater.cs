@@ -27,7 +27,6 @@ namespace Model
                 catch (Exception exception)
                 {
                     model.DownloadLinkEnabled = true;
-                    model.DownloadLinkTextDecorations = null;
                     model.StandardOutput = "Failed to update. Click here to download manually.";
                     localVersions = GetLocalVersions();
                     model.LocalVersions = localVersions;

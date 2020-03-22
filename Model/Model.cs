@@ -50,7 +50,6 @@ namespace Model
         private bool _downloadLinkEnabled;
         private double _downloadFileSize;
         private int _audioVideoDownloadCounter;
-        private TextDecorationCollection _downloadLinkTextDecorations;
         private int _processingTime = 1;
         private int _downloadTime = 1;
         private readonly int _timerResolution = 100;
@@ -131,16 +130,6 @@ namespace Model
             {
                 _downloadLinkEnabled = value;
                 OnPropertyChanged(nameof(DownloadLinkEnabled));
-            }
-        }
-
-        public TextDecorationCollection DownloadLinkTextDecorations
-        {
-            get { return _downloadLinkTextDecorations; }
-            set
-            {
-                _downloadLinkTextDecorations = value;
-                OnPropertyChanged(nameof(DownloadLinkTextDecorations));
             }
         }
 
@@ -878,7 +867,6 @@ namespace Model
         private void DownloadLinkDisabler(ModelClass model)
         {
             model.DownloadLinkEnabled = false;
-            model.DownloadLinkTextDecorations = null;
         }
 
         #endregion

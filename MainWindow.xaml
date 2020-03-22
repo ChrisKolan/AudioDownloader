@@ -127,7 +127,6 @@
                 <TextBlock Name="Status"
                            Text="{Binding Model.StandardOutput}"
                            IsEnabled="{Binding Model.DownloadLinkEnabled}"
-                           TextDecorations="{Binding Model.DownloadLinkTextDecorations}"
                            Margin="6,0,0,0" >
                            <!--<Hyperlink Command="{Binding DownloadButton}"
                                       TextDecorations="Underline"
