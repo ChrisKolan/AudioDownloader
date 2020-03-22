@@ -404,14 +404,14 @@ namespace Model
                 if (StandardOutput.Contains("[download]") && StandardOutput.Contains("ETA"))
                 {
                     _measureDownloadTime = true;
-                    positionFrom = StandardOutput.IndexOf("of ") + "of ".Length;
-                    positionTo = StandardOutput.LastIndexOf(" at");
+                    positionFrom = StandardOutput.IndexOf("of ", StringComparison.InvariantCultureIgnoreCase) + "of ".Length;
+                    positionTo = StandardOutput.LastIndexOf(" at", StringComparison.InvariantCultureIgnoreCase);
 
                     if ((positionTo - positionFrom) > 0)
                         DownloadedFileSize = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
 
-                    positionFrom = StandardOutput.IndexOf("] ") + "] ".Length;
-                    positionTo = StandardOutput.LastIndexOf("%");
+                    positionFrom = StandardOutput.IndexOf("] ", StringComparison.InvariantCultureIgnoreCase) + "] ".Length;
+                    positionTo = StandardOutput.LastIndexOf("%", StringComparison.InvariantCultureIgnoreCase);
 
                     if ((positionTo - positionFrom) > 0)
                     {
