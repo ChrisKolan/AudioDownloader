@@ -891,6 +891,7 @@ namespace Model
 
         public static ValidationResult ValidateDownloadLink(object _, ValidationContext context)
         {
+            Contract.Requires(context != null);
             var model = (ModelClass)context.ObjectInstance;
 
             if (!model.DownloadLink.Contains("https://www.youtube.com/"))
