@@ -95,7 +95,7 @@ namespace Model
         private static DateTime UpdateSettings(out ConfigurationErrorsException configurationErrorsException)
         {
             var currentUpdateDateTime = DateTime.Now;
-            var currentUpdateDateTimeString = currentUpdateDateTime.ToBinary().ToString();
+            var currentUpdateDateTimeString = currentUpdateDateTime.ToBinary().ToString(CultureInfo.InvariantCulture);
             TryAddOrUpdateApplicationSettings("UpdateDateTime", currentUpdateDateTimeString, out ConfigurationErrorsException configurationErrorsExceptionInternal);
             configurationErrorsException = configurationErrorsExceptionInternal;
 
