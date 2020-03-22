@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Model
     {
         public static (string command, string finishedMessage) CreateCommandAndMessage(string selectedQuality, string date, string downloadLink)
         {
+            Contract.Requires(selectedQuality != null);
             string command, finishedMessage;
             var youTubeBeginCommand = "/C bin\\youtube-dl.exe ";
             var escapedDownloadLink = "\"" + downloadLink + "\"";
@@ -116,6 +118,7 @@ namespace Model
             
         public static string GetQuality(string selectedQuality)
         {
+            Contract.Requires(selectedQuality != null);
             if (selectedQuality.Contains("raw webm"))
                 return "raw webm";
             else if (selectedQuality.Contains("raw opus"))
@@ -160,6 +163,7 @@ namespace Model
 
         public static string FindFormat(string selectedQuality)
         {
+            Contract.Requires(selectedQuality != null);
             if (selectedQuality.Contains("m4a"))
                 return "m4a";
             else
