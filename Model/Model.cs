@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -292,7 +293,8 @@ namespace Model
         {
             get { return _exception; }
             set 
-            { 
+            {
+                Contract.Requires(value != null);
                 _exception = value;
                 FolderButtonToolTip += Environment.NewLine + _exception.Message;
             }
