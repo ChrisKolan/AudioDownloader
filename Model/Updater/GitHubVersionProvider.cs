@@ -22,7 +22,7 @@ namespace Model
 
             foreach (var repository in repositoriesToCheck)
             {
-                var releases = await client.Repository.Release.GetLatest(repository.Key, repository.Value);
+                var releases = await client.Repository.Release.GetLatest(repository.Key, repository.Value).ConfigureAwait(false);
                 latestReleasesVersions.Add(releases.TagName);
             }
 

@@ -18,7 +18,7 @@ namespace Model
                 { "youtube-dl"}
             };
 
-            var remoteVersions = await Task.Run(() => GitHubVersionProvider.VersionsAsync());
+            var remoteVersions = await Task.Run(() => GitHubVersionProvider.VersionsAsync()).ConfigureAwait(false);
             var localVersions = LocalVersionProvider.Versions();
 
             for (int i = 0; i < localVersions.Count; i++)
