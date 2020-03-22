@@ -74,8 +74,8 @@ namespace Model
             PeriodicTimerDownload = new Timer(_ => DownloadTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerPinger = new Timer(_ => TimerPinger(), null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(1000));
             PeriodicTimerClipper = new Timer(_ => TimerClipper(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
-            QualityDefault = Helpers.QualityDefault();
-            Quality = Helpers.QualityObservableCollection();
+            QualityDefault = HelpersModel.QualityDefault();
+            Quality = HelpersModel.QualityObservableCollection();
             SelectedQuality = Quality[0];
             _ = ApplicationUpdater.UpdateAsync(this);
             GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
@@ -383,7 +383,7 @@ namespace Model
         private void ThreadPoolWorker()
         {
             _isDownloadRunning = true;
-            string selectedQuality = Helpers.GetQuality(SelectedQuality);
+            string selectedQuality = HelpersModel.GetQuality(SelectedQuality);
             DisableInteractions();
             Thread.CurrentThread.IsBackground = true;
             _currentThreadPoolWorker = Thread.CurrentThread;
@@ -393,7 +393,7 @@ namespace Model
 
             StandardOutput = "Starting download...";
             string command;
-            (command, _finishedMessage) = Helpers.CreateCommandAndMessage(selectedQuality, date, DownloadLink);
+            (command, _finishedMessage) = HelpersModel.CreateCommandAndMessage(selectedQuality, date, DownloadLink);
 
             var startinfo = new ProcessStartInfo("CMD.exe", command)
             {
@@ -604,7 +604,7 @@ namespace Model
 
             foreach (var item in availableAudioFormats)
             {
-                if (Helpers.FindFormat(item).Contains("opus"))
+                if (HelpersModel.FindFormat(item).Contains("opus"))
                 {
                     if (addOpus)
                     {
@@ -613,7 +613,7 @@ namespace Model
                         addOpus = false;
                     }
                 }
-                if (Helpers.FindFormat(item).Contains("vorbis"))
+                if (HelpersModel.FindFormat(item).Contains("vorbis"))
                 {
                     if (addVorbis)
                     {
@@ -621,7 +621,7 @@ namespace Model
                         addVorbis = false;
                     }
                 }
-                if (Helpers.FindFormat(item).Contains("m4a"))
+                if (HelpersModel.FindFormat(item).Contains("m4a"))
                 {
                     if (addM4a)
                     {
@@ -803,7 +803,7 @@ namespace Model
 
         private void TimerPinger()
         {
-            if (Helpers.Pinger(out PingException pingException))
+            if (HelpersModel.Pinger(out PingException pingException))
             {
                 _isOnline = true;
                 if (TimersOutput != null && TimersOutput.Contains("Offline"))

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public static class Helpers
+    public static class HelpersModel
     {
         public static (string command, string finishedMessage) CreateCommandAndMessage(string selectedQuality, string date, string downloadLink)
         {
