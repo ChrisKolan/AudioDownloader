@@ -576,12 +576,14 @@ namespace Model
             }
             if(!(state is SynchronizationContext uiContext))
             {
+                process.Dispose();
                 return;
             }
             uiContext.Send(UpdateUiFromTheWorkerThread, availableAudioFormats);
             HelpButtonToolTip = LocalVersions + String.Join(Environment.NewLine, availableFormats.ToArray());
             IsIndeterminate = false;
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
+            process.Dispose();
         }
 
         private void UpdateUiFromTheWorkerThread(object state)
