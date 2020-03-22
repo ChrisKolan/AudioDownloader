@@ -119,7 +119,7 @@ namespace Model
                         }
                         _audioVideoDownloadCounter++;
                     }
-                    _downloadedFileSize = _downloadFileSize.ToString() + "MiB";
+                    _downloadedFileSize = _downloadFileSize.ToString(CultureInfo.InvariantCulture) + "MiB";
                 }
             }
         }
@@ -380,7 +380,7 @@ namespace Model
             _currentThreadPoolWorker = Thread.CurrentThread;
             int positionFrom;
             int positionTo;
-            var date = DateTime.Now.ToString("yyMMdd");
+            var date = DateTime.Now.ToString("yyMMdd", CultureInfo.InvariantCulture);
 
             StandardOutput = "Starting download...";
             string command;
@@ -489,15 +489,15 @@ namespace Model
                     _downloadedFileSize = _downloadedFileSize.Substring(1);
                 }
                 TimersOutput = string.Empty;
-                StandardOutput = "Done. Processing time: " + processingTimeTimer.ToString("N0") + "s. " +
-                                 "Download time: " + downloadTimeTimer.ToString("N0") + "s. " +
+                StandardOutput = "Done. Processing time: " + processingTimeTimer.ToString("N0", CultureInfo.InvariantCulture) + "s. " +
+                                 "Download time: " + downloadTimeTimer.ToString("N0", CultureInfo.InvariantCulture) + "s. " +
                                  "Downloaded file size: " + _downloadedFileSize + ". " +
-                                 "Transcoded file size: " + fileSize.ToString("F") + "MiB. ";
+                                 "Transcoded file size: " + fileSize.ToString("F", CultureInfo.InvariantCulture) + "MiB. ";
 
                 if (double.TryParse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedFileSize))
                 {
                     var ratio = downloadedFileSize / fileSize;
-                    StandardOutput += "Ratio: " + ratio.ToString("F") + ".";
+                    StandardOutput += "Ratio: " + ratio.ToString("F", CultureInfo.InvariantCulture) + ".";
                 }
 
                 SendData(fileName, StandardOutput);
@@ -759,7 +759,7 @@ namespace Model
             }
             _processingTime++;
             IsIndeterminate = true;
-            TimersOutput = "Processing time: " + ((_processingTime * _timerResolution) / 1000.0).ToString("N1") + "s";
+            TimersOutput = "Processing time: " + ((_processingTime * _timerResolution) / 1000.0).ToString("N1", CultureInfo.InvariantCulture) + "s";
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
         }
 
@@ -772,7 +772,7 @@ namespace Model
             if (_isOnline)
             {
                 _downloadTime++;
-                TimersOutput = "Download time: " + ((_downloadTime * _timerResolution) / 1000.0).ToString("N1") + "s";
+                TimersOutput = "Download time: " + ((_downloadTime * _timerResolution) / 1000.0).ToString("N1", CultureInfo.InvariantCulture) + "s";
             }
         }
 
