@@ -10,7 +10,7 @@ namespace Model
 {
     public static class UpdatesDownloader
     {
-        public static async Task DownloadUpdatesAsync(Model model)
+        public static async Task DownloadUpdatesAsync(ModelClass model)
         {
             var updatesCheck = await Task.Run(() => UpdatesNeeded.CheckAsync());
             var pathToExe = Assembly.GetEntryAssembly().Location;

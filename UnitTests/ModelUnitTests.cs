@@ -10,7 +10,7 @@ namespace UnitTests
     [TestClass]
     public class ModelUnitTests : BaseTest
     {
-        private readonly Model.Model _model;
+        private readonly Model.ModelClass _model;
         private static readonly string _pathDll = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string _audioPath = _pathDll + @"\audio\";
         private static readonly string _audioAndVideoPath = _pathDll + @"\audio\video\";
@@ -19,7 +19,7 @@ namespace UnitTests
         {
             DirectoryInfo rootPath = new DirectoryInfo(_audioPath);
             Erase(rootPath);
-            _model = new Model.Model();
+            _model = new Model.ModelClass();
             // Give some time to update 
             Thread.Sleep(30000);
         }

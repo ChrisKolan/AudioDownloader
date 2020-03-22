@@ -7,13 +7,13 @@ namespace ViewModel
     {
         public ViewModel()
         {
-            Model = new Model.Model();
+            Model = new Model.ModelClass();
             DownloadButton = new ActionCommand(DownloadButtonCommand);
             DownloadLink = new ActionCommand(DownloadLinkButtonCommand);
             HelpButton = new ActionCommand(HelpButtonCommand);
             FolderButton = new ActionCommand(FolderButtonCommand);
         }
-        public Model.Model Model { get; set; }
+        public Model.ModelClass Model { get; set; }
         public ActionCommand DownloadButton { get; set; }
         public ActionCommand DownloadLink { get; set; }
         public ActionCommand HelpButton { get;  set; }

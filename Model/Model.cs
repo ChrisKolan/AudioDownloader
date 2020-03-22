@@ -24,7 +24,7 @@ using Webhook;
 namespace Model
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822: Mark members as static")]
-    public class Model : INotifyPropertyChanged, INotifyDataErrorInfo, IDisposable
+    public class ModelClass : INotifyPropertyChanged, INotifyDataErrorInfo, IDisposable
     {
         #region Fields
         private string _standardOutput;
@@ -66,7 +66,7 @@ namespace Model
         #endregion
 
         #region Constructor
-        public Model()
+        public ModelClass()
         {
             InitalizeStrings();
             EnableInteractions();
@@ -92,7 +92,7 @@ namespace Model
         public string LocalVersions { get; set; }
 
         [Required]
-        [CustomValidation(typeof(Model), "ValidateDownloadLink")]
+        [CustomValidation(typeof(ModelClass), "ValidateDownloadLink")]
         public string DownloadLink
         {
             get { return _downloadLink; }
@@ -875,7 +875,7 @@ namespace Model
             return (bytes / 1024f) / 1024f;
         }
 
-        private void DownloadLinkDisabler(Model model)
+        private void DownloadLinkDisabler(ModelClass model)
         {
             model.DownloadLinkEnabled = false;
             model.DownloadLinkTextDecorations = null;
@@ -899,7 +899,7 @@ namespace Model
 
         public static ValidationResult ValidateDownloadLink(object _, ValidationContext context)
         {
-            var model = (Model)context.ObjectInstance;
+            var model = (ModelClass)context.ObjectInstance;
 
             if (!model.DownloadLink.Contains("https://www.youtube.com/"))
             {

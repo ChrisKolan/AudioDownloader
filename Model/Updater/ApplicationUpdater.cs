@@ -11,7 +11,7 @@ namespace Model
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types")]
     class ApplicationUpdater
     {
-        public static async Task UpdateAsync(Model model)
+        public static async Task UpdateAsync(ModelClass model)
         {
             if (UpdatesNeeded(out ConfigurationErrorsException configurationErrorsException))
             {
