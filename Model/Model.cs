@@ -889,12 +889,13 @@ namespace Model
 
         private readonly ConcurrentDictionary<string, List<string>> _errors = new ConcurrentDictionary<string, List<string>>();
 
-        public static ValidationResult ValidateDownloadLink(object _, ValidationContext context)
+        public static ValidationResult ValidateDownloadLink(object value, ValidationContext context)
         {
+            Contract.Requires(value != null);
             Contract.Requires(context != null);
             var model = (ModelClass)context.ObjectInstance;
 
-            if (!model.DownloadLink.Contains("https://www.youtube.com/"))
+            if (!value.ToString().Contains("https://www.youtube.com/"))
             {
                 model.DownloadLinkDisabler(model);
                 model.IsButtonEnabled = false;
