@@ -22,7 +22,7 @@ namespace Model
 
                 try
                 {
-                    await UpdatesDownloader.DownloadUpdatesAsync(model);
+                    await UpdatesDownloader.DownloadUpdatesAsync(model).ConfigureAwait(false);
                 }
                 catch (Exception exception)
                 {
