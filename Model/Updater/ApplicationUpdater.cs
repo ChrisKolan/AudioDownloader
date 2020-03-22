@@ -13,6 +13,7 @@ namespace Model
     {
         public static async Task UpdateAsync(ModelClass model)
         {
+            string localVersions;
             if (UpdatesNeeded(out ConfigurationErrorsException configurationErrorsException))
             {
                 model.StandardOutput = "Checking for updates";
