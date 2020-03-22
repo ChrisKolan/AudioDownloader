@@ -86,6 +86,7 @@ namespace Model
             catch (PingException exception)
             {
                 pingException = exception;
+                pingSender.Dispose();
                 return false;
             }
             if (reply.Status != IPStatus.Success)
@@ -96,9 +97,11 @@ namespace Model
                 //Console.WriteLine("Don't fragment: {0}", reply.Options.DontFragment);
                 //Console.WriteLine("Buffer size: {0}", reply.Buffer.Length);
                 pingException = new PingException("Sending of an Internet Control Message Protocol not successful");
+                pingSender.Dispose();
                 return false;
             }
             pingException = new PingException("Sending of an Internet Control Message Protocol successful");
+            pingSender.Dispose();
             return true;
         }
 

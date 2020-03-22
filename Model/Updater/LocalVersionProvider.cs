@@ -8,7 +8,7 @@ using Voltsoft.FileVersionUtilities;
 
 namespace Model
 {
-    public class LocalVersionProvider
+    public static class LocalVersionProvider
     {
         public static List<string>Versions()
         {

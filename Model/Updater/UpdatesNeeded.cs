@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class UpdatesNeeded
+    public static class UpdatesNeeded
     {
         public static async Task<Dictionary<string, bool>> CheckAsync()
         {
