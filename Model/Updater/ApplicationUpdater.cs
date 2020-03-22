@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,7 +78,7 @@ namespace Model
             string lastStoredUpdateDateTime = ConfigurationManager.AppSettings["UpdateDateTime"];
             if (lastStoredUpdateDateTime != null)
             {
-                var lastStoredUpdateDateTimeLong = long.Parse(lastStoredUpdateDateTime);
+                var lastStoredUpdateDateTimeLong = long.Parse(lastStoredUpdateDateTime, CultureInfo.InvariantCulture);
                 lastStoredUpdateDateTimeFromBinary = DateTime.FromBinary(lastStoredUpdateDateTimeLong);
                 var currentUpdateDateTime = UpdateSettings(out ConfigurationErrorsException configurationErrorsExceptionInternal);
                 var elapsedTimeBetweenUpdates = currentUpdateDateTime.Subtract(lastStoredUpdateDateTimeFromBinary).TotalMinutes;
