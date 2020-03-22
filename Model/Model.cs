@@ -821,6 +821,7 @@ namespace Model
             {
                 if (_pingerCounter > 2)
                 {
+                    ExceptionHandler = pingException;
                     _isOnline = false;
                     TimersOutput = "Offline";
                     Application.Current.Dispatcher.Invoke(() =>
