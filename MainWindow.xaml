@@ -24,7 +24,7 @@
     </Controls:MetroWindow.IconTemplate>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button ToolTip="Open audio folder" 
+            <Button ToolTip="{Binding Model.FolderButtonToolTip}" ToolTipService.ShowDuration="60000"
                     Command="{Binding FolderButton}">
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconModern Width="24" 

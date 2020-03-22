@@ -27,6 +27,7 @@ namespace ViewModel
         {
             Model.HelpButtonClick();
         }
+
         private void FolderButtonCommand()
         {
             Model.FolderButtonClick();

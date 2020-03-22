@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class GitHubVersionProvider
+    public static class GitHubVersionProvider
     {
         public static async Task<List<string>> VersionsAsync()
         {

@@ -10,6 +10,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -21,7 +23,8 @@ using Webhook;
 
 namespace Model
 {
-    public class Model : INotifyPropertyChanged, INotifyDataErrorInfo
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822: Mark members as static")]
+    public class Model : INotifyPropertyChanged, INotifyDataErrorInfo, IDisposable
     {
         #region Fields
         private string _standardOutput;
@@ -29,7 +32,6 @@ namespace Model
         private string _buttonContent;
         private static bool _measureProcessingTime;
         private static bool _measureDownloadTime;
-        private int _counter;
         private string _finishedMessage;
         private string _downloadedFileSize;
         private int _progressBarPercent;
@@ -40,6 +42,7 @@ namespace Model
         private bool _isInputEnabled;
         private string _selectedQuality;
         private string _helpButtonToolTip;
+        private string _folderButtonToolTip;
         private string _downloadLink;
         private bool _isComboBoxEnabled;
         private bool _isAutomaticDownloadSelected;
@@ -50,8 +53,8 @@ namespace Model
         private TextDecorationCollection _downloadLinkTextDecorations;
         private int _processingTime = 1;
         private int _downloadTime = 1;
-        private int _timerResolution = 100;
-        private SynchronizationContext _synchronizationContext;
+        private readonly int _timerResolution = 100;
+        private readonly SynchronizationContext _synchronizationContext;
         private Thread _currentThreadPoolWorker;
         private bool _isDownloadRunning;
         private bool _isOnline;
@@ -59,21 +62,20 @@ namespace Model
         private bool _isClipboardCaptureSelected;
         private int _pingerCounter;
         private int _lastUsedQualityIndex;
+        private Exception _exception;
         #endregion
 
         #region Constructor
         public Model()
         {
-            StandardOutput = "Ready";
-            ButtonContent = "Download";
+            InitalizeStrings();
             EnableInteractions();
             PeriodicTimerProcessing = new Timer(_ => ProcessingTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerDownload = new Timer(_ => DownloadTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerPinger = new Timer(_ => TimerPinger(), null, TimeSpan.FromMilliseconds(1000), TimeSpan.FromMilliseconds(1000));
             PeriodicTimerClipper = new Timer(_ => TimerClipper(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             QualityDefault = Helpers.QualityDefault();
-            Quality = new ObservableCollection<string>();
-            Quality.Add("After pasting YouTube link, you can select the audio quality from this list");
+            Quality = Helpers.QualityObservableCollection();
             SelectedQuality = Quality[0];
             _ = ApplicationUpdater.UpdateAsync(this);
             GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
@@ -277,6 +279,16 @@ namespace Model
             }
         }
 
+        public string FolderButtonToolTip
+        {
+            get { return _folderButtonToolTip; }
+            set
+            {
+                _folderButtonToolTip = value;
+                OnPropertyChanged(nameof(FolderButtonToolTip));
+            }
+        }
+
         public string HelpButtonToolTip
         {
             get { return _helpButtonToolTip; }
@@ -284,6 +296,16 @@ namespace Model
             {
                 _helpButtonToolTip = value;
                 OnPropertyChanged(nameof(HelpButtonToolTip));
+            }
+        }
+
+        public Exception ExceptionHandler
+        {
+            get { return _exception; }
+            set 
+            { 
+                _exception = value;
+                FolderButtonToolTip += Environment.NewLine + _exception.Message;
             }
         }
 
@@ -353,17 +375,10 @@ namespace Model
         public void FolderButtonClick()
         {
             var pathToExe = Assembly.GetEntryAssembly().Location;
-            var pathToExeFolder = System.IO.Path.GetDirectoryName(pathToExe);
+            var pathToExeFolder = Path.GetDirectoryName(pathToExe);
             var pathToAudioFolder = pathToExeFolder + @"\audio";
-
-            try
-            {
-                Process.Start(pathToAudioFolder);
-            }
-            catch (Exception)
-            {
-                StandardOutput = "Ready. Audio folder does not exist. Try to download some audio files first.";
-            }
+            Directory.CreateDirectory(pathToAudioFolder);
+            Process.Start(pathToAudioFolder);
         }
         private void ThreadPoolWorker()
         {
@@ -511,12 +526,13 @@ namespace Model
             {
                 UpdateWebhook(DownloadLink, fileName, standardOutput);
             }
-            catch (Exception)
+            catch (HttpRequestException webhookException)
             {
                 TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 Thread.Sleep(1000);
                 StandardOutput = "Exception. Updating webhook failed.";
+                _exception = webhookException;
                 _downloadedFileSize = null;
                 EnableInteractions();
                 return;
@@ -533,7 +549,6 @@ namespace Model
             IsIndeterminate = true;
             IsComboBoxEnabled = false;
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
-            SynchronizationContext uiContext = state as SynchronizationContext;
             var command = "/C bin\\youtube-dl.exe -F " + DownloadLink;
             var availableFormats = new List<string>();
             var availableAudioFormats = new List<string>();
@@ -568,7 +583,7 @@ namespace Model
                     availableAudioFormats.Add(currentLine);
                 }
             }
-            if(uiContext == null)
+            if(!(state is SynchronizationContext uiContext))
             {
                 return;
             }
@@ -688,11 +703,13 @@ namespace Model
 
         public void GetLocalVersions()
         {
-            var localVersionsNamesAndNumber = new List<string>();
-            localVersionsNamesAndNumber.Add("Press button to get online help.");
-            localVersionsNamesAndNumber.Add("===========================");
-            localVersionsNamesAndNumber.Add("Software \t   |\tVersion");
-            localVersionsNamesAndNumber.Add("----------------------|-----------------------");
+            var localVersionsNamesAndNumber = new List<string>
+            {
+                "Press button to get online help.",
+                "===========================",
+                "Software \t   |\tVersion",
+                "----------------------|-----------------------"
+            };
             var localVersions = LocalVersionProvider.Versions();
             var localVersionsSoftwareNames = new List<string>
             {
@@ -709,6 +726,13 @@ namespace Model
 
             LocalVersions = String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
             HelpButtonToolTip = LocalVersions;
+        }
+
+        private void InitalizeStrings()
+        {
+            StandardOutput = "Ready";
+            ButtonContent = "Download";
+            FolderButtonToolTip = "Open download folder";
         }
 
         public void EnableInteractions()
@@ -779,7 +803,7 @@ namespace Model
 
         private void TimerPinger()
         {
-            if (Helpers.Pinger())
+            if (Helpers.Pinger(out PingException pingException))
             {
                 _isOnline = true;
                 if (TimersOutput != null && TimersOutput.Contains("Offline"))
@@ -815,20 +839,6 @@ namespace Model
             }
         }
 
-        private string Turn()
-        {
-            _counter++;
-            switch (_counter % 4)
-            {
-                case 0: StandardOutput = _finishedMessage + "."; break;
-                case 1: StandardOutput = _finishedMessage + ".."; break;
-                case 2: StandardOutput = _finishedMessage + "..."; break;
-                case 3: StandardOutput = _finishedMessage + "...."; break;
-            }
-
-            return StandardOutput;
-        }
-
         private void UpdateWebhook(string youtubeLink, string fileName, string standardOutput)
         {
             string eventName = ConfigurationManager.AppSettings["event"];
@@ -838,10 +848,12 @@ namespace Model
                 return;
             }
             var pcName = Environment.MachineName;
-            var values = new Dictionary<string, string>();
-            values.Add("value1", pcName + " " + standardOutput.Substring(6));
-            values.Add("value2", fileName);
-            values.Add("value3", youtubeLink);
+            var values = new Dictionary<string, string>
+            {
+                { "value1", pcName + " " + standardOutput.Substring(6) },
+                { "value2", fileName },
+                { "value3", youtubeLink }
+            };
             WebhookTrigger.SendRequestAsync(values, eventName, secretKey);
         }
 
@@ -883,9 +895,9 @@ namespace Model
 
         #region INotifyDataErrorInfo implementation
 
-        private ConcurrentDictionary<string, List<string>> _errors = new ConcurrentDictionary<string, List<string>>();
+        private readonly ConcurrentDictionary<string, List<string>> _errors = new ConcurrentDictionary<string, List<string>>();
 
-        public static ValidationResult ValidateDownloadLink(object obj, ValidationContext context)
+        public static ValidationResult ValidateDownloadLink(object _, ValidationContext context)
         {
             var model = (Model)context.ObjectInstance;
 
@@ -915,8 +927,7 @@ namespace Model
 
         public IEnumerable GetErrors(string propertyName)
         {
-            List<string> errorsForName;
-            _errors.TryGetValue(propertyName, out errorsForName);
+            _errors.TryGetValue(propertyName, out List<string> errorsForName);
             return errorsForName;
         }
 
@@ -930,7 +941,7 @@ namespace Model
             return Task.Run(() => Validate());
         }
 
-        private object _lock = new object();
+        private readonly object _lock = new object();
         public void Validate()
         {
             lock (_lock)
@@ -943,8 +954,7 @@ namespace Model
                 {
                     if (validationResults.All(r => r.MemberNames.All(m => m != kv.Key)))
                     {
-                        List<string> outLi;
-                        _errors.TryRemove(kv.Key, out outLi);
+                        _errors.TryRemove(kv.Key, out List<string> outLi);
                         OnErrorsChanged(kv.Key);
                     }
                 }
@@ -960,14 +970,52 @@ namespace Model
 
                     if (_errors.ContainsKey(prop.Key))
                     {
-                        List<string> outLi;
-                        _errors.TryRemove(prop.Key, out outLi);
+                        _errors.TryRemove(prop.Key, out List<string> outLi);
                     }
                     _errors.TryAdd(prop.Key, messages);
                     OnErrorsChanged(prop.Key);
                 }
             }
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                    PeriodicTimerClipper.Dispose();
+                    PeriodicTimerDownload.Dispose();
+                    PeriodicTimerPinger.Dispose();
+                    PeriodicTimerProcessing.Dispose();
+                }
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~Model()
+        // {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
 
         #endregion
     }

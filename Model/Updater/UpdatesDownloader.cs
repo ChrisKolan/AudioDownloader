@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class UpdatesDownloader
+    public static class UpdatesDownloader
     {
         public static async Task DownloadUpdatesAsync(Model model)
         {

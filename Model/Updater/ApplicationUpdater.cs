@@ -8,26 +8,29 @@ using System.Windows;
 
 namespace Model
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types")]
     class ApplicationUpdater
     {
         public static async Task UpdateAsync(Model model)
         {
-            if (UpdatesNeeded())
+            if (UpdatesNeeded(out ConfigurationErrorsException configurationErrorsException))
             {
                 model.StandardOutput = "Checking for updates";
                 model.DisableInteractions();
+                model.ExceptionHandler = configurationErrorsException;
 
                 try
                 {
                     await UpdatesDownloader.DownloadUpdatesAsync(model);
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
                     model.DownloadLinkEnabled = true;
                     model.DownloadLinkTextDecorations = null;
                     model.StandardOutput = "Failed to update. Click here to download manually.";
                     model.GetLocalVersions();
                     model.EnableInteractions();
+                    model.ExceptionHandler = exception;
                     return;
                 }
             }
@@ -37,7 +40,7 @@ namespace Model
             model.EnableInteractions();
         }
 
-        private static bool TryAddOrUpdateApplicationSettings(string key, string value)
+        private static bool TryAddOrUpdateApplicationSettings(string key, string value, out ConfigurationErrorsException configurationErrorsException)
         {
             try
             {
@@ -54,14 +57,16 @@ namespace Model
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
 
+                configurationErrorsException = new ConfigurationErrorsException("Configuration updated");
                 return true;
             }
-            catch (ConfigurationErrorsException)
+            catch (ConfigurationErrorsException exception)
             {
+                configurationErrorsException = exception;
                 return false;
             }
         }
-        private static bool UpdatesNeeded()
+        private static bool UpdatesNeeded(out ConfigurationErrorsException configurationErrorsException)
         {
             double updateIfElapsedTimeExceeded = 10; 
             DateTime lastStoredUpdateDateTimeFromBinary;
@@ -70,23 +75,24 @@ namespace Model
             {
                 var lastStoredUpdateDateTimeLong = long.Parse(lastStoredUpdateDateTime);
                 lastStoredUpdateDateTimeFromBinary = DateTime.FromBinary(lastStoredUpdateDateTimeLong);
-                var currentUpdateDateTime = UpdateSettings();
+                var currentUpdateDateTime = UpdateSettings(out ConfigurationErrorsException configurationErrorsExceptionInternal);
                 var elapsedTimeBetweenUpdates = currentUpdateDateTime.Subtract(lastStoredUpdateDateTimeFromBinary).TotalMinutes;
-
+                configurationErrorsException = configurationErrorsExceptionInternal;
                 return elapsedTimeBetweenUpdates > updateIfElapsedTimeExceeded;
             }
             else
             {
-                UpdateSettings();
-
+                UpdateSettings(out ConfigurationErrorsException configurationErrorsExceptionInternal);
+                configurationErrorsException = configurationErrorsExceptionInternal;
                 return true;
             }
         }
-        private static DateTime UpdateSettings()
+        private static DateTime UpdateSettings(out ConfigurationErrorsException configurationErrorsException)
         {
             var currentUpdateDateTime = DateTime.Now;
             var currentUpdateDateTimeString = currentUpdateDateTime.ToBinary().ToString();
-            TryAddOrUpdateApplicationSettings("UpdateDateTime", currentUpdateDateTimeString);
+            TryAddOrUpdateApplicationSettings("UpdateDateTime", currentUpdateDateTimeString, out ConfigurationErrorsException configurationErrorsExceptionInternal);
+            configurationErrorsException = configurationErrorsExceptionInternal;
 
             return currentUpdateDateTime;
         }

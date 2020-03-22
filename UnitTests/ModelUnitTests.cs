@@ -10,7 +10,7 @@ namespace UnitTests
     [TestClass]
     public class ModelUnitTests : BaseTest
     {
-        private Model.Model _model;
+        private readonly Model.Model _model;
         private static readonly string _pathDll = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string _audioPath = _pathDll + @"\audio\";
         private static readonly string _audioAndVideoPath = _pathDll + @"\audio\video\";

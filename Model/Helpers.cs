@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -62,7 +63,7 @@ namespace Model
             return (command, finishedMessage);
         }
 
-        public static bool Pinger()
+        public static bool Pinger(out PingException pingException)
         {
             Ping pingSender = new Ping();
             PingOptions options = new PingOptions();
@@ -75,29 +76,41 @@ namespace Model
             // Create a buffer of 32 bytes of data to be transmitted.
             string data = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
             byte[] buffer = Encoding.ASCII.GetBytes(data);
-            int timeout = 120;
+            int timeout = 250;
             PingReply reply;
 
             try
             {
                 reply = pingSender.Send(hostNameOrAddress, timeout, buffer, options);
             }
-            catch (PingException)
+            catch (PingException exception)
             {
+                pingException = exception;
                 return false;
             }
-            if (reply.Status == IPStatus.Success)
+            if (reply.Status != IPStatus.Success)
             {
                 //Console.WriteLine("Address: {0}", reply.Address.ToString());
                 //Console.WriteLine("RoundTrip time: {0}", reply.RoundtripTime);
                 //Console.WriteLine("Time to live: {0}", reply.Options.Ttl);
                 //Console.WriteLine("Don't fragment: {0}", reply.Options.DontFragment);
                 //Console.WriteLine("Buffer size: {0}", reply.Buffer.Length);
-                return true;
+                pingException = new PingException("Sending of an Internet Control Message Protocol not successful");
+                return false;
             }
-            return false;
+            pingException = new PingException("Sending of an Internet Control Message Protocol successful");
+            return true;
         }
 
+        public static ObservableCollection<string> QualityObservableCollection()
+        {
+            var quality = new ObservableCollection<string>
+            {
+                "After pasting YouTube link, you can select the audio quality from this list"
+            };
+            return quality;
+        }
+            
         public static string GetQuality(string selectedQuality)
         {
             if (selectedQuality.Contains("raw webm"))
