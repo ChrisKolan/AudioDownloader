@@ -15,11 +15,11 @@ namespace Model
         public static async Task UpdateAsync(ModelClass model)
         {
             string localVersions;
-            if (UpdatesNeeded(out ConfigurationErrorsException configurationErrorsException))
+            if (UpdatesNeeded(out string configurationErrorsException))
             {
                 model.StandardOutput = "Checking for updates";
                 model.DisableInteractions();
-                model.ExceptionHandler = configurationErrorsException;
+                model.InfoAndExceptionsOutput = configurationErrorsException;
 
                 try
                 {
@@ -33,7 +33,7 @@ namespace Model
                     model.LocalVersions = localVersions;
                     model.HelpButtonToolTip = localVersions;
                     model.EnableInteractions();
-                    model.ExceptionHandler = exception;
+                    model.InfoAndExceptionsOutput = exception.Message;
                     return;
                 }
             }
@@ -45,7 +45,7 @@ namespace Model
             model.EnableInteractions();
         }
 
-        private static bool TryAddOrUpdateApplicationSettings(string key, string value, out ConfigurationErrorsException configurationErrorsException)
+        private static bool TryAddOrUpdateApplicationSettings(string key, string value, out string configurationErrorsException)
         {
             try
             {
@@ -62,16 +62,16 @@ namespace Model
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
 
-                configurationErrorsException = new ConfigurationErrorsException("Configuration updated");
+                configurationErrorsException = "Configuration updated";
                 return true;
             }
             catch (ConfigurationErrorsException exception)
             {
-                configurationErrorsException = exception;
+                configurationErrorsException = exception.Message;
                 return false;
             }
         }
-        private static bool UpdatesNeeded(out ConfigurationErrorsException configurationErrorsException)
+        private static bool UpdatesNeeded(out string configurationErrorsException)
         {
             double updateIfElapsedTimeExceeded = 10; 
             DateTime lastStoredUpdateDateTimeFromBinary;
@@ -80,23 +80,23 @@ namespace Model
             {
                 var lastStoredUpdateDateTimeLong = long.Parse(lastStoredUpdateDateTime, CultureInfo.InvariantCulture);
                 lastStoredUpdateDateTimeFromBinary = DateTime.FromBinary(lastStoredUpdateDateTimeLong);
-                var currentUpdateDateTime = UpdateSettings(out ConfigurationErrorsException configurationErrorsExceptionInternal);
+                var currentUpdateDateTime = UpdateSettings(out string configurationErrorsExceptionInternal);
                 var elapsedTimeBetweenUpdates = currentUpdateDateTime.Subtract(lastStoredUpdateDateTimeFromBinary).TotalMinutes;
                 configurationErrorsException = configurationErrorsExceptionInternal;
                 return elapsedTimeBetweenUpdates > updateIfElapsedTimeExceeded;
             }
             else
             {
-                UpdateSettings(out ConfigurationErrorsException configurationErrorsExceptionInternal);
+                UpdateSettings(out string configurationErrorsExceptionInternal);
                 configurationErrorsException = configurationErrorsExceptionInternal;
                 return true;
             }
         }
-        private static DateTime UpdateSettings(out ConfigurationErrorsException configurationErrorsException)
+        private static DateTime UpdateSettings(out string configurationErrorsException)
         {
             var currentUpdateDateTime = DateTime.Now;
             var currentUpdateDateTimeString = currentUpdateDateTime.ToBinary().ToString(CultureInfo.InvariantCulture);
-            TryAddOrUpdateApplicationSettings("UpdateDateTime", currentUpdateDateTimeString, out ConfigurationErrorsException configurationErrorsExceptionInternal);
+            TryAddOrUpdateApplicationSettings("UpdateDateTime", currentUpdateDateTimeString, out string configurationErrorsExceptionInternal);
             configurationErrorsException = configurationErrorsExceptionInternal;
 
             return currentUpdateDateTime;

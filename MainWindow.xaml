@@ -120,23 +120,30 @@
                                        Foreground="{DynamicResource MahApps.Brushes.Accent}"
                                        IsIndeterminate="{Binding Model.IsIndeterminate}" MinHeight="2" MinWidth="2" EllipseDiameter="4"/>
         </StackPanel>
-        <StatusBar Margin="0,91,0,0">
-            <StatusBarItem DockPanel.Dock="Right">
-                <TextBlock x:Name="Timers" 
+        <Grid>
+            <StatusBar Margin="0,91,0,0">
+                <StatusBarItem DockPanel.Dock="Right">
+                    <TextBlock x:Name="Timers" 
                            Margin="0,0,6,0" 
                            Text="{Binding Model.TimersOutput, UpdateSourceTrigger=PropertyChanged}">
-                </TextBlock>
-            </StatusBarItem>
-            <StatusBarItem>
-                <TextBlock Name="Status"
+                    </TextBlock>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock Name="Status"
                            Text="{Binding Model.StandardOutput}"
                            IsEnabled="{Binding Model.DownloadLinkEnabled}"
                            Margin="6,0,0,0" >
-                           <TextBlock.InputBindings>
-                                <MouseBinding Command="{Binding DownloadLink}" MouseAction="LeftClick" />
-                           </TextBlock.InputBindings>
-                </TextBlock>
-            </StatusBarItem>
-        </StatusBar>
+                        <TextBlock.InputBindings>
+                            <MouseBinding Command="{Binding DownloadLink}" MouseAction="LeftClick" />
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                </StatusBarItem>
+            </StatusBar>
+            <CheckBox IsChecked="False"
+                      BorderThickness="100"
+                      ToolTip="{Binding Model.InfoAndExceptionsOutput, UpdateSourceTrigger=PropertyChanged}" 
+                      Margin="774,92,0,0">
+            </CheckBox>
+        </Grid>
     </Grid>
 </Controls:MetroWindow>

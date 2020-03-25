@@ -62,7 +62,7 @@ namespace Model
         private bool _isClipboardCaptureSelected;
         private int _pingerCounter;
         private int _lastUsedQualityIndex;
-        private Exception _exception;
+        private string _infoAndExceptionsOutput;
         #endregion
 
         #region Constructor
@@ -289,14 +289,15 @@ namespace Model
             }
         }
 
-        public Exception ExceptionHandler
+        public string InfoAndExceptionsOutput
         {
-            get { return _exception; }
+            get { return _infoAndExceptionsOutput; }
             set 
             {
                 Contract.Requires(value != null);
-                _exception = value;
-                FolderButtonToolTip += Environment.NewLine + _exception.Message;
+                _infoAndExceptionsOutput = value;
+                //ExceptionsOutput += Environment.NewLine + _exception;
+                OnPropertyChanged(nameof(InfoAndExceptionsOutput));
             }
         }
 
@@ -523,7 +524,7 @@ namespace Model
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 Thread.Sleep(1000);
                 StandardOutput = "Exception. Updating webhook failed.";
-                _exception = webhookException;
+                _infoAndExceptionsOutput = webhookException.Message;
                 _downloadedFileSize = null;
                 EnableInteractions();
                 return;
@@ -821,7 +822,7 @@ namespace Model
             {
                 if (_pingerCounter > 2)
                 {
-                    ExceptionHandler = pingException;
+                    InfoAndExceptionsOutput = pingException.Message;
                     _isOnline = false;
                     TimersOutput = "Offline";
                     Application.Current.Dispatcher.Invoke(() =>
