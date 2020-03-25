@@ -17,8 +17,8 @@ namespace UnitTests
 
         public ModelUnitTests()
         {
-            DirectoryInfo rootPath = new DirectoryInfo(_audioPath);
-            Erase(rootPath);
+            //DirectoryInfo rootPath = new DirectoryInfo(_audioPath);
+            //Erase(rootPath);
             _model = new Model.ModelClass();
             // Give some time to update 
             Thread.Sleep(30000);

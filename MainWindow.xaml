@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Topmost="True"
         ShowIconOnTitleBar="True"
-        TitleCaps="False"
+        TitleCharacterCasing="Normal"
         BorderThickness="1"
         GlowBrush="{Binding Model.GlowBrushColor}"
         WindowStartupLocation="CenterScreen"
@@ -18,7 +18,7 @@
             <iconPacks:PackIconModern Width="{TemplateBinding Width}"
                                       Height="{TemplateBinding Height}"
                                       Margin="5"
-                                      Foreground="{DynamicResource IdealForegroundColorBrush}"
+                                      Foreground="{DynamicResource MahApps.Brushes.SystemControlBackgroundChromeWhite}"
                                       Kind="CloudDownload" />
         </DataTemplate>
     </Controls:MetroWindow.IconTemplate>
@@ -57,6 +57,7 @@
                          BorderBrush="#FFBCBCBC"
                          Text="{Binding Model.DownloadLink, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}"
                          IsEnabled="{Binding Model.IsInputEnabled, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalContentAlignment="Center"
                          Controls:TextBoxHelper.ClearTextButton="True"
                          Controls:TextBoxHelper.SelectAllOnFocus="True"
                          Controls:TextBoxHelper.Watermark="Paste YouTube link and press Enter or Download button"
@@ -67,7 +68,7 @@
                 </TextBox>
                 <CheckBox IsChecked="{Binding Model.IsClipboardCaptureSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for clipboard capture" Margin="750,0,0,0">
+                          ToolTip="Check for clipboard capture" Margin="750,0,24,0">
                 </CheckBox>
             </Grid>
             <Grid>
@@ -87,7 +88,7 @@
                 </ComboBox>
                 <CheckBox IsChecked="{Binding Model.IsUsingLastQualitySelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for using last selected quality" Margin="750,0,0,0">
+                          ToolTip="Check for using last selected quality" Margin="750,0,24,0">
                 </CheckBox>
             </Grid>
             <Grid>
@@ -99,9 +100,12 @@
                     BorderBrush="#FFBCBCBC"
                     Command="{Binding DownloadButton}"
                     IsEnabled="{Binding Model.IsButtonEnabled, UpdateSourceTrigger=PropertyChanged}"
-                    ToolTip="Press Download button to get the file" 
-                    Controls:ButtonHelper.PreserveTextCase="True"
-                    Controls:ButtonHelper.CornerRadius="0" FontWeight="Normal" FontSize="12" Padding="0">
+                    FontWeight="Normal"
+                    FontSize="12"
+                    Padding="0"
+                    Controls:ControlsHelper.CornerRadius="0"
+                    Controls:ControlsHelper.ContentCharacterCasing="Normal"
+                    ToolTip="Press Download button to get the file" >
                 </Button>
                 <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
@@ -113,7 +117,7 @@
                                        Height="4"
                                        Background="#FFE5E5E5"
                                        BorderBrush="#FFBCBCBC"
-                                       Foreground="{DynamicResource AccentColorBrush}"
+                                       Foreground="{DynamicResource MahApps.Brushes.Accent}"
                                        IsIndeterminate="{Binding Model.IsIndeterminate}" MinHeight="2" MinWidth="2" EllipseDiameter="4"/>
         </StackPanel>
         <StatusBar Margin="0,91,0,0">
