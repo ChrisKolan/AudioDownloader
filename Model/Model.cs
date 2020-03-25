@@ -63,13 +63,13 @@ namespace Model
         private int _pingerCounter;
         private int _lastUsedQualityIndex;
         private string _infoAndExceptionsOutput;
-        private Queue<string> _infoAndExceptions;
+        private CircularQueue<string> _infoAndExceptions;
         #endregion
 
         #region Constructor
         public ModelClass()
         {
-            InitalizeStrings();
+            Initalize();
             EnableInteractions();
             PeriodicTimerProcessing = new Timer(_ => ProcessingTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
             PeriodicTimerDownload = new Timer(_ => DownloadTimeMeasurement(), null, TimeSpan.Zero, TimeSpan.FromMilliseconds(_timerResolution));
@@ -81,7 +81,6 @@ namespace Model
             _ = ApplicationUpdater.UpdateAsync(this);
             GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
             _synchronizationContext = SynchronizationContext.Current;
-            _infoAndExceptions = new Queue<string>(20);
         }
         #endregion
 
@@ -297,7 +296,7 @@ namespace Model
             set 
             {
                 Contract.Requires(value != null);
-                _infoAndExceptions.Enqueue(DateTime.Now.ToString(CultureInfo.InvariantCulture) + value);
+                _infoAndExceptions.Enqueue(DateTime.Now.ToString(CultureInfo.InvariantCulture) + ": " + value);
                 _infoAndExceptionsOutput = string.Join(Environment.NewLine, _infoAndExceptions);
                 OnPropertyChanged(nameof(InfoAndExceptionsOutput));
             }
@@ -697,11 +696,12 @@ namespace Model
             return result;
         }
 
-        private void InitalizeStrings()
+        private void Initalize()
         {
             StandardOutput = "Ready";
             ButtonContent = "Download";
             FolderButtonToolTip = "Open download folder";
+            _infoAndExceptions = new CircularQueue<string>(20);
         }
 
         public void EnableInteractions()

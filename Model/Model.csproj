@@ -65,6 +65,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CircularQueue.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Updater\ApplicationRestarter.cs" />
     <Compile Include="Updater\ApplicationUpdater.cs" />
