@@ -63,6 +63,7 @@ namespace Model
         private int _pingerCounter;
         private int _lastUsedQualityIndex;
         private string _infoAndExceptionsOutput;
+        private Queue<string> _infoAndExceptions;
         #endregion
 
         #region Constructor
@@ -80,6 +81,7 @@ namespace Model
             _ = ApplicationUpdater.UpdateAsync(this);
             GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
             _synchronizationContext = SynchronizationContext.Current;
+            _infoAndExceptions = new Queue<string>(20);
         }
         #endregion
 
@@ -295,8 +297,8 @@ namespace Model
             set 
             {
                 Contract.Requires(value != null);
-                _infoAndExceptionsOutput = value;
-                //ExceptionsOutput += Environment.NewLine + _exception;
+                _infoAndExceptions.Enqueue(DateTime.Now.ToString(CultureInfo.InvariantCulture) + value);
+                _infoAndExceptionsOutput = string.Join(Environment.NewLine, _infoAndExceptions);
                 OnPropertyChanged(nameof(InfoAndExceptionsOutput));
             }
         }
@@ -790,6 +792,7 @@ namespace Model
                     GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
                 });
                 _pingerCounter = 0;
+                InfoAndExceptionsOutput = pingException.Message;
             }
             else
             {
