@@ -792,7 +792,6 @@ namespace Model
                     GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
                 });
                 _pingerCounter = 0;
-                InfoAndExceptionsOutput = pingException.Message;
             }
             else
             {
