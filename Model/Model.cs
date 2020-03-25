@@ -695,33 +695,6 @@ namespace Model
             return result;
         }
 
-        //public void GetLocalVersions()
-        //{
-        //    var localVersionsNamesAndNumber = new List<string>
-        //    {
-        //        "Press button to get online help.",
-        //        "===========================",
-        //        "Software \t   |\tVersion",
-        //        "----------------------|-----------------------"
-        //    };
-        //    var localVersions = LocalVersionProvider.Versions();
-        //    var localVersionsSoftwareNames = new List<string>
-        //    {
-        //        "Audio Downloader  |\t",
-        //        "Youtube-dl\t   |\t"
-        //    };
-
-        //    for (int i = 0; i < localVersions.Count; i++)
-        //    {
-        //        localVersionsNamesAndNumber.Add(localVersionsSoftwareNames[i] + localVersions[i]);
-        //    }
-
-        //    localVersionsNamesAndNumber.Add("FFmpeg\t\t   |\t4.2.1");
-
-        //    LocalVersions = String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
-        //    HelpButtonToolTip = LocalVersions;
-        //}
-
         private void InitalizeStrings()
         {
             StandardOutput = "Ready";
