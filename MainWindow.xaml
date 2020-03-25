@@ -132,14 +132,9 @@
                            Text="{Binding Model.StandardOutput}"
                            IsEnabled="{Binding Model.DownloadLinkEnabled}"
                            Margin="6,0,0,0" >
-                           <!--<Hyperlink Command="{Binding DownloadButton}"
-                                      TextDecorations="Underline"
-                                      Foreground="White">
-                                      <TextBlock Text="{Binding Model.StandardOutput}"/>
-                           </Hyperlink>-->
-                            <TextBlock.InputBindings>
+                           <TextBlock.InputBindings>
                                 <MouseBinding Command="{Binding DownloadLink}" MouseAction="LeftClick" />
-                            </TextBlock.InputBindings>
+                           </TextBlock.InputBindings>
                 </TextBlock>
             </StatusBarItem>
         </StatusBar>
