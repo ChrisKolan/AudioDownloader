@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types")]
     class Deleter
     {
         public static void DeleteBinFolderContents()
@@ -22,7 +23,7 @@ namespace Model
                 {
                     file.Delete();
                 }
-                catch (System.UnauthorizedAccessException)
+                catch (UnauthorizedAccessException)
                 {
                     continue;
                 }

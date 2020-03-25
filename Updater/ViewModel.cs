@@ -11,6 +11,7 @@ using System.Windows.Shell;
 
 namespace Updater
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types")]
     class ViewModel : INotifyPropertyChanged
     {
         private bool _exceptionOccured;
