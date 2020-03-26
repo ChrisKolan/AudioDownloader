@@ -11,7 +11,7 @@ namespace Main
         {
             InitializeComponent();
 
-            var viewModel = new ViewModel.ViewModel();
+            var viewModel = new ViewModel.ViewModelClass();
             DataContext = viewModel;
         }
     }

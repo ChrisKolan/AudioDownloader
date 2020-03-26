@@ -3,9 +3,9 @@ using ViewModel.Helper;
 
 namespace ViewModel
 {
-    public class ViewModel
+    public class ViewModelClass
     {
-        public ViewModel()
+        public ViewModelClass()
         {
             Model = new Model.ModelClass();
             DownloadButton = new ActionCommand(DownloadButtonCommand);
