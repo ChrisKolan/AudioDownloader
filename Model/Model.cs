@@ -180,6 +180,10 @@ namespace Model
                     _lastUsedQualityIndex = Quality.IndexOf(SelectedQuality);
                     OnPropertyChanged(nameof(SelectedQuality));
                 }
+                else
+                {
+                    _lastUsedQualityIndex = 2;
+                }
             }
         }
 
