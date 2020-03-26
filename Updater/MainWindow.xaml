@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:local="clr-namespace:Updater"
         mc:Ignorable="d"
         Topmost="True"
         ShowIconOnTitleBar="True"
-        TitleCaps="False"
+        TitleCharacterCasing="Normal"
         BorderThickness="1"
         GlowBrush="LightBlue"
         WindowStartupLocation="Manual"
@@ -20,7 +19,7 @@
             <iconPacks:PackIconMaterial Width="{TemplateBinding Width}"
                                       Height="{TemplateBinding Height}"
                                       Margin="5"
-                                      Foreground="{DynamicResource IdealForegroundColorBrush}"
+                                      Foreground="{DynamicResource MahApps.Brushes.SystemControlBackgroundChromeWhite}"
                                       Kind="Update" />
         </DataTemplate>
     </Controls:MetroWindow.IconTemplate>
@@ -37,6 +36,7 @@
                      Height="21" 
                      TextWrapping="Wrap"
                      ToolTip="Current status of the program"
+                     VerticalContentAlignment="Center"
                      Padding="1"
                      BorderBrush="#FFBCBCBC"
                      Text="{Binding StandardOutput, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" AcceptsReturn="True"/>
@@ -46,7 +46,7 @@
                                        Height="4"
                                        Background="#FFE5E5E5"
                                        BorderBrush="#FFBCBCBC"
-                                       Foreground="{DynamicResource AccentColorBrush}"
+                                       Foreground="{DynamicResource MahApps.Brushes.Accent}"
                                        IsIndeterminate="{Binding IsIndeterminate}"
                                        MinHeight="2" 
                                        MinWidth="2" 
