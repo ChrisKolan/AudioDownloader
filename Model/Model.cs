@@ -63,7 +63,7 @@ namespace Model
         private int _pingerCounter;
         private int _lastUsedQualityIndex;
         private string _informationAndExceptionOutput;
-        private CircularQueue<string> _infoAndExceptions;
+        private CircularQueue<string> _informationAndException;
         #endregion
 
         #region Constructor
@@ -296,8 +296,8 @@ namespace Model
             set 
             {
                 Contract.Requires(value != null);
-                _infoAndExceptions.Enqueue(DateTime.Now.ToString(CultureInfo.InvariantCulture) + ": " + value);
-                _informationAndExceptionOutput = string.Join(Environment.NewLine, _infoAndExceptions);
+                _informationAndException.Enqueue(DateTime.Now.ToString(CultureInfo.InvariantCulture) + ": " + value);
+                _informationAndExceptionOutput = string.Join(Environment.NewLine, _informationAndException);
                 OnPropertyChanged(nameof(InformationAndExceptionOutput));
             }
         }
@@ -703,7 +703,7 @@ namespace Model
             StandardOutput = "Ready";
             ButtonContent = "Download";
             FolderButtonToolTip = "Open download folder";
-            _infoAndExceptions = new CircularQueue<string>(20);
+            _informationAndException = new CircularQueue<string>(20);
             InformationAndExceptionOutput = "Application initialized";
         }
 
