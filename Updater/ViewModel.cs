@@ -93,7 +93,7 @@ namespace Updater
                 _exceptionOccured = true;
             }
         }
-        private double GetTaskBarProgressValue(int maximum, int progress)
+        private static double GetTaskBarProgressValue(int maximum, int progress)
         {
             return (double)progress / (double)maximum;
         }
