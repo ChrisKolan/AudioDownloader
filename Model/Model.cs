@@ -290,7 +290,7 @@ namespace Model
             }
         }
 
-        public string InfoAndExceptionsOutput
+        public string InformationAndExceptionOutput
         {
             get { return _infoAndExceptionsOutput; }
             set 
@@ -298,7 +298,7 @@ namespace Model
                 Contract.Requires(value != null);
                 _infoAndExceptions.Enqueue(DateTime.Now.ToString(CultureInfo.InvariantCulture) + ": " + value);
                 _infoAndExceptionsOutput = string.Join(Environment.NewLine, _infoAndExceptions);
-                OnPropertyChanged(nameof(InfoAndExceptionsOutput));
+                OnPropertyChanged(nameof(InformationAndExceptionOutput));
             }
         }
 
@@ -385,6 +385,7 @@ namespace Model
             var date = DateTime.Now.ToString("yyMMdd", CultureInfo.InvariantCulture);
 
             StandardOutput = "Starting download...";
+            InformationAndExceptionOutput = "Starting download of the link: " + DownloadLink;
             string command;
             (command, _finishedMessage) = HelpersModel.CreateCommandAndMessage(selectedQuality, date, DownloadLink);
 
@@ -510,6 +511,7 @@ namespace Model
                 EnableInteractions();
                 _isDownloadRunning = false;
                 process.Dispose();
+                InformationAndExceptionOutput = "Finished download";
             }
         }
 
@@ -702,6 +704,7 @@ namespace Model
             ButtonContent = "Download";
             FolderButtonToolTip = "Open download folder";
             _infoAndExceptions = new CircularQueue<string>(20);
+            InformationAndExceptionOutput = "Application initialized";
         }
 
         public void EnableInteractions()
@@ -797,7 +800,7 @@ namespace Model
             {
                 if (_pingerCounter > 2)
                 {
-                    InfoAndExceptionsOutput = pingException.Message;
+                    InformationAndExceptionOutput = pingException.Message;
                     _isOnline = false;
                     TimersOutput = "Offline";
                     Application.Current.Dispatcher.Invoke(() =>

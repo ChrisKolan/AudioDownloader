@@ -19,7 +19,7 @@ namespace Model
             {
                 model.StandardOutput = "Checking for updates";
                 model.DisableInteractions();
-                model.InfoAndExceptionsOutput = configurationErrorsException;
+                model.InformationAndExceptionOutput = configurationErrorsException;
 
                 try
                 {
@@ -33,7 +33,7 @@ namespace Model
                     model.LocalVersions = localVersions;
                     model.HelpButtonToolTip = localVersions;
                     model.EnableInteractions();
-                    model.InfoAndExceptionsOutput = exception.Message;
+                    model.InformationAndExceptionOutput = exception.Message;
                     return;
                 }
             }

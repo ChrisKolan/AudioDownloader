@@ -141,7 +141,7 @@
             </StatusBar>
             <CheckBox IsChecked="False"
                       BorderThickness="100"
-                      ToolTip="{Binding Model.InfoAndExceptionsOutput, UpdateSourceTrigger=PropertyChanged}" 
+                      ToolTip="{Binding Model.InformationAndExceptionOutput, UpdateSourceTrigger=PropertyChanged}" 
                       ToolTipService.ShowDuration="20000"
                       Margin="774,92,0,0">
             </CheckBox>
