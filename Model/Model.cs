@@ -775,7 +775,7 @@ namespace Model
 
         private void TimerPinger()
         {
-            if (HelpersModel.Pinger(out PingException pingException))
+            if (HelpersModel.Pinger(out string pingException))
             {
                 _isOnline = true;
                 if (TimersOutput != null && TimersOutput.Contains("Offline"))
@@ -800,7 +800,7 @@ namespace Model
             {
                 if (_pingerCounter > 2)
                 {
-                    InformationAndExceptionOutput = pingException.Message;
+                    InformationAndExceptionOutput = pingException;
                     _isOnline = false;
                     TimersOutput = "Offline";
                     Application.Current.Dispatcher.Invoke(() =>
