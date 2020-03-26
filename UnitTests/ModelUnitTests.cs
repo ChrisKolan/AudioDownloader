@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTests
 {
     [TestClass]
-    public class ModelUnitTests : BaseTest
+    public class ModelUnitTests : BaseTest, IDisposable
     {
         private readonly Model.ModelClass _model;
         private static readonly string _pathDll = AppDomain.CurrentDomain.BaseDirectory;
@@ -17,8 +17,6 @@ namespace UnitTests
 
         public ModelUnitTests()
         {
-            //DirectoryInfo rootPath = new DirectoryInfo(_audioPath);
-            //Erase(rootPath);
             _model = new Model.ModelClass();
             // Give some time to update 
             Thread.Sleep(30000);
@@ -192,5 +190,41 @@ namespace UnitTests
             var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
             Assert.IsTrue(numberOfFiles >= 3 && numberOfFiles <= 7, $"Wrong number of files. Expected number of files between 3 and 7. Actual number of files: {numberOfFiles}");
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: dispose managed state (managed objects).
+                    _model.Dispose();
+                }
+                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~Model()
+        // {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+            // TODO: uncomment the following line if the finalizer is overridden above.
+            GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }

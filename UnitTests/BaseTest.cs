@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -23,6 +24,7 @@ namespace UnitTests
 
         public static void DeleteFiles(string[] fileNames)
         {
+            Contract.Requires(fileNames != null);
             foreach (var fileName in fileNames)
             {
                 File.Delete(fileName);
@@ -36,6 +38,7 @@ namespace UnitTests
 
         public static void Erase(DirectoryInfo directory)
         {
+            Contract.Requires(directory != null);
             foreach (FileInfo file in directory.GetFiles()) file.Delete();
             foreach (DirectoryInfo subDirectory in directory.GetDirectories()) subDirectory.Delete(true);
         }
