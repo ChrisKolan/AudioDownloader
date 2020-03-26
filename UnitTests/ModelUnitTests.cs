@@ -40,6 +40,7 @@ namespace UnitTests
         {
             _model.DownloadLink = "Not valid link";
             _model.DownloadButtonClick();
+            Thread.Sleep(4000);
             Assert.IsTrue(_model.StandardOutput == "Error. No file downloaded. Updates are needed.");
         }
         [TestMethod]
