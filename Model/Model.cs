@@ -779,7 +779,7 @@ namespace Model
 
         private void TimerPinger()
         {
-            if (HelpersModel.Pinger(out string pingException))
+            if (PingUtility.Pinger(out string pingException))
             {
                 _isOnline = true;
                 if (TimersOutput != null && TimersOutput.Contains("Offline"))
@@ -799,6 +799,7 @@ namespace Model
                     GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
                 });
                 _pingerCounter = 0;
+                HelpButtonToolTip = PingUtility.AddPingToHelpButtonToolTip(HelpButtonToolTip);
             }
             else
             {
@@ -811,6 +812,7 @@ namespace Model
                     {
                         GlowBrushColor = new SolidColorBrush(Colors.Red);
                     });
+                    HelpButtonToolTip = PingUtility.AddPingToHelpButtonToolTip(HelpButtonToolTip);
                 }
                 _pingerCounter++;
             }
