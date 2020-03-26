@@ -295,7 +295,7 @@ namespace Model
             get { return _informationAndExceptionOutput; }
             set 
             {
-                Contract.Requires(value != null);
+                //Contract.Requires(value != null);
                 _informationAndException.Enqueue(DateTime.Now.ToString(CultureInfo.InvariantCulture) + ": " + value);
                 _informationAndExceptionOutput = string.Join(Environment.NewLine, _informationAndException);
                 OnPropertyChanged(nameof(InformationAndExceptionOutput));
