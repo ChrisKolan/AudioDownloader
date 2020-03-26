@@ -62,7 +62,7 @@ namespace Model
         private bool _isClipboardCaptureSelected;
         private int _pingerCounter;
         private int _lastUsedQualityIndex;
-        private string _infoAndExceptionsOutput;
+        private string _informationAndExceptionOutput;
         private CircularQueue<string> _infoAndExceptions;
         #endregion
 
@@ -292,12 +292,12 @@ namespace Model
 
         public string InformationAndExceptionOutput
         {
-            get { return _infoAndExceptionsOutput; }
+            get { return _informationAndExceptionOutput; }
             set 
             {
                 Contract.Requires(value != null);
                 _infoAndExceptions.Enqueue(DateTime.Now.ToString(CultureInfo.InvariantCulture) + ": " + value);
-                _infoAndExceptionsOutput = string.Join(Environment.NewLine, _infoAndExceptions);
+                _informationAndExceptionOutput = string.Join(Environment.NewLine, _infoAndExceptions);
                 OnPropertyChanged(nameof(InformationAndExceptionOutput));
             }
         }
@@ -527,7 +527,7 @@ namespace Model
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 Thread.Sleep(1000);
                 StandardOutput = "Exception. Updating webhook failed.";
-                _infoAndExceptionsOutput = webhookException.Message;
+                _informationAndExceptionOutput = webhookException.Message;
                 _downloadedFileSize = null;
                 EnableInteractions();
                 return;
