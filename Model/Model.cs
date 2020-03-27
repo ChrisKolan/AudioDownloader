@@ -551,7 +551,8 @@ namespace Model
             var command = "/C bin\\youtube-dl.exe -F " + DownloadLink;
             var availableFormats = new List<string>();
             var availableAudioFormats = new List<string>();
-            availableFormats.Add("\n==========================================================================");
+            availableFormats.Add(Environment.NewLine);
+            availableFormats.Add("==========================================================================");
             availableFormats.Add("Advanced information. Available YouTube file formats:");
 
             var startinfo = new ProcessStartInfo("CMD.exe", command)
@@ -799,7 +800,10 @@ namespace Model
                     GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
                 });
                 _pingerCounter = 0;
-                HelpButtonToolTip = PingUtility.AddPingToHelpButtonToolTip(HelpButtonToolTip);
+                if (HelpButtonToolTip != null)
+                {
+                    HelpButtonToolTip = PingUtility.AddPingToHelpButtonToolTip(HelpButtonToolTip);
+                }
             }
             else
             {

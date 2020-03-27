@@ -9,7 +9,7 @@ namespace Model
 {
     internal static class PingUtility
     {
-        static long _roundtripTime;
+        private static long _roundtripTime;
 
         public static bool Pinger(out string pingException)
         {
@@ -40,11 +40,6 @@ namespace Model
             }
             if (reply.Status != IPStatus.Success)
             {
-                //Console.WriteLine("Address: {0}", reply.Address.ToString());
-                //Console.WriteLine("RoundTrip time: {0}", reply.RoundtripTime);
-                //Console.WriteLine("Time to live: {0}", reply.Options.Ttl);
-                //Console.WriteLine("Don't fragment: {0}", reply.Options.DontFragment);
-                //Console.WriteLine("Buffer size: {0}", reply.Buffer.Length);
                 pingException = "Sending of an Internet Control Message Protocol not successful";
                 _roundtripTime = -1;
                 pingSender.Dispose();
@@ -59,21 +54,34 @@ namespace Model
         public static string AddPingToHelpButtonToolTip(string helpButtonToolTip)
         {
             var helpButtonToolTipList = helpButtonToolTip.Split( new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
+            var index = helpButtonToolTipList.FindIndex(a => a == "Advanced information. Available YouTube file formats:");
             var status = (_roundtripTime == -1) ? "Offline" : "Online";
             var pingData = new List<string>
             {
                 "===========================",
                 "Status \t\t   |\t" + status,
-                "Roundtrip time \t   |\t" + _roundtripTime,
+                "Roundtrip time \t   |\t" + _roundtripTime + " [ms]",
             };
-            var combinedList = helpButtonToolTipList.Concat(pingData).ToList();
 
-            if (combinedList.Count > 12)
+            if (index > 0)
             {
-                combinedList.RemoveRange(8, 3);
+                var advancedInformationCount = helpButtonToolTipList.Count - index;
+                helpButtonToolTipList.InsertRange(7, pingData);
+                if (helpButtonToolTipList.Count > advancedInformationCount + 12)
+                {
+                    helpButtonToolTipList.RemoveRange(10, 3);
+                }
+                return string.Join(Environment.NewLine, helpButtonToolTipList.ToArray());
             }
 
-            return string.Join(Environment.NewLine, combinedList.ToArray());
+            var listWithoutAdvancedInformation = new List<string>();
+            listWithoutAdvancedInformation = helpButtonToolTipList.Concat(pingData).ToList();
+
+            if (listWithoutAdvancedInformation.Count > 12)
+            {
+                listWithoutAdvancedInformation.RemoveRange(8, 3);
+            }
+            return string.Join(Environment.NewLine, listWithoutAdvancedInformation.ToArray());
         }
     }
 }
