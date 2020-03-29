@@ -68,7 +68,7 @@
                 </TextBox>
                 <CheckBox IsChecked="{Binding Model.IsClipboardCaptureSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for clipboard capture" Margin="750,0,24,0">
+                          ToolTip="Check for clipboard capture" Margin="752,0,22,0">
                 </CheckBox>
             </Grid>
             <Grid>
@@ -88,7 +88,7 @@
                 </ComboBox>
                 <CheckBox IsChecked="{Binding Model.IsUsingLastQualitySelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for using last selected quality" Margin="750,0,24,0">
+                          ToolTip="Check for using last selected quality" Margin="752,0,22,0">
                 </CheckBox>
             </Grid>
             <Grid>
@@ -110,6 +110,10 @@
                 <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
                           ToolTip="Check for automatic download" Margin="774,0,0,0">
+                </CheckBox>
+                <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
+                          BorderBrush="#FFBCBCBC"
+                          ToolTip="Check for automatic download" Margin="752,0,0,0">
                 </CheckBox>
             </Grid>
         <Controls:MetroProgressBar Margin="2,1,2,1"

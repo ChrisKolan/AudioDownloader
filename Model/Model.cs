@@ -64,6 +64,7 @@ namespace Model
         private int _lastUsedQualityIndex;
         private string _informationAndExceptionOutput;
         private CircularQueue<string> _informationAndException;
+        private string _otherWebsitesUnlocker = "Audio and video \t\t Best quality on youtube-dl supported websites";
         #endregion
 
         #region Constructor
@@ -638,7 +639,8 @@ namespace Model
             qualityDynamic.ForEach(Quality.Add);
             QualityDefault.ForEach(Quality.Add);
             qualityDynamicFormat.ForEach(Quality.Add);
-            Quality.Add("Audio and video \t\t Best quality");
+            Quality.Add("Audio and video \t\t Best YouTube quality");
+            Quality.Add(_otherWebsitesUnlocker);
 
             var optimalQualityIndex = Quality.ToList().FindIndex(x => x.Contains("m4a"));
             var defaultQualityCount = 19;
@@ -884,7 +886,12 @@ namespace Model
             Contract.Requires(value != null);
             Contract.Requires(context != null);
             var model = (ModelClass)context.ObjectInstance;
+            var isOtherWebsitesUnlocker = model.SelectedQuality.Contains(model._otherWebsitesUnlocker);
 
+            if (isOtherWebsitesUnlocker)
+            {
+                return RetreiveQuality(model, isOtherWebsitesUnlocker);
+            }
             if (!value.ToString().Contains("https://www.youtube.com/"))
             {
                 model.DownloadLinkDisabler(model);
@@ -892,14 +899,8 @@ namespace Model
                 model.IsComboBoxEnabled = false;
                 return new ValidationResult("YouTube link not valid", new List<string> { "DownloadLink" });
             }
-            model.DownloadLinkDisabler(model);
-            model.IsButtonEnabled = true;
-            model.IsComboBoxEnabled = true;
-            var uiContext = model._synchronizationContext;
-            model.StandardOutput = "Retrieving audio quality";
-            Task.Run(() => model.GetYouTubeAvailableFormatsWorker(uiContext));
 
-            return ValidationResult.Success;
+            return RetreiveQuality(model, isOtherWebsitesUnlocker);
         }
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
@@ -960,6 +961,20 @@ namespace Model
                     OnErrorsChanged(prop.Key);
                 }
             }
+        }
+
+        private static ValidationResult RetreiveQuality(ModelClass model, bool isOtherWebsitesUnlocker)
+        {
+            model.DownloadLinkDisabler(model);
+            model.IsButtonEnabled = true;
+            model.IsComboBoxEnabled = true;
+            model.StandardOutput = "Retrieving quality";
+            if (isOtherWebsitesUnlocker)
+            {
+                return ValidationResult.Success;
+            }
+            Task.Run(() => model.GetYouTubeAvailableFormatsWorker(model._synchronizationContext));
+            return ValidationResult.Success;
         }
 
         #region IDisposable Support
