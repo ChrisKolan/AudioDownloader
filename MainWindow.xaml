@@ -109,11 +109,11 @@
                 </Button>
                 <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for automatic download" Margin="774,0,0,0">
+                          ToolTip="Check for automatic download" Margin="752,0,22,0">
                 </CheckBox>
-                <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
+                <CheckBox IsChecked="{Binding Model.OtherWebsitesUnlocker, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for automatic download" Margin="752,0,0,0">
+                          ToolTip="Check for download of best quality audio and video on youtube-dl supported websites" Margin="774,0,0,0">
                 </CheckBox>
             </Grid>
         <Controls:MetroProgressBar Margin="2,1,2,1"
