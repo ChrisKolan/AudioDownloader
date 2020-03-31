@@ -60,8 +60,9 @@
                          VerticalContentAlignment="Center"
                          Controls:TextBoxHelper.ClearTextButton="True"
                          Controls:TextBoxHelper.SelectAllOnFocus="True"
+                         MaxLength="132"
                          Controls:TextBoxHelper.Watermark="Paste YouTube link and press Enter or Download button"
-                         ToolTip="Paste YouTube link and press Enter or Download button. Or type CLI followed by youtube-dl command" AcceptsReturn="False" Padding="0,1,0,0">
+                         ToolTip="Paste YouTube link and press Enter or Download button" AcceptsReturn="False" Padding="0,1,0,0">
                          <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding DownloadButton}" />
                          </TextBox.InputBindings>
