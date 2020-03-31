@@ -111,7 +111,7 @@
                           BorderBrush="#FFBCBCBC"
                           ToolTip="Check for automatic download" Margin="752,0,22,0">
                 </CheckBox>
-                <CheckBox IsChecked="{Binding Model.OtherWebsitesUnlocker, UpdateSourceTrigger=PropertyChanged}"
+                <CheckBox IsChecked="{Binding Model.IsWebsitesUnlockerSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
                           ToolTip="Check for download of best quality audio and video on youtube-dl supported websites" Margin="774,0,0,0">
                 </CheckBox>

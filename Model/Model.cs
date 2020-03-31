@@ -64,7 +64,7 @@ namespace Model
         private int _lastUsedQualityIndex;
         private string _informationAndExceptionOutput;
         private CircularQueue<string> _informationAndException;
-        private string _otherWebsitesUnlocker = "Audio and video \t\t Best quality on youtube-dl supported websites";
+        private bool _isWebsitesUnlockerSelected;
         #endregion
 
         #region Constructor
@@ -163,6 +163,19 @@ namespace Model
             {
                 _isUsingLastQualitySelected = value;
                 OnPropertyChanged(nameof(IsUsingLastQualitySelected));
+            }
+        }
+
+        public bool IsWebsitesUnlockerSelected
+        {
+            get { return _isWebsitesUnlockerSelected; }
+            set
+            {
+                _isWebsitesUnlockerSelected = value;
+                Quality.Clear();
+                Quality.Add("Audio and video \t\t Best quality");
+                SelectedQuality = Quality[0];
+                OnPropertyChanged(nameof(IsWebsitesUnlockerSelected));
             }
         }
 
@@ -640,7 +653,6 @@ namespace Model
             QualityDefault.ForEach(Quality.Add);
             qualityDynamicFormat.ForEach(Quality.Add);
             Quality.Add("Audio and video \t\t Best YouTube quality");
-            Quality.Add(_otherWebsitesUnlocker);
 
             var optimalQualityIndex = Quality.ToList().FindIndex(x => x.Contains("m4a"));
             var defaultQualityCount = 19;
@@ -886,11 +898,9 @@ namespace Model
             Contract.Requires(value != null);
             Contract.Requires(context != null);
             var model = (ModelClass)context.ObjectInstance;
-            var isOtherWebsitesUnlocker = model.SelectedQuality.Contains(model._otherWebsitesUnlocker);
-
-            if (isOtherWebsitesUnlocker)
+            if (model.IsWebsitesUnlockerSelected)
             {
-                return RetreiveQuality(model, isOtherWebsitesUnlocker);
+                return RetreiveQuality(model);
             }
             if (!value.ToString().Contains("https://www.youtube.com/"))
             {
@@ -900,7 +910,7 @@ namespace Model
                 return new ValidationResult("YouTube link not valid", new List<string> { "DownloadLink" });
             }
 
-            return RetreiveQuality(model, isOtherWebsitesUnlocker);
+            return RetreiveQuality(model);
         }
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
@@ -963,16 +973,16 @@ namespace Model
             }
         }
 
-        private static ValidationResult RetreiveQuality(ModelClass model, bool isOtherWebsitesUnlocker)
+        private static ValidationResult RetreiveQuality(ModelClass model)
         {
             model.DownloadLinkDisabler(model);
             model.IsButtonEnabled = true;
             model.IsComboBoxEnabled = true;
-            model.StandardOutput = "Retrieving quality";
-            if (isOtherWebsitesUnlocker)
+            if (model.IsWebsitesUnlockerSelected)
             {
                 return ValidationResult.Success;
             }
+            model.StandardOutput = "Retrieving quality";
             Task.Run(() => model.GetYouTubeAvailableFormatsWorker(model._synchronizationContext));
             return ValidationResult.Success;
         }
