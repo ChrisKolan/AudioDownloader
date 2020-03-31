@@ -173,7 +173,14 @@ namespace Model
             {
                 _isWebsitesUnlockerSelected = value;
                 Quality.Clear();
-                Quality.Add("Audio and video \t\t Best quality");
+                if (_isWebsitesUnlockerSelected)
+                {
+                    Quality.Add("Audio and video \t\t Best quality");
+                }
+                else
+                {
+                    Quality.Add(HelpersModel.QualityObservableCollection()[0]);
+                }
                 SelectedQuality = Quality[0];
                 OnPropertyChanged(nameof(IsWebsitesUnlockerSelected));
             }
