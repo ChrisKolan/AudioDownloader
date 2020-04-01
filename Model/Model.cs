@@ -102,6 +102,10 @@ namespace Model
             set
             {
                 _downloadLink = value;
+                if (IsWebsitesUnlockerSelected && IsAutomaticDownloadSelected)
+                {
+                    DownloadButtonClick();
+                }
                 OnPropertyChanged(nameof(DownloadLink));
                 ValidateAsync();
             }
