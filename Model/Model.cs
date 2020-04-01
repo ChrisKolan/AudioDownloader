@@ -63,6 +63,7 @@ namespace Model
         private int _pingerCounter;
         private int _lastUsedQualityIndex;
         private string _informationAndExceptionOutput;
+        private string _textBoxHelper;
         private CircularQueue<string> _informationAndException;
         private bool _isWebsitesUnlockerSelected;
         #endregion
@@ -175,10 +176,12 @@ namespace Model
                 Quality.Clear();
                 if (_isWebsitesUnlockerSelected)
                 {
+                    TextBoxHelper = "Paste link and press Enter or Download button";
                     Quality.Add("Audio and video \t\t Best quality");
                 }
                 else
                 {
+                    TextBoxHelper = "Paste YouTube link and press Enter or Download button";
                     Quality.Add(HelpersModel.QualityObservableCollection()[0]);
                 }
                 SelectedQuality = Quality[0];
@@ -210,6 +213,15 @@ namespace Model
 
         public string CurrentStandardOutputLine { get; set; }
 
+        public string TextBoxHelper
+        {
+            get { return _textBoxHelper; }
+            set
+            {
+                _textBoxHelper = value;
+                OnPropertyChanged(nameof(TextBoxHelper));
+            }
+        }
         public string StandardOutput
         {
             get { return _standardOutput; }
@@ -729,6 +741,7 @@ namespace Model
             StandardOutput = "Ready";
             ButtonContent = "Download";
             FolderButtonToolTip = "Open download folder";
+            TextBoxHelper = "Paste YouTube link and press Enter or Download button";
             _informationAndException = new CircularQueue<string>(20);
             InformationAndExceptionOutput = "Application initialized";
         }
