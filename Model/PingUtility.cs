@@ -53,16 +53,13 @@ namespace Model
 
         public static string AddPingToHelpButtonToolTip(string helpButtonToolTip)
         {
+            if (helpButtonToolTip == null)
+            {
+                return string.Join(Environment.NewLine, ComposePingStatus().ToArray());
+            }
+            var pingData = ComposePingStatus();
             var helpButtonToolTipList = helpButtonToolTip.Split( new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
             var index = helpButtonToolTipList.FindIndex(a => a == "Advanced information. Available YouTube file formats:");
-            var status = (_roundtripTime == -1) ? "Offline" : "Online";
-            var pingData = new List<string>
-            {
-                "===========================",
-                "Status \t\t   |\t" + status,
-                "Roundtrip time \t   |\t" + _roundtripTime + " [ms]",
-            };
-
             if (index > 0)
             {
                 var advancedInformationCount = helpButtonToolTipList.Count - index;
@@ -82,6 +79,19 @@ namespace Model
                 listWithoutAdvancedInformation.RemoveRange(8, 3);
             }
             return string.Join(Environment.NewLine, listWithoutAdvancedInformation.ToArray());
+        }
+
+        private static List<string> ComposePingStatus()
+        {
+            var status = (_roundtripTime == -1) ? "Offline" : "Online";
+            var pingData = new List<string>
+            {
+                "===========================",
+                "Status \t\t   |\t" + status,
+                "Roundtrip time \t   |\t" + _roundtripTime + " [ms]",
+            };
+
+            return pingData;
         }
     }
 }

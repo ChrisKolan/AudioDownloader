@@ -838,10 +838,7 @@ namespace Model
                     GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
                 });
                 _pingerCounter = 0;
-                if (HelpButtonToolTip != null)
-                {
-                    HelpButtonToolTip = PingUtility.AddPingToHelpButtonToolTip(HelpButtonToolTip);
-                }
+                HelpButtonToolTip = PingUtility.AddPingToHelpButtonToolTip(HelpButtonToolTip);
             }
             else
             {
