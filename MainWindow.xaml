@@ -67,6 +67,12 @@
                             <KeyBinding Key="Return" Command="{Binding DownloadButton}" />
                          </TextBox.InputBindings>
                 </TextBox>
+                <Rectangle Width="24" Height="22"
+                           Margin="744,0,20,0">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White" />
+                    </Rectangle.Fill>
+                </Rectangle>
                 <CheckBox IsChecked="{Binding Model.IsClipboardCaptureSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
                           ToolTip="Check for clipboard capture" Margin="752,0,22,0">
