@@ -60,7 +60,6 @@
                          VerticalContentAlignment="Center"
                          Controls:TextBoxHelper.ClearTextButton="True"
                          Controls:TextBoxHelper.SelectAllOnFocus="True"
-                         MaxLength="132"
                          Controls:TextBoxHelper.Watermark="{Binding Model.TextBoxHelper, UpdateSourceTrigger=PropertyChanged}"
                          ToolTip="{Binding Model.TextBoxHelper, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="False" Padding="0,1,0,0">
                          <TextBox.InputBindings>
