@@ -498,7 +498,21 @@ namespace Model
                 Thread.Sleep(1000);
                 if (_isOnline)
                 {
-                    StandardOutput = "Error. No file downloaded. Updates are needed.";
+                    if (IsWebsitesUnlockerSelected)
+                    {
+                        if (!DownloadLink.Contains("https://www."))
+                        {
+                            StandardOutput = "Not a valid link.";
+                        }
+                        else
+                        {
+                            StandardOutput = "No file downloaded. Unsupported website.";
+                        }
+                    }
+                    else
+                    {
+                        StandardOutput = "Error. No file downloaded. Updates are needed.";
+                    }
                 }
                 else
                 {
