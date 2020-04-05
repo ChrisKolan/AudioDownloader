@@ -28,8 +28,10 @@ namespace UnitTests
             _model.DownloadLink = "";
             // Give some time to update 
             Thread.Sleep(30000);
+            Assert.IsFalse(_model.StandardOutput == "Failed to update. Click here to download manually.", "Failed to update. " + _model.InformationAndExceptionOutput);
             _model.DownloadButtonClick();
             Assert.IsTrue(_model.StandardOutput == "Empty link");
+            Console.WriteLine(_model.InformationAndExceptionOutput);
         }
         [TestMethod]
         public void A002WhiteSpaceLink()
@@ -175,7 +177,33 @@ namespace UnitTests
             DeleteFiles(fileNames);
         }
         [TestMethod]
-        public void A009DownloadPlayListCancel()
+        public void A009DownloadAudioAndVideoOtherSite()
+        {
+            var qualities = new List<string> { "Audio and video" };
+            var expectedFileSizes = new List<long> { 46969734 };
+            _model.IsWebsitesUnlockerSelected = true;
+            _model.DownloadLink = "https://helpx.adobe.com/creative-cloud/how-to/creative-cloud-overview.html";
+            for (int i = 0; i < qualities.Count; i++)
+            {
+                _model.SelectedQuality = qualities[i];
+                _model.DownloadButtonClick();
+                Thread.Sleep(1000);
+                while (!_model.IsComboBoxEnabled)
+                {
+                    Thread.Sleep(100);
+                }
+                var numberOfFiles = NumberOfFilesInDirectory(_audioAndVideoPath);
+                Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
+                var fileName = FileNamesAndPath(_audioAndVideoPath);
+                var actualFileSize = FileSize(fileName[0]);
+                var expetedFileSize = expectedFileSizes[i];
+                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");
+                Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
+                DeleteFiles(fileName);
+            }
+        }
+        [TestMethod]
+        public void A010DownloadPlayListCancel()
         {
             _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
             _model.SelectedQuality = "raw aac";
