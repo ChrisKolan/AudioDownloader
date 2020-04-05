@@ -193,21 +193,17 @@ namespace UnitTests
             var expectedFileSizes = new List<long> { 46969734 };
             model.IsWebsitesUnlockerSelected = true;
             model.DownloadLink = "https://helpx.adobe.com/creative-cloud/how-to/creative-cloud-overview.html";
-            for (int i = 0; i < qualities.Count; i++)
-            {
-                model.SelectedQuality = qualities[i];
-                model.DownloadButtonClick();
-                Thread.Sleep(10000);
-                var numberOfFiles = NumberOfFilesInDirectory(_audioAndVideoPath);
-                Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
-                var fileName = FileNamesAndPath(_audioAndVideoPath);
-                var actualFileSize = FileSize(fileName[0]);
-                var expetedFileSize = expectedFileSizes[i];
-                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");
-                Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
-                DeleteFiles(fileName);
-            }
-            model.IsWebsitesUnlockerSelected = false;
+            model.SelectedQuality = qualities[0];
+            model.DownloadButtonClick();
+            Thread.Sleep(10000);
+            var numberOfFiles = NumberOfFilesInDirectory(_audioAndVideoPath);
+            Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
+            var fileName = FileNamesAndPath(_audioAndVideoPath);
+            var actualFileSize = FileSize(fileName[0]);
+            var expetedFileSize = expectedFileSizes[0];
+            Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");
+            Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
+            DeleteFiles(fileName);
             Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
