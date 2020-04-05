@@ -187,11 +187,7 @@ namespace UnitTests
             {
                 _model.SelectedQuality = qualities[i];
                 _model.DownloadButtonClick();
-                Thread.Sleep(1000);
-                while (!_model.IsComboBoxEnabled)
-                {
-                    Thread.Sleep(100);
-                }
+                Thread.Sleep(10000);
                 var numberOfFiles = NumberOfFilesInDirectory(_audioAndVideoPath);
                 Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
                 var fileName = FileNamesAndPath(_audioAndVideoPath);
@@ -200,6 +196,7 @@ namespace UnitTests
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");
                 Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
+                Console.WriteLine(_model.InformationAndExceptionOutput);
             }
         }
         [TestMethod]
