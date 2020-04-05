@@ -18,13 +18,16 @@ namespace UnitTests
         public ModelUnitTests()
         {
             _model = new Model.ModelClass();
-            // Give some time to update 
-            Thread.Sleep(30000);
+            // After model creation the update is starting asynchronously 
+            // Updater is invoked
+            // Updater invokes Audio Downloader
         }
         [TestMethod]
         public void A001EmptyLink()
         {
             _model.DownloadLink = "";
+            // Give some time to update 
+            Thread.Sleep(30000);
             _model.DownloadButtonClick();
             Assert.IsTrue(_model.StandardOutput == "Empty link");
         }
