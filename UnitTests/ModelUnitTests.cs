@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
+using System.Windows;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests
@@ -196,11 +197,23 @@ namespace UnitTests
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");
                 Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
-                Console.WriteLine(_model.InformationAndExceptionOutput);
             }
+            _model.IsWebsitesUnlockerSelected = false;
+            Console.WriteLine(_model.InformationAndExceptionOutput);
         }
         [TestMethod]
-        public void A010DownloadPlayListCancel()
+        public void A010Clipboard()
+        {
+            var clipboard = "Clipboard string.";
+            _model.IsClipboardCaptureSelected = true;
+            Clipboard.SetText(clipboard);
+            Thread.Sleep(200);
+            _model.IsClipboardCaptureSelected = false;
+            Assert.IsTrue(_model.DownloadLink == clipboard);
+            Console.WriteLine(_model.InformationAndExceptionOutput);
+        }
+        [TestMethod]
+        public void A011DownloadPlayListCancel()
         {
             _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
             _model.SelectedQuality = "raw aac";
