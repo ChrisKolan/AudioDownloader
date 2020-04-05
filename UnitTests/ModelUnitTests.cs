@@ -208,19 +208,7 @@ namespace UnitTests
             model.Dispose();
         }
         [TestMethod]
-        public void A010Clipboard()
-        {
-            var model = new Model.ModelClass();
-            var clipboard = "Clipboard string.";
-            model.IsClipboardCaptureSelected = true;
-            Clipboard.SetText(clipboard);
-            Thread.Sleep(200);
-            Assert.IsTrue(model.DownloadLink == clipboard);
-            Console.WriteLine(model.InformationAndExceptionOutput);
-            model.Dispose();
-        }
-        [TestMethod]
-        public void A011DownloadPlayListCancel()
+        public void A010DownloadPlayListCancel()
         {
             var model = new Model.ModelClass();
             model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";

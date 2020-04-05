@@ -816,7 +816,7 @@ namespace Model
         {
             if (IsClipboardCaptureSelected)
             {
-                Thread thread = new Thread(() =>
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     if (DownloadLink == null)
                     {
@@ -826,10 +826,7 @@ namespace Model
                     {
                         DownloadLink = Clipboard.GetText();
                     }
-                });
-                thread.SetApartmentState(ApartmentState.STA);
-                thread.Start();
-                thread.Join();
+                }, System.Windows.Threading.DispatcherPriority.Send);
             }
         }
 
