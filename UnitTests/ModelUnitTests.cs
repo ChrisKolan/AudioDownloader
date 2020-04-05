@@ -9,59 +9,58 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UnitTests
 {
     [TestClass]
-    public class ModelUnitTests : BaseTest, IDisposable
+    public class ModelUnitTests : BaseTest
     {
-        private readonly Model.ModelClass _model;
         private static readonly string _pathDll = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string _audioPath = _pathDll + @"\audio\";
         private static readonly string _audioAndVideoPath = _pathDll + @"\audio\video\";
 
-        public ModelUnitTests()
-        {
-            _model = new Model.ModelClass();
-            // After model creation the update is starting asynchronously 
-            // Updater is invoked
-            // Updater invokes Audio Downloader
-        }
         [TestMethod]
         public void A001EmptyLink()
         {
-            _model.DownloadLink = "";
+            var model = new Model.ModelClass();
+            model.DownloadLink = "";
             // Give some time to update 
             Thread.Sleep(30000);
-            Assert.IsFalse(_model.StandardOutput == "Failed to update. Click here to download manually.", "Failed to update. " + _model.InformationAndExceptionOutput);
-            _model.DownloadButtonClick();
-            Assert.IsTrue(_model.StandardOutput == "Empty link");
-            Console.WriteLine(_model.InformationAndExceptionOutput);
+            Assert.IsFalse(model.StandardOutput == "Failed to update. Click here to download manually.", "Failed to update. " + model.InformationAndExceptionOutput);
+            model.DownloadButtonClick();
+            Assert.IsTrue(model.StandardOutput == "Empty link");
+            Console.WriteLine(model.InformationAndExceptionOutput);
+            model.Dispose();
         }
         [TestMethod]
         public void A002WhiteSpaceLink()
         {
-            _model.DownloadLink = " ";
-            _model.DownloadButtonClick();
-            Assert.IsTrue(_model.StandardOutput == "Empty link");
+            var model = new Model.ModelClass();
+            model.DownloadLink = " ";
+            model.DownloadButtonClick();
+            Assert.IsTrue(model.StandardOutput == "Empty link");
+            model.Dispose();
         }
         [TestMethod]
         public void A003YouTubeLinkNotValid()
         {
-            _model.DownloadLink = "Not valid link";
-            _model.DownloadButtonClick();
+            var model = new Model.ModelClass();
+            model.DownloadLink = "Not valid link";
+            model.DownloadButtonClick();
             Thread.Sleep(4000);
-            Assert.IsTrue(_model.StandardOutput == "Error. No file downloaded. Updates are needed.");
+            Assert.IsTrue(model.StandardOutput == "Error. No file downloaded. Updates are needed.");
+            model.Dispose();
         }
         [TestMethod]
         public void A004DownloadInDifferentQuality()
         {
-            var qualities = new List<string> { "raw webm", "raw opus", "raw aac", "superb", "best", "better", "optimal", "very good", 
+            var model = new Model.ModelClass();
+            var qualities = new List<string> { "raw webm", "raw opus", "raw aac", "superb", "best", "better", "optimal", "very good",
                                                "transparent", "good", "acceptable", "audio book", "worse", "worst" };
             var expectedFileSizes = new List<long> { 3136081, 3089476, 3083046, 39768753, 6469840, 5518168, 4604680, 4178104, 3692512, 3183856, 2800840, 2486776, 2379040, 1923664 };
-            _model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
+            model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
             for (int i = 0; i < qualities.Count; i++)
             {
-                _model.SelectedQuality = qualities[i];
-                _model.DownloadButtonClick();
+                model.SelectedQuality = qualities[i];
+                model.DownloadButtonClick();
                 Thread.Sleep(1000);
-                while (!_model.IsComboBoxEnabled)
+                while (!model.IsComboBoxEnabled)
                 {
                     Thread.Sleep(100);
                 }
@@ -70,23 +69,25 @@ namespace UnitTests
                 var fileName = FileNamesAndPath(_audioPath);
                 var actualFileSize = FileSize(fileName[0]);
                 var expetedFileSize = expectedFileSizes[i];
-                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize-expetedFileSize}. File name: {fileName[0]}.");
+                Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");
                 Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
             }
+            model.Dispose();
         }
         [TestMethod]
         public void A005DownloadRawFormats()
         {
+            var model = new Model.ModelClass();
             var qualities = new List<string> { "251\twebm", "140\tm4a", "250\twebm", "249\twebm" };
             var expectedFileSizes = new List<long> { 3663749, 3083046, 3560180, 3454030 };
-            _model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
+            model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
             for (int i = 0; i < qualities.Count; i++)
             {
-                _model.SelectedQuality = qualities[i];
-                _model.DownloadButtonClick();
+                model.SelectedQuality = qualities[i];
+                model.DownloadButtonClick();
                 Thread.Sleep(1000);
-                while (!_model.IsComboBoxEnabled)
+                while (!model.IsComboBoxEnabled)
                 {
                     Thread.Sleep(100);
                 }
@@ -99,19 +100,21 @@ namespace UnitTests
                 Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
             }
+            model.Dispose();
         }
         [TestMethod]
         public void A006DownloadAudioAndVideo()
         {
+            var model = new Model.ModelClass();
             var qualities = new List<string> { "Audio and video" };
             var expectedFileSizes = new List<long> { 70202974 };
-            _model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
+            model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
             for (int i = 0; i < qualities.Count; i++)
             {
-                _model.SelectedQuality = qualities[i];
-                _model.DownloadButtonClick();
+                model.SelectedQuality = qualities[i];
+                model.DownloadButtonClick();
                 Thread.Sleep(1000);
-                while (!_model.IsComboBoxEnabled)
+                while (!model.IsComboBoxEnabled)
                 {
                     Thread.Sleep(100);
                 }
@@ -124,17 +127,19 @@ namespace UnitTests
                 Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
             }
+            model.Dispose();
         }
         [TestMethod]
         public void A007DownloadPlayListOne()
         {
-            _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
-            _model.SelectedQuality = "raw aac";
+            var model = new Model.ModelClass();
+            model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
+            model.SelectedQuality = "raw aac";
             var expectedFileSizes = new List<long> { 5083565, 4034396, 3402184, 3631459, 2875099, 3873389, 3458799, 5609895, 4151596 };
-            _model.DownloadButtonClick();
+            model.DownloadButtonClick();
             Thread.Sleep(1000);
             var allowedSizeDifference = 100;
-            while (!_model.IsComboBoxEnabled)
+            while (!model.IsComboBoxEnabled)
             {
                 Thread.Sleep(100);
             }
@@ -150,17 +155,19 @@ namespace UnitTests
                 Assert.IsTrue((expetedFileSize - allowedSizeDifference <= actualFileSize) && (actualFileSize <= expetedFileSize + allowedSizeDifference), $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
             DeleteFiles(fileNames);
+            model.Dispose();
         }
         [TestMethod]
         public void A008DownloadPlayListTwo()
         {
-            _model.DownloadLink = "https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=1";
-            _model.SelectedQuality = "raw aac";
+            var model = new Model.ModelClass();
+            model.DownloadLink = "https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=1";
+            model.SelectedQuality = "raw aac";
             var expectedFileSizes = new List<long> { 2915430, 6544910, 4142954, 7978914, 5816029, 3563543, 3527081, 3649456, 4245393, 2883479, 3484737, 2475309, 3455726, 3840186 };
-            _model.DownloadButtonClick();
+            model.DownloadButtonClick();
             Thread.Sleep(1000);
             var allowedSizeDifference = 100;
-            while (!_model.IsComboBoxEnabled)
+            while (!model.IsComboBoxEnabled)
             {
                 Thread.Sleep(100);
             }
@@ -176,18 +183,20 @@ namespace UnitTests
                 Assert.IsTrue((expetedFileSize - allowedSizeDifference <= actualFileSize) && (actualFileSize <= expetedFileSize + allowedSizeDifference), $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
             DeleteFiles(fileNames);
+            model.Dispose();
         }
         [TestMethod]
         public void A009DownloadAudioAndVideoOtherSite()
         {
+            var model = new Model.ModelClass();
             var qualities = new List<string> { "Audio and video" };
             var expectedFileSizes = new List<long> { 46969734 };
-            _model.IsWebsitesUnlockerSelected = true;
-            _model.DownloadLink = "https://helpx.adobe.com/creative-cloud/how-to/creative-cloud-overview.html";
+            model.IsWebsitesUnlockerSelected = true;
+            model.DownloadLink = "https://helpx.adobe.com/creative-cloud/how-to/creative-cloud-overview.html";
             for (int i = 0; i < qualities.Count; i++)
             {
-                _model.SelectedQuality = qualities[i];
-                _model.DownloadButtonClick();
+                model.SelectedQuality = qualities[i];
+                model.DownloadButtonClick();
                 Thread.Sleep(10000);
                 var numberOfFiles = NumberOfFilesInDirectory(_audioAndVideoPath);
                 Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
@@ -198,73 +207,41 @@ namespace UnitTests
                 Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
             }
-            _model.IsWebsitesUnlockerSelected = false;
-            Console.WriteLine(_model.InformationAndExceptionOutput);
+            model.IsWebsitesUnlockerSelected = false;
+            Console.WriteLine(model.InformationAndExceptionOutput);
+            model.Dispose();
         }
         [TestMethod]
         public void A010Clipboard()
         {
+            var model = new Model.ModelClass();
             var clipboard = "Clipboard string.";
-            _model.IsClipboardCaptureSelected = true;
+            model.IsClipboardCaptureSelected = true;
             Clipboard.SetText(clipboard);
             Thread.Sleep(200);
-            _model.IsClipboardCaptureSelected = false;
-            Assert.IsTrue(_model.DownloadLink == clipboard);
-            Console.WriteLine(_model.InformationAndExceptionOutput);
+            Assert.IsTrue(model.DownloadLink == clipboard);
+            Console.WriteLine(model.InformationAndExceptionOutput);
+            model.Dispose();
         }
         [TestMethod]
         public void A011DownloadPlayListCancel()
         {
-            _model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
-            _model.SelectedQuality = "raw aac";
-            _model.DownloadButtonClick();
+            var model = new Model.ModelClass();
+            model.DownloadLink = "https://www.youtube.com/playlist?list=PL9tWYRlGyp4GgQu1liXcY9NT1Geg3Nsok";
+            model.SelectedQuality = "raw aac";
+            model.DownloadButtonClick();
             Thread.Sleep(1000);
-            while (!_model.IsComboBoxEnabled)
+            while (!model.IsComboBoxEnabled)
             {
                 // give some time to download a couple of files
                 Thread.Sleep(7000);
                 // simulating cancel click
-                _model.DownloadButtonClick();
+                model.DownloadButtonClick();
                 Thread.Sleep(10000);
             }
             var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
             Assert.IsTrue(numberOfFiles >= 3 && numberOfFiles <= 7, $"Wrong number of files. Expected number of files between 3 and 7. Actual number of files: {numberOfFiles}");
+            model.Dispose();
         }
-
-        #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects).
-                    _model.Dispose();
-                }
-                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-                // TODO: set large fields to null.
-
-                disposedValue = true;
-            }
-        }
-
-        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        // ~Model()
-        // {
-        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-        //   Dispose(false);
-        // }
-
-        // This code added to correctly implement the disposable pattern.
-        public void Dispose()
-        {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-            Dispose(true);
-            // TODO: uncomment the following line if the finalizer is overridden above.
-            GC.SuppressFinalize(this);
-        }
-        #endregion
     }
 }
