@@ -24,9 +24,13 @@
     </Controls:MetroWindow.IconTemplate>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button ToolTip="{Binding Model.FolderButtonToolTip}" ToolTipService.ShowDuration="60000"
-                    Command="{Binding FolderButton}">
-                    <StackPanel Orientation="Horizontal">
+            <Button ToolTip="{Binding Model.FolderButtonToolTip}" 
+                    ToolTipService.ShowDuration="60000">
+                    <Button.InputBindings>
+                        <MouseBinding Gesture="LeftClick"  Command="{Binding FolderButton}" />
+                        <MouseBinding Gesture="RightClick"  Command="{Binding FolderButton}" />
+                    </Button.InputBindings>
+                <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconModern Width="24" 
                                                   Height="24" 
                                                   Kind="FolderOpen" />
