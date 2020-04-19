@@ -28,7 +28,7 @@
                     ToolTipService.ShowDuration="60000">
                     <Button.InputBindings>
                         <MouseBinding Gesture="LeftClick"  Command="{Binding FolderButton}" />
-                        <MouseBinding Gesture="RightClick"  Command="{Binding FolderButton}" />
+                        <MouseBinding Gesture="RightClick"  Command="{Binding ChangeFolderButton}" />
                     </Button.InputBindings>
                 <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconModern Width="24" 

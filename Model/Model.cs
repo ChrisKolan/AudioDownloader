@@ -12,7 +12,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -408,6 +407,16 @@ namespace Model
         }
         public void FolderButtonClick()
         {
+            var pathToExe = Assembly.GetEntryAssembly().Location;
+            var pathToExeFolder = Path.GetDirectoryName(pathToExe);
+            var pathToAudioFolder = pathToExeFolder + @"\audio";
+            Directory.CreateDirectory(pathToAudioFolder);
+            Process.Start(pathToAudioFolder);
+        }
+        public void ChangeFolderButtonClick()
+        {
+            //var dlg = new FolderBrowserDialog();
+            //DialogResult result = dlg.ShowDialog();
             var pathToExe = Assembly.GetEntryAssembly().Location;
             var pathToExeFolder = Path.GetDirectoryName(pathToExe);
             var pathToAudioFolder = pathToExeFolder + @"\audio";

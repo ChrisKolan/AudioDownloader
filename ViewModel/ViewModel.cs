@@ -12,12 +12,15 @@ namespace ViewModel
             DownloadLink = new ActionCommand(DownloadLinkButtonCommand);
             HelpButton = new ActionCommand(HelpButtonCommand);
             FolderButton = new ActionCommand(FolderButtonCommand);
+            ChangeFolderButton = new ActionCommand(ChangeFolderButtonCommand);
         }
+
         public Model.ModelClass Model { get; set; }
         public ActionCommand DownloadButton { get; set; }
         public ActionCommand DownloadLink { get; set; }
         public ActionCommand HelpButton { get;  set; }
         public ActionCommand FolderButton { get; private set; }
+        public ActionCommand ChangeFolderButton { get; private set; }
 
         private void DownloadButtonCommand()
         {
@@ -27,7 +30,10 @@ namespace ViewModel
         {
             Model.HelpButtonClick();
         }
-
+        private void ChangeFolderButtonCommand()
+        {
+            Model.ChangeFolderButtonClick();
+        }
         private void FolderButtonCommand()
         {
             Model.FolderButtonClick();
