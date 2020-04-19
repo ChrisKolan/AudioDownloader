@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Model
 {
@@ -44,38 +40,11 @@ namespace Model
             model.HelpButtonToolTip = localVersions;
             model.EnableInteractions();
         }
-
-        private static bool TryAddOrUpdateApplicationSettings(string key, string value, out string configurationErrorsException)
-        {
-            try
-            {
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = configFile.AppSettings.Settings;
-                if (settings[key] == null)
-                {
-                    settings.Add(key, value);
-                }
-                else
-                {
-                    settings[key].Value = value;
-                }
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
-
-                configurationErrorsException = "Configuration updated";
-                return true;
-            }
-            catch (ConfigurationErrorsException exception)
-            {
-                configurationErrorsException = exception.Message;
-                return false;
-            }
-        }
         private static bool UpdatesNeeded(out string configurationErrorsException)
         {
             double updateIfElapsedTimeExceeded = 10; 
             DateTime lastStoredUpdateDateTimeFromBinary;
-            string lastStoredUpdateDateTime = ConfigurationManager.AppSettings["UpdateDateTime"];
+            string lastStoredUpdateDateTime = ApplicationSettingsProvider.GetValue("UpdateDateTime");
             if (lastStoredUpdateDateTime != null)
             {
                 var lastStoredUpdateDateTimeLong = long.Parse(lastStoredUpdateDateTime, CultureInfo.InvariantCulture);
@@ -96,12 +65,11 @@ namespace Model
         {
             var currentUpdateDateTime = DateTime.Now;
             var currentUpdateDateTimeString = currentUpdateDateTime.ToBinary().ToString(CultureInfo.InvariantCulture);
-            TryAddOrUpdateApplicationSettings("UpdateDateTime", currentUpdateDateTimeString, out string configurationErrorsExceptionInternal);
+            ApplicationSettingsProvider.TryAddOrUpdateApplicationSettings("UpdateDateTime", currentUpdateDateTimeString, out string configurationErrorsExceptionInternal);
             configurationErrorsException = configurationErrorsExceptionInternal;
 
             return currentUpdateDateTime;
         }
-
         private static string GetLocalVersions()
         {
             var localVersionsNamesAndNumber = new List<string>

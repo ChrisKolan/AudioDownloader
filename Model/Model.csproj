@@ -71,6 +71,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationSettingsProvider.cs" />
     <Compile Include="CircularQueue.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="PingUtility.cs" />
