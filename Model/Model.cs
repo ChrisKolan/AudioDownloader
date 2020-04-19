@@ -415,13 +415,12 @@ namespace Model
         }
         public void ChangeFolderButtonClick()
         {
-            //var dlg = new FolderBrowserDialog();
-            //DialogResult result = dlg.ShowDialog();
-            var pathToExe = Assembly.GetEntryAssembly().Location;
-            var pathToExeFolder = Path.GetDirectoryName(pathToExe);
-            var pathToAudioFolder = pathToExeFolder + @"\audio";
-            Directory.CreateDirectory(pathToAudioFolder);
-            Process.Start(pathToAudioFolder);
+            var dialog = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            if ((bool)dialog.ShowDialog())
+            {
+                string path = dialog.SelectedPath;
+                Process.Start(path);
+            }
         }
         private void ThreadPoolWorker()
         {
