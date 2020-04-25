@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationSettingsProvider.cs" />
+    <Compile Include="ApplicationPaths.cs" />
     <Compile Include="CircularQueue.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="PingUtility.cs" />

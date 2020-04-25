@@ -79,6 +79,7 @@ namespace Model
             QualityDefault = HelpersModel.QualityDefault();
             Quality = HelpersModel.QualityObservableCollection();
             SelectedQuality = Quality[0];
+            var path = ApplicationPaths.GetAudioPath();
             _ = ApplicationUpdater.UpdateAsync(this);
             GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
             _synchronizationContext = SynchronizationContext.Current;
@@ -407,9 +408,7 @@ namespace Model
         }
         public void FolderButtonClick()
         {
-            var pathToExe = Assembly.GetEntryAssembly().Location;
-            var pathToExeFolder = Path.GetDirectoryName(pathToExe);
-            var pathToAudioFolder = pathToExeFolder + @"\audio";
+            var pathToAudioFolder = ApplicationPaths.GetAudioPath();
             Directory.CreateDirectory(pathToAudioFolder);
             Process.Start(pathToAudioFolder);
         }
@@ -419,6 +418,7 @@ namespace Model
             if ((bool)dialog.ShowDialog())
             {
                 string path = dialog.SelectedPath;
+                ApplicationPaths.SetAudioPath(path);
                 Process.Start(path);
             }
         }
