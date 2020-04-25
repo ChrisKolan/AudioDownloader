@@ -234,7 +234,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>mkdir bin
-copy /Y "$(SolutionDir)ytdBin\*" "$(TargetDir)bin\"</PostBuildEvent>
+copy /Y "$(SolutionDir)ytdBin\*" "$(TargetDir)bin\"
+copy /Y "C:\Windows\System32\msvcr100.dll" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <Target Name="CleanBinFolder" AfterTargets="Clean">
     <!-- common vars https://msdn.microsoft.com/en-us/library/c02as0cs.aspx?f=255&MSPPError=-2147217396 -->
