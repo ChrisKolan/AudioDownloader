@@ -22,6 +22,7 @@ namespace UnitTests
             // Give some time to update 
             Thread.Sleep(30000);
             model.FolderButtonClick();
+            Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
         [TestMethod]
@@ -42,6 +43,7 @@ namespace UnitTests
             model.DownloadLink = " ";
             model.DownloadButtonClick();
             Assert.IsTrue(model.StandardOutput == "Empty link");
+            Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
         [TestMethod]
@@ -52,6 +54,7 @@ namespace UnitTests
             model.DownloadButtonClick();
             Thread.Sleep(4000);
             Assert.IsTrue(model.StandardOutput == "Error. No file downloaded. Updates are needed.");
+            Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
         [TestMethod]
@@ -80,6 +83,7 @@ namespace UnitTests
                 Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
             }
+            Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
         [TestMethod]
@@ -107,6 +111,7 @@ namespace UnitTests
                 Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
             }
+            Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
         [TestMethod]
@@ -134,6 +139,7 @@ namespace UnitTests
                 Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
                 DeleteFiles(fileName);
             }
+            Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
         [TestMethod]
@@ -161,6 +167,7 @@ namespace UnitTests
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileNames[i]}.");
                 Assert.IsTrue((expetedFileSize - allowedSizeDifference <= actualFileSize) && (actualFileSize <= expetedFileSize + allowedSizeDifference), $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
+            Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
         [TestMethod]
@@ -188,6 +195,7 @@ namespace UnitTests
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileNames[i]}.");
                 Assert.IsTrue((expetedFileSize - allowedSizeDifference <= actualFileSize) && (actualFileSize <= expetedFileSize + allowedSizeDifference), $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
+            Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
         [TestMethod]
@@ -200,7 +208,7 @@ namespace UnitTests
             model.DownloadLink = "https://helpx.adobe.com/creative-cloud/how-to/creative-cloud-overview.html";
             model.SelectedQuality = qualities[0];
             model.DownloadButtonClick();
-            Thread.Sleep(10000);
+            Thread.Sleep(15000);
             var numberOfFiles = NumberOfFilesInDirectory(_audioAndVideoPath);
             Assert.IsTrue(numberOfFiles == 1, $"Wrong number of files. Expected number of files: 1, actual number of files: {numberOfFiles}");
             var fileName = FileNamesAndPath(_audioAndVideoPath);
@@ -229,6 +237,7 @@ namespace UnitTests
             }
             var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
             Assert.IsTrue(numberOfFiles >= 3 && numberOfFiles <= 7, $"Wrong number of files. Expected number of files between 3 and 7. Actual number of files: {numberOfFiles}");
+            Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
 
