@@ -16,12 +16,19 @@ namespace UnitTests
         private static readonly string _audioAndVideoPath = _pathDll + @"\audio\video\";
 
         [TestMethod]
+        public void A000FolderButtonClick()
+        {
+            var model = new Model.ModelClass();
+            // Give some time to update 
+            Thread.Sleep(30000);
+            model.FolderButtonClick();
+            model.Dispose();
+        }
+        [TestMethod]
         public void A001EmptyLink()
         {
             var model = new Model.ModelClass();
             model.DownloadLink = "";
-            // Give some time to update 
-            Thread.Sleep(30000);
             Assert.IsFalse(model.StandardOutput == "Failed to update. Click here to download manually.", "Failed to update. " + model.InformationAndExceptionOutput);
             model.DownloadButtonClick();
             Assert.IsTrue(model.StandardOutput == "Empty link");
@@ -154,7 +161,6 @@ namespace UnitTests
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileNames[i]}.");
                 Assert.IsTrue((expetedFileSize - allowedSizeDifference <= actualFileSize) && (actualFileSize <= expetedFileSize + allowedSizeDifference), $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
-            DeleteFiles(fileNames);
             model.Dispose();
         }
         [TestMethod]
@@ -163,7 +169,7 @@ namespace UnitTests
             var model = new Model.ModelClass();
             model.DownloadLink = "https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=1";
             model.SelectedQuality = "raw aac";
-            var expectedFileSizes = new List<long> { 2915430, 6544910, 4142954, 7978914, 5816029, 3563543, 3527081, 3649456, 4245393, 2883479, 3484737, 2475309, 3455726, 3840186 };
+            var expectedFileSizes = new List<long> { 2915430, 6544910, 4142954, 7978914, 5816029, 3563543, 3527081, 3649456, 4245393, 2883786, 3484737, 2475309, 3455726, 3840186 };
             model.DownloadButtonClick();
             Thread.Sleep(1000);
             var allowedSizeDifference = 100;
@@ -182,7 +188,6 @@ namespace UnitTests
                 Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileNames[i]}.");
                 Assert.IsTrue((expetedFileSize - allowedSizeDifference <= actualFileSize) && (actualFileSize <= expetedFileSize + allowedSizeDifference), $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
             }
-            DeleteFiles(fileNames);
             model.Dispose();
         }
         [TestMethod]
@@ -203,7 +208,6 @@ namespace UnitTests
             var expetedFileSize = expectedFileSizes[0];
             Console.WriteLine($"Actual file size: {actualFileSize}, expected file size: {expetedFileSize}. Difference: {actualFileSize - expetedFileSize}. File name: {fileName[0]}.");
             Assert.IsTrue(actualFileSize == expetedFileSize, $"Not expected file size. Actual file size: {actualFileSize}, expected file size: {expetedFileSize}, difference: {actualFileSize - expetedFileSize}.");
-            DeleteFiles(fileName);
             Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
@@ -226,6 +230,12 @@ namespace UnitTests
             var numberOfFiles = NumberOfFilesInDirectory(_audioPath);
             Assert.IsTrue(numberOfFiles >= 3 && numberOfFiles <= 7, $"Wrong number of files. Expected number of files between 3 and 7. Actual number of files: {numberOfFiles}");
             model.Dispose();
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            DeleteFiles(FileNamesAndPath(_audioPath));
         }
     }
 }

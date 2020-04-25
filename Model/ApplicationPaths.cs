@@ -10,19 +10,19 @@ namespace Model
 {
     public static class ApplicationPaths
     {
-        private static string _AudioPath;
+        private static string _audioPath;
         public static string AudioVideoPath { get; set; }
 
         public static string GetAudioPath()
         {
-            _AudioPath = ApplicationSettingsProvider.GetValue("ApplicationStoragePath");
-            if (_AudioPath == null)
+            _audioPath = ApplicationSettingsProvider.GetValue("ApplicationStoragePath");
+            if (_audioPath == null)
             {
                 var pathToAudioFolder = PathToExeFolder() + @"\audio\";
-                _AudioPath = pathToAudioFolder;
+                _audioPath = pathToAudioFolder;
             }
-            AudioVideoPath = _AudioPath + @"\video\";
-            return _AudioPath;
+            AudioVideoPath = _audioPath + @"\video\";
+            return _audioPath;
         }
 
         public static void SetAudioPath(string userChosenPath)

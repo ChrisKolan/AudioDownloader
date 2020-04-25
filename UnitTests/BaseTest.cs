@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 namespace UnitTests
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1052: Static holder types should be Static or NotInheritable")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification = "<Pending>")]
     public class BaseTest
     {
         public BaseTest()
@@ -43,7 +45,14 @@ namespace UnitTests
             Contract.Requires(fileNames != null);
             foreach (var fileName in fileNames)
             {
-                File.Delete(fileName);
+                try
+                {
+                    File.Delete(fileName);
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine("Error deleting file: {0}. Exception message: {1}", fileName, exception.Message);
+                }
             }
         }
 
