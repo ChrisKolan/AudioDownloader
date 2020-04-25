@@ -417,6 +417,7 @@ namespace Model
             {
                 string path = dialog.SelectedPath;
                 ApplicationPaths.SetAudioPath(path);
+                FolderButtonToolTip = HelpersModel.ToolTipFolder;
             }
         }
         private void ThreadPoolWorker()
@@ -762,7 +763,7 @@ namespace Model
         {
             StandardOutput = "Ready";
             ButtonContent = "Download";
-            FolderButtonToolTip = "Open download folder";
+            FolderButtonToolTip = HelpersModel.ToolTipFolder;
             TextBoxHelper = "Paste YouTube link and press Enter or Download button";
             _informationAndException = new CircularQueue<string>(20);
             InformationAndExceptionOutput = "Application initialized";

@@ -12,6 +12,10 @@ namespace Model
 {
     public static class HelpersModel
     {
+        public static string ToolTipFolder 
+        {
+            get { return "Left mouse click: opens download folder \nRight mouse click: chooses download folder \nCurrent download folder: " + ApplicationPaths.GetAudioPath(); }
+        }
         public static (string command, string finishedMessage) CreateCommandAndMessage(string selectedQuality, string downloadLink)
         {
             Contract.Requires(selectedQuality != null);
