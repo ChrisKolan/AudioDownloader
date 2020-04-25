@@ -12,7 +12,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -79,7 +78,6 @@ namespace Model
             QualityDefault = HelpersModel.QualityDefault();
             Quality = HelpersModel.QualityObservableCollection();
             SelectedQuality = Quality[0];
-            var path = ApplicationPaths.GetAudioPath();
             _ = ApplicationUpdater.UpdateAsync(this);
             GlowBrushColor = new SolidColorBrush(Colors.LightBlue);
             _synchronizationContext = SynchronizationContext.Current;
@@ -419,7 +417,6 @@ namespace Model
             {
                 string path = dialog.SelectedPath;
                 ApplicationPaths.SetAudioPath(path);
-                Process.Start(path);
             }
         }
         private void ThreadPoolWorker()
@@ -431,12 +428,11 @@ namespace Model
             _currentThreadPoolWorker = Thread.CurrentThread;
             int positionFrom;
             int positionTo;
-            var date = DateTime.Now.ToString("yyMMdd", CultureInfo.InvariantCulture);
 
             StandardOutput = "Starting download...";
             InformationAndExceptionOutput = "Starting download of the link: " + DownloadLink;
             string command;
-            (command, _finishedMessage) = HelpersModel.CreateCommandAndMessage(selectedQuality, date, DownloadLink);
+            (command, _finishedMessage) = HelpersModel.CreateCommandAndMessage(selectedQuality, DownloadLink);
 
             var startinfo = new ProcessStartInfo("CMD.exe", command)
             {
@@ -899,7 +895,7 @@ namespace Model
 
         private (string fileName, double fileSize) GetFileNameAndSize(string selectedQuality)
         {
-            string path = selectedQuality.Contains("video") ? "audio\\video\\" : "audio\\";
+            string path = selectedQuality.Contains("video") ? ApplicationPaths.AudioVideoPath : ApplicationPaths.GetAudioPath();
             var directory = new DirectoryInfo(path);
             var myFile = directory.GetFiles()
                 .OrderByDescending(f => f.LastWriteTime)

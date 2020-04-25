@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -11,12 +12,13 @@ namespace Model
 {
     public static class HelpersModel
     {
-        public static (string command, string finishedMessage) CreateCommandAndMessage(string selectedQuality, string date, string downloadLink)
+        public static (string command, string finishedMessage) CreateCommandAndMessage(string selectedQuality, string downloadLink)
         {
             Contract.Requires(selectedQuality != null);
             string command, finishedMessage;
             var youTubeBeginCommand = "/C bin\\youtube-dl.exe ";
             var escapedDownloadLink = "\"" + downloadLink + "\"";
+            var date = DateTime.Now.ToString("yyMMdd", CultureInfo.InvariantCulture);
 
             if (selectedQuality.Contains("mp3"))
             {
@@ -163,15 +165,17 @@ namespace Model
         {
             var metadata = " --ignore-errors --no-mtime --add-metadata "; 
             var title = "-%(playlist_index)s-%(title)s-%(id)s.%(ext)s ";
+            var pathToAudioFolder = ApplicationPaths.GetAudioPath();
+            var pathToAudioVideoFolder = ApplicationPaths.AudioVideoPath;
             if (selectedQuatiy != null)
             {
-                return metadata + "--restrict-filenames -o audio\\video\\" + date + title + escapedDownloadLink;
+                return metadata + "--restrict-filenames -o " + pathToAudioVideoFolder + date + title + escapedDownloadLink;
             }
             if (quality == null)
             {
-                return metadata + "--restrict-filenames -o audio\\" + date + title + escapedDownloadLink;
+                return metadata + "--restrict-filenames -o " + pathToAudioFolder + date + title + escapedDownloadLink;
             }
-            return metadata + "--audio-quality " + quality + " --restrict-filenames -o audio\\" + date + "Q" + quality + title + escapedDownloadLink;
+            return metadata + "--audio-quality " + quality + " --restrict-filenames -o " + pathToAudioFolder + date + "Q" + quality + title + escapedDownloadLink;
         }
     }
 }

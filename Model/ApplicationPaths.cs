@@ -10,20 +10,24 @@ namespace Model
 {
     public static class ApplicationPaths
     {
+        private static string _AudioPath;
+        public static string AudioVideoPath { get; set; }
+
         public static string GetAudioPath()
         {
-            var path = ApplicationSettingsProvider.GetValue("ApplicationStoragePath");
-            if (path == null)
+            _AudioPath = ApplicationSettingsProvider.GetValue("ApplicationStoragePath");
+            if (_AudioPath == null)
             {
-                var pathToAudioFolder = PathToExeFolder() + @"\audio";
-                path = pathToAudioFolder;
+                var pathToAudioFolder = PathToExeFolder() + @"\audio\";
+                _AudioPath = pathToAudioFolder;
             }
-            return path;
+            AudioVideoPath = _AudioPath + @"\video\";
+            return _AudioPath;
         }
 
         public static void SetAudioPath(string userChosenPath)
         {
-            ApplicationSettingsProvider.TryAddOrUpdateApplicationSettings("ApplicationStoragePath", userChosenPath, out string configurationErrorsException);
+            ApplicationSettingsProvider.TryAddOrUpdateApplicationSettings("ApplicationStoragePath", userChosenPath + "\\", out string configurationErrorsException);
         }
 
         public static string PathToExeFolder()
