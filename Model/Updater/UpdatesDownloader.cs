@@ -35,7 +35,7 @@ namespace Model
                 System.IO.File.WriteAllBytes(pathToAudioDownloaderTempFolder, (byte[])responseData);
                 model.InformationAndExceptionOutput = "Download finished";
 
-                RenameFilesInFolder.Rename();
+                RenameFilesInFolder.Rename(model);
                 model.InformationAndExceptionOutput = "Renamed files";
                 Deleter.DeleteBinFolderContents();
                 model.InformationAndExceptionOutput = "Deleted files";
