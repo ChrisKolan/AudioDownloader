@@ -21,6 +21,17 @@ namespace Model
                 {
                     await UpdatesDownloader.DownloadUpdatesAsync(model).ConfigureAwait(false);
                 }
+                catch (TaskCanceledException exception)
+                {
+                    model.DownloadLinkEnabled = true;
+                    model.StandardOutput = "Update download timeout. Increase timeout in AudioDownloader.exe.Config and restart application or click here to download manually.";
+                    localVersions = GetLocalVersions();
+                    model.LocalVersions = localVersions;
+                    model.HelpButtonToolTip = localVersions;
+                    model.EnableInteractions();
+                    model.InformationAndExceptionOutput = exception.Message;
+                    return;
+                }
                 catch (Exception exception)
                 {
                     model.DownloadLinkEnabled = true;

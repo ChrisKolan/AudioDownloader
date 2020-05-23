@@ -15,11 +15,16 @@ namespace Model
         {
             Contract.Requires(model != null);
             model.InformationAndExceptionOutput = "Checking for updates";
+            int configTimeoutSeconds = 40;
+            if (int.TryParse(ApplicationSettingsProvider.GetValue("TimeoutInSeconds"), out int timeout))
+            {
+                configTimeoutSeconds = timeout;
+            }
             var updatesCheck = await Task.Run(() => UpdatesNeeded.CheckAsync()).ConfigureAwait(false);
             var pathToExe = Assembly.GetEntryAssembly().Location;
             var pathToExeFolder = System.IO.Path.GetDirectoryName(pathToExe);
             var client = new GitHubClient(new ProductHeaderValue("audio-downloader"));
-            client.SetRequestTimeout(TimeSpan.FromSeconds(20));
+            client.SetRequestTimeout(TimeSpan.FromSeconds(configTimeoutSeconds));
             var releasesYoutubeDl = await client.Repository.Release.GetLatest("ytdl-org", "youtube-dl").ConfigureAwait(false);
             var releasesAudioDl= await client.Repository.Release.GetLatest("ChrisKolan", "audio-downloader").ConfigureAwait(false);
 
