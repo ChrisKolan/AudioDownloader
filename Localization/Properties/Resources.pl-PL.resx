@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AudioAndVideoBestYouTubeQuality" xml:space="preserve">
+    <value>Audio i wideo 		 Najlepsza jakość YouTube</value>
+  </data>
   <data name="AudioQualityAcceptable" xml:space="preserve">
     <value>Jakość: akceptowalna 	 Średni bitrate: 115 kbit/s, zakres bitrate: 100-130 kbit/s, kompresja stratna VBR mp3</value>
   </data>
@@ -134,6 +137,18 @@
   </data>
   <data name="AudioQualityOptimal" xml:space="preserve">
     <value>Jakość: optymalna 	 Średni bitrate: 190 kbit/s, zakres bitrate: 170-210 kbit/s, kompresja stratna VBR mp3</value>
+  </data>
+  <data name="AudioQualityRawAac" xml:space="preserve">
+    <value>Jakość: surowy aac 	 AAC (m4a) nieprzetworzony</value>
+  </data>
+  <data name="AudioQualityRawOpus" xml:space="preserve">
+    <value>Jakość: surowy opus 	 Opus nieprzetworzony</value>
+  </data>
+  <data name="AudioQualityRawVorbis" xml:space="preserve">
+    <value>Jakość: surowy vorbis 	 Vorbis nieprzetworzone</value>
+  </data>
+  <data name="AudioQualityRawWebm" xml:space="preserve">
+    <value>Jakość: surowy webm 	 WebM (Opus) nieprzetworzony</value>
   </data>
   <data name="AudioQualitySuperb" xml:space="preserve">
     <value>Jakość: doskonała 	 bezstratna kompresja FLAC (największy rozmiar pliku FLAC)</value>
@@ -160,7 +175,7 @@
     <value>Naciśnij przycisk Pobierz, aby pobrać plik</value>
   </data>
   <data name="ComboBoxInitial" xml:space="preserve">
-    <value>Po wklejeniu linka z YouTube można wybrać jakość dźwięku z tej listy</value>
+    <value>Po wklejeniu linku z YouTube można wybrać jakość dźwięku z tej listy</value>
   </data>
   <data name="StandardOutputEmptyLink" xml:space="preserve">
     <value>Pusty link</value>

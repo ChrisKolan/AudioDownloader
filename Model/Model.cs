@@ -666,8 +666,8 @@ namespace Model
                 {
                     if (addOpus)
                     {
-                        qualityDynamic.Add("Audio quality: raw webm \t WebM (Opus) unprocessed");
-                        qualityDynamic.Add("Audio quality: raw opus \t Opus unprocessed");
+                        qualityDynamic.Add(Localization.Properties.Resources.AudioQualityRawWebm);
+                        qualityDynamic.Add(Localization.Properties.Resources.AudioQualityRawOpus);
                         addOpus = false;
                     }
                 }
@@ -675,7 +675,7 @@ namespace Model
                 {
                     if (addVorbis)
                     {
-                        qualityDynamic.Add("Audio quality: raw vorbis \t Vorbis unprocessed");
+                        qualityDynamic.Add(Localization.Properties.Resources.AudioQualityRawVorbis);
                         addVorbis = false;
                     }
                 }
@@ -683,7 +683,7 @@ namespace Model
                 {
                     if (addM4a)
                     {
-                        qualityDynamic.Add("Audio quality: raw aac \t AAC (m4a) unprocessed");
+                        qualityDynamic.Add(Localization.Properties.Resources.AudioQualityRawAac);
                         addM4a = false;
                     }
                 }
@@ -694,7 +694,7 @@ namespace Model
             qualityDynamic.ForEach(Quality.Add);
             QualityDefault.ForEach(Quality.Add);
             qualityDynamicFormat.ForEach(Quality.Add);
-            Quality.Add("Audio and video \t\t Best YouTube quality");
+            Quality.Add(Localization.Properties.Resources.AudioAndVideoBestYouTubeQuality);
 
             var optimalQualityIndex = Quality.ToList().FindIndex(x => x.Contains("m4a"));
             var defaultQualityCount = 19;

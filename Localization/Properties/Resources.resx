@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AudioAndVideoBestYouTubeQuality" xml:space="preserve">
+    <value>Audio and video 		 Best YouTube quality</value>
+  </data>
   <data name="AudioQualityAcceptable" xml:space="preserve">
     <value>Audio quality: acceptable 	 Bitrate average: 115 kbit/s, bitrate range: 100-130 kbit/s, VBR mp3 lossy compression</value>
   </data>
@@ -134,6 +137,18 @@
   </data>
   <data name="AudioQualityOptimal" xml:space="preserve">
     <value>Audio quality: optimal 	 Bitrate average: 190 kbit/s, bitrate range: 170-210 kbit/s, VBR mp3 lossy compression</value>
+  </data>
+  <data name="AudioQualityRawAac" xml:space="preserve">
+    <value>Audio quality: raw aac 	 AAC (m4a) unprocessed</value>
+  </data>
+  <data name="AudioQualityRawOpus" xml:space="preserve">
+    <value>Audio quality: raw opus 	 Opus unprocessed</value>
+  </data>
+  <data name="AudioQualityRawVorbis" xml:space="preserve">
+    <value>Audio quality: raw vorbis 	 Vorbis unprocessed</value>
+  </data>
+  <data name="AudioQualityRawWebm" xml:space="preserve">
+    <value>Audio quality: raw webm 	 WebM (Opus) unprocessed</value>
   </data>
   <data name="AudioQualitySuperb" xml:space="preserve">
     <value>Audio quality: superb 	 FLAC lossless compression (Largest flac file size)</value>

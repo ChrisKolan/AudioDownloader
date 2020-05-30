@@ -61,6 +61,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio and video 		 Best YouTube quality.
+        /// </summary>
+        public static string AudioAndVideoBestYouTubeQuality {
+            get {
+                return ResourceManager.GetString("AudioAndVideoBestYouTubeQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio quality: acceptable 	 Bitrate average: 115 kbit/s, bitrate range: 100-130 kbit/s, VBR mp3 lossy compression.
         /// </summary>
         public static string AudioQualityAcceptable {
@@ -111,6 +120,42 @@ namespace Localization.Properties {
         public static string AudioQualityOptimal {
             get {
                 return ResourceManager.GetString("AudioQualityOptimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: raw aac 	 AAC (m4a) unprocessed.
+        /// </summary>
+        public static string AudioQualityRawAac {
+            get {
+                return ResourceManager.GetString("AudioQualityRawAac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: raw opus 	 Opus unprocessed.
+        /// </summary>
+        public static string AudioQualityRawOpus {
+            get {
+                return ResourceManager.GetString("AudioQualityRawOpus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: raw vorbis 	 Vorbis unprocessed.
+        /// </summary>
+        public static string AudioQualityRawVorbis {
+            get {
+                return ResourceManager.GetString("AudioQualityRawVorbis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: raw webm 	 WebM (Opus) unprocessed.
+        /// </summary>
+        public static string AudioQualityRawWebm {
+            get {
+                return ResourceManager.GetString("AudioQualityRawWebm", resourceCulture);
             }
         }
         
