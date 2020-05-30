@@ -378,7 +378,7 @@ namespace Model
             }
             if (!_isDownloadRunning)
             {
-                ButtonContent = "Cancel";
+                ButtonContent = Localization.Properties.Resources.ButtonContentCancel;
                 Task.Run(() => ThreadPoolWorker());
             }
             else
@@ -391,7 +391,7 @@ namespace Model
                 _isDownloadRunning = false;
                 StandardOutput = "Ready";
                 TimersOutput = string.Empty;
-                ButtonContent = "Download";
+                ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
                 EnableInteractions();
                 _currentThreadPoolWorker.Abort();
             }
@@ -523,7 +523,7 @@ namespace Model
                 {
                     StandardOutput = "Error. No internet connection. No file downloaded.";
                 }
-                ButtonContent = "Download";
+                ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
                 EnableInteractions();
                 _isDownloadRunning = false;
                 process.Dispose();
@@ -536,7 +536,7 @@ namespace Model
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
                 Thread.Sleep(1000);
                 StandardOutput = "Ready. " + _downloadedFileSize;
-                ButtonContent = "Download";
+                ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
                 EnableInteractions();
                 _isDownloadRunning = false;
                 process.Dispose();
@@ -567,7 +567,7 @@ namespace Model
                 _downloadedFileSize = null;
                 _processingTime = 1;
                 _downloadTime = 1;
-                ButtonContent = "Download";
+                ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
                 EnableInteractions();
                 _isDownloadRunning = false;
                 process.Dispose();
@@ -762,7 +762,7 @@ namespace Model
         private void Initalize()
         {
             StandardOutput = "Ready";
-            ButtonContent = "Download";
+            ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
             FolderButtonToolTip = HelpersModel.ToolTipFolder;
             TextBoxHelper = "Paste YouTube link and press Enter or Download button";
             _informationAndException = new CircularQueue<string>(20);

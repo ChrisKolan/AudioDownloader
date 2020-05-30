@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:p = "clr-namespace:Localization.Properties;assembly=Localization"
         mc:Ignorable="d"
         Topmost="True"
         ShowIconOnTitleBar="True"
@@ -12,7 +13,7 @@
         BorderThickness="1"
         GlowBrush="{Binding Model.GlowBrushColor}"
         WindowStartupLocation="CenterScreen"
-        Title="Audio Downloader" Height="151" Width="800" ResizeMode="CanMinimize">
+        Title="{x:Static p:Resources.WindowTitle}" Height="151" Width="800" ResizeMode="CanMinimize">
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
             <iconPacks:PackIconModern Width="{TemplateBinding Width}"
@@ -115,7 +116,7 @@
                     Padding="0"
                     Controls:ControlsHelper.CornerRadius="0"
                     Controls:ControlsHelper.ContentCharacterCasing="Normal"
-                    ToolTip="Press Download button to get the file" >
+                    ToolTip="{x:Static p:Resources.ButtonToolTip}" >
                 </Button>
                 <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"

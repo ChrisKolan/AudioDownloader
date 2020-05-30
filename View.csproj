@@ -200,6 +200,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Localization\Localization.csproj">
+      <Project>{13ae6be2-a29d-4cf6-b605-26637522d30d}</Project>
+      <Name>Localization</Name>
+    </ProjectReference>
     <ProjectReference Include="ViewModel\ViewModel.csproj">
       <Project>{adff1847-318b-42b5-a18d-93b0a3bda4f5}</Project>
       <Name>ViewModel</Name>
