@@ -259,7 +259,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio and video		Best quality.
+        ///   Looks up a localized string similar to Audio and video 		 Best quality.
         /// </summary>
         public static string TextBoxContentInitial {
             get {
