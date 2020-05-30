@@ -389,7 +389,7 @@ namespace Model
                 _processingTime = 1;
                 _downloadTime = 1;
                 _isDownloadRunning = false;
-                StandardOutput = "Ready";
+                StandardOutput = Localization.Properties.Resources.StandardOutputReady;
                 TimersOutput = string.Empty;
                 ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
                 EnableInteractions();
@@ -535,7 +535,7 @@ namespace Model
                 TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
                 Thread.Sleep(1000);
-                StandardOutput = "Ready. " + _downloadedFileSize;
+                StandardOutput = Localization.Properties.Resources.StandardOutputReady + ". " + _downloadedFileSize;
                 ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
                 EnableInteractions();
                 _isDownloadRunning = false;
@@ -725,7 +725,7 @@ namespace Model
                 IsButtonEnabled = false;
                 return;
             }
-            StandardOutput = "Ready";
+            StandardOutput = Localization.Properties.Resources.StandardOutputReady;
             IsComboBoxEnabled = true;
         }
         private static string ArragementDynamicFormatsOutput(string currentLine)
@@ -761,7 +761,7 @@ namespace Model
 
         private void Initalize()
         {
-            StandardOutput = "Ready";
+            StandardOutput = Localization.Properties.Resources.StandardOutputReady;
             ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
             FolderButtonToolTip = HelpersModel.ToolTipFolder;
             TextBoxHelper = Localization.Properties.Resources.TextBoxYouTubeInitial;

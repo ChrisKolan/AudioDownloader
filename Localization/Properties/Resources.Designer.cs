@@ -106,6 +106,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string StandardOutputReady {
+            get {
+                return ResourceManager.GetString("StandardOutputReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio and video		Best quality.
         /// </summary>
         public static string TextBoxContentInitial {

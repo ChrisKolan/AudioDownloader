@@ -45,7 +45,7 @@ namespace Model
                 }
             }
 
-            model.StandardOutput = "Ready";
+            model.StandardOutput = Localization.Properties.Resources.StandardOutputReady;
             localVersions = GetLocalVersions();
             model.LocalVersions = localVersions;
             model.HelpButtonToolTip = localVersions;
