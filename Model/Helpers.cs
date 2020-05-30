@@ -75,7 +75,7 @@ namespace Model
         {
             var quality = new ObservableCollection<string>
             {
-                "After pasting YouTube link, you can select the audio quality from this list"
+                Localization.Properties.Resources.ComboBoxInitial
             };
             return quality;
         }

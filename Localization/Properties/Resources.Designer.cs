@@ -88,6 +88,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to After pasting YouTube link, you can select the audio quality from this list.
+        /// </summary>
+        public static string ComboBoxInitial {
+            get {
+                return ResourceManager.GetString("ComboBoxInitial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pusty link.
         /// </summary>
         public static string StandardOutputEmptyLink {

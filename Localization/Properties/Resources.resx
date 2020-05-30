@@ -126,6 +126,9 @@
   <data name="ButtonToolTip" xml:space="preserve">
     <value>Press Download button to get the file</value>
   </data>
+  <data name="ComboBoxInitial" xml:space="preserve">
+    <value>After pasting YouTube link, you can select the audio quality from this list</value>
+  </data>
   <data name="StandardOutputEmptyLink" xml:space="preserve">
     <value>Pusty link</value>
   </data>
