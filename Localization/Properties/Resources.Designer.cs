@@ -61,6 +61,105 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio quality: acceptable 	 Bitrate average: 115 kbit/s, bitrate range: 100-130 kbit/s, VBR mp3 lossy compression.
+        /// </summary>
+        public static string AudioQualityAcceptable {
+            get {
+                return ResourceManager.GetString("AudioQualityAcceptable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: audio book 	 Bitrate average: 100 kbit/s, bitrate range: 080-120 kbit/s, VBR mp3 lossy compression.
+        /// </summary>
+        public static string AudioQualityAudioBook {
+            get {
+                return ResourceManager.GetString("AudioQualityAudioBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: best 	 Bitrate average: 245 kbit/s, bitrate range: 220-260 kbit/s, VBR mp3 lossy compression (Large mp3 file size).
+        /// </summary>
+        public static string AudioQualityBest {
+            get {
+                return ResourceManager.GetString("AudioQualityBest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: better 	 Bitrate average: 225 kbit/s, bitrate range: 190-250 kbit/s, VBR mp3 lossy compression.
+        /// </summary>
+        public static string AudioQualityBetter {
+            get {
+                return ResourceManager.GetString("AudioQualityBetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: good 	 Bitrate average: 130 kbit/s, bitrate range: 120-150 kbit/s, VBR mp3 lossy compression.
+        /// </summary>
+        public static string AudioQualityGood {
+            get {
+                return ResourceManager.GetString("AudioQualityGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: optimal 	 Bitrate average: 190 kbit/s, bitrate range: 170-210 kbit/s, VBR mp3 lossy compression.
+        /// </summary>
+        public static string AudioQualityOptimal {
+            get {
+                return ResourceManager.GetString("AudioQualityOptimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: superb 	 FLAC lossless compression (Largest flac file size).
+        /// </summary>
+        public static string AudioQualitySuperb {
+            get {
+                return ResourceManager.GetString("AudioQualitySuperb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: transparent 	 Bitrate average: 165 kbit/s, bitrate range: 140-185 kbit/s, VBR mp3 lossy compression (Balanced mp3 file size).
+        /// </summary>
+        public static string AudioQualityTransparent {
+            get {
+                return ResourceManager.GetString("AudioQualityTransparent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: very good 	 Bitrate average: 175 kbit/s, bitrate range: 150-195 kbit/s, VBR mp3 lossy compression.
+        /// </summary>
+        public static string AudioQualityVeryGood {
+            get {
+                return ResourceManager.GetString("AudioQualityVeryGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: worse 	 Bitrate average: 085 kbit/s, bitrate range: 070-105 kbit/s, VBR mp3 lossy compression.
+        /// </summary>
+        public static string AudioQualityWorse {
+            get {
+                return ResourceManager.GetString("AudioQualityWorse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio quality: worst 	 Bitrate average: 065 kbit/s, bitrate range: 045-085 kbit/s, VBR mp3 lossy compression (Smallest mp3 file size).
+        /// </summary>
+        public static string AudioQualityWorst {
+            get {
+                return ResourceManager.GetString("AudioQualityWorst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string ButtonContentCancel {

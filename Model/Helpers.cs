@@ -143,17 +143,17 @@ namespace Model
         {
             var qualityDefault = new List<string>
             {
-                "Audio quality: superb \t FLAC lossless compression (Largest flac file size)",
-                "Audio quality: best \t Bitrate average: 245 kbit/s, Bitrate range: 220-260 kbit/s, VBR mp3 lossy compression (Large mp3 file size)",
-                "Audio quality: better \t Bitrate average: 225 kbit/s, Bitrate range: 190-250 kbit/s, VBR mp3 lossy compression",
-                "Audio quality: optimal \t Bitrate average: 190 kbit/s, Bitrate range: 170-210 kbit/s, VBR mp3 lossy compression",
-                "Audio quality: very good \t Bitrate average: 175 kbit/s, Bitrate range: 150-195 kbit/s, VBR mp3 lossy compression",
-                "Audio quality: transparent \t Bitrate average: 165 kbit/s, Bitrate range: 140-185 kbit/s, VBR mp3 lossy compression (Balanced mp3 file size)",
-                "Audio quality: good \t Bitrate average: 130 kbit/s, Bitrate range: 120-150 kbit/s, VBR mp3 lossy compression",
-                "Audio quality: acceptable \t Bitrate average: 115 kbit/s, Bitrate range: 100-130 kbit/s, VBR mp3 lossy compression",
-                "Audio quality: audio book \t Bitrate average: 100 kbit/s, Bitrate range: 080-120 kbit/s, VBR mp3 lossy compression",
-                "Audio quality: worse \t Bitrate average: 085 kbit/s, Bitrate range: 070-105 kbit/s, VBR mp3 lossy compression",
-                "Audio quality: worst \t Bitrate average: 065 kbit/s, Bitrate range: 045-085 kbit/s, VBR mp3 lossy compression (Smallest mp3 file size)"
+                Localization.Properties.Resources.AudioQualitySuperb,
+                Localization.Properties.Resources.AudioQualityBest,
+                Localization.Properties.Resources.AudioQualityBetter,
+                Localization.Properties.Resources.AudioQualityOptimal,
+                Localization.Properties.Resources.AudioQualityVeryGood,
+                Localization.Properties.Resources.AudioQualityTransparent,
+                Localization.Properties.Resources.AudioQualityGood,
+                Localization.Properties.Resources.AudioQualityAcceptable,
+                Localization.Properties.Resources.AudioQualityAudioBook,
+                Localization.Properties.Resources.AudioQualityWorse,
+                Localization.Properties.Resources.AudioQualityWorst,
             };
             return qualityDefault;
         }
