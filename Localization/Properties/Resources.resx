@@ -133,6 +133,9 @@
     <value>Pusty link</value>
   </data>
   <data name="TextBoxInitial" xml:space="preserve">
+    <value>Paste link and press Enter or Download button</value>
+  </data>
+  <data name="TextBoxYouTubeInitial" xml:space="preserve">
     <value>Paste YouTube link and press Enter or Download button</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">

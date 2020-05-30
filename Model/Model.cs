@@ -178,12 +178,12 @@ namespace Model
                 Quality.Clear();
                 if (_isWebsitesUnlockerSelected)
                 {
-                    TextBoxHelper = "Paste link and press Enter or Download button";
+                    TextBoxHelper = Localization.Properties.Resources.TextBoxInitial;
                     Quality.Add("Audio and video \t\t Best quality");
                 }
                 else
                 {
-                    TextBoxHelper = Localization.Properties.Resources.TextBoxInitial;
+                    TextBoxHelper = Localization.Properties.Resources.TextBoxYouTubeInitial;
                     Quality.Add(HelpersModel.QualityObservableCollection()[0]);
                 }
                 SelectedQuality = Quality[0];
@@ -764,7 +764,7 @@ namespace Model
             StandardOutput = "Ready";
             ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
             FolderButtonToolTip = HelpersModel.ToolTipFolder;
-            TextBoxHelper = Localization.Properties.Resources.TextBoxInitial;
+            TextBoxHelper = Localization.Properties.Resources.TextBoxYouTubeInitial;
             _informationAndException = new CircularQueue<string>(20);
             InformationAndExceptionOutput = "Application initialized";
         }

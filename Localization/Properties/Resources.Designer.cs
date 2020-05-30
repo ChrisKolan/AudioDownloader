@@ -106,11 +106,20 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paste YouTube link and press Enter or Download button.
+        ///   Looks up a localized string similar to Paste link and press Enter or Download button.
         /// </summary>
         public static string TextBoxInitial {
             get {
                 return ResourceManager.GetString("TextBoxInitial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste YouTube link and press Enter or Download button.
+        /// </summary>
+        public static string TextBoxYouTubeInitial {
+            get {
+                return ResourceManager.GetString("TextBoxYouTubeInitial", resourceCulture);
             }
         }
         
