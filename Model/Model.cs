@@ -373,7 +373,7 @@ namespace Model
             if (string.IsNullOrWhiteSpace(DownloadLink))
             {
                 DownloadLinkDisabler(this);
-                StandardOutput = "Empty link";
+                StandardOutput = Localization.Properties.Resources.StandardOutputEmptyLink;
                 return;
             }
             if (!_isDownloadRunning)

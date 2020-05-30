@@ -88,6 +88,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pusty link.
+        /// </summary>
+        public static string StandardOutputEmptyLink {
+            get {
+                return ResourceManager.GetString("StandardOutputEmptyLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio Downloader EN.
         /// </summary>
         public static string WindowTitle {

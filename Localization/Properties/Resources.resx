@@ -126,6 +126,9 @@
   <data name="ButtonToolTip" xml:space="preserve">
     <value>Press Download button to get the file</value>
   </data>
+  <data name="StandardOutputEmptyLink" xml:space="preserve">
+    <value>Pusty link</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Audio Downloader EN</value>
   </data>
