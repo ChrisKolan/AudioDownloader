@@ -183,7 +183,7 @@ namespace Model
                 }
                 else
                 {
-                    TextBoxHelper = "Paste YouTube link and press Enter or Download button";
+                    TextBoxHelper = Localization.Properties.Resources.TextBoxInitial;
                     Quality.Add(HelpersModel.QualityObservableCollection()[0]);
                 }
                 SelectedQuality = Quality[0];
@@ -764,7 +764,7 @@ namespace Model
             StandardOutput = "Ready";
             ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
             FolderButtonToolTip = HelpersModel.ToolTipFolder;
-            TextBoxHelper = "Paste YouTube link and press Enter or Download button";
+            TextBoxHelper = Localization.Properties.Resources.TextBoxInitial;
             _informationAndException = new CircularQueue<string>(20);
             InformationAndExceptionOutput = "Application initialized";
         }
