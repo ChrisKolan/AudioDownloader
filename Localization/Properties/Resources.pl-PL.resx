@@ -139,7 +139,7 @@
     <value>Jakość: doskonała 	 bezstratna kompresja FLAC (największy rozmiar pliku FLAC)</value>
   </data>
   <data name="AudioQualityTransparent" xml:space="preserve">
-    <value>Jakość: przezroczysta 	 Średni bitrate: 165 kbit/s, zakres bitrate: 140-185 kbit/s, kompresja stratna VBR mp3 (zrównoważony rozmiar pliku mp3)</value>
+    <value>Jakość: przeźroczysta 	 Średni bitrate: 165 kbit/s, zakres bitrate: 140-185 kbit/s, kompresja stratna VBR mp3 (zrównoważony rozmiar pliku mp3)</value>
   </data>
   <data name="AudioQualityVeryGood" xml:space="preserve">
     <value>Jakość: bardzo dobra 	 Średni bitrate: 175 kbit/s, zakres bitrate: 150-195 kbit/s, kompresja stratna VBR mp3</value>
