@@ -106,6 +106,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio and video		Best quality.
+        /// </summary>
+        public static string TextBoxContentInitial {
+            get {
+                return ResourceManager.GetString("TextBoxContentInitial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paste link and press Enter or Download button.
         /// </summary>
         public static string TextBoxInitial {

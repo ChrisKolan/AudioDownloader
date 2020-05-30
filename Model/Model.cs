@@ -179,7 +179,7 @@ namespace Model
                 if (_isWebsitesUnlockerSelected)
                 {
                     TextBoxHelper = Localization.Properties.Resources.TextBoxInitial;
-                    Quality.Add("Audio and video \t\t Best quality");
+                    Quality.Add(Localization.Properties.Resources.TextBoxContentInitial);
                 }
                 else
                 {

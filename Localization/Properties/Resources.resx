@@ -132,6 +132,9 @@
   <data name="StandardOutputEmptyLink" xml:space="preserve">
     <value>Pusty link</value>
   </data>
+  <data name="TextBoxContentInitial" xml:space="preserve">
+    <value>Audio and video		Best quality</value>
+  </data>
   <data name="TextBoxInitial" xml:space="preserve">
     <value>Paste link and press Enter or Download button</value>
   </data>
