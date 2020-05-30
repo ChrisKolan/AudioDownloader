@@ -1022,7 +1022,7 @@ namespace Model
             {
                 return ValidationResult.Success;
             }
-            model.StandardOutput = "Retrieving quality";
+            model.StandardOutput = Localization.Properties.Resources.StandardOutputRetrievingQuality;
             Task.Run(() => model.GetYouTubeAvailableFormatsWorker(model._synchronizationContext));
             return ValidationResult.Success;
         }

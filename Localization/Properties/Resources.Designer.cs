@@ -259,6 +259,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Retrieving quality.
+        /// </summary>
+        public static string StandardOutputRetrievingQuality {
+            get {
+                return ResourceManager.GetString("StandardOutputRetrievingQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio and video 		 Best quality.
         /// </summary>
         public static string TextBoxContentInitial {

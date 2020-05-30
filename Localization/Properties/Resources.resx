@@ -183,6 +183,9 @@
   <data name="StandardOutputReady" xml:space="preserve">
     <value>Ready</value>
   </data>
+  <data name="StandardOutputRetrievingQuality" xml:space="preserve">
+    <value>Retrieving quality</value>
+  </data>
   <data name="TextBoxContentInitial" xml:space="preserve">
     <value>Audio and video 		 Best quality</value>
   </data>
