@@ -61,7 +61,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio and video 		 Best YouTube quality.
+        ///   Looks up a localized string similar to Audio and video		 Best YouTube quality.
         /// </summary>
         public static string AudioAndVideoBestYouTubeQuality {
             get {
@@ -70,7 +70,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio quality: acceptable 	 Bitrate average: 115 kbit/s, bitrate range: 100-130 kbit/s, VBR mp3 lossy compression.
+        ///   Looks up a localized string similar to Audio quality: acceptable 	 Bitrate average: 115 kbit/s, bitrate range: 095-135 kbit/s, VBR mp3 lossy compression.
         /// </summary>
         public static string AudioQualityAcceptable {
             get {
@@ -196,7 +196,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio quality: worst 	 Bitrate average: 065 kbit/s, bitrate range: 045-085 kbit/s, VBR mp3 lossy compression (Smallest mp3 file size).
+        ///   Looks up a localized string similar to Audio quality: worst 	 Bitrate average: 065 kbit/s, bitrate range: 040-090 kbit/s, VBR mp3 lossy compression (Smallest mp3 file size).
         /// </summary>
         public static string AudioQualityWorst {
             get {
@@ -241,7 +241,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pusty link.
+        ///   Looks up a localized string similar to Empty link.
         /// </summary>
         public static string StandardOutputEmptyLink {
             get {

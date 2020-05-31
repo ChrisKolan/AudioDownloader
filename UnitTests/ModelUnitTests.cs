@@ -61,8 +61,7 @@ namespace UnitTests
         public void A004DownloadInDifferentQuality()
         {
             var model = new Model.ModelClass();
-            var qualities = new List<string> { "raw webm", "raw opus", "raw aac", "superb", "best", "better", "optimal", "very good",
-                                               "transparent", "good", "acceptable", "audio book", "worse", "worst" };
+            var qualities = new List<string> { "webm", "opus", "aac", "FLAC", "245", "225", "190", "175", "165", "130", "115", "100", "085", "065" };
             var expectedFileSizes = new List<long> { 3136081, 3089476, 3083046, 39768753, 6469840, 5518168, 4604680, 4178104, 3692512, 3183856, 2800840, 2486776, 2379040, 1923664 };
             model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
             for (int i = 0; i < qualities.Count; i++)
@@ -118,7 +117,7 @@ namespace UnitTests
         public void A006DownloadAudioAndVideo()
         {
             var model = new Model.ModelClass();
-            var qualities = new List<string> { "Audio and video" };
+            var qualities = new List<string> { "YouTube" };
             var expectedFileSizes = new List<long> { 70202974 };
             model.DownloadLink = "https://www.youtube.com/watch?v=4KcQ90UbRsg";
             for (int i = 0; i < qualities.Count; i++)
@@ -151,7 +150,7 @@ namespace UnitTests
             var expectedFileSizes = new List<long> { 5083565, 4034396, 3402184, 3631459, 2875099, 3873389, 3458799, 5609895, 4151596 };
             model.DownloadButtonClick();
             Thread.Sleep(1000);
-            var allowedSizeDifference = 100;
+            var allowedSizeDifference = 500;
             while (!model.IsComboBoxEnabled)
             {
                 Thread.Sleep(100);
@@ -179,7 +178,7 @@ namespace UnitTests
             var expectedFileSizes = new List<long> { 2915430, 6544910, 4142954, 7978914, 5816029, 3563543, 3527081, 3649456, 4245393, 2883786, 3484737, 2475309, 3455726, 3840186 };
             model.DownloadButtonClick();
             Thread.Sleep(1000);
-            var allowedSizeDifference = 100;
+            var allowedSizeDifference = 500;
             while (!model.IsComboBoxEnabled)
             {
                 Thread.Sleep(100);
@@ -202,7 +201,7 @@ namespace UnitTests
         public void A009DownloadAudioAndVideoOtherSite()
         {
             var model = new Model.ModelClass();
-            var qualities = new List<string> { "Audio and video" };
+            var qualities = new List<string> { "YouTube" };
             var expectedFileSizes = new List<long> { 46969734 };
             model.IsWebsitesUnlockerSelected = true;
             model.DownloadLink = "https://helpx.adobe.com/creative-cloud/how-to/creative-cloud-overview.html";

@@ -83,44 +83,44 @@ namespace Model
         public static string GetQuality(string selectedQuality)
         {
             Contract.Requires(selectedQuality != null);
-            if (selectedQuality.Contains("raw webm"))
-                return "raw webm";
-            else if (selectedQuality.Contains("raw opus"))
-                return "raw opus";
-            else if (selectedQuality.Contains("raw aac"))
-                return "raw aac";
-            else if (selectedQuality.Contains("raw vorbis"))
-                return "raw vorbis";
-            else if (selectedQuality.Contains("superb"))
-                return "flac";
-            else if (selectedQuality.Contains("best"))
-                return "mp3 0";
-            else if (selectedQuality.Contains("better"))
-                return "mp3 1";
-            else if (selectedQuality.Contains("optimal"))
-                return "mp3 2";
-            else if (selectedQuality.Contains("very good"))
-                return "mp3 3";
-            else if (selectedQuality.Contains("transparent"))
-                return "mp3 4";
-            else if (selectedQuality.Contains("good"))
-                return "mp3 5";
-            else if (selectedQuality.Contains("acceptable"))
-                return "mp3 6";
-            else if (selectedQuality.Contains("audio book"))
-                return "mp3 7";
-            else if (selectedQuality.Contains("worse"))
-                return "mp3 8";
-            else if (selectedQuality.Contains("worst"))
-                return "mp3 9";
-            else if (selectedQuality.Contains("video"))
-                return "video";
-            else if (selectedQuality.Split('\t').First().All(char.IsDigit))
+            if (selectedQuality.Contains("\t") && selectedQuality.Split('\t').First().All(char.IsDigit))
             {
                 var format = FindFormat(selectedQuality);
                 var formatCode = selectedQuality.Split('\t').First();
                 return formatCode + " " + format;
             }
+            else if (selectedQuality.Contains("webm"))
+                return "raw webm";
+            else if (selectedQuality.Contains("opus"))
+                return "raw opus";
+            else if (selectedQuality.Contains("aac"))
+                return "raw aac";
+            else if (selectedQuality.Contains("vorbis"))
+                return "raw vorbis";
+            else if (selectedQuality.Contains("FLAC"))
+                return "flac";
+            else if (selectedQuality.Contains("245"))
+                return "mp3 0";
+            else if (selectedQuality.Contains("225"))
+                return "mp3 1";
+            else if (selectedQuality.Contains("190"))
+                return "mp3 2";
+            else if (selectedQuality.Contains("175"))
+                return "mp3 3";
+            else if (selectedQuality.Contains("165"))
+                return "mp3 4";
+            else if (selectedQuality.Contains("130"))
+                return "mp3 5";
+            else if (selectedQuality.Contains("115"))
+                return "mp3 6";
+            else if (selectedQuality.Contains("100"))
+                return "mp3 7";
+            else if (selectedQuality.Contains("085"))
+                return "mp3 8";
+            else if (selectedQuality.Contains("065"))
+                return "mp3 9";
+            else if (selectedQuality.Contains("YouTube"))
+                return "video";
             else
                 return "mp3 4";
         }

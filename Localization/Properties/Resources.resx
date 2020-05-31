@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AudioAndVideoBestYouTubeQuality" xml:space="preserve">
-    <value>Audio and video 		 Best YouTube quality</value>
+    <value>Audio and video		 Best YouTube quality</value>
   </data>
   <data name="AudioQualityAcceptable" xml:space="preserve">
-    <value>Audio quality: acceptable 	 Bitrate average: 115 kbit/s, bitrate range: 100-130 kbit/s, VBR mp3 lossy compression</value>
+    <value>Audio quality: acceptable 	 Bitrate average: 115 kbit/s, bitrate range: 095-135 kbit/s, VBR mp3 lossy compression</value>
   </data>
   <data name="AudioQualityAudioBook" xml:space="preserve">
     <value>Audio quality: audio book 	 Bitrate average: 100 kbit/s, bitrate range: 080-120 kbit/s, VBR mp3 lossy compression</value>
@@ -163,7 +163,7 @@
     <value>Audio quality: worse 	 Bitrate average: 085 kbit/s, bitrate range: 070-105 kbit/s, VBR mp3 lossy compression</value>
   </data>
   <data name="AudioQualityWorst" xml:space="preserve">
-    <value>Audio quality: worst 	 Bitrate average: 065 kbit/s, bitrate range: 045-085 kbit/s, VBR mp3 lossy compression (Smallest mp3 file size)</value>
+    <value>Audio quality: worst 	 Bitrate average: 065 kbit/s, bitrate range: 040-090 kbit/s, VBR mp3 lossy compression (Smallest mp3 file size)</value>
   </data>
   <data name="ButtonContentCancel" xml:space="preserve">
     <value>Cancel</value>
@@ -178,7 +178,7 @@
     <value>After pasting YouTube link, you can select the audio quality from this list</value>
   </data>
   <data name="StandardOutputEmptyLink" xml:space="preserve">
-    <value>Pusty link</value>
+    <value>Empty link</value>
   </data>
   <data name="StandardOutputReady" xml:space="preserve">
     <value>Ready</value>
