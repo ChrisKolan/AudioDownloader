@@ -14,7 +14,7 @@ namespace Model
     {
         public static string ToolTipFolder 
         {
-            get { return "Left mouse click: opens download folder \nRight mouse click: chooses download folder \nCurrent download folder: " + ApplicationPaths.GetAudioPath(); }
+            get { return Localization.Properties.Resources.ToolTipFolder + ApplicationPaths.GetAudioPath(); }
         }
         public static (string command, string finishedMessage) CreateCommandAndMessage(string selectedQuality, string downloadLink)
         {

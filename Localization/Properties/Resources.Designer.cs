@@ -295,6 +295,17 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Left mouse click: opens download folder
+        ///Right mouse click: chooses download folder
+        ///Current download folder:.
+        /// </summary>
+        public static string ToolTipFolder {
+            get {
+                return ResourceManager.GetString("ToolTipFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio Downloader EN.
         /// </summary>
         public static string WindowTitle {

@@ -195,6 +195,11 @@
   <data name="TextBoxYouTubeInitial" xml:space="preserve">
     <value>Wklej link z YouTube i naciśnij przycisk Enter lub Pobierz</value>
   </data>
+  <data name="ToolTipFolder" xml:space="preserve">
+    <value>Kliknięcie lewym przyciskiem myszy: otwiera folder pobierania
+Kliknięcie prawym przyciskiem myszy: wybiera folder pobierania
+Aktualny folder pobierania: </value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Audio Downloader PL</value>
   </data>

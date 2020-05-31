@@ -195,6 +195,11 @@
   <data name="TextBoxYouTubeInitial" xml:space="preserve">
     <value>Paste YouTube link and press Enter or Download button</value>
   </data>
+  <data name="ToolTipFolder" xml:space="preserve">
+    <value>Left mouse click: opens download folder
+Right mouse click: chooses download folder
+Current download folder:</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Audio Downloader EN</value>
   </data>
