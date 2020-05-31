@@ -28,44 +28,44 @@ namespace Model
             {
                 var quality = GetQualityInternal(selectedQuality);
                 command = youTubeBeginCommand + "--extract-audio --audio-format mp3" + GenerateConstantCommand(date, escapedDownloadLink, quality, null);
-                finishedMessage = "Download finished. Now transcoding to mp3. This may take a while. Processing.";
+                finishedMessage = Localization.Properties.Resources.FinishedMessageDownloadFinishedMp3;
             }
             else if (selectedQuality.Contains("flac"))
             {
                 command = youTubeBeginCommand + "--extract-audio --audio-format flac" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
-                finishedMessage = "Download finished. Now transcoding to FLAC. This may take a while. Processing.";
+                finishedMessage = Localization.Properties.Resources.FinishedMessageDownloadFinishedFlac;
             }
             else if (selectedQuality.Contains("raw webm"))
             {
                 command = youTubeBeginCommand + "--format bestaudio[ext=webm]" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
-                finishedMessage = "Download finished";
+                finishedMessage = Localization.Properties.Resources.FinishedMessageDownloadFinished;
             }
             else if (selectedQuality.Contains("raw opus"))
             {
                 command = youTubeBeginCommand + "--format bestaudio[acodec=opus] --extract-audio" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
-                finishedMessage = "Download finished";
+                finishedMessage = Localization.Properties.Resources.FinishedMessageDownloadFinished;
             }
             else if (selectedQuality.Contains("raw aac"))
             {
                 command = youTubeBeginCommand + "--format bestaudio[ext=m4a]" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
-                finishedMessage = "Download finished";
+                finishedMessage = Localization.Properties.Resources.FinishedMessageDownloadFinished;
             }
             else if (selectedQuality.Split(' ').First().All(char.IsDigit))
             {
                 var formatCode = selectedQuality.Split(' ').First();
                 var format = selectedQuality.Split(' ').Last();
                 command = youTubeBeginCommand + "--format " + formatCode + " --extract-audio  --audio-format " + format + GenerateConstantCommand(date, escapedDownloadLink, null, null);
-                finishedMessage = "Download finished";
+                finishedMessage = Localization.Properties.Resources.FinishedMessageDownloadFinished;
             }
             else if (selectedQuality.Contains("video"))
             {
                 command = youTubeBeginCommand + GenerateConstantCommand(date, escapedDownloadLink, null, selectedQuality);
-                finishedMessage = "Download finished";
+                finishedMessage = Localization.Properties.Resources.FinishedMessageDownloadFinished;
             }
             else
             {
                 command = youTubeBeginCommand + "--format bestaudio[acodec=vorbis] --extract-audio" + GenerateConstantCommand(date, escapedDownloadLink, null, null);
-                finishedMessage = "Download finished";
+                finishedMessage = Localization.Properties.Resources.FinishedMessageDownloadFinished;
             }
 
             return (command, finishedMessage);

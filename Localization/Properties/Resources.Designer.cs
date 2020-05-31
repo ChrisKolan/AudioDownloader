@@ -106,6 +106,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio quality could not be retrieved..
+        /// </summary>
+        public static string AudioQualityCouldNotBeRetrieved {
+            get {
+                return ResourceManager.GetString("AudioQualityCouldNotBeRetrieved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio quality: good 	 Bitrate average: 130 kbit/s, bitrate range: 120-150 kbit/s, VBR mp3 lossy compression.
         /// </summary>
         public static string AudioQualityGood {
@@ -241,11 +250,47 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download finished.
+        /// </summary>
+        public static string FinishedMessageDownloadFinished {
+            get {
+                return ResourceManager.GetString("FinishedMessageDownloadFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download finished. Now transcoding to FLAC. This may take a while. Processing..
+        /// </summary>
+        public static string FinishedMessageDownloadFinishedFlac {
+            get {
+                return ResourceManager.GetString("FinishedMessageDownloadFinishedFlac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download finished. Now transcoding to mp3. This may take a while. Processing..
+        /// </summary>
+        public static string FinishedMessageDownloadFinishedMp3 {
+            get {
+                return ResourceManager.GetString("FinishedMessageDownloadFinishedMp3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty link.
         /// </summary>
         public static string StandardOutputEmptyLink {
             get {
                 return ResourceManager.GetString("StandardOutputEmptyLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error. No internet connection..
+        /// </summary>
+        public static string StandardOutputNoInternetConnection {
+            get {
+                return ResourceManager.GetString("StandardOutputNoInternetConnection", resourceCulture);
             }
         }
         
@@ -264,6 +309,15 @@ namespace Localization.Properties {
         public static string StandardOutputRetrievingQuality {
             get {
                 return ResourceManager.GetString("StandardOutputRetrievingQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YouTube link is invalid..
+        /// </summary>
+        public static string StandardOutputYouTubeLinkIsInvalid {
+            get {
+                return ResourceManager.GetString("StandardOutputYouTubeLinkIsInvalid", resourceCulture);
             }
         }
         

@@ -132,6 +132,9 @@
   <data name="AudioQualityBetter" xml:space="preserve">
     <value>Jakość: lepsza 		 Średni bitrate: 225 kbit/s, zakres bitrate: 190-250 kbit/s, kompresja stratna VBR mp3</value>
   </data>
+  <data name="AudioQualityCouldNotBeRetrieved" xml:space="preserve">
+    <value>Jakość dźwięku nie mogła zostać pobrana.</value>
+  </data>
   <data name="AudioQualityGood" xml:space="preserve">
     <value>Jakość: dobra 		 Średni bitrate: 130 kbit/s, zakres bitrate: 120-150 kbit/s, kompresja stratna VBR mp3</value>
   </data>
@@ -177,14 +180,29 @@
   <data name="ComboBoxInitial" xml:space="preserve">
     <value>Po wklejeniu linku z YouTube można wybrać jakość dźwięku z tej listy</value>
   </data>
+  <data name="FinishedMessageDownloadFinished" xml:space="preserve">
+    <value>Pobieranie zakończone</value>
+  </data>
+  <data name="FinishedMessageDownloadFinishedFlac" xml:space="preserve">
+    <value>Pobieranie zakończone. Transkodowanie do FLAC. To może chwilę potrwać. Przetwarzanie.</value>
+  </data>
+  <data name="FinishedMessageDownloadFinishedMp3" xml:space="preserve">
+    <value>Pobieranie zakończone. Transkodowanie do mp3. To może chwilę potrwać. Przetwarzanie.</value>
+  </data>
   <data name="StandardOutputEmptyLink" xml:space="preserve">
     <value>Pusty link</value>
+  </data>
+  <data name="StandardOutputNoInternetConnection" xml:space="preserve">
+    <value>Błąd. Brak połączenia z Internetem.</value>
   </data>
   <data name="StandardOutputReady" xml:space="preserve">
     <value>Gotowy</value>
   </data>
   <data name="StandardOutputRetrievingQuality" xml:space="preserve">
     <value>Pobieranie jakości</value>
+  </data>
+  <data name="StandardOutputYouTubeLinkIsInvalid" xml:space="preserve">
+    <value>Link YouTube jest nieprawidłowy.</value>
   </data>
   <data name="TextBoxContentInitial" xml:space="preserve">
     <value>Audio i wideo 		 Najlepsza jakość</value>

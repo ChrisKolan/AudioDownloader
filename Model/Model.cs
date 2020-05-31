@@ -712,15 +712,15 @@ namespace Model
             else
             {
                 Quality.Clear();
-                Quality.Add("Audio quality could not be retrieved.");
+                Quality.Add(Localization.Properties.Resources.AudioQualityCouldNotBeRetrieved);
                 SelectedQuality = Quality[0];
                 if (_isOnline)
                 {
-                    StandardOutput = "YouTube link is invalid";
+                    StandardOutput = Localization.Properties.Resources.StandardOutputYouTubeLinkIsInvalid;
                 }
                 else
                 {
-                    StandardOutput = "Error. No internet connection.";
+                    StandardOutput = Localization.Properties.Resources.StandardOutputNoInternetConnection;
                 }
                 IsButtonEnabled = false;
                 return;
