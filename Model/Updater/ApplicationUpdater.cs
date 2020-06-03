@@ -13,7 +13,7 @@ namespace Model
             string localVersions;
             if (UpdatesNeeded(out string configurationErrorsException))
             {
-                model.StandardOutput = "Checking for updates";
+                model.StandardOutput = Localization.Properties.Resources.StandardOutputCheckingForUpdates;
                 model.DisableInteractions();
                 model.InformationAndExceptionOutput = configurationErrorsException;
 

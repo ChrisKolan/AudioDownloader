@@ -189,6 +189,15 @@
   <data name="FinishedMessageDownloadFinishedMp3" xml:space="preserve">
     <value>Download finished. Now transcoding to mp3. This may take a while. Processing.</value>
   </data>
+  <data name="StandardOutputCheckingForUpdates" xml:space="preserve">
+    <value>Checking for updates</value>
+  </data>
+  <data name="StandardOutputDownloadingNewAudioDownloaderVersion" xml:space="preserve">
+    <value>Downloading new Audio Downloader version.</value>
+  </data>
+  <data name="StandardOutputDownloadingNewYoutubeDlVersion" xml:space="preserve">
+    <value>Downloading new Youtube-dl version.</value>
+  </data>
   <data name="StandardOutputEmptyLink" xml:space="preserve">
     <value>Empty link</value>
   </data>
@@ -197,6 +206,9 @@
   </data>
   <data name="StandardOutputReady" xml:space="preserve">
     <value>Ready</value>
+  </data>
+  <data name="StandardOutputReadyUpdatedYoutubeDlToLatestVersion" xml:space="preserve">
+    <value>Ready. Updated Youtube-dl to latest version.</value>
   </data>
   <data name="StandardOutputRetrievingQuality" xml:space="preserve">
     <value>Retrieving quality</value>

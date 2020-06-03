@@ -277,6 +277,33 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checking for updates.
+        /// </summary>
+        public static string StandardOutputCheckingForUpdates {
+            get {
+                return ResourceManager.GetString("StandardOutputCheckingForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading new Audio Downloader version..
+        /// </summary>
+        public static string StandardOutputDownloadingNewAudioDownloaderVersion {
+            get {
+                return ResourceManager.GetString("StandardOutputDownloadingNewAudioDownloaderVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading new Youtube-dl version..
+        /// </summary>
+        public static string StandardOutputDownloadingNewYoutubeDlVersion {
+            get {
+                return ResourceManager.GetString("StandardOutputDownloadingNewYoutubeDlVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty link.
         /// </summary>
         public static string StandardOutputEmptyLink {
@@ -300,6 +327,15 @@ namespace Localization.Properties {
         public static string StandardOutputReady {
             get {
                 return ResourceManager.GetString("StandardOutputReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready. Updated Youtube-dl to latest version..
+        /// </summary>
+        public static string StandardOutputReadyUpdatedYoutubeDlToLatestVersion {
+            get {
+                return ResourceManager.GetString("StandardOutputReadyUpdatedYoutubeDlToLatestVersion", resourceCulture);
             }
         }
         
