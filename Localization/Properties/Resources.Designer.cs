@@ -277,6 +277,33 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press button to get online help..
+        /// </summary>
+        public static string PressButtonToGetOnlineHelp {
+            get {
+                return ResourceManager.GetString("PressButtonToGetOnlineHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roundtrip time 	   |           .
+        /// </summary>
+        public static string RoundtripTime {
+            get {
+                return ResourceManager.GetString("RoundtripTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Software 	   |	Version.
+        /// </summary>
+        public static string SoftwareVersion {
+            get {
+                return ResourceManager.GetString("SoftwareVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Checking for updates.
         /// </summary>
         public static string StandardOutputCheckingForUpdates {

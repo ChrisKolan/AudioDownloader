@@ -88,7 +88,7 @@ namespace Model
             {
                 "===========================",
                 "Status \t\t   |\t" + status,
-                "Roundtrip time \t   |\t" + _roundtripTime + " [ms]",
+                Localization.Properties.Resources.RoundtripTime + _roundtripTime + " [ms]",
             };
 
             return pingData;

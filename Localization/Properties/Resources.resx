@@ -189,6 +189,15 @@
   <data name="FinishedMessageDownloadFinishedMp3" xml:space="preserve">
     <value>Download finished. Now transcoding to mp3. This may take a while. Processing.</value>
   </data>
+  <data name="PressButtonToGetOnlineHelp" xml:space="preserve">
+    <value>Press button to get online help.</value>
+  </data>
+  <data name="RoundtripTime" xml:space="preserve">
+    <value>Roundtrip time 	   |           </value>
+  </data>
+  <data name="SoftwareVersion" xml:space="preserve">
+    <value>Software 	   |	Version</value>
+  </data>
   <data name="StandardOutputCheckingForUpdates" xml:space="preserve">
     <value>Checking for updates</value>
   </data>

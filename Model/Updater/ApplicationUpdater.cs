@@ -85,9 +85,9 @@ namespace Model
         {
             var localVersionsNamesAndNumber = new List<string>
             {
-                "Press button to get online help.",
+                Localization.Properties.Resources.PressButtonToGetOnlineHelp,
                 "===========================",
-                "Software \t   |\tVersion",
+                Localization.Properties.Resources.SoftwareVersion,
                 "----------------------|-----------------------"
             };
             var localVersions = LocalVersionProvider.Versions();
