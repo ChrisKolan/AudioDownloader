@@ -259,6 +259,24 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloaded file size: .
+        /// </summary>
+        public static string DownloadedFileSize {
+            get {
+                return ResourceManager.GetString("DownloadedFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download time: .
+        /// </summary>
+        public static string DownloadTime {
+            get {
+                return ResourceManager.GetString("DownloadTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download finished.
         /// </summary>
         public static string FinishedMessageDownloadFinished {
@@ -300,6 +318,24 @@ namespace Localization.Properties {
         public static string PressButtonToGetOnlineHelp {
             get {
                 return ResourceManager.GetString("PressButtonToGetOnlineHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing time: .
+        /// </summary>
+        public static string ProcessingTime {
+            get {
+                return ResourceManager.GetString("ProcessingTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ratio: .
+        /// </summary>
+        public static string Ratio {
+            get {
+                return ResourceManager.GetString("Ratio", resourceCulture);
             }
         }
         
@@ -421,6 +457,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Starting download....
+        /// </summary>
+        public static string StartingDownload {
+            get {
+                return ResourceManager.GetString("StartingDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio and video 		 Best quality.
         /// </summary>
         public static string TextBoxContentInitial {
@@ -455,6 +500,15 @@ namespace Localization.Properties {
         public static string ToolTipFolder {
             get {
                 return ResourceManager.GetString("ToolTipFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transcoded file size: .
+        /// </summary>
+        public static string TranscodedFileSize {
+            get {
+                return ResourceManager.GetString("TranscodedFileSize", resourceCulture);
             }
         }
         

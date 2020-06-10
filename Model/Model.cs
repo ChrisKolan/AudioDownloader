@@ -430,7 +430,7 @@ namespace Model
             int positionFrom;
             int positionTo;
 
-            StandardOutput = "Starting download...";
+            StandardOutput = Localization.Properties.Resources.StartingDownload;
             InformationAndExceptionOutput = "Starting download of the link: " + DownloadLink;
             string command;
             (command, _finishedMessage) = HelpersModel.CreateCommandAndMessage(selectedQuality, DownloadLink);
@@ -552,15 +552,15 @@ namespace Model
                     _downloadedFileSize = _downloadedFileSize.Substring(1);
                 }
                 TimersOutput = string.Empty;
-                StandardOutput = "Done. Processing time: " + processingTimeTimer.ToString("N0", CultureInfo.InvariantCulture) + "s. " +
-                                 "Download time: " + downloadTimeTimer.ToString("N0", CultureInfo.InvariantCulture) + "s. " +
-                                 "Downloaded file size: " + _downloadedFileSize + ". " +
-                                 "Transcoded file size: " + fileSize.ToString("F", CultureInfo.InvariantCulture) + "MiB. ";
+                StandardOutput = Localization.Properties.Resources.ProcessingTime + processingTimeTimer.ToString("N0", CultureInfo.InvariantCulture) + "s. " +
+                                 Localization.Properties.Resources.DownloadTime + downloadTimeTimer.ToString("N0", CultureInfo.InvariantCulture) + "s. " +
+                                 Localization.Properties.Resources.DownloadedFileSize + _downloadedFileSize + ". " +
+                                 Localization.Properties.Resources.TranscodedFileSize + fileSize.ToString("F", CultureInfo.InvariantCulture) + "MiB. ";
 
                 if (double.TryParse(_downloadedFileSize.Remove(_downloadedFileSize.Length - 3), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedFileSize))
                 {
                     var ratio = downloadedFileSize / fileSize;
-                    StandardOutput += "Ratio: " + ratio.ToString("F", CultureInfo.InvariantCulture) + ".";
+                    StandardOutput += Localization.Properties.Resources.Ratio + ratio.ToString("F", CultureInfo.InvariantCulture) + ".";
                 }
 
                 SendData(fileName, StandardOutput);
@@ -800,7 +800,7 @@ namespace Model
             }
             _processingTime++;
             IsIndeterminate = true;
-            TimersOutput = "Processing time: " + ((_processingTime * _timerResolution) / 1000.0).ToString("N1", CultureInfo.InvariantCulture) + "s";
+            TimersOutput = Localization.Properties.Resources.ProcessingTime + ((_processingTime * _timerResolution) / 1000.0).ToString("N1", CultureInfo.InvariantCulture) + "s";
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
         }
 
@@ -813,7 +813,7 @@ namespace Model
             if (_isOnline)
             {
                 _downloadTime++;
-                TimersOutput = "Download time: " + ((_downloadTime * _timerResolution) / 1000.0).ToString("N1", CultureInfo.InvariantCulture) + "s";
+                TimersOutput = Localization.Properties.Resources.DownloadTime + ((_downloadTime * _timerResolution) / 1000.0).ToString("N1", CultureInfo.InvariantCulture) + "s";
             }
         }
 
