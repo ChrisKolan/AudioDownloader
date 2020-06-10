@@ -609,7 +609,7 @@ namespace Model
             var availableAudioFormats = new List<string>();
             availableFormats.Add(Environment.NewLine);
             availableFormats.Add("==========================================================================");
-            availableFormats.Add("Advanced information. Available YouTube file formats:");
+            availableFormats.Add(Localization.Properties.Resources.AdvancedInformationAvailableYouTubeFileFormats);
 
             var startinfo = new ProcessStartInfo("CMD.exe", command)
             {

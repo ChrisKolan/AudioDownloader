@@ -59,7 +59,7 @@ namespace Model
             }
             var pingData = ComposePingStatus();
             var helpButtonToolTipList = helpButtonToolTip.Split( new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
-            var index = helpButtonToolTipList.FindIndex(a => a == "Advanced information. Available YouTube file formats:");
+            var index = helpButtonToolTipList.FindIndex(a => a == Localization.Properties.Resources.AdvancedInformationAvailableYouTubeFileFormats);
             if (index > 0)
             {
                 var advancedInformationCount = helpButtonToolTipList.Count - index;

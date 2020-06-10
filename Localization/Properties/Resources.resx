@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AdvancedInformationAvailableYouTubeFileFormats" xml:space="preserve">
+    <value>Advanced information. Available YouTube file formats:</value>
+  </data>
   <data name="AudioAndVideoBestYouTubeQuality" xml:space="preserve">
     <value>Audio and video		 Best YouTube quality</value>
   </data>

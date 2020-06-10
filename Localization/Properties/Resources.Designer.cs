@@ -61,6 +61,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced information. Available YouTube file formats:.
+        /// </summary>
+        public static string AdvancedInformationAvailableYouTubeFileFormats {
+            get {
+                return ResourceManager.GetString("AdvancedInformationAvailableYouTubeFileFormats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio and video		 Best YouTube quality.
         /// </summary>
         public static string AudioAndVideoBestYouTubeQuality {
