@@ -201,6 +201,9 @@
   <data name="SendingOfAnInternetControlMessageProtocolNotSuccessful" xml:space="preserve">
     <value>Wysłanie Internetowego Protokołu Komunikatu Kontrolnego (ICMP) nie powiodło się</value>
   </data>
+  <data name="SendingOfAnInternetControlMessageProtocolSuccessful" xml:space="preserve">
+    <value>Wysłanie Internetowego Protokołu Komunikatu Kontrolnego (ICMP) powiodło się</value>
+  </data>
   <data name="SoftwareVersion" xml:space="preserve">
     <value>Program 	   |	Wersja</value>
   </data>

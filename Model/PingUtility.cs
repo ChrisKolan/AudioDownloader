@@ -45,7 +45,7 @@ namespace Model
                 pingSender.Dispose();
                 return false;
             }
-            pingException = "Sending of an Internet Control Message Protocol successful";
+            pingException = Localization.Properties.Resources.SendingOfAnInternetControlMessageProtocolSuccessful;
             _roundtripTime = reply.RoundtripTime;
             pingSender.Dispose();
             return true;

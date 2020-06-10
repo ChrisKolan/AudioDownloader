@@ -201,6 +201,9 @@
   <data name="SendingOfAnInternetControlMessageProtocolNotSuccessful" xml:space="preserve">
     <value>Sending of an Internet Control Message Protocol not successful</value>
   </data>
+  <data name="SendingOfAnInternetControlMessageProtocolSuccessful" xml:space="preserve">
+    <value>Sending of an Internet Control Message Protocol successful</value>
+  </data>
   <data name="SoftwareVersion" xml:space="preserve">
     <value>Software 	   |	Version</value>
   </data>
