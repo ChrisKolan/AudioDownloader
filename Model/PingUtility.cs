@@ -45,7 +45,6 @@ namespace Model
                 pingSender.Dispose();
                 return false;
             }
-            pingException = "Sending of an Internet Control Message Protocol successful";
             _roundtripTime = reply.RoundtripTime;
             pingSender.Dispose();
             return true;
