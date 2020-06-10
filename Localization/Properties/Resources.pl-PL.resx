@@ -189,6 +189,9 @@
   <data name="FinishedMessageDownloadFinishedMp3" xml:space="preserve">
     <value>Pobieranie zakończone. Transkodowanie do mp3. To może chwilę potrwać. Przetwarzanie.</value>
   </data>
+  <data name="InternetConnectionReestablished" xml:space="preserve">
+    <value>Przywrócono połączenie internetowe.</value>
+  </data>
   <data name="PressButtonToGetOnlineHelp" xml:space="preserve">
     <value>Wciśnij przycisk, aby uzyskać pomoc.</value>
   </data>

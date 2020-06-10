@@ -277,6 +277,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Internet connection reestablished..
+        /// </summary>
+        public static string InternetConnectionReestablished {
+            get {
+                return ResourceManager.GetString("InternetConnectionReestablished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Press button to get online help..
         /// </summary>
         public static string PressButtonToGetOnlineHelp {

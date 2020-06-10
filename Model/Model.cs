@@ -844,9 +844,9 @@ namespace Model
                 {
                     TimersOutput = string.Empty;
                 }
-                if (StandardOutput.Contains("Error. No internet connection."))
+                if (StandardOutput.Contains(Localization.Properties.Resources.StandardOutputNoInternetConnection))
                 {
-                    StandardOutput = "Internet connection reestablished.";
+                    StandardOutput = Localization.Properties.Resources.InternetConnectionReestablished;
                 }
                 if (Application.Current == null)
                 {
