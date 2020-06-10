@@ -40,7 +40,7 @@ namespace Model
             }
             if (reply.Status != IPStatus.Success)
             {
-                pingException = "Sending of an Internet Control Message Protocol not successful";
+                pingException = Localization.Properties.Resources.SendingOfAnInternetControlMessageProtocolNotSuccessful;
                 _roundtripTime = -1;
                 pingSender.Dispose();
                 return false;

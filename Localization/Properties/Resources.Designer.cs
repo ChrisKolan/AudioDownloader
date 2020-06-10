@@ -304,6 +304,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sending of an Internet Control Message Protocol not successful.
+        /// </summary>
+        public static string SendingOfAnInternetControlMessageProtocolNotSuccessful {
+            get {
+                return ResourceManager.GetString("SendingOfAnInternetControlMessageProtocolNotSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Software 	   |	Version.
         /// </summary>
         public static string SoftwareVersion {

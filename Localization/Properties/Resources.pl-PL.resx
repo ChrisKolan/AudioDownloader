@@ -198,6 +198,9 @@
   <data name="RoundtripTime" xml:space="preserve">
     <value>Czas obiegu 	   |           </value>
   </data>
+  <data name="SendingOfAnInternetControlMessageProtocolNotSuccessful" xml:space="preserve">
+    <value>Wysłanie Internetowego Protokołu Komunikatu Kontrolnego (ICMP) nie powiodło się</value>
+  </data>
   <data name="SoftwareVersion" xml:space="preserve">
     <value>Program 	   |	Wersja</value>
   </data>
