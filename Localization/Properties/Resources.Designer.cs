@@ -277,6 +277,24 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error. No file downloaded. Updates are needed..
+        /// </summary>
+        public static string ErrorNoFileDownloadedUpdatesAreNeeded {
+            get {
+                return ResourceManager.GetString("ErrorNoFileDownloadedUpdatesAreNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File has already been downloaded..
+        /// </summary>
+        public static string FileHasAlreadyBeenDownloaded {
+            get {
+                return ResourceManager.GetString("FileHasAlreadyBeenDownloaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download finished.
         /// </summary>
         public static string FinishedMessageDownloadFinished {

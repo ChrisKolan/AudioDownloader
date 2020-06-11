@@ -481,7 +481,7 @@ namespace Model
                 }
                 if (StandardOutput.Contains("has already been downloaded"))
                 {
-                    _downloadedFileSize = "File has already been downloaded.";
+                    _downloadedFileSize = Localization.Properties.Resources.FileHasAlreadyBeenDownloaded;
                     _measureDownloadTime = false;
                 }
                 if (StandardOutput.Contains("[ffmpeg]"))
@@ -516,7 +516,7 @@ namespace Model
                     }
                     else
                     {
-                        StandardOutput = "Error. No file downloaded. Updates are needed.";
+                        StandardOutput = Localization.Properties.Resources.ErrorNoFileDownloadedUpdatesAreNeeded;
                     }
                 }
                 else
@@ -529,7 +529,7 @@ namespace Model
                 process.Dispose();
                 return;
             }
-            if (_downloadedFileSize == "File has already been downloaded.")
+            if (_downloadedFileSize == Localization.Properties.Resources.FileHasAlreadyBeenDownloaded)
             {
                 TimersOutput = string.Empty;
                 TaskBarProgressValue = GetTaskBarProgressValue(100, 100);

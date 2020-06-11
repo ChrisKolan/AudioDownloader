@@ -189,6 +189,12 @@
   <data name="DownloadTime" xml:space="preserve">
     <value>Download time: </value>
   </data>
+  <data name="ErrorNoFileDownloadedUpdatesAreNeeded" xml:space="preserve">
+    <value>Error. No file downloaded. Updates are needed.</value>
+  </data>
+  <data name="FileHasAlreadyBeenDownloaded" xml:space="preserve">
+    <value>File has already been downloaded.</value>
+  </data>
   <data name="FinishedMessageDownloadFinished" xml:space="preserve">
     <value>Download finished</value>
   </data>

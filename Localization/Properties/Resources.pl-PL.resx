@@ -189,6 +189,12 @@
   <data name="DownloadTime" xml:space="preserve">
     <value>Czas pobierania: </value>
   </data>
+  <data name="ErrorNoFileDownloadedUpdatesAreNeeded" xml:space="preserve">
+    <value>Błąd. Nie pobrano pliku. Potrzebne są aktualizacje.</value>
+  </data>
+  <data name="FileHasAlreadyBeenDownloaded" xml:space="preserve">
+    <value>Plik został już pobrany.</value>
+  </data>
   <data name="FinishedMessageDownloadFinished" xml:space="preserve">
     <value>Pobieranie zakończone</value>
   </data>
