@@ -837,6 +837,7 @@ namespace Model
 
         private void TimerPinger()
         {
+            var secondsToIndicateOfflineStatus = 7;
             if (PingUtility.Pinger(out string pingException))
             {
                 _isOnline = true;
@@ -861,7 +862,7 @@ namespace Model
             }
             else
             {
-                if (_pingerCounter > 7)
+                if (_pingerCounter >= secondsToIndicateOfflineStatus)
                 {
                     InformationAndExceptionOutput = pingException;
                     _isOnline = false;
