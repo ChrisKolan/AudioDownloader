@@ -861,7 +861,7 @@ namespace Model
             }
             else
             {
-                if (_pingerCounter > 2)
+                if (_pingerCounter > 7)
                 {
                     InformationAndExceptionOutput = pingException;
                     _isOnline = false;
