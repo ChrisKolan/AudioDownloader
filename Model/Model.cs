@@ -443,6 +443,7 @@ namespace Model
                 RedirectStandardError = true,
             };
 
+            var readLineExtractor = new ReadLineExtractorModel();
             var process = new Process { StartInfo = startinfo };
             process.Start();
 
@@ -451,46 +452,8 @@ namespace Model
             {
                 StandardOutput = reader.ReadLine();
                 StandardOutput = HelpersModel.StandardOutputLocalizator(StandardOutput);
-                if (StandardOutput.Contains(Localization.Properties.Resources.ThreadPoolWorkerDownload) && StandardOutput.Contains(Localization.Properties.Resources.ThreadPoolWorkerEta))
-                {
-                    _measureDownloadTime = true;
-                    positionFrom = StandardOutput.IndexOf(Localization.Properties.Resources.ThreadPoolWorkerOf, StringComparison.InvariantCultureIgnoreCase) + Localization.Properties.Resources.ThreadPoolWorkerOf.Length;
-                    positionTo = StandardOutput.LastIndexOf(Localization.Properties.Resources.ThreadPoolWorkerAt, StringComparison.InvariantCultureIgnoreCase);
-
-                    if ((positionTo - positionFrom) > 0)
-                        DownloadedFileSize = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
-
-                    positionFrom = StandardOutput.IndexOf("] ", StringComparison.InvariantCultureIgnoreCase) + "] ".Length;
-                    positionTo = StandardOutput.LastIndexOf("%", StringComparison.InvariantCultureIgnoreCase);
-
-                    if ((positionTo - positionFrom) > 0)
-                    {
-                        var percent = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
-                        if (double.TryParse(percent.Trim(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var downloadedPercent))
-                        {
-                            IsIndeterminate = false;
-                            TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
-                            ProgressBarPercent = Convert.ToInt32(Math.Round(downloadedPercent));
-                            TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
-                        }
-                        else
-                        {
-                            IsIndeterminate = true;
-                            TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
-                        }
-                    }
-                }
-                if (StandardOutput.Contains("has already been"))
-                {
-                    _downloadedFileSize = Localization.Properties.Resources.FileHasAlreadyBeenDownloaded;
-                    _measureDownloadTime = false;
-                }
-                if (StandardOutput.Contains("[ffmpeg]"))
-                {
-                    StandardOutput = _finishedMessage;
-                    _measureProcessingTime = true;
-                    _measureDownloadTime = false;
-                }
+                (_measureDownloadTime, _downloadedFileSize, IsIndeterminate, TaskbarItemProgressStateModel, ProgressBarPercent, TaskBarProgressValue, _measureProcessingTime, StandardOutput) = readLineExtractor.Extract(StandardOutput, _finishedMessage);
+                Thread.Sleep(100);
             }
 
             process.WaitForExit();
@@ -499,7 +462,7 @@ namespace Model
             if (_downloadedFileSize == null)
             {
                 TimersOutput = string.Empty;
-                TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
+                TaskBarProgressValue = HelpersModel.GetTaskBarProgressValue(100, 100);
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 Thread.Sleep(1000);
                 if (_isOnline)
@@ -533,7 +496,7 @@ namespace Model
             if (_downloadedFileSize == Localization.Properties.Resources.FileHasAlreadyBeenDownloaded)
             {
                 TimersOutput = string.Empty;
-                TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
+                TaskBarProgressValue = HelpersModel.GetTaskBarProgressValue(100, 100);
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
                 Thread.Sleep(1000);
                 StandardOutput = Localization.Properties.Resources.StandardOutputReady + ". " + _downloadedFileSize;
@@ -584,7 +547,7 @@ namespace Model
             }
             catch (HttpRequestException webhookException)
             {
-                TaskBarProgressValue = GetTaskBarProgressValue(100, 100);
+                TaskBarProgressValue = HelpersModel.GetTaskBarProgressValue(100, 100);
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 Thread.Sleep(1000);
                 StandardOutput = "Exception. Updating webhook failed.";
@@ -593,11 +556,6 @@ namespace Model
                 EnableInteractions();
                 return;
             }
-        }
-
-        private double GetTaskBarProgressValue(int maximum, int progress)
-        {
-            return (double)progress / (double)maximum;
         }
 
         private void GetYouTubeAvailableFormatsWorker(Object state)
@@ -777,7 +735,7 @@ namespace Model
             IsButtonEnabled = true;
             IsComboBoxEnabled = true;
             ProgressBarPercent = 0;
-            TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
+            TaskBarProgressValue = HelpersModel.GetTaskBarProgressValue(100, ProgressBarPercent);
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
         }
 
@@ -789,7 +747,7 @@ namespace Model
             ProgressBarPercent = 0;
             _downloadFileSize = 0.0;
             _audioVideoDownloadCounter = 0;
-            TaskBarProgressValue = GetTaskBarProgressValue(100, ProgressBarPercent);
+            TaskBarProgressValue = HelpersModel.GetTaskBarProgressValue(100, ProgressBarPercent);
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Indeterminate;
         }
 

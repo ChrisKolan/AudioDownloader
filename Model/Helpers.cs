@@ -4,9 +4,6 @@ using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -169,6 +166,11 @@ namespace Model
             standardOutput = standardOutput.Replace("of ", Localization.Properties.Resources.ThreadPoolWorkerOf);
             standardOutput = standardOutput.Replace(" at", Localization.Properties.Resources.ThreadPoolWorkerAt);
             return standardOutput.Replace("Downloading webpage", Localization.Properties.Resources.ThreadPoolWorkerDownloadingWebpage);
+        }
+
+        public static double GetTaskBarProgressValue(int maximum, int progress)
+        {
+            return (double)progress / (double)maximum;
         }
 
         private static string GetQualityInternal(string selectedQuality)
