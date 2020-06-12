@@ -507,7 +507,7 @@ namespace Model
                     {
                         if (!DownloadLink.Contains("https://www."))
                         {
-                            StandardOutput = "Not a valid link.";
+                            StandardOutput = Localization.Properties.Resources.NotValidLink;
                         }
                         else
                         {

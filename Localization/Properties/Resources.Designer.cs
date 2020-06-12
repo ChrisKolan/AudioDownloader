@@ -331,6 +331,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not a valid link..
+        /// </summary>
+        public static string NotValidLink {
+            get {
+                return ResourceManager.GetString("NotValidLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Press button to get online help..
         /// </summary>
         public static string PressButtonToGetOnlineHelp {

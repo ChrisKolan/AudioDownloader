@@ -207,6 +207,9 @@
   <data name="InternetConnectionReestablished" xml:space="preserve">
     <value>Internet connection reestablished.</value>
   </data>
+  <data name="NotValidLink" xml:space="preserve">
+    <value>Not a valid link.</value>
+  </data>
   <data name="PressButtonToGetOnlineHelp" xml:space="preserve">
     <value>Press button to get online help.</value>
   </data>
