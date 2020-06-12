@@ -276,6 +276,21 @@
   <data name="TextBoxYouTubeInitial" xml:space="preserve">
     <value>Paste YouTube link and press Enter or Download button</value>
   </data>
+  <data name="ThreadPoolWorkerAt" xml:space="preserve">
+    <value>at</value>
+  </data>
+  <data name="ThreadPoolWorkerDownload" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ThreadPoolWorkerDownloadingWebpage" xml:space="preserve">
+    <value>Downloading webpage</value>
+  </data>
+  <data name="ThreadPoolWorkerEta" xml:space="preserve">
+    <value>ETA</value>
+  </data>
+  <data name="ThreadPoolWorkerOf" xml:space="preserve">
+    <value>of </value>
+  </data>
   <data name="ToolTipFolder" xml:space="preserve">
     <value>Left mouse click: opens download folder
 Right mouse click: chooses download folder

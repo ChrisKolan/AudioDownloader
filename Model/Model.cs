@@ -450,11 +450,12 @@ namespace Model
             while (!reader.EndOfStream)
             {
                 StandardOutput = reader.ReadLine();
-                if (StandardOutput.Contains("[download]") && StandardOutput.Contains("ETA"))
+                StandardOutput = HelpersModel.StandardOutputLocalizator(StandardOutput);
+                if (StandardOutput.Contains(Localization.Properties.Resources.ThreadPoolWorkerDownload) && StandardOutput.Contains(Localization.Properties.Resources.ThreadPoolWorkerEta))
                 {
                     _measureDownloadTime = true;
-                    positionFrom = StandardOutput.IndexOf("of ", StringComparison.InvariantCultureIgnoreCase) + "of ".Length;
-                    positionTo = StandardOutput.LastIndexOf(" at", StringComparison.InvariantCultureIgnoreCase);
+                    positionFrom = StandardOutput.IndexOf(Localization.Properties.Resources.ThreadPoolWorkerOf, StringComparison.InvariantCultureIgnoreCase) + Localization.Properties.Resources.ThreadPoolWorkerOf.Length;
+                    positionTo = StandardOutput.LastIndexOf(Localization.Properties.Resources.ThreadPoolWorkerAt, StringComparison.InvariantCultureIgnoreCase);
 
                     if ((positionTo - positionFrom) > 0)
                         DownloadedFileSize = StandardOutput.Substring(positionFrom, positionTo - positionFrom);
@@ -479,7 +480,7 @@ namespace Model
                         }
                     }
                 }
-                if (StandardOutput.Contains("has already been downloaded"))
+                if (StandardOutput.Contains("has already been"))
                 {
                     _downloadedFileSize = Localization.Properties.Resources.FileHasAlreadyBeenDownloaded;
                     _measureDownloadTime = false;

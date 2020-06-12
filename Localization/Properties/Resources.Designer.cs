@@ -538,6 +538,51 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to at.
+        /// </summary>
+        public static string ThreadPoolWorkerAt {
+            get {
+                return ResourceManager.GetString("ThreadPoolWorkerAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string ThreadPoolWorkerDownload {
+            get {
+                return ResourceManager.GetString("ThreadPoolWorkerDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading webpage.
+        /// </summary>
+        public static string ThreadPoolWorkerDownloadingWebpage {
+            get {
+                return ResourceManager.GetString("ThreadPoolWorkerDownloadingWebpage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ETA.
+        /// </summary>
+        public static string ThreadPoolWorkerEta {
+            get {
+                return ResourceManager.GetString("ThreadPoolWorkerEta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of .
+        /// </summary>
+        public static string ThreadPoolWorkerOf {
+            get {
+                return ResourceManager.GetString("ThreadPoolWorkerOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Left mouse click: opens download folder
         ///Right mouse click: chooses download folder
         ///Current download folder:.

@@ -158,6 +158,19 @@ namespace Model
             return qualityDefault;
         }
 
+        public static string StandardOutputLocalizator(string standardOutput)
+        {
+            if (standardOutput == null)
+            {
+                return string.Empty;
+            }
+            standardOutput = standardOutput.Replace("download", Localization.Properties.Resources.ThreadPoolWorkerDownload);
+            standardOutput = standardOutput.Replace("ETA", Localization.Properties.Resources.ThreadPoolWorkerEta);
+            standardOutput = standardOutput.Replace("of ", Localization.Properties.Resources.ThreadPoolWorkerOf);
+            standardOutput = standardOutput.Replace(" at", Localization.Properties.Resources.ThreadPoolWorkerAt);
+            return standardOutput.Replace("Downloading webpage", Localization.Properties.Resources.ThreadPoolWorkerDownloadingWebpage);
+        }
+
         private static string GetQualityInternal(string selectedQuality)
         {
             string[] qualityArray = selectedQuality.Split(' ');

@@ -276,6 +276,21 @@
   <data name="TextBoxYouTubeInitial" xml:space="preserve">
     <value>Wklej link z YouTube i naciśnij przycisk Enter lub Pobierz</value>
   </data>
+  <data name="ThreadPoolWorkerAt" xml:space="preserve">
+    <value> przy</value>
+  </data>
+  <data name="ThreadPoolWorkerDownload" xml:space="preserve">
+    <value>Pobieram</value>
+  </data>
+  <data name="ThreadPoolWorkerDownloadingWebpage" xml:space="preserve">
+    <value>Pobieranie strony</value>
+  </data>
+  <data name="ThreadPoolWorkerEta" xml:space="preserve">
+    <value>Szacowany czas do końca pobierania</value>
+  </data>
+  <data name="ThreadPoolWorkerOf" xml:space="preserve">
+    <value>z </value>
+  </data>
   <data name="ToolTipFolder" xml:space="preserve">
     <value>Kliknięcie lewym przyciskiem myszy: otwiera folder pobierania
 Kliknięcie prawym przyciskiem myszy: wybiera folder pobierania
