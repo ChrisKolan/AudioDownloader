@@ -145,16 +145,16 @@
     <value>Jakość: optymalna 	 Średni bitrate: 190 kbit/s, zakres bitrate: 170-210 kbit/s, kompresja stratna VBR mp3</value>
   </data>
   <data name="AudioQualityRawAac" xml:space="preserve">
-    <value>Jakość: surowy aac 	 AAC (m4a) nieprzetworzony</value>
+    <value>Jakość: oryginalna  aac 	 AAC (m4a) nieprzetworzony</value>
   </data>
   <data name="AudioQualityRawOpus" xml:space="preserve">
-    <value>Jakość: surowy opus 	 Opus nieprzetworzony</value>
+    <value>Jakość: oryginalna  opus 	 Opus nieprzetworzony</value>
   </data>
   <data name="AudioQualityRawVorbis" xml:space="preserve">
-    <value>Jakość: surowy vorbis 	 Vorbis nieprzetworzone</value>
+    <value>Jakość: oryginalna  vorbis 	 Vorbis nieprzetworzone</value>
   </data>
   <data name="AudioQualityRawWebm" xml:space="preserve">
-    <value>Jakość: surowy webm 	 WebM (Opus) nieprzetworzony</value>
+    <value>Jakość: oryginalna  webm 	 WebM (Opus) nieprzetworzony</value>
   </data>
   <data name="AudioQualitySuperb" xml:space="preserve">
     <value>Jakość: doskonała 	 bezstratna kompresja FLAC (największy rozmiar pliku FLAC)</value>
