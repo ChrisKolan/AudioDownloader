@@ -511,7 +511,7 @@ namespace Model
                         }
                         else
                         {
-                            StandardOutput = "No file downloaded. Unsupported website.";
+                            StandardOutput = Localization.Properties.Resources.NoFileDownloadedUnsupportedWebsite;
                         }
                     }
                     else
@@ -521,7 +521,7 @@ namespace Model
                 }
                 else
                 {
-                    StandardOutput = "Error. No internet connection. No file downloaded.";
+                    StandardOutput = Localization.Properties.Resources.ErrorNoInternetConnectionNoFileDownloaded;
                 }
                 ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
                 EnableInteractions();

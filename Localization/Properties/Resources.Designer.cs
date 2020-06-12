@@ -286,6 +286,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error. No Internet connection. No file downloaded..
+        /// </summary>
+        public static string ErrorNoInternetConnectionNoFileDownloaded {
+            get {
+                return ResourceManager.GetString("ErrorNoInternetConnectionNoFileDownloaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File has already been downloaded..
         /// </summary>
         public static string FileHasAlreadyBeenDownloaded {
@@ -327,6 +336,15 @@ namespace Localization.Properties {
         public static string InternetConnectionReestablished {
             get {
                 return ResourceManager.GetString("InternetConnectionReestablished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No file downloaded. Unsupported website..
+        /// </summary>
+        public static string NoFileDownloadedUnsupportedWebsite {
+            get {
+                return ResourceManager.GetString("NoFileDownloadedUnsupportedWebsite", resourceCulture);
             }
         }
         

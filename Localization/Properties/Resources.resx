@@ -192,6 +192,9 @@
   <data name="ErrorNoFileDownloadedUpdatesAreNeeded" xml:space="preserve">
     <value>Error. No file downloaded. Updates are needed.</value>
   </data>
+  <data name="ErrorNoInternetConnectionNoFileDownloaded" xml:space="preserve">
+    <value>Error. No Internet connection. No file downloaded.</value>
+  </data>
   <data name="FileHasAlreadyBeenDownloaded" xml:space="preserve">
     <value>File has already been downloaded.</value>
   </data>
@@ -206,6 +209,9 @@
   </data>
   <data name="InternetConnectionReestablished" xml:space="preserve">
     <value>Internet connection reestablished.</value>
+  </data>
+  <data name="NoFileDownloadedUnsupportedWebsite" xml:space="preserve">
+    <value>No file downloaded. Unsupported website.</value>
   </data>
   <data name="NotValidLink" xml:space="preserve">
     <value>Not a valid link.</value>
