@@ -299,7 +299,22 @@ Current download folder:</value>
   <data name="TranscodedFileSize" xml:space="preserve">
     <value>Transcoded file size: </value>
   </data>
-  <data name="WindowTitle" xml:space="preserve">
+  <data name="ViewCheckForAutomaticDownload" xml:space="preserve">
+    <value>Check for automatic download</value>
+  </data>
+  <data name="ViewCheckForClipboardCapture" xml:space="preserve">
+    <value>Check for clipboard capture</value>
+  </data>
+  <data name="ViewCheckForDownloadOnSupportedWebsites" xml:space="preserve">
+    <value>Check for download of best quality audio and video on youtube-dl supported websites</value>
+  </data>
+  <data name="ViewCheckForUsingLastSelectedQuality" xml:space="preserve">
+    <value>Check for using last selected quality</value>
+  </data>
+  <data name="ViewChooseAudioQualityOfTheFile" xml:space="preserve">
+    <value>Choose audio quality of the file</value>
+  </data>
+  <data name="ViewWindowTitle" xml:space="preserve">
     <value>Audio Downloader EN</value>
   </data>
 </root>

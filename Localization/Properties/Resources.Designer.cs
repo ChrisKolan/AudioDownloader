@@ -603,11 +603,56 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check for automatic download.
+        /// </summary>
+        public static string ViewCheckForAutomaticDownload {
+            get {
+                return ResourceManager.GetString("ViewCheckForAutomaticDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for clipboard capture.
+        /// </summary>
+        public static string ViewCheckForClipboardCapture {
+            get {
+                return ResourceManager.GetString("ViewCheckForClipboardCapture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for download of best quality audio and video on youtube-dl supported websites.
+        /// </summary>
+        public static string ViewCheckForDownloadOnSupportedWebsites {
+            get {
+                return ResourceManager.GetString("ViewCheckForDownloadOnSupportedWebsites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for using last selected quality.
+        /// </summary>
+        public static string ViewCheckForUsingLastSelectedQuality {
+            get {
+                return ResourceManager.GetString("ViewCheckForUsingLastSelectedQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose audio quality of the file.
+        /// </summary>
+        public static string ViewChooseAudioQualityOfTheFile {
+            get {
+                return ResourceManager.GetString("ViewChooseAudioQualityOfTheFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio Downloader EN.
         /// </summary>
-        public static string WindowTitle {
+        public static string ViewWindowTitle {
             get {
-                return ResourceManager.GetString("WindowTitle", resourceCulture);
+                return ResourceManager.GetString("ViewWindowTitle", resourceCulture);
             }
         }
     }

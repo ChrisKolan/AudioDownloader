@@ -13,7 +13,7 @@
         BorderThickness="1"
         GlowBrush="{Binding Model.GlowBrushColor}"
         WindowStartupLocation="CenterScreen"
-        Title="{x:Static p:Resources.WindowTitle}" Height="151" Width="800" ResizeMode="CanMinimize">
+        Title="{x:Static p:Resources.ViewWindowTitle}" Height="151" Width="800" ResizeMode="CanMinimize">
     <Controls:MetroWindow.IconTemplate>
         <DataTemplate>
             <iconPacks:PackIconModern Width="{TemplateBinding Width}"
@@ -79,7 +79,7 @@
                 </Rectangle>
                 <CheckBox IsChecked="{Binding Model.IsClipboardCaptureSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for clipboard capture" Margin="752,0,22,0">
+                          ToolTip="{x:Static p:Resources.ViewCheckForClipboardCapture}" Margin="752,0,22,0">
                 </CheckBox>
             </Grid>
             <Grid>
@@ -91,7 +91,7 @@
                       Height="21"
                       Padding="2"
                       BorderBrush="#FFBCBCBC"
-                      ToolTip="Choose audio quality of the file."
+                      ToolTip="{x:Static p:Resources.ViewChooseAudioQualityOfTheFile}"
                       ItemsSource="{Binding Model.Quality}" 
                       SelectedItem="{Binding Model.SelectedQuality}" 
                       MaxDropDownHeight="800"
@@ -99,7 +99,7 @@
                 </ComboBox>
                 <CheckBox IsChecked="{Binding Model.IsUsingLastQualitySelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for using last selected quality" Margin="752,0,22,0">
+                          ToolTip="{x:Static p:Resources.ViewCheckForUsingLastSelectedQuality}" Margin="752,0,22,0">
                 </CheckBox>
             </Grid>
             <Grid>
@@ -120,11 +120,11 @@
                 </Button>
                 <CheckBox IsChecked="{Binding Model.IsAutomaticDownloadSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for automatic download" Margin="752,0,22,0">
+                          ToolTip="{x:Static p:Resources.ViewCheckForAutomaticDownload}" Margin="752,0,22,0">
                 </CheckBox>
                 <CheckBox IsChecked="{Binding Model.IsWebsitesUnlockerSelected, UpdateSourceTrigger=PropertyChanged}"
                           BorderBrush="#FFBCBCBC"
-                          ToolTip="Check for download of best quality audio and video on youtube-dl supported websites" Margin="774,0,0,0">
+                          ToolTip="{x:Static p:Resources.ViewCheckForDownloadOnSupportedWebsites}" Margin="774,0,0,0">
                 </CheckBox>
             </Grid>
         <Controls:MetroProgressBar Margin="2,1,2,1"

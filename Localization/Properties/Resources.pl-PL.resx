@@ -299,7 +299,22 @@ Aktualny folder pobierania: </value>
   <data name="TranscodedFileSize" xml:space="preserve">
     <value>Rozmiar przetworzonego pliku: </value>
   </data>
-  <data name="WindowTitle" xml:space="preserve">
+  <data name="ViewCheckForAutomaticDownload" xml:space="preserve">
+    <value>Zaznacz, aby aktywować pobieranie automatycznie</value>
+  </data>
+  <data name="ViewCheckForClipboardCapture" xml:space="preserve">
+    <value>Zaznacz, aby przechwytywać zawartość schowka</value>
+  </data>
+  <data name="ViewCheckForDownloadOnSupportedWebsites" xml:space="preserve">
+    <value>Zaznacz, aby pobrać najlepszą jakość audio i wideo na stronach internetowych obsługiwanych przez youtube-dl</value>
+  </data>
+  <data name="ViewCheckForUsingLastSelectedQuality" xml:space="preserve">
+    <value>Zaznacz, aby używać ostatniej wybranej jakości</value>
+  </data>
+  <data name="ViewChooseAudioQualityOfTheFile" xml:space="preserve">
+    <value>Wybierz jakość audio pliku</value>
+  </data>
+  <data name="ViewWindowTitle" xml:space="preserve">
     <value>Audio Downloader PL</value>
   </data>
 </root>
