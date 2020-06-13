@@ -427,8 +427,6 @@ namespace Model
             DisableInteractions();
             Thread.CurrentThread.IsBackground = true;
             _currentThreadPoolWorker = Thread.CurrentThread;
-            int positionFrom;
-            int positionTo;
 
             StandardOutput = Localization.Properties.Resources.StartingDownload;
             InformationAndExceptionOutput = "Starting download of the link: " + DownloadLink;
@@ -453,7 +451,7 @@ namespace Model
                 StandardOutput = reader.ReadLine();
                 StandardOutput = HelpersModel.StandardOutputLocalizator(StandardOutput);
                 (_measureDownloadTime, _downloadedFileSize, IsIndeterminate, TaskbarItemProgressStateModel, ProgressBarPercent, TaskBarProgressValue, _measureProcessingTime, StandardOutput) = readLineExtractor.Extract(StandardOutput, _finishedMessage);
-                Thread.Sleep(100);
+                Thread.Sleep(_timerResolution);
             }
 
             process.WaitForExit();
