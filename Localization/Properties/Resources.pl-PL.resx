@@ -256,7 +256,7 @@
     <value>Gotowy</value>
   </data>
   <data name="StandardOutputReadyUpdatedYoutubeDlToLatestVersion" xml:space="preserve">
-    <value>Gotowy. Youtube-dl zaktualizowany do najnowszej wersji.</value>
+    <value>Gotowy. Youtube-dl zaktualizowany do najnowszej wersji</value>
   </data>
   <data name="StandardOutputRetrievingQuality" xml:space="preserve">
     <value>Pobieranie jakości</value>
@@ -266,6 +266,18 @@
   </data>
   <data name="StartingDownload" xml:space="preserve">
     <value>Rozpoczynam pobieranie...</value>
+  </data>
+  <data name="StatusLogApplicationInitialized" xml:space="preserve">
+    <value>Aplikacja zainicjowana</value>
+  </data>
+  <data name="StatusLogConfigurationUpdated" xml:space="preserve">
+    <value>Konfiguracja zaktualizowana</value>
+  </data>
+  <data name="StatusLogFinishedDownload" xml:space="preserve">
+    <value>Pobieranie zakończone</value>
+  </data>
+  <data name="StatusLogStartingDownloadOfTheLink" xml:space="preserve">
+    <value>Rozpoczęto pobieranie linku: </value>
   </data>
   <data name="TextBoxContentInitial" xml:space="preserve">
     <value>Audio i wideo 		 Najlepsza jakość</value>

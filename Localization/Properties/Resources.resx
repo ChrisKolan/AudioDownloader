@@ -241,10 +241,10 @@
     <value>Checking for updates</value>
   </data>
   <data name="StandardOutputDownloadingNewAudioDownloaderVersion" xml:space="preserve">
-    <value>Downloading new Audio Downloader version.</value>
+    <value>Downloading new Audio Downloader version</value>
   </data>
   <data name="StandardOutputDownloadingNewYoutubeDlVersion" xml:space="preserve">
-    <value>Downloading new Youtube-dl version.</value>
+    <value>Downloading new Youtube-dl version</value>
   </data>
   <data name="StandardOutputEmptyLink" xml:space="preserve">
     <value>Empty link</value>
@@ -256,7 +256,7 @@
     <value>Ready</value>
   </data>
   <data name="StandardOutputReadyUpdatedYoutubeDlToLatestVersion" xml:space="preserve">
-    <value>Ready. Updated Youtube-dl to latest version.</value>
+    <value>Ready. Updated Youtube-dl to latest version</value>
   </data>
   <data name="StandardOutputRetrievingQuality" xml:space="preserve">
     <value>Retrieving quality</value>
@@ -266,6 +266,18 @@
   </data>
   <data name="StartingDownload" xml:space="preserve">
     <value>Starting download...</value>
+  </data>
+  <data name="StatusLogApplicationInitialized" xml:space="preserve">
+    <value>Application initialized</value>
+  </data>
+  <data name="StatusLogConfigurationUpdated" xml:space="preserve">
+    <value>Configuration updated</value>
+  </data>
+  <data name="StatusLogFinishedDownload" xml:space="preserve">
+    <value>Finished download</value>
+  </data>
+  <data name="StatusLogStartingDownloadOfTheLink" xml:space="preserve">
+    <value>Starting download of the link: </value>
   </data>
   <data name="TextBoxContentInitial" xml:space="preserve">
     <value>Audio and video 		 Best quality</value>

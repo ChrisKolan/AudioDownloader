@@ -430,7 +430,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloading new Audio Downloader version..
+        ///   Looks up a localized string similar to Downloading new Audio Downloader version.
         /// </summary>
         public static string StandardOutputDownloadingNewAudioDownloaderVersion {
             get {
@@ -439,7 +439,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloading new Youtube-dl version..
+        ///   Looks up a localized string similar to Downloading new Youtube-dl version.
         /// </summary>
         public static string StandardOutputDownloadingNewYoutubeDlVersion {
             get {
@@ -475,7 +475,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ready. Updated Youtube-dl to latest version..
+        ///   Looks up a localized string similar to Ready. Updated Youtube-dl to latest version.
         /// </summary>
         public static string StandardOutputReadyUpdatedYoutubeDlToLatestVersion {
             get {
@@ -507,6 +507,42 @@ namespace Localization.Properties {
         public static string StartingDownload {
             get {
                 return ResourceManager.GetString("StartingDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application initialized.
+        /// </summary>
+        public static string StatusLogApplicationInitialized {
+            get {
+                return ResourceManager.GetString("StatusLogApplicationInitialized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration updated.
+        /// </summary>
+        public static string StatusLogConfigurationUpdated {
+            get {
+                return ResourceManager.GetString("StatusLogConfigurationUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished download.
+        /// </summary>
+        public static string StatusLogFinishedDownload {
+            get {
+                return ResourceManager.GetString("StatusLogFinishedDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting download of the link: .
+        /// </summary>
+        public static string StatusLogStartingDownloadOfTheLink {
+            get {
+                return ResourceManager.GetString("StatusLogStartingDownloadOfTheLink", resourceCulture);
             }
         }
         

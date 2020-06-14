@@ -21,7 +21,7 @@ namespace Model
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
 
-                configurationErrorsException = "Configuration updated";
+                configurationErrorsException = Localization.Properties.Resources.StatusLogConfigurationUpdated;
                 return true;
             }
             catch (ConfigurationErrorsException exception)

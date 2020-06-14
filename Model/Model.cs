@@ -429,7 +429,7 @@ namespace Model
             _currentThreadPoolWorker = Thread.CurrentThread;
 
             StandardOutput = Localization.Properties.Resources.StartingDownload;
-            InformationAndExceptionOutput = "Starting download of the link: " + DownloadLink;
+            InformationAndExceptionOutput = Localization.Properties.Resources.StatusLogStartingDownloadOfTheLink + DownloadLink;
             string command;
             (command, _finishedMessage) = HelpersModel.CreateCommandAndMessage(selectedQuality, DownloadLink);
 
@@ -533,7 +533,7 @@ namespace Model
                 EnableInteractions();
                 _isDownloadRunning = false;
                 process.Dispose();
-                InformationAndExceptionOutput = "Finished download";
+                InformationAndExceptionOutput = Localization.Properties.Resources.StatusLogFinishedDownload;
             }
         }
 
@@ -723,7 +723,7 @@ namespace Model
             FolderButtonToolTip = HelpersModel.ToolTipFolder;
             TextBoxHelper = Localization.Properties.Resources.TextBoxYouTubeInitial;
             _informationAndException = new CircularQueue<string>(20);
-            InformationAndExceptionOutput = "Application initialized";
+            InformationAndExceptionOutput = Localization.Properties.Resources.StatusLogApplicationInitialized;
         }
 
         public void EnableInteractions()
