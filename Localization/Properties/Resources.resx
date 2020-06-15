@@ -195,6 +195,9 @@
   <data name="ErrorNoInternetConnectionNoFileDownloaded" xml:space="preserve">
     <value>Error. No Internet connection. No file downloaded.</value>
   </data>
+  <data name="ExceptionUpdatingWebhookFailed" xml:space="preserve">
+    <value>Exception. Google Sheets update failed</value>
+  </data>
   <data name="FileHasAlreadyBeenDownloaded" xml:space="preserve">
     <value>File has already been downloaded.</value>
   </data>

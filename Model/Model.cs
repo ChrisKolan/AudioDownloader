@@ -548,7 +548,7 @@ namespace Model
                 TaskBarProgressValue = HelpersModel.GetTaskBarProgressValue(100, 100);
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 Thread.Sleep(1000);
-                StandardOutput = "Exception. Updating webhook failed.";
+                StandardOutput = Localization.Properties.Resources.ExceptionUpdatingWebhookFailed;
                 _informationAndExceptionOutput = webhookException.Message;
                 _downloadedFileSize = null;
                 EnableInteractions();

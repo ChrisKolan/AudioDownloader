@@ -295,6 +295,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception. Google Sheets update failed.
+        /// </summary>
+        public static string ExceptionUpdatingWebhookFailed {
+            get {
+                return ResourceManager.GetString("ExceptionUpdatingWebhookFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File has already been downloaded..
         /// </summary>
         public static string FileHasAlreadyBeenDownloaded {
