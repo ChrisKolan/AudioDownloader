@@ -314,6 +314,12 @@ Current download folder:</value>
   <data name="TranscodedFileSize" xml:space="preserve">
     <value>Transcoded file size: </value>
   </data>
+  <data name="UpdateFailedClickHereToDownloadManually" xml:space="preserve">
+    <value>Update failed. Click here to download the update manually</value>
+  </data>
+  <data name="UpdateFailedIncreaseTimeoutClickHereToDownloadManually" xml:space="preserve">
+    <value>Update failed. Increase timeout in AudioDownloader.exe.Config and restart application or click here to download manually</value>
+  </data>
   <data name="ViewCheckForAutomaticDownload" xml:space="preserve">
     <value>Check for automatic download</value>
   </data>

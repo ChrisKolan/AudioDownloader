@@ -314,6 +314,12 @@ Aktualny folder pobierania: </value>
   <data name="TranscodedFileSize" xml:space="preserve">
     <value>Rozmiar przetworzonego pliku: </value>
   </data>
+  <data name="UpdateFailedClickHereToDownloadManually" xml:space="preserve">
+    <value>Aktualizacja nie powiodła się. Kliknij tutaj, aby ręcznie pobrać aktualizację</value>
+  </data>
+  <data name="UpdateFailedIncreaseTimeoutClickHereToDownloadManually" xml:space="preserve">
+    <value>Aktualizacja nie powiodła się. Zwiększ limit czasu w AudioDownloader.exe.Config i uruchom ponownie lub kliknij tutaj aby pobrać ręcznie</value>
+  </data>
   <data name="ViewCheckForAutomaticDownload" xml:space="preserve">
     <value>Zaznacz, aby aktywować pobieranie automatycznie</value>
   </data>

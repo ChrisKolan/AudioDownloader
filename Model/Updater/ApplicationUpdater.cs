@@ -24,7 +24,7 @@ namespace Model
                 catch (TaskCanceledException exception)
                 {
                     model.DownloadLinkEnabled = true;
-                    model.StandardOutput = "Update download timeout. Increase timeout in AudioDownloader.exe.Config and restart application or click here to download manually.";
+                    model.StandardOutput = Localization.Properties.Resources.UpdateFailedIncreaseTimeoutClickHereToDownloadManually;
                     localVersions = GetLocalVersions();
                     model.LocalVersions = localVersions;
                     model.HelpButtonToolTip = localVersions;
@@ -35,7 +35,7 @@ namespace Model
                 catch (Exception exception)
                 {
                     model.DownloadLinkEnabled = true;
-                    model.StandardOutput = "Failed to update. Click here to download manually.";
+                    model.StandardOutput = Localization.Properties.Resources.UpdateFailedClickHereToDownloadManually;
                     localVersions = GetLocalVersions();
                     model.LocalVersions = localVersions;
                     model.HelpButtonToolTip = localVersions;

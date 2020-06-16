@@ -648,6 +648,24 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update failed. Click here to download the update manually.
+        /// </summary>
+        public static string UpdateFailedClickHereToDownloadManually {
+            get {
+                return ResourceManager.GetString("UpdateFailedClickHereToDownloadManually", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update failed. Increase timeout in AudioDownloader.exe.Config and restart application or click here to download manually.
+        /// </summary>
+        public static string UpdateFailedIncreaseTimeoutClickHereToDownloadManually {
+            get {
+                return ResourceManager.GetString("UpdateFailedIncreaseTimeoutClickHereToDownloadManually", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for automatic download.
         /// </summary>
         public static string ViewCheckForAutomaticDownload {
