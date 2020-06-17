@@ -183,8 +183,14 @@
   <data name="ComboBoxInitial" xml:space="preserve">
     <value>After pasting YouTube link, you can select the audio quality from this list</value>
   </data>
+  <data name="DeletedFiles" xml:space="preserve">
+    <value>Deleted files</value>
+  </data>
   <data name="DownloadedFileSize" xml:space="preserve">
     <value>Downloaded file size: </value>
+  </data>
+  <data name="DownloadFinished" xml:space="preserve">
+    <value>Download finished</value>
   </data>
   <data name="DownloadTime" xml:space="preserve">
     <value>Download time: </value>
@@ -227,6 +233,12 @@
   </data>
   <data name="Ratio" xml:space="preserve">
     <value>Ratio: </value>
+  </data>
+  <data name="RenamedFiles" xml:space="preserve">
+    <value>Renamed files</value>
+  </data>
+  <data name="RestartingApplication" xml:space="preserve">
+    <value>Restarting application</value>
   </data>
   <data name="RoundtripTime" xml:space="preserve">
     <value>Roundtrip time 	   |           </value>
@@ -313,6 +325,9 @@ Current download folder:</value>
   </data>
   <data name="TranscodedFileSize" xml:space="preserve">
     <value>Transcoded file size: </value>
+  </data>
+  <data name="UnzippedFiles" xml:space="preserve">
+    <value>Unzipped files</value>
   </data>
   <data name="UpdateFailedClickHereToDownloadManually" xml:space="preserve">
     <value>Update failed. Click here to download the update manually</value>

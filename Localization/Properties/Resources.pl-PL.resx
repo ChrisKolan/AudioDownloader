@@ -183,8 +183,14 @@
   <data name="ComboBoxInitial" xml:space="preserve">
     <value>Po wklejeniu linku z YouTube można wybrać jakość dźwięku z tej listy</value>
   </data>
+  <data name="DeletedFiles" xml:space="preserve">
+    <value>Usunięto pliki</value>
+  </data>
   <data name="DownloadedFileSize" xml:space="preserve">
     <value>Rozmiar pobranego pliku: </value>
+  </data>
+  <data name="DownloadFinished" xml:space="preserve">
+    <value>Pobieranie zakończone</value>
   </data>
   <data name="DownloadTime" xml:space="preserve">
     <value>Czas pobierania: </value>
@@ -227,6 +233,12 @@
   </data>
   <data name="Ratio" xml:space="preserve">
     <value>Stosunek: </value>
+  </data>
+  <data name="RenamedFiles" xml:space="preserve">
+    <value>Zmieniono nazwy plików</value>
+  </data>
+  <data name="RestartingApplication" xml:space="preserve">
+    <value>Ponowne uruchomienie aplikacji</value>
   </data>
   <data name="RoundtripTime" xml:space="preserve">
     <value>Czas obiegu 	   |           </value>
@@ -313,6 +325,9 @@ Aktualny folder pobierania: </value>
   </data>
   <data name="TranscodedFileSize" xml:space="preserve">
     <value>Rozmiar przetworzonego pliku: </value>
+  </data>
+  <data name="UnzippedFiles" xml:space="preserve">
+    <value>Rozpakowano pliki</value>
   </data>
   <data name="UpdateFailedClickHereToDownloadManually" xml:space="preserve">
     <value>Aktualizacja nie powiodła się. Kliknij tutaj, aby ręcznie pobrać aktualizację</value>

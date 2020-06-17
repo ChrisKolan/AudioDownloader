@@ -259,11 +259,29 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deleted files.
+        /// </summary>
+        public static string DeletedFiles {
+            get {
+                return ResourceManager.GetString("DeletedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Downloaded file size: .
         /// </summary>
         public static string DownloadedFileSize {
             get {
                 return ResourceManager.GetString("DownloadedFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download finished.
+        /// </summary>
+        public static string DownloadFinished {
+            get {
+                return ResourceManager.GetString("DownloadFinished", resourceCulture);
             }
         }
         
@@ -390,6 +408,24 @@ namespace Localization.Properties {
         public static string Ratio {
             get {
                 return ResourceManager.GetString("Ratio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renamed files.
+        /// </summary>
+        public static string RenamedFiles {
+            get {
+                return ResourceManager.GetString("RenamedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restarting application.
+        /// </summary>
+        public static string RestartingApplication {
+            get {
+                return ResourceManager.GetString("RestartingApplication", resourceCulture);
             }
         }
         
@@ -644,6 +680,15 @@ namespace Localization.Properties {
         public static string TranscodedFileSize {
             get {
                 return ResourceManager.GetString("TranscodedFileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unzipped files.
+        /// </summary>
+        public static string UnzippedFiles {
+            get {
+                return ResourceManager.GetString("UnzippedFiles", resourceCulture);
             }
         }
         

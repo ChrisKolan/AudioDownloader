@@ -38,16 +38,16 @@ namespace Model
                 var response = await client.Connection.Get<object>(new Uri(latestUri), new Dictionary<string, string>(), "application/octet-stream").ConfigureAwait(false);
                 var responseData = response.HttpResponse.Body;
                 System.IO.File.WriteAllBytes(pathToAudioDownloaderTempFolder, (byte[])responseData);
-                model.InformationAndExceptionOutput = "Download finished";
+                model.InformationAndExceptionOutput = Localization.Properties.Resources.DownloadFinished;
 
-                RenameFilesInFolder.Rename(model);
-                model.InformationAndExceptionOutput = "Renamed files";
+                RenameFilesInFolder.Rename();
+                model.InformationAndExceptionOutput = Localization.Properties.Resources.RenamedFiles;
                 Deleter.DeleteBinFolderContents();
-                model.InformationAndExceptionOutput = "Deleted files";
+                model.InformationAndExceptionOutput = Localization.Properties.Resources.DeletedFiles;
                 Unzipper.Unzip();
-                model.InformationAndExceptionOutput = "Unzipped files";
+                model.InformationAndExceptionOutput = Localization.Properties.Resources.UnzippedFiles;
                 ApplicationRestarter.Restart();
-                model.InformationAndExceptionOutput = "Restarting application";
+                model.InformationAndExceptionOutput = Localization.Properties.Resources.RestartingApplication;
             }
             else if  (updatesCheck["youtube-dl"] == true)
             {

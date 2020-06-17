@@ -10,9 +10,8 @@ namespace Model
 {
     class RenameFilesInFolder
     {
-        public static void Rename(ModelClass model)
+        public static void Rename()
         {
-            model.InformationAndExceptionOutput = "Renaming files";
             var prefix = "old_";
             var pathToExe = Assembly.GetEntryAssembly().Location;
             var pathToExeFolder = Path.GetDirectoryName(pathToExe) + @"\";
@@ -21,7 +20,6 @@ namespace Model
             foreach (FileInfo file in fileInfoArray)
             {
                 var fileString = file.ToString();
-                model.InformationAndExceptionOutput = "Renaming file: " + fileString;
                 if (fileString.Contains("AudioDownloader.zip"))
                 {
                     continue;
