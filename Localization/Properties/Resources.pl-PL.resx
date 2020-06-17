@@ -353,6 +353,9 @@ Aktualny folder pobierania: </value>
   <data name="UpdaterUpdatingAudioDownloader" xml:space="preserve">
     <value>Aktualizacja</value>
   </data>
+  <data name="ValidationYouTubeLinkNotValid" xml:space="preserve">
+    <value>Nieprawidłowy link YouTube</value>
+  </data>
   <data name="ViewCheckForAutomaticDownload" xml:space="preserve">
     <value>Zaznacz, aby aktywować pobieranie automatycznie</value>
   </data>

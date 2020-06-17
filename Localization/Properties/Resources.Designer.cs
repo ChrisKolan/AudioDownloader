@@ -765,6 +765,15 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to YouTube link not valid.
+        /// </summary>
+        public static string ValidationYouTubeLinkNotValid {
+            get {
+                return ResourceManager.GetString("ValidationYouTubeLinkNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for automatic download.
         /// </summary>
         public static string ViewCheckForAutomaticDownload {

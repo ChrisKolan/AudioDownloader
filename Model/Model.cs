@@ -905,7 +905,7 @@ namespace Model
                 model.DownloadLinkDisabler(model);
                 model.IsButtonEnabled = false;
                 model.IsComboBoxEnabled = false;
-                return new ValidationResult("YouTube link not valid", new List<string> { "DownloadLink" });
+                return new ValidationResult(Localization.Properties.Resources.ValidationYouTubeLinkNotValid, new List<string> { "DownloadLink" });
             }
 
             return RetreiveQuality(model);

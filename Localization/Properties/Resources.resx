@@ -353,6 +353,9 @@ Current download folder:</value>
   <data name="UpdaterUpdatingAudioDownloader" xml:space="preserve">
     <value>Updating Audio Downloader</value>
   </data>
+  <data name="ValidationYouTubeLinkNotValid" xml:space="preserve">
+    <value>YouTube link not valid</value>
+  </data>
   <data name="ViewCheckForAutomaticDownload" xml:space="preserve">
     <value>Check for automatic download</value>
   </data>
