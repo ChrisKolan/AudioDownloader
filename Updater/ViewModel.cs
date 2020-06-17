@@ -88,7 +88,7 @@ namespace Updater
             }
             catch (Exception)
             {
-                StandardOutput = "Failed to update. Please download the latest version manually from: https://chriskolan.github.io/audio-downloader";
+                StandardOutput = Localization.Properties.Resources.UpdaterFailedToUpdate;
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 _exceptionOccured = true;
             }
@@ -99,11 +99,11 @@ namespace Updater
         }
         private void StopAudioDownloader()
         {
-            StandardOutput = "Updating Audio Downloader";
+            StandardOutput = Localization.Properties.Resources.UpdaterUpdatingAudioDownloader;
             Thread.Sleep(1000);
             IsIndeterminate = false;
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
-            StandardOutput = "Closing Audio Downloader";
+            StandardOutput = Localization.Properties.Resources.UpdaterClosingAudioDownloader;
             foreach (var process in Process.GetProcessesByName("AudioDownloader"))
             {
                 process.Kill();
@@ -114,7 +114,7 @@ namespace Updater
         }
         private void DeleteOldFiles()
         {
-            StandardOutput = "Deleting old files";
+            StandardOutput = Localization.Properties.Resources.UpdaterDeletingOldFiles;
             DirectoryInfo directoryInfo = new DirectoryInfo(_pathToExeFolder);
             FileInfo[] fileInfoArray = directoryInfo.GetFiles("old_*.*");
             foreach (FileInfo file in fileInfoArray)
@@ -134,13 +134,13 @@ namespace Updater
         }
         private void StartAudioDownloader()
         {
-            StandardOutput = "Starting Audio Downloader";
+            StandardOutput = Localization.Properties.Resources.UpdaterStartingAudioDownloader;
             var pathToAudioDownloader = _pathToExeFolder + @"\AudioDownloader.exe";
             Process.Start(pathToAudioDownloader);
             ProgressBarPercent = 99;
             TaskBarProgressValue = GetTaskBarProgressValue(99, ProgressBarPercent);
             Thread.Sleep(1000);
-            StandardOutput = "Closing Audio Downloader Updater";
+            StandardOutput = Localization.Properties.Resources.UpdaterFinishingUpdate;
         }
         private void CountdownUntillExitApplication()
         {

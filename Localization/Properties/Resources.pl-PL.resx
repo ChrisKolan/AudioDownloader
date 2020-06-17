@@ -335,6 +335,24 @@ Aktualny folder pobierania: </value>
   <data name="UpdateFailedIncreaseTimeoutClickHereToDownloadManually" xml:space="preserve">
     <value>Aktualizacja nie powiodła się. Zwiększ limit czasu w AudioDownloader.exe.Config i uruchom ponownie lub kliknij tutaj aby pobrać ręcznie</value>
   </data>
+  <data name="UpdaterClosingAudioDownloader" xml:space="preserve">
+    <value>Zamykanie</value>
+  </data>
+  <data name="UpdaterDeletingOldFiles" xml:space="preserve">
+    <value>Usuwanie starych plików</value>
+  </data>
+  <data name="UpdaterFailedToUpdate" xml:space="preserve">
+    <value>Aktualizacja nie powiodła się. Pobierz ręczne najnowszą wersję ze strony: https://chriskolan.github.io/audio-downloader</value>
+  </data>
+  <data name="UpdaterFinishingUpdate" xml:space="preserve">
+    <value>Kończenie aktualizacji</value>
+  </data>
+  <data name="UpdaterStartingAudioDownloader" xml:space="preserve">
+    <value>Uruchomienie nowej wersji</value>
+  </data>
+  <data name="UpdaterUpdatingAudioDownloader" xml:space="preserve">
+    <value>Aktualizacja</value>
+  </data>
   <data name="ViewCheckForAutomaticDownload" xml:space="preserve">
     <value>Zaznacz, aby aktywować pobieranie automatycznie</value>
   </data>

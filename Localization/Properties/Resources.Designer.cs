@@ -711,6 +711,60 @@ namespace Localization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closing Audio Downloader.
+        /// </summary>
+        public static string UpdaterClosingAudioDownloader {
+            get {
+                return ResourceManager.GetString("UpdaterClosingAudioDownloader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting old files.
+        /// </summary>
+        public static string UpdaterDeletingOldFiles {
+            get {
+                return ResourceManager.GetString("UpdaterDeletingOldFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to update. Please download the latest version manually from: https://chriskolan.github.io/audio-downloader.
+        /// </summary>
+        public static string UpdaterFailedToUpdate {
+            get {
+                return ResourceManager.GetString("UpdaterFailedToUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finishing update.
+        /// </summary>
+        public static string UpdaterFinishingUpdate {
+            get {
+                return ResourceManager.GetString("UpdaterFinishingUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting Audio Downloader.
+        /// </summary>
+        public static string UpdaterStartingAudioDownloader {
+            get {
+                return ResourceManager.GetString("UpdaterStartingAudioDownloader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating Audio Downloader.
+        /// </summary>
+        public static string UpdaterUpdatingAudioDownloader {
+            get {
+                return ResourceManager.GetString("UpdaterUpdatingAudioDownloader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for automatic download.
         /// </summary>
         public static string ViewCheckForAutomaticDownload {
