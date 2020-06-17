@@ -295,7 +295,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error. No file downloaded. Updates are needed..
+        ///   Looks up a localized string similar to Error. No file downloaded. Updates are needed.
         /// </summary>
         public static string ErrorNoFileDownloadedUpdatesAreNeeded {
             get {
@@ -304,7 +304,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error. No Internet connection. No file downloaded..
+        ///   Looks up a localized string similar to Error. No Internet connection. No file downloaded.
         /// </summary>
         public static string ErrorNoInternetConnectionNoFileDownloaded {
             get {
@@ -322,7 +322,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File has already been downloaded..
+        ///   Looks up a localized string similar to File has already been downloaded.
         /// </summary>
         public static string FileHasAlreadyBeenDownloaded {
             get {
@@ -340,7 +340,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download finished. Now transcoding to FLAC. This may take a while. Processing..
+        ///   Looks up a localized string similar to Download finished. Now transcoding to FLAC. This may take a while. Processing.
         /// </summary>
         public static string FinishedMessageDownloadFinishedFlac {
             get {
@@ -349,7 +349,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download finished. Now transcoding to mp3. This may take a while. Processing..
+        ///   Looks up a localized string similar to Download finished. Now transcoding to mp3. This may take a while. Processing.
         /// </summary>
         public static string FinishedMessageDownloadFinishedMp3 {
             get {
@@ -358,7 +358,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Internet connection reestablished..
+        ///   Looks up a localized string similar to Internet connection reestablished.
         /// </summary>
         public static string InternetConnectionReestablished {
             get {
@@ -367,7 +367,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No file downloaded. Unsupported website..
+        ///   Looks up a localized string similar to No file downloaded. Unsupported website.
         /// </summary>
         public static string NoFileDownloadedUnsupportedWebsite {
             get {
@@ -502,7 +502,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error. No internet connection..
+        ///   Looks up a localized string similar to Error. No internet connection.
         /// </summary>
         public static string StandardOutputNoInternetConnection {
             get {
@@ -538,7 +538,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to YouTube link is invalid..
+        ///   Looks up a localized string similar to YouTube link is invalid.
         /// </summary>
         public static string StandardOutputYouTubeLinkIsInvalid {
             get {
@@ -810,7 +810,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio Downloader EN.
+        ///   Looks up a localized string similar to Audio Downloader.
         /// </summary>
         public static string ViewWindowTitle {
             get {

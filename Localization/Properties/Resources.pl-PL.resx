@@ -205,25 +205,25 @@
     <value>Wyjątek. Aktualizacja Google Sheets nie powiodła się</value>
   </data>
   <data name="FileHasAlreadyBeenDownloaded" xml:space="preserve">
-    <value>Plik został już pobrany.</value>
+    <value>Plik został już pobrany</value>
   </data>
   <data name="FinishedMessageDownloadFinished" xml:space="preserve">
     <value>Pobieranie zakończone</value>
   </data>
   <data name="FinishedMessageDownloadFinishedFlac" xml:space="preserve">
-    <value>Pobieranie zakończone. Transkodowanie do FLAC. To może chwilę potrwać. Przetwarzanie.</value>
+    <value>Pobieranie zakończone. Transkodowanie do FLAC. To może chwilę potrwać. Przetwarzanie</value>
   </data>
   <data name="FinishedMessageDownloadFinishedMp3" xml:space="preserve">
-    <value>Pobieranie zakończone. Transkodowanie do mp3. To może chwilę potrwać. Przetwarzanie.</value>
+    <value>Pobieranie zakończone. Transkodowanie do mp3. To może chwilę potrwać. Przetwarzanie</value>
   </data>
   <data name="InternetConnectionReestablished" xml:space="preserve">
-    <value>Przywrócono połączenie internetowe.</value>
+    <value>Przywrócono połączenie internetowe</value>
   </data>
   <data name="NoFileDownloadedUnsupportedWebsite" xml:space="preserve">
-    <value>Nie pobrano pliku. Nieobsługiwana strona internetowa.</value>
+    <value>Nie pobrano pliku. Nieobsługiwana strona internetowa</value>
   </data>
   <data name="NotValidLink" xml:space="preserve">
-    <value>Nieprawidłowy link.</value>
+    <value>Nieprawidłowy link</value>
   </data>
   <data name="PressButtonToGetOnlineHelp" xml:space="preserve">
     <value>Wciśnij przycisk, aby uzyskać pomoc.</value>
@@ -277,7 +277,7 @@
     <value>Pobieranie jakości</value>
   </data>
   <data name="StandardOutputYouTubeLinkIsInvalid" xml:space="preserve">
-    <value>Link YouTube jest nieprawidłowy.</value>
+    <value>Link YouTube jest nieprawidłowy</value>
   </data>
   <data name="StartingDownload" xml:space="preserve">
     <value>Rozpoczynam pobieranie...</value>
@@ -369,6 +369,6 @@ Aktualny folder pobierania: </value>
     <value>Wybierz jakość audio pliku</value>
   </data>
   <data name="ViewWindowTitle" xml:space="preserve">
-    <value>Audio Downloader PL</value>
+    <value>Audio Downloader</value>
   </data>
 </root>

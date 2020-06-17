@@ -196,31 +196,31 @@
     <value>Download time: </value>
   </data>
   <data name="ErrorNoFileDownloadedUpdatesAreNeeded" xml:space="preserve">
-    <value>Error. No file downloaded. Updates are needed.</value>
+    <value>Error. No file downloaded. Updates are needed</value>
   </data>
   <data name="ErrorNoInternetConnectionNoFileDownloaded" xml:space="preserve">
-    <value>Error. No Internet connection. No file downloaded.</value>
+    <value>Error. No Internet connection. No file downloaded</value>
   </data>
   <data name="ExceptionUpdatingWebhookFailed" xml:space="preserve">
     <value>Exception. Google Sheets update failed</value>
   </data>
   <data name="FileHasAlreadyBeenDownloaded" xml:space="preserve">
-    <value>File has already been downloaded.</value>
+    <value>File has already been downloaded</value>
   </data>
   <data name="FinishedMessageDownloadFinished" xml:space="preserve">
     <value>Download finished</value>
   </data>
   <data name="FinishedMessageDownloadFinishedFlac" xml:space="preserve">
-    <value>Download finished. Now transcoding to FLAC. This may take a while. Processing.</value>
+    <value>Download finished. Now transcoding to FLAC. This may take a while. Processing</value>
   </data>
   <data name="FinishedMessageDownloadFinishedMp3" xml:space="preserve">
-    <value>Download finished. Now transcoding to mp3. This may take a while. Processing.</value>
+    <value>Download finished. Now transcoding to mp3. This may take a while. Processing</value>
   </data>
   <data name="InternetConnectionReestablished" xml:space="preserve">
-    <value>Internet connection reestablished.</value>
+    <value>Internet connection reestablished</value>
   </data>
   <data name="NoFileDownloadedUnsupportedWebsite" xml:space="preserve">
-    <value>No file downloaded. Unsupported website.</value>
+    <value>No file downloaded. Unsupported website</value>
   </data>
   <data name="NotValidLink" xml:space="preserve">
     <value>Not a valid link.</value>
@@ -265,7 +265,7 @@
     <value>Empty link</value>
   </data>
   <data name="StandardOutputNoInternetConnection" xml:space="preserve">
-    <value>Error. No internet connection.</value>
+    <value>Error. No internet connection</value>
   </data>
   <data name="StandardOutputReady" xml:space="preserve">
     <value>Ready</value>
@@ -277,7 +277,7 @@
     <value>Retrieving quality</value>
   </data>
   <data name="StandardOutputYouTubeLinkIsInvalid" xml:space="preserve">
-    <value>YouTube link is invalid.</value>
+    <value>YouTube link is invalid</value>
   </data>
   <data name="StartingDownload" xml:space="preserve">
     <value>Starting download...</value>
@@ -369,6 +369,6 @@ Current download folder:</value>
     <value>Choose audio quality of the file</value>
   </data>
   <data name="ViewWindowTitle" xml:space="preserve">
-    <value>Audio Downloader EN</value>
+    <value>Audio Downloader</value>
   </data>
 </root>
