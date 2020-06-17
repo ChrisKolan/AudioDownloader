@@ -9,7 +9,6 @@ namespace Main
     {
         public MainWindow()
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pl-PL");
             InitializeComponent();
 
             var viewModel = new ViewModel.ViewModelClass();
