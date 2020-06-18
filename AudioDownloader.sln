@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization", "Localization\Localization.csproj", "{13AE6BE2-A29D-4CF6-B605-26637522D30D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{394D7CD8-479B-4C3E-AF5A-536E51AB5B79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{13AE6BE2-A29D-4CF6-B605-26637522D30D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13AE6BE2-A29D-4CF6-B605-26637522D30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13AE6BE2-A29D-4CF6-B605-26637522D30D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{394D7CD8-479B-4C3E-AF5A-536E51AB5B79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{394D7CD8-479B-4C3E-AF5A-536E51AB5B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{394D7CD8-479B-4C3E-AF5A-536E51AB5B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{394D7CD8-479B-4C3E-AF5A-536E51AB5B79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
