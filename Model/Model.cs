@@ -19,6 +19,8 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shell;
 using Webhook;
+using Logger;
+using Serilog;
 
 namespace Model
 {
@@ -87,6 +89,7 @@ namespace Model
         #region Properties
 
         public List<string> QualityDefault { get; }
+        public ILogger Log { get; set; }
 
         public ObservableCollection<string> Quality { get; }
 
@@ -718,12 +721,14 @@ namespace Model
 
         private void Initalize()
         {
+            Log = LoggerSerilog.Create();
             StandardOutput = Localization.Properties.Resources.StandardOutputReady;
             ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
             FolderButtonToolTip = HelpersModel.ToolTipFolder;
             TextBoxHelper = Localization.Properties.Resources.TextBoxYouTubeInitial;
             _informationAndException = new CircularQueue<string>(20);
             InformationAndExceptionOutput = Localization.Properties.Resources.StatusLogApplicationInitialized;
+            Log.Information(Localization.Properties.Resources.StatusLogApplicationInitialized);
         }
 
         public void EnableInteractions()

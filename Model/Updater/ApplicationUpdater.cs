@@ -16,6 +16,7 @@ namespace Model
                 model.StandardOutput = Localization.Properties.Resources.StandardOutputCheckingForUpdates;
                 model.DisableInteractions();
                 model.InformationAndExceptionOutput = configurationErrorsException;
+                model.Log.Information(configurationErrorsException);
 
                 try
                 {

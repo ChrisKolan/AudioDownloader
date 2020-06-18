@@ -15,6 +15,7 @@ namespace Model
         {
             Contract.Requires(model != null);
             model.InformationAndExceptionOutput = Localization.Properties.Resources.StandardOutputCheckingForUpdates;
+            model.Log.Information(Localization.Properties.Resources.StandardOutputCheckingForUpdates);
             int configTimeoutSeconds = 40;
             if (int.TryParse(ApplicationSettingsProvider.GetValue("TimeoutInSeconds"), out int timeout))
             {
@@ -32,6 +33,7 @@ namespace Model
             {
                 model.StandardOutput = Localization.Properties.Resources.StandardOutputDownloadingNewAudioDownloaderVersion;
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.StandardOutputDownloadingNewAudioDownloaderVersion;
+                model.Log.Information(Localization.Properties.Resources.StandardOutputDownloadingNewAudioDownloaderVersion);
                 var pathToAudioDownloaderTempFolder = pathToExeFolder + @"\AudioDownloader.zip";
                 var latestAsset = await client.Repository.Release.GetAllAssets("ChrisKolan", "audio-downloader", releasesAudioDl.Id).ConfigureAwait(false);
                 var latestUri = latestAsset[0].BrowserDownloadUrl;
@@ -53,6 +55,7 @@ namespace Model
             {
                 model.StandardOutput = Localization.Properties.Resources.StandardOutputDownloadingNewYoutubeDlVersion;
                 model.InformationAndExceptionOutput  = Localization.Properties.Resources.StandardOutputDownloadingNewYoutubeDlVersion;
+                model.Log.Information(Localization.Properties.Resources.StandardOutputDownloadingNewYoutubeDlVersion);
                 var pathToYoutubeDl = pathToExeFolder + @"\bin\youtube-dl.exe";
                 var latestAsset = await client.Repository.Release.GetAllAssets("ytdl-org", "youtube-dl", releasesYoutubeDl.Id).ConfigureAwait(false);
                 var latestUri = latestAsset[7].BrowserDownloadUrl;
@@ -61,6 +64,7 @@ namespace Model
                 System.IO.File.WriteAllBytes(pathToYoutubeDl, (byte[])responseData);
                 model.StandardOutput = Localization.Properties.Resources.StandardOutputReadyUpdatedYoutubeDlToLatestVersion;
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.StandardOutputReadyUpdatedYoutubeDlToLatestVersion;
+                model.Log.Information(Localization.Properties.Resources.StandardOutputReadyUpdatedYoutubeDlToLatestVersion);
             }
         }
     }
