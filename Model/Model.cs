@@ -427,13 +427,15 @@ namespace Model
         {
             _isDownloadRunning = true;
             string selectedQuality = HelpersModel.GetQuality(SelectedQuality);
+            Log.Information(selectedQuality);
             DisableInteractions();
             Thread.CurrentThread.IsBackground = true;
             _currentThreadPoolWorker = Thread.CurrentThread;
 
             StandardOutput = Localization.Properties.Resources.StartingDownload;
-            InformationAndExceptionOutput = Localization.Properties.Resources.StatusLogStartingDownloadOfTheLink + DownloadLink;
-            Log.Information(InformationAndExceptionOutput);
+            var statusWithLink = Localization.Properties.Resources.StatusLogStartingDownloadOfTheLink + DownloadLink;
+            InformationAndExceptionOutput = statusWithLink; 
+            Log.Information(statusWithLink);
             string command;
             (command, _finishedMessage) = HelpersModel.CreateCommandAndMessage(selectedQuality, DownloadLink);
 
@@ -458,7 +460,6 @@ namespace Model
                 Thread.Sleep(_timerResolution);
             }
 
-            Log.Information(StandardOutput);
             process.WaitForExit();
             _measureProcessingTime = false;
 
@@ -475,20 +476,24 @@ namespace Model
                         if (!DownloadLink.Contains("https://www."))
                         {
                             StandardOutput = Localization.Properties.Resources.NotValidLink;
+                            Log.Error(StandardOutput);
                         }
                         else
                         {
                             StandardOutput = Localization.Properties.Resources.NoFileDownloadedUnsupportedWebsite;
+                            Log.Error(StandardOutput);
                         }
                     }
                     else
                     {
                         StandardOutput = Localization.Properties.Resources.ErrorNoFileDownloadedUpdatesAreNeeded;
+                        Log.Error(StandardOutput);
                     }
                 }
                 else
                 {
                     StandardOutput = Localization.Properties.Resources.ErrorNoInternetConnectionNoFileDownloaded;
+                    Log.Error(StandardOutput);
                 }
                 ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
                 EnableInteractions();
@@ -539,6 +544,7 @@ namespace Model
                 _isDownloadRunning = false;
                 process.Dispose();
                 InformationAndExceptionOutput = Localization.Properties.Resources.StatusLogFinishedDownload;
+                Log.Information(StandardOutput);
             }
         }
 
