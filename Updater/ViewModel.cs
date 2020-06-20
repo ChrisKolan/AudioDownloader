@@ -90,8 +90,9 @@ namespace Updater
                 DeleteOldFiles();
                 StartAudioDownloader();
             }
-            catch (Exception)
+            catch (Exception excetion)
             {
+                Log.Error(excetion, Localization.Properties.Resources.UpdaterFailedToUpdate);
                 StandardOutput = Localization.Properties.Resources.UpdaterFailedToUpdate;
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 _exceptionOccured = true;
