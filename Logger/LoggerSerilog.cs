@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using Serilog;
 
 namespace Logger
@@ -20,11 +15,14 @@ namespace Logger
                 .CreateLogger();
 
             CultureInfo cultureInfo = CultureInfo.InstalledUICulture;
+           
 
             Log.Information("==========================================================================");
             Log.Information("CultureInfo name: {0}", cultureInfo.Name);
             Log.Information("CultureInfo display name: {0}", cultureInfo.DisplayName);
             Log.Information("Framework version: {0}", GetDotNetVersion.Version());
+            Log.Information("Operating system version: {0}", GetWindowsVersion.OsVersion);
+            Log.Information("Windows release ID: {0}", GetWindowsVersion.ReleaseId);
 
             return Log.Logger;
         }
