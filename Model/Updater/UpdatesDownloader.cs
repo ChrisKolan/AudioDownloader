@@ -41,6 +41,7 @@ namespace Model
                 var responseData = response.HttpResponse.Body;
                 System.IO.File.WriteAllBytes(pathToAudioDownloaderTempFolder, (byte[])responseData);
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.DownloadFinished;
+                model.Log.Information(Localization.Properties.Resources.DownloadFinished);
 
                 RenameFilesInFolder.Rename();
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.RenamedFiles;

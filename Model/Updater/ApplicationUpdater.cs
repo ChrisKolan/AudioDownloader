@@ -26,28 +26,30 @@ namespace Model
                 {
                     model.DownloadLinkEnabled = true;
                     model.StandardOutput = Localization.Properties.Resources.UpdateFailedIncreaseTimeoutClickHereToDownloadManually;
-                    localVersions = GetLocalVersions();
+                    localVersions = GetLocalVersions(model);
                     model.LocalVersions = localVersions;
                     model.HelpButtonToolTip = localVersions;
                     model.EnableInteractions();
                     model.InformationAndExceptionOutput = exception.Message;
+                    model.Log.Error(exception, "Updater exception");
                     return;
                 }
                 catch (Exception exception)
                 {
                     model.DownloadLinkEnabled = true;
                     model.StandardOutput = Localization.Properties.Resources.UpdateFailedClickHereToDownloadManually;
-                    localVersions = GetLocalVersions();
+                    localVersions = GetLocalVersions(model);
                     model.LocalVersions = localVersions;
                     model.HelpButtonToolTip = localVersions;
                     model.EnableInteractions();
                     model.InformationAndExceptionOutput = exception.Message;
+                    model.Log.Error(exception, "Updater exception");
                     return;
                 }
             }
 
             model.StandardOutput = Localization.Properties.Resources.StandardOutputReady;
-            localVersions = GetLocalVersions();
+            localVersions = GetLocalVersions(model);
             model.LocalVersions = localVersions;
             model.HelpButtonToolTip = localVersions;
             model.EnableInteractions();
@@ -82,7 +84,7 @@ namespace Model
 
             return currentUpdateDateTime;
         }
-        private static string GetLocalVersions()
+        private static string GetLocalVersions(ModelClass model)
         {
             var localVersionsNamesAndNumber = new List<string>
             {
@@ -104,6 +106,11 @@ namespace Model
             }
 
             localVersionsNamesAndNumber.Add("FFmpeg\t\t   |\t4.2.1");
+
+            for (int i = 4; i < localVersionsNamesAndNumber.Count; i++)
+            {
+                model.Log.Information(localVersionsNamesAndNumber[i]);
+            }
 
             return String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
         }
