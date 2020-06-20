@@ -226,7 +226,7 @@
     <value>Kein gültiger Link</value>
   </data>
   <data name="PressButtonToGetOnlineHelp" xml:space="preserve">
-    <value>Drücken Sie die Taste , um Online-Hilfe zu erhalten.</value>
+    <value>Taste Drücken, um Online-Hilfe zu erhalten.</value>
   </data>
   <data name="ProcessingTime" xml:space="preserve">
     <value>Bearbeitungszeit: </value>
@@ -274,7 +274,7 @@
     <value>Bereit. Youtube-dl auf die neueste Version aktualisiert</value>
   </data>
   <data name="StandardOutputRetrievingQuality" xml:space="preserve">
-    <value>Abrufqualität</value>
+    <value>Herunterladen verfügbarer Stream-Qualität</value>
   </data>
   <data name="StandardOutputYouTubeLinkIsInvalid" xml:space="preserve">
     <value>YouTube-Link ist ungültig</value>
@@ -321,7 +321,7 @@
   <data name="ToolTipFolder" xml:space="preserve">
     <value>Linker Mausklick: öffnet den Download-Ordner
 Rechter Mausklick: wählt den Download-Ordner
-Aktueller Download-Ordner:</value>
+Aktueller Download-Ordner: </value>
   </data>
   <data name="TranscodedFileSize" xml:space="preserve">
     <value>Größe der transkodierten Datei: </value>
