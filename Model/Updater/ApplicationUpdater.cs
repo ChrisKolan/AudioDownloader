@@ -109,7 +109,7 @@ namespace Model
 
             for (int i = 4; i < localVersionsNamesAndNumber.Count; i++)
             {
-                model.Log.Information(localVersionsNamesAndNumber[i]);
+                model.Log.Information(localVersionsNamesAndNumber[i].Replace("\t", ""));
             }
 
             return String.Join(Environment.NewLine, localVersionsNamesAndNumber.ToArray());
