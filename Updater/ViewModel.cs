@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Logger;
+using Serilog;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -31,6 +33,7 @@ namespace Updater
             Task.Run(() => Update());
         }
 
+        public static ILogger Log { get; set; }
         public Timer CountdownTimer { get; }
         public Timer StandardOutputUpdateTimer { get; }
         public string StandardOutput
@@ -82,6 +85,7 @@ namespace Updater
         {
             try
             {
+                CreateLogger();
                 StopAudioDownloader();
                 DeleteOldFiles();
                 StartAudioDownloader();
@@ -97,16 +101,25 @@ namespace Updater
         {
             return (double)progress / (double)maximum;
         }
+        private static void CreateLogger()
+        {
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var upadterPath = @"\AudioDownloader\Updater.txt";
+            Log = LoggerSerilog.Create(appDataPath + upadterPath);
+        }
         private void StopAudioDownloader()
         {
             StandardOutput = Localization.Properties.Resources.UpdaterUpdatingAudioDownloader;
+            Log.Information(StandardOutput);
             Thread.Sleep(1000);
             IsIndeterminate = false;
             TaskbarItemProgressStateModel = TaskbarItemProgressState.Normal;
             StandardOutput = Localization.Properties.Resources.UpdaterClosingAudioDownloader;
+            Log.Information(StandardOutput);
             foreach (var process in Process.GetProcessesByName("AudioDownloader"))
             {
                 process.Kill();
+                Log.Information("Killed process: {0}", process.ToString());
             }
             ProgressBarPercent = 33;
             TaskBarProgressValue = GetTaskBarProgressValue(99, ProgressBarPercent);
@@ -115,6 +128,7 @@ namespace Updater
         private void DeleteOldFiles()
         {
             StandardOutput = Localization.Properties.Resources.UpdaterDeletingOldFiles;
+            Log.Information(StandardOutput);
             DirectoryInfo directoryInfo = new DirectoryInfo(_pathToExeFolder);
             FileInfo[] fileInfoArray = directoryInfo.GetFiles("old_*.*");
             foreach (FileInfo file in fileInfoArray)
@@ -122,9 +136,11 @@ namespace Updater
                 try
                 {
                     file.Delete();
+                    Log.Information("Deleted file: {0}", file.Name);
                 }
-                catch (UnauthorizedAccessException)
+                catch (UnauthorizedAccessException unauthorizedAccessException)
                 {
+                    Log.Error(unauthorizedAccessException, "Exception during deleting files");
                     continue;
                 }
             }
@@ -135,12 +151,14 @@ namespace Updater
         private void StartAudioDownloader()
         {
             StandardOutput = Localization.Properties.Resources.UpdaterStartingAudioDownloader;
+            Log.Information(StandardOutput);
             var pathToAudioDownloader = _pathToExeFolder + @"\AudioDownloader.exe";
             Process.Start(pathToAudioDownloader);
             ProgressBarPercent = 99;
             TaskBarProgressValue = GetTaskBarProgressValue(99, ProgressBarPercent);
             Thread.Sleep(1000);
             StandardOutput = Localization.Properties.Resources.UpdaterFinishingUpdate;
+            Log.Information(StandardOutput);
         }
         private void CountdownUntillExitApplication()
         {
