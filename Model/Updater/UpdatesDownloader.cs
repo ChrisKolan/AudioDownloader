@@ -45,12 +45,16 @@ namespace Model
 
                 RenameFilesInFolder.Rename();
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.RenamedFiles;
+                model.Log.Information(Localization.Properties.Resources.RenamedFiles);
                 Deleter.DeleteBinFolderContents();
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.DeletedFiles;
+                model.Log.Information(Localization.Properties.Resources.DeletedFiles);
                 Unzipper.Unzip();
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.UnzippedFiles;
+                model.Log.Information(Localization.Properties.Resources.UnzippedFiles);
                 ApplicationRestarter.Restart();
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.RestartingApplication;
+                model.Log.Information(Localization.Properties.Resources.RestartingApplication);
             }
             else if  (updatesCheck["youtube-dl"] == true)
             {
