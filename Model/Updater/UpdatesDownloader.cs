@@ -43,7 +43,7 @@ namespace Model
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.DownloadFinished;
                 model.Log.Information(Localization.Properties.Resources.DownloadFinished);
 
-                RenameFilesInFolder.Rename();
+                RenameFilesInFolder.Rename(model);
                 model.InformationAndExceptionOutput = Localization.Properties.Resources.RenamedFiles;
                 model.Log.Information(Localization.Properties.Resources.RenamedFiles);
                 Deleter.DeleteBinFolderContents();

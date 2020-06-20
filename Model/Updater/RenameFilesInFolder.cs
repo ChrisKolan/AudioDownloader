@@ -10,7 +10,7 @@ namespace Model
 {
     class RenameFilesInFolder
     {
-        public static void Rename()
+        public static void Rename(ModelClass model)
         {
             var prefix = "old_";
             var pathToExe = Assembly.GetEntryAssembly().Location;
@@ -25,6 +25,7 @@ namespace Model
                     continue;
                 }
                 var newFileName = Path.Combine(Path.GetDirectoryName(file.ToString()), (prefix + Path.GetFileName(file.ToString())));
+                model.Log.Information("Old file name: {0}, new file name: {1}", file.ToString(), newFileName);
                 File.Move(pathToExeFolder + file.ToString(), pathToExeFolder + newFileName);
             }
         }
