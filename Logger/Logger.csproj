@@ -50,6 +50,7 @@
     <Compile Include="GetDotNetVersion.cs" />
     <Compile Include="GetWindowsVersion.cs" />
     <Compile Include="LoggerSerilog.cs" />
+    <Compile Include="LogSystemInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

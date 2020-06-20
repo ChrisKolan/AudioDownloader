@@ -722,6 +722,7 @@ namespace Model
         private void Initalize()
         {
             Log = LoggerSerilog.Create();
+            LogSystemInformation.Log(Log);
             StandardOutput = Localization.Properties.Resources.StandardOutputReady;
             ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
             FolderButtonToolTip = HelpersModel.ToolTipFolder;
