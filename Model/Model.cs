@@ -433,6 +433,7 @@ namespace Model
 
             StandardOutput = Localization.Properties.Resources.StartingDownload;
             InformationAndExceptionOutput = Localization.Properties.Resources.StatusLogStartingDownloadOfTheLink + DownloadLink;
+            Log.Information(InformationAndExceptionOutput);
             string command;
             (command, _finishedMessage) = HelpersModel.CreateCommandAndMessage(selectedQuality, DownloadLink);
 
@@ -457,6 +458,7 @@ namespace Model
                 Thread.Sleep(_timerResolution);
             }
 
+            Log.Information(StandardOutput);
             process.WaitForExit();
             _measureProcessingTime = false;
 
@@ -552,6 +554,7 @@ namespace Model
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Error;
                 Thread.Sleep(1000);
                 StandardOutput = Localization.Properties.Resources.ExceptionUpdatingWebhookFailed;
+                Log.Error(webhookException, Localization.Properties.Resources.ExceptionUpdatingWebhookFailed);
                 _informationAndExceptionOutput = webhookException.Message;
                 _downloadedFileSize = null;
                 EnableInteractions();
@@ -987,6 +990,7 @@ namespace Model
                 return ValidationResult.Success;
             }
             model.StandardOutput = Localization.Properties.Resources.StandardOutputRetrievingQuality;
+            model.Log.Information(Localization.Properties.Resources.StandardOutputRetrievingQuality);
             Task.Run(() => model.GetYouTubeAvailableFormatsWorker(model._synchronizationContext));
             return ValidationResult.Success;
         }
