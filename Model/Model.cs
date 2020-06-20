@@ -507,7 +507,9 @@ namespace Model
                 TaskBarProgressValue = HelpersModel.GetTaskBarProgressValue(100, 100);
                 TaskbarItemProgressStateModel = TaskbarItemProgressState.Paused;
                 Thread.Sleep(1000);
-                StandardOutput = Localization.Properties.Resources.StandardOutputReady + ". " + _downloadedFileSize;
+                var output = Localization.Properties.Resources.StandardOutputReady + ". " + _downloadedFileSize;
+                StandardOutput = output;
+                Log.Information(output);
                 ButtonContent = Localization.Properties.Resources.ButtonContentDownload;
                 EnableInteractions();
                 _isDownloadRunning = false;
@@ -686,10 +688,12 @@ namespace Model
                 if (_isOnline)
                 {
                     StandardOutput = Localization.Properties.Resources.StandardOutputYouTubeLinkIsInvalid;
+                    Log.Error(StandardOutput);
                 }
                 else
                 {
                     StandardOutput = Localization.Properties.Resources.StandardOutputNoInternetConnection;
+                    Log.Error(StandardOutput);
                 }
                 IsButtonEnabled = false;
                 return;
