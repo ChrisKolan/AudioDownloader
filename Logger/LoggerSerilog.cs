@@ -9,7 +9,7 @@ namespace Logger
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .WriteTo.File("log.txt",
-                    rollingInterval: RollingInterval.Day,
+                    rollingInterval: RollingInterval.Month,
                     rollOnFileSizeLimit: true)
                 .CreateLogger();
 
