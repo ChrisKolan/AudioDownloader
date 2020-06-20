@@ -734,7 +734,9 @@ namespace Model
 
         private void Initalize()
         {
-            Log = LoggerSerilog.Create();
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var audioDownloaderPath = @"\AudioDownloader\AudioDownloader.txt";
+            Log = LoggerSerilog.Create(appDataPath + audioDownloaderPath);
             LogSystemInformation.Log(Log);
             StandardOutput = Localization.Properties.Resources.StandardOutputReady;
             ButtonContent = Localization.Properties.Resources.ButtonContentDownload;

@@ -4,11 +4,11 @@ namespace Logger
 {
     public static class LoggerSerilog
     {
-        public static ILogger Create()
+        public static ILogger Create(string path)
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
-                .WriteTo.File("log.txt",
+                .WriteTo.File(path,
                     rollingInterval: RollingInterval.Month,
                     rollOnFileSizeLimit: true)
                 .CreateLogger();
