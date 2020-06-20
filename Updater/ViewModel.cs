@@ -137,12 +137,29 @@ namespace Updater
                 try
                 {
                     file.Delete();
-                    Log.Information("Deleted file: {0}", file.Name);
+                    Log.Information("Deleted file: {0}", file.FullName);
                 }
                 catch (UnauthorizedAccessException unauthorizedAccessException)
                 {
                     Log.Error(unauthorizedAccessException, "Exception during deleting files");
                     continue;
+                }
+            }
+            foreach (DirectoryInfo subDirectories in directoryInfo.GetDirectories())
+            {
+                FileInfo[] infos = subDirectories.GetFiles("old_*.*");
+                foreach (FileInfo file in infos)
+                {
+                    try
+                    {
+                        file.Delete();
+                        Log.Information("Deleted file: {0}", file.FullName);
+                    }
+                    catch (UnauthorizedAccessException unauthorizedAccessException)
+                    {
+                        Log.Error(unauthorizedAccessException, "Exception during deleting files");
+                        continue;
+                    }
                 }
             }
             ProgressBarPercent = 66;
