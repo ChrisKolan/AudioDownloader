@@ -17,6 +17,7 @@ namespace Model
             var pathToExeFolder = Path.GetDirectoryName(pathToExe) + @"\";
             DirectoryInfo directoryInfo = new DirectoryInfo(pathToExeFolder);
             FileInfo[] fileInfoArray = directoryInfo.GetFiles();
+
             foreach (FileInfo file in fileInfoArray)
             {
                 var fileString = file.ToString();
@@ -25,8 +26,19 @@ namespace Model
                     continue;
                 }
                 var newFileName = Path.Combine(Path.GetDirectoryName(file.ToString()), (prefix + Path.GetFileName(file.ToString())));
-                model.Log.Information("Old file name: {0}, new file name: {1}", file.ToString(), newFileName);
+                model.Log.Information("Old file name: {0}, renamed file name: {1}", file.FullName, newFileName);
                 File.Move(pathToExeFolder + file.ToString(), pathToExeFolder + newFileName);
+            }
+
+            foreach (DirectoryInfo subDirectories in directoryInfo.GetDirectories())
+            {
+                FileInfo[] infos = subDirectories.GetFiles();
+                foreach (FileInfo file in infos)
+                {
+                    var combinedPath = Path.Combine(file.Directory.ToString(), file.Directory.ToString() + @"\" + prefix + file.Name);
+                    model.Log.Information("Old file name: {0}, renamed file name: {1}", file.FullName, combinedPath);
+                    File.Move(file.FullName, combinedPath);
+                }
             }
         }
     }
