@@ -118,258 +118,258 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdvancedInformationAvailableYouTubeFileFormats" xml:space="preserve">
-    <value>Advanced information. Available YouTube file formats:</value>
+    <value>Erweiterte Informationen. Verfügbare YouTube-Dateiformate:</value>
   </data>
   <data name="AudioAndVideoBestYouTubeQuality" xml:space="preserve">
-    <value>Audio and video		 Best YouTube quality</value>
+    <value>Audio und Video		 Beste YouTube-Qualität</value>
   </data>
   <data name="AudioQualityAcceptable" xml:space="preserve">
-    <value>Audio quality: acceptable 	 Bitrate average: 115 kbit/s, bitrate range: 095-135 kbit/s, VBR mp3 lossy compression</value>
+    <value>Audioqualität: akzeptable 	 durchschnittliche Bitrate: 115 kbit/s, Bitratenbereich: 095-135 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityAudioBook" xml:space="preserve">
-    <value>Audio quality: audio book 	 Bitrate average: 100 kbit/s, bitrate range: 080-120 kbit/s, VBR mp3 lossy compression</value>
+    <value>Audioqualität: Hörbuch 	 Bitrate durchschnittlich: 100 kbit/s, Bitratenbereich: 080-120 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityBest" xml:space="preserve">
-    <value>Audio quality: best 	 Bitrate average: 245 kbit/s, bitrate range: 220-260 kbit/s, VBR mp3 lossy compression (Large mp3 file size)</value>
+    <value>Audioqualität: beste 	 Bitrate durchschnittlich: 245 kbit/s, Bitratenbereich: 220-260 kbit/s, verlustbehaftete VBR-mp3-Komprimierung (große mp3-Dateien)</value>
   </data>
   <data name="AudioQualityBetter" xml:space="preserve">
-    <value>Audio quality: better 	 Bitrate average: 225 kbit/s, bitrate range: 190-250 kbit/s, VBR mp3 lossy compression</value>
+    <value>Audioqualität: bessere 	 Bitrate durchschnittlich: 225 kbit/s, Bitratenbereich: 190-250 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityCouldNotBeRetrieved" xml:space="preserve">
-    <value>Audio quality could not be retrieved</value>
+    <value>Die Audioqualität konnte nicht abgerufen werden</value>
   </data>
   <data name="AudioQualityGood" xml:space="preserve">
-    <value>Audio quality: good 	 Bitrate average: 130 kbit/s, bitrate range: 120-150 kbit/s, VBR mp3 lossy compression</value>
+    <value>Audioqualität: gute 	 durchschnittliche Bitrate: 130 kbit/s, Bitratenbereich: 120-150 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityOptimal" xml:space="preserve">
-    <value>Audio quality: optimal 	 Bitrate average: 190 kbit/s, bitrate range: 170-210 kbit/s, VBR mp3 lossy compression</value>
+    <value>Audioqualität: optimale 	 durchschnittliche Bitrate: 190 kbit/s, Bitratenbereich: 170-210 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityRawAac" xml:space="preserve">
-    <value>Audio quality: raw aac 	 AAC (m4a) unprocessed</value>
+    <value>Audioqualität: rohes aac 	 AAC (m4a) unverarbeitet</value>
   </data>
   <data name="AudioQualityRawOpus" xml:space="preserve">
-    <value>Audio quality: raw opus 	 Opus unprocessed</value>
+    <value>Audioqualität: rohes Opus 	 Opus unbearbeitet</value>
   </data>
   <data name="AudioQualityRawVorbis" xml:space="preserve">
-    <value>Audio quality: raw vorbis 	 Vorbis unprocessed</value>
+    <value>Audioqualität: roher Vorbis 	 Vorbis unbearbeitet</value>
   </data>
   <data name="AudioQualityRawWebm" xml:space="preserve">
-    <value>Audio quality: raw webm 	 WebM (Opus) unprocessed</value>
+    <value>Audio-Qualität: roh webm 	 WebM (Opus) unverarbeitet</value>
   </data>
   <data name="AudioQualitySuperb" xml:space="preserve">
-    <value>Audio quality: superb 	 FLAC lossless compression (Largest flac file size)</value>
+    <value>Audioqualität: hervorragende 	 verlustfreie FLAC-Komprimierung (größte Flac-Dateigröße)</value>
   </data>
   <data name="AudioQualityTransparent" xml:space="preserve">
-    <value>Audio quality: transparent 	 Bitrate average: 165 kbit/s, bitrate range: 140-185 kbit/s, VBR mp3 lossy compression (Balanced mp3 file size)</value>
+    <value>Audioqualität: transparente 	 durchschnittliche Bitrate: 165 kbit/s, Bitratenbereich: 140-185 kbit/s, verlustbehaftete VBR-mp3-Komprimierung (Ausgewogene mp3-Dateigröße)</value>
   </data>
   <data name="AudioQualityVeryGood" xml:space="preserve">
-    <value>Audio quality: very good 	 Bitrate average: 175 kbit/s, bitrate range: 150-195 kbit/s, VBR mp3 lossy compression</value>
+    <value>Audioqualität: sehr gute 	 durchschnittliche Bitrate: 175 kbit/s, Bitratenbereich: 150-195 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityWorse" xml:space="preserve">
-    <value>Audio quality: worse 	 Bitrate average: 085 kbit/s, bitrate range: 070-105 kbit/s, VBR mp3 lossy compression</value>
+    <value>Audioqualität: schlechtere 	 durchschnittliche Bitrate: 085 kbit/s, Bitratenbereich: 070-105 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityWorst" xml:space="preserve">
-    <value>Audio quality: worst 	 Bitrate average: 065 kbit/s, bitrate range: 040-090 kbit/s, VBR mp3 lossy compression (Smallest mp3 file size)</value>
+    <value>Audioqualität: schlechteste 	 Durchschnittlich Bitrate: 065 kbit/s, Bitratenbereich: 040-090 kbit/s, verlustbehaftete VBR-mp3-Komprimierung (kleinste mp3-Dateigröße)</value>
   </data>
   <data name="ButtonContentCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abbrechen</value>
   </data>
   <data name="ButtonContentDownload" xml:space="preserve">
-    <value>Download</value>
+    <value>Herunterladen</value>
   </data>
   <data name="ButtonToolTip" xml:space="preserve">
-    <value>Press Download button to get the file</value>
+    <value>Drücken Sie die Download-Taste, um die Datei herunterzuladen</value>
   </data>
   <data name="ComboBoxInitial" xml:space="preserve">
-    <value>After pasting YouTube link, you can select the audio quality from this list</value>
+    <value>Nachdem Sie den YouTube-Link eingefügt haben, können Sie die Audioqualität aus dieser Liste auswählen</value>
   </data>
   <data name="DeletedFiles" xml:space="preserve">
-    <value>Deleted files</value>
+    <value>Dateien Gelöscht</value>
   </data>
   <data name="DownloadedFileSize" xml:space="preserve">
-    <value>Downloaded file size: </value>
+    <value>Größe der heruntergeladenen Datei: </value>
   </data>
   <data name="DownloadFinished" xml:space="preserve">
-    <value>Download finished</value>
+    <value>Herunterladen beendet</value>
   </data>
   <data name="DownloadTime" xml:space="preserve">
-    <value>Download time: </value>
+    <value>Download-Zeit: </value>
   </data>
   <data name="ErrorNoFileDownloadedUpdatesAreNeeded" xml:space="preserve">
-    <value>Error. No file downloaded. Updates are needed</value>
+    <value>Fehler. Keine Datei heruntergeladen. Updates sind erforderlich</value>
   </data>
   <data name="ErrorNoInternetConnectionNoFileDownloaded" xml:space="preserve">
-    <value>Error. No Internet connection. No file downloaded</value>
+    <value>Fehler. Keine Internetverbindung. Keine Datei heruntergeladen</value>
   </data>
   <data name="ExceptionUpdatingWebhookFailed" xml:space="preserve">
-    <value>Exception. Google Sheets update failed</value>
+    <value>Ausnahme. Aktualisierung von Google Sheets fehlgeschlagen</value>
   </data>
   <data name="FileHasAlreadyBeenDownloaded" xml:space="preserve">
-    <value>File has already been downloaded</value>
+    <value>Datei wurde bereits heruntergeladen</value>
   </data>
   <data name="FinishedMessageDownloadFinished" xml:space="preserve">
-    <value>Download finished</value>
+    <value>Herunterladen beendet</value>
   </data>
   <data name="FinishedMessageDownloadFinishedFlac" xml:space="preserve">
-    <value>Download finished. Now transcoding to FLAC. This may take a while. Processing</value>
+    <value>Download beendet. Transkodierung nach FLAC. Dies kann eine Weile dauern. Verarbeitung</value>
   </data>
   <data name="FinishedMessageDownloadFinishedMp3" xml:space="preserve">
-    <value>Download finished. Now transcoding to mp3. This may take a while. Processing</value>
+    <value>Download beendet. Transkodierung in mp3. Dies kann eine Weile dauern. Verarbeitung</value>
   </data>
   <data name="InternetConnectionReestablished" xml:space="preserve">
-    <value>Internet connection reestablished</value>
+    <value>Internet-Verbindung wieder hergestellt</value>
   </data>
   <data name="NoFileDownloadedUnsupportedWebsite" xml:space="preserve">
-    <value>No file downloaded. Unsupported website</value>
+    <value>Keine Datei heruntergeladen. Nicht unterstützte Website</value>
   </data>
   <data name="NotValidLink" xml:space="preserve">
-    <value>Not a valid link</value>
+    <value>Kein gültiger Link</value>
   </data>
   <data name="PressButtonToGetOnlineHelp" xml:space="preserve">
-    <value>Press button to get online help.</value>
+    <value>Drücken Sie die Taste , um Online-Hilfe zu erhalten.</value>
   </data>
   <data name="ProcessingTime" xml:space="preserve">
-    <value>Processing time: </value>
+    <value>Bearbeitungszeit: </value>
   </data>
   <data name="Ratio" xml:space="preserve">
-    <value>Ratio: </value>
+    <value>Verhältnis: </value>
   </data>
   <data name="RenamedFiles" xml:space="preserve">
-    <value>Renamed files</value>
+    <value>Dateien umbenannt</value>
   </data>
   <data name="RestartingApplication" xml:space="preserve">
-    <value>Restarting application</value>
+    <value>Neustart der Anwendung</value>
   </data>
   <data name="RoundtripTime" xml:space="preserve">
-    <value>Roundtrip time 	   |           </value>
+    <value>Roundtrip Zeit  	   |           </value>
   </data>
   <data name="SendingOfAnInternetControlMessageProtocolNotSuccessful" xml:space="preserve">
-    <value>Sending of an Internet Control Message Protocol not successful</value>
+    <value>Senden eines Internet Control Message Protocol nicht erfolgreich</value>
   </data>
   <data name="SendingOfAnInternetControlMessageProtocolSuccessful" xml:space="preserve">
-    <value>Sending of an Internet Control Message Protocol successful</value>
+    <value>Senden eines Internet Control Message Protocol erfolgreich</value>
   </data>
   <data name="SoftwareVersion" xml:space="preserve">
     <value>Software 	   |	Version</value>
   </data>
   <data name="StandardOutputCheckingForUpdates" xml:space="preserve">
-    <value>Checking for updates</value>
+    <value>Prüfung auf Updates</value>
   </data>
   <data name="StandardOutputDownloadingNewAudioDownloaderVersion" xml:space="preserve">
-    <value>Downloading new Audio Downloader version</value>
+    <value>Herunterladen von Audio-Downloader</value>
   </data>
   <data name="StandardOutputDownloadingNewYoutubeDlVersion" xml:space="preserve">
-    <value>Downloading new Youtube-dl version</value>
+    <value>Herunterladen von Youtube-dl</value>
   </data>
   <data name="StandardOutputEmptyLink" xml:space="preserve">
-    <value>Empty link</value>
+    <value>Leerer Link</value>
   </data>
   <data name="StandardOutputNoInternetConnection" xml:space="preserve">
-    <value>Error. No internet connection</value>
+    <value>Fehler. Keine Internetverbindung</value>
   </data>
   <data name="StandardOutputReady" xml:space="preserve">
-    <value>Ready</value>
+    <value>Bereit</value>
   </data>
   <data name="StandardOutputReadyUpdatedYoutubeDlToLatestVersion" xml:space="preserve">
-    <value>Ready. Updated Youtube-dl to latest version</value>
+    <value>Bereit. Youtube-dl auf die neueste Version aktualisiert</value>
   </data>
   <data name="StandardOutputRetrievingQuality" xml:space="preserve">
-    <value>Retrieving quality</value>
+    <value>Abrufqualität</value>
   </data>
   <data name="StandardOutputYouTubeLinkIsInvalid" xml:space="preserve">
-    <value>YouTube link is invalid</value>
+    <value>YouTube-Link ist ungültig</value>
   </data>
   <data name="StartingDownload" xml:space="preserve">
-    <value>Starting download...</value>
+    <value>Download wird gestartet...</value>
   </data>
   <data name="StatusLogApplicationInitialized" xml:space="preserve">
-    <value>Application initialized</value>
+    <value>Anwendung initialisiert</value>
   </data>
   <data name="StatusLogConfigurationUpdated" xml:space="preserve">
-    <value>Configuration updated</value>
+    <value>Konfiguration aktualisiert</value>
   </data>
   <data name="StatusLogFinishedDownload" xml:space="preserve">
-    <value>Finished download</value>
+    <value>Herunterladen beendet</value>
   </data>
   <data name="StatusLogStartingDownloadOfTheLink" xml:space="preserve">
-    <value>Starting download of the link: </value>
+    <value>Download des Links gestartet: </value>
   </data>
   <data name="TextBoxContentInitial" xml:space="preserve">
-    <value>Audio and video 		 Best quality</value>
+    <value>Audio und Video 		 Beste Qualität</value>
   </data>
   <data name="TextBoxInitial" xml:space="preserve">
-    <value>Paste link and press Enter or Download button</value>
+    <value>Link einfügen und Enter oder Download-Taste drücken</value>
   </data>
   <data name="TextBoxYouTubeInitial" xml:space="preserve">
-    <value>Paste YouTube link and press Enter or Download button</value>
+    <value>YouTube-Link einfügen und Enter oder Download-Taste drücken</value>
   </data>
   <data name="ThreadPoolWorkerAt" xml:space="preserve">
-    <value>at</value>
+    <value>bei</value>
   </data>
   <data name="ThreadPoolWorkerDownload" xml:space="preserve">
-    <value>Download</value>
+    <value>Herunterladen</value>
   </data>
   <data name="ThreadPoolWorkerDownloadingWebpage" xml:space="preserve">
-    <value>Downloading webpage</value>
+    <value>Herunterladen der Webseite</value>
   </data>
   <data name="ThreadPoolWorkerEta" xml:space="preserve">
-    <value>ETA</value>
+    <value>Geschätzte Zeit bis zum Ende des Downloads</value>
   </data>
   <data name="ThreadPoolWorkerOf" xml:space="preserve">
-    <value>of </value>
+    <value>von </value>
   </data>
   <data name="ToolTipFolder" xml:space="preserve">
-    <value>Left mouse click: opens download folder
-Right mouse click: chooses download folder
-Current download folder:</value>
+    <value>Linker Mausklick: öffnet den Download-Ordner
+Rechter Mausklick: wählt den Download-Ordner
+Aktueller Download-Ordner:</value>
   </data>
   <data name="TranscodedFileSize" xml:space="preserve">
-    <value>Transcoded file size: </value>
+    <value>Größe der transkodierten Datei: </value>
   </data>
   <data name="UnzippedFiles" xml:space="preserve">
-    <value>Unzipped files</value>
+    <value>Dateien Entpackt</value>
   </data>
   <data name="UpdateFailedClickHereToDownloadManually" xml:space="preserve">
-    <value>Update failed. Click here to download the update manually</value>
+    <value>Update fehlgeschlagen. Klicken Sie hier, um das Update manuell herunterzuladen.</value>
   </data>
   <data name="UpdateFailedIncreaseTimeoutClickHereToDownloadManually" xml:space="preserve">
-    <value>Update failed. Increase timeout in AudioDownloader.exe.Config and restart application or click here to download manually</value>
+    <value>Update fehlgeschlagen. Erhöhen Sie die Zeitüberschreitung in AudioDownloader.exe.Config und starten Sie die Anwendung neu oder klicken Sie hier, um sie manuell herunterzuladen</value>
   </data>
   <data name="UpdaterClosingAudioDownloader" xml:space="preserve">
-    <value>Closing Audio Downloader</value>
+    <value>Schließen von Audio-Downloader</value>
   </data>
   <data name="UpdaterDeletingOldFiles" xml:space="preserve">
-    <value>Deleting old files</value>
+    <value>Löschen alter Dateien</value>
   </data>
   <data name="UpdaterFailedToUpdate" xml:space="preserve">
-    <value>Failed to update. Please download the latest version manually from: https://chriskolan.github.io/audio-downloader</value>
+    <value>Aktualisierung fehlgeschlagen. Bitte laden Sie die neueste Version manuell herunter unter: https://chriskolan.github.io/audio-downloader</value>
   </data>
   <data name="UpdaterFinishingUpdate" xml:space="preserve">
-    <value>Finishing update</value>
+    <value>Update abgeschlossen</value>
   </data>
   <data name="UpdaterStartingAudioDownloader" xml:space="preserve">
-    <value>Starting Audio Downloader</value>
+    <value>Starten von Audio-Downloader</value>
   </data>
   <data name="UpdaterUpdatingAudioDownloader" xml:space="preserve">
-    <value>Updating Audio Downloader</value>
+    <value>Aktualisieren von Audio-Downloader</value>
   </data>
   <data name="ValidationYouTubeLinkNotValid" xml:space="preserve">
-    <value>YouTube link not valid</value>
+    <value>YouTube-Link nicht gültig</value>
   </data>
   <data name="ViewCheckForAutomaticDownload" xml:space="preserve">
-    <value>Check for automatic download</value>
+    <value>Aktivieren Sie diese Option, um den Download automatisch zu aktivieren.</value>
   </data>
   <data name="ViewCheckForClipboardCapture" xml:space="preserve">
-    <value>Check for clipboard capture</value>
+    <value>Aktivieren Sie diese Option, um den Inhalt der Zwischenablage abzufangen</value>
   </data>
   <data name="ViewCheckForDownloadOnSupportedWebsites" xml:space="preserve">
-    <value>Check for download of best quality audio and video on youtube-dl supported websites</value>
+    <value>Aktivieren Sie diese Option, um die beste Audio- und Videoqualität auf Websites herunterladen können, die von youtube-dl unterstützt werden</value>
   </data>
   <data name="ViewCheckForUsingLastSelectedQuality" xml:space="preserve">
-    <value>Check for using last selected quality</value>
+    <value>Aktivieren Sie diese Option, um die zuletzt gewählte Qualität zu verwenden</value>
   </data>
   <data name="ViewChooseAudioQualityOfTheFile" xml:space="preserve">
-    <value>Choose audio quality of the file</value>
+    <value>Wählen Sie die Audioqualität der Datei</value>
   </data>
   <data name="ViewWindowTitle" xml:space="preserve">
     <value>Audio Downloader</value>

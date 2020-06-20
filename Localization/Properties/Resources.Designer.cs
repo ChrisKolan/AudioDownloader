@@ -115,7 +115,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audio quality could not be retrieved..
+        ///   Looks up a localized string similar to Audio quality could not be retrieved.
         /// </summary>
         public static string AudioQualityCouldNotBeRetrieved {
             get {
@@ -376,7 +376,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not a valid link..
+        ///   Looks up a localized string similar to Not a valid link.
         /// </summary>
         public static string NotValidLink {
             get {

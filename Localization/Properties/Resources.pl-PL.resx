@@ -136,7 +136,7 @@
     <value>Jakość: lepsza 		 Średni bitrate: 225 kbit/s, zakres bitrate: 190-250 kbit/s, kompresja stratna VBR mp3</value>
   </data>
   <data name="AudioQualityCouldNotBeRetrieved" xml:space="preserve">
-    <value>Jakość dźwięku nie mogła zostać pobrana.</value>
+    <value>Jakość dźwięku nie mogła zostać pobrana</value>
   </data>
   <data name="AudioQualityGood" xml:space="preserve">
     <value>Jakość: dobra 		 Średni bitrate: 130 kbit/s, zakres bitrate: 120-150 kbit/s, kompresja stratna VBR mp3</value>
