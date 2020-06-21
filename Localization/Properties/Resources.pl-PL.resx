@@ -130,7 +130,7 @@
     <value>Jakość: książka audio 	 Średni bitrate: 100 kbit/s, zakres bitrate: 080-120 kbit/s, kompresja stratna VBR mp3</value>
   </data>
   <data name="AudioQualityBest" xml:space="preserve">
-    <value>Jakość: najlepsza 		 Średni bitrate: 245 kbit/s, zakres bitrate: 220-260 kbit/s, kompresja stratna VBR mp3 (duży rozmiar mp3)</value>
+    <value>Jakość: najlepsza 		 Średni bitrate: 245 kbit/s, zakres bitrate: 220-260 kbit/s, kompresja stratna VBR mp3 (Duży rozmiar mp3)</value>
   </data>
   <data name="AudioQualityBetter" xml:space="preserve">
     <value>Jakość: lepsza 		 Średni bitrate: 225 kbit/s, zakres bitrate: 190-250 kbit/s, kompresja stratna VBR mp3</value>
@@ -157,7 +157,7 @@
     <value>Jakość: oryginalna  webm 	 WebM (Opus) nieprzetworzony</value>
   </data>
   <data name="AudioQualitySuperb" xml:space="preserve">
-    <value>Jakość: doskonała 	 bezstratna kompresja FLAC (największy rozmiar pliku FLAC)</value>
+    <value>Jakość: doskonała 	 bezstratna kompresja FLAC (Największy rozmiar pliku FLAC)</value>
   </data>
   <data name="AudioQualityTransparent" xml:space="preserve">
     <value>Jakość: przeźroczysta 	 Średni bitrate: 165 kbit/s, zakres bitrate: 140-185 kbit/s, kompresja stratna VBR mp3 (optymalny rozmiar mp3)</value>
@@ -169,7 +169,7 @@
     <value>Jakość: gorsza 		 Średni bitrate: 085 kbit/s, zakres bitrate: 070-105 kbit/s, kompresja stratna VBR mp3</value>
   </data>
   <data name="AudioQualityWorst" xml:space="preserve">
-    <value>Jakość: najgorsza 		 Średni bitrate: 065 kbit/s, zakres bitrate: 040-090 kbit/s, kompresja stratna VBR mp3 (najmniejszy rozmiar mp3)</value>
+    <value>Jakość: najgorsza 		 Średni bitrate: 065 kbit/s, zakres bitrate: 040-090 kbit/s, kompresja stratna VBR mp3 (Najmniejszy rozmiar mp3)</value>
   </data>
   <data name="ButtonContentCancel" xml:space="preserve">
     <value>Anuluj</value>

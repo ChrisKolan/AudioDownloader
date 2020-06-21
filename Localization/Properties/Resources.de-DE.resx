@@ -124,58 +124,58 @@
     <value>Audio und Video		 Beste YouTube-Qualität</value>
   </data>
   <data name="AudioQualityAcceptable" xml:space="preserve">
-    <value>Audioqualität: akzeptable 	 durchschnittliche Bitrate: 115 kbit/s, Bitratenbereich: 095-135 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
+    <value>Qualität: akzeptable 	 Durchschnittliche Bitrate: 115 kbit/s, Bitratenbereich: 095-135 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityAudioBook" xml:space="preserve">
-    <value>Audioqualität: Hörbuch 	 Bitrate durchschnittlich: 100 kbit/s, Bitratenbereich: 080-120 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
+    <value>Qualität: Hörbuch 	 Durchschnittliche Bitrate: 100 kbit/s, Bitratenbereich: 080-120 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityBest" xml:space="preserve">
-    <value>Audioqualität: beste 	 Bitrate durchschnittlich: 245 kbit/s, Bitratenbereich: 220-260 kbit/s, verlustbehaftete VBR-mp3-Komprimierung (große mp3-Dateien)</value>
+    <value>Qualität: beste 		 Durchschnittliche Bitrate: 245 kbit/s, Bitratenbereich: 220-260 kbit/s, verlustbehaftete VBR-mp3-Komprimierung (Große mp3-Dateien)</value>
   </data>
   <data name="AudioQualityBetter" xml:space="preserve">
-    <value>Audioqualität: bessere 	 Bitrate durchschnittlich: 225 kbit/s, Bitratenbereich: 190-250 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
+    <value>Qualität: bessere 		 Durchschnittliche Bitrate: 225 kbit/s, Bitratenbereich: 190-250 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityCouldNotBeRetrieved" xml:space="preserve">
     <value>Die Audioqualität konnte nicht abgerufen werden</value>
   </data>
   <data name="AudioQualityGood" xml:space="preserve">
-    <value>Audioqualität: gute 	 durchschnittliche Bitrate: 130 kbit/s, Bitratenbereich: 120-150 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
+    <value>Qualität: gute 		 Durchschnittliche Bitrate: 130 kbit/s, Bitratenbereich: 120-150 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityOptimal" xml:space="preserve">
-    <value>Audioqualität: optimale 	 durchschnittliche Bitrate: 190 kbit/s, Bitratenbereich: 170-210 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
+    <value>Qualität: optimale 	 Durchschnittliche Bitrate: 190 kbit/s, Bitratenbereich: 170-210 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityRawAac" xml:space="preserve">
-    <value>Audioqualität: rohes aac 	 AAC (m4a) unverarbeitet</value>
+    <value>Qualität: rohes aac 	 AAC (m4a) unverarbeitet</value>
   </data>
   <data name="AudioQualityRawOpus" xml:space="preserve">
-    <value>Audioqualität: rohes Opus 	 Opus unbearbeitet</value>
+    <value>Qualität: rohes Opus 	 Opus unbearbeitet</value>
   </data>
   <data name="AudioQualityRawVorbis" xml:space="preserve">
-    <value>Audioqualität: roher Vorbis 	 Vorbis unbearbeitet</value>
+    <value>Qualität: roher Vorbis 	 Vorbis unbearbeitet</value>
   </data>
   <data name="AudioQualityRawWebm" xml:space="preserve">
-    <value>Audio-Qualität: roh webm 	 WebM (Opus) unverarbeitet</value>
+    <value>Qualität: roh webm 	 WebM (Opus) unverarbeitet</value>
   </data>
   <data name="AudioQualitySuperb" xml:space="preserve">
-    <value>Audioqualität: hervorragende 	 verlustfreie FLAC-Komprimierung (größte Flac-Dateigröße)</value>
+    <value>Qualität: hervorragende 	 Verlustfreie FLAC-Komprimierung (Größte Flac-Dateigröße)</value>
   </data>
   <data name="AudioQualityTransparent" xml:space="preserve">
-    <value>Audioqualität: transparente 	 durchschnittliche Bitrate: 165 kbit/s, Bitratenbereich: 140-185 kbit/s, verlustbehaftete VBR-mp3-Komprimierung (Ausgewogene mp3-Dateigröße)</value>
+    <value>Qualität: transparente 	 Durchschnittliche Bitrate: 165 kbit/s, Bitratenbereich: 140-185 kbit/s, verlustbehaftete VBR-mp3-Komprimierung (Ausgewogene mp3-Dateigröße)</value>
   </data>
   <data name="AudioQualityVeryGood" xml:space="preserve">
-    <value>Audioqualität: sehr gute 	 durchschnittliche Bitrate: 175 kbit/s, Bitratenbereich: 150-195 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
+    <value>Qualität: sehr gute 	 Durchschnittliche Bitrate: 175 kbit/s, Bitratenbereich: 150-195 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityWorse" xml:space="preserve">
-    <value>Audioqualität: schlechtere 	 durchschnittliche Bitrate: 085 kbit/s, Bitratenbereich: 070-105 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
+    <value>Qualität: schlechtere 	 Durchschnittliche Bitrate: 085 kbit/s, Bitratenbereich: 070-105 kbit/s, verlustbehaftete VBR-mp3-Komprimierung</value>
   </data>
   <data name="AudioQualityWorst" xml:space="preserve">
-    <value>Audioqualität: schlechteste 	 Durchschnittlich Bitrate: 065 kbit/s, Bitratenbereich: 040-090 kbit/s, verlustbehaftete VBR-mp3-Komprimierung (kleinste mp3-Dateigröße)</value>
+    <value>Qualität: schlechteste 	 Durchschnittliche Bitrate: 065 kbit/s, Bitratenbereich: 040-090 kbit/s, verlustbehaftete VBR-mp3-Komprimierung (Kleinste mp3-Dateigröße)</value>
   </data>
   <data name="ButtonContentCancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
   <data name="ButtonContentDownload" xml:space="preserve">
-    <value>Herunterladen</value>
+    <value>Download</value>
   </data>
   <data name="ButtonToolTip" xml:space="preserve">
     <value>Drücken Sie die Download-Taste, um die Datei herunterzuladen</value>
@@ -307,7 +307,7 @@
     <value>bei</value>
   </data>
   <data name="ThreadPoolWorkerDownload" xml:space="preserve">
-    <value>Herunterladen</value>
+    <value>Download</value>
   </data>
   <data name="ThreadPoolWorkerDownloadingWebpage" xml:space="preserve">
     <value>Herunterladen der Webseite</value>
@@ -357,7 +357,7 @@ Aktueller Download-Ordner: </value>
     <value>YouTube-Link nicht gültig</value>
   </data>
   <data name="ViewCheckForAutomaticDownload" xml:space="preserve">
-    <value>Aktivieren Sie diese Option, um den Download automatisch zu aktivieren.</value>
+    <value>Aktivieren Sie diese Option, um den Download automatisch zu aktivieren</value>
   </data>
   <data name="ViewCheckForClipboardCapture" xml:space="preserve">
     <value>Aktivieren Sie diese Option, um den Inhalt der Zwischenablage abzufangen</value>
