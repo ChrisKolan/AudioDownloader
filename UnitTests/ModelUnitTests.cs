@@ -53,7 +53,7 @@ namespace UnitTests
             model.DownloadLink = "Not valid link";
             model.DownloadButtonClick();
             Thread.Sleep(4000);
-            Assert.IsTrue(model.StandardOutput == "Error. No file downloaded. Updates are needed.");
+            Assert.IsTrue(model.StandardOutput == "Error. No file downloaded. Invalid link or updates are needed");
             Console.WriteLine(model.InformationAndExceptionOutput);
             model.Dispose();
         }
@@ -175,7 +175,7 @@ namespace UnitTests
             var model = new Model.ModelClass();
             model.DownloadLink = "https://www.youtube.com/watch?v=Nxs_mpWt2BA&list=PLczZk1L30r_s_9woWc1ZvhUNA2n_wjICI&index=1";
             model.SelectedQuality = "raw aac";
-            var expectedFileSizes = new List<long> { 2915430, 6544910, 4142954, 7978914, 5816029, 3563543, 3527081, 3649456, 4245393, 2883786, 3484737, 2475309, 3455726, 3840186 };
+            var expectedFileSizes = new List<long> { 2915430, 6544910, 4221619, 7978914, 5816029, 3563543, 3527081, 3649456, 4245393, 2883786, 3484737, 2475309, 3455726, 3840186 };
             model.DownloadButtonClick();
             Thread.Sleep(1000);
             var allowedSizeDifference = 500;
