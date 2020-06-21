@@ -295,7 +295,7 @@ namespace Localization.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error. No file downloaded. Updates are needed.
+        ///   Looks up a localized string similar to Error. No file downloaded. Invalid link or updates are needed.
         /// </summary>
         public static string ErrorNoFileDownloadedUpdatesAreNeeded {
             get {

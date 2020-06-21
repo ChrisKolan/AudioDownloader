@@ -196,7 +196,7 @@
     <value>Download time: </value>
   </data>
   <data name="ErrorNoFileDownloadedUpdatesAreNeeded" xml:space="preserve">
-    <value>Error. No file downloaded. Updates are needed</value>
+    <value>Error. No file downloaded. Invalid link or updates are needed</value>
   </data>
   <data name="ErrorNoInternetConnectionNoFileDownloaded" xml:space="preserve">
     <value>Error. No Internet connection. No file downloaded</value>

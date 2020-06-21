@@ -196,7 +196,7 @@
     <value>Download-Zeit: </value>
   </data>
   <data name="ErrorNoFileDownloadedUpdatesAreNeeded" xml:space="preserve">
-    <value>Fehler. Keine Datei heruntergeladen. Updates sind erforderlich</value>
+    <value>Fehler. Keine Datei heruntergeladen. Falscher Link oder Updates sind erforderlich</value>
   </data>
   <data name="ErrorNoInternetConnectionNoFileDownloaded" xml:space="preserve">
     <value>Fehler. Keine Internetverbindung. Keine Datei heruntergeladen</value>

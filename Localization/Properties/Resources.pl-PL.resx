@@ -196,10 +196,10 @@
     <value>Czas pobierania: </value>
   </data>
   <data name="ErrorNoFileDownloadedUpdatesAreNeeded" xml:space="preserve">
-    <value>Błąd. Nie pobrano pliku. Potrzebne są aktualizacje.</value>
+    <value>Błąd. Nie pobrano pliku. Niepoprawny link lub potrzebne są aktualizacje</value>
   </data>
   <data name="ErrorNoInternetConnectionNoFileDownloaded" xml:space="preserve">
-    <value>Błąd. Brak połączenia z Internetem. Nie pobrano żadnego pliku.</value>
+    <value>Błąd. Brak połączenia z Internetem. Nie pobrano żadnego pliku</value>
   </data>
   <data name="ExceptionUpdatingWebhookFailed" xml:space="preserve">
     <value>Wyjątek. Aktualizacja Google Sheets nie powiodła się</value>

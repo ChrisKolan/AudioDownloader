@@ -57,7 +57,7 @@ namespace Model
         private readonly SynchronizationContext _synchronizationContext;
         private Thread _currentThreadPoolWorker;
         private bool _isDownloadRunning;
-        private bool _isOnline;
+        private bool _isOnline = true;
         private SolidColorBrush _glowBrushColor;
         private bool _isClipboardCaptureSelected;
         private int _pingerCounter;
@@ -463,7 +463,7 @@ namespace Model
             process.WaitForExit();
             _measureProcessingTime = false;
 
-            if (_downloadedFileSize == null)
+            if (_downloadedFileSize == null || string.IsNullOrWhiteSpace(_downloadedFileSize))
             {
                 TimersOutput = string.Empty;
                 TaskBarProgressValue = HelpersModel.GetTaskBarProgressValue(100, 100);
