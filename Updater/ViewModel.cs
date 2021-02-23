@@ -107,6 +107,7 @@ namespace Updater
             var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var upadterPath = @"\AudioDownloader\Updater.txt";
             Log = LoggerSerilog.Create(appDataPath + upadterPath);
+            Log.Information("Logger created");
         }
         private void StopAudioDownloader()
         {
@@ -128,10 +129,21 @@ namespace Updater
         }
         private void DeleteOldFiles()
         {
+            Log.Information("In DeleteOldFiles Method");
             StandardOutput = Localization.Properties.Resources.UpdaterDeletingOldFiles;
             Log.Information(StandardOutput);
             DirectoryInfo directoryInfo = new DirectoryInfo(_pathToExeFolder);
             FileInfo[] fileInfoArray = directoryInfo.GetFiles("old_*.*");
+            var directories = Directory.GetDirectories(_pathToExeFolder);
+            var subs = directoryInfo.GetDirectories(_pathToExeFolder);
+            foreach (var item in directories)
+            {
+                Log.Information("Directories: {0}", item);
+            }
+            foreach (var item in subs)
+            {
+                Log.Information("DirectorInfo: {0}", item);
+            }
             foreach (FileInfo file in fileInfoArray)
             {
                 try
@@ -147,6 +159,7 @@ namespace Updater
             }
             foreach (DirectoryInfo subDirectories in directoryInfo.GetDirectories())
             {
+                // do not delete audio directory
                 FileInfo[] infos = subDirectories.GetFiles("old_*.*");
                 foreach (FileInfo file in infos)
                 {

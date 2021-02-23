@@ -333,7 +333,7 @@ Aktueller Download-Ordner: </value>
     <value>Update fehlgeschlagen. Klicken Sie hier, um das Update manuell herunterzuladen.</value>
   </data>
   <data name="UpdateFailedIncreaseTimeoutClickHereToDownloadManually" xml:space="preserve">
-    <value>Update fehlgeschlagen. Erhöhen Sie die Zeitüberschreitung in AudioDownloader.exe.Config und starten Sie die Anwendung neu oder klicken Sie hier, um sie manuell herunterzuladen</value>
+    <value>Update fehlgeschlagen. Erhöhen Sie den Timeout in AudioDownloader.exe.Config und starten Sie die Anwendung neu oder klicken Sie hier, um sie manuell herunterzuladen</value>
   </data>
   <data name="UpdaterClosingAudioDownloader" xml:space="preserve">
     <value>Schließen von Audio-Downloader</value>
